@@ -33,6 +33,6 @@ jobs:
       - name: Build
         run: yarn build
       - name: Deploy
-        run: yarn deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAGE_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./public
