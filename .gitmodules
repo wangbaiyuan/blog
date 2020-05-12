@@ -1,0 +1,4 @@
+
+[submodule "themes/hexo-theme-snippet"]
+	path = themes/hexo-theme-snippet
+	url = https://github.com/geekeren/hexo-theme-snippet-pro.git
