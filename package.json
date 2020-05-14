@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build:theme": "gulp",
-    "build": "yarn build:theme && hexo g",
+    "build": "yarn build:theme && hexo g && gulp",
     "deploy": "hexo d",
     "start": "yarn build && hexo s -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
