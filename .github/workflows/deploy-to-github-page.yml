@@ -32,7 +32,7 @@ jobs:
         run: yarn install
 
       - name: Download comments from wordpress
-        run: curl -u "github-action:%{WP_TOKEN}" ${WP_COMMENTS_API_URL} -o source/_data/comments.json
+        run: curl -v -u "github-action:%{WP_TOKEN}" ${WP_COMMENTS_API_URL} -o source/_data/comments.json
         env:
           WP_TOKEN: ${{ secrets.WP_TOKEN }}
           WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
