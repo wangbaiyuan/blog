@@ -31,12 +31,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Collecting Data
-        run: ./dataCollector/run.sh
+      - name: Download Dynamic Data
+        run: ./dataCollector/download-data.sh
         env:
           WP_TOKEN: ${{ secrets.WP_TOKEN }}
-          WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAGE_TOKEN }}
       - name: Build
         run: yarn build
       - name: Deploy

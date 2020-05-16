@@ -1,8 +1,8 @@
-name: Collect Dynamic data
+name: Scheduled Job
 
 on:
   schedule:
-    - cron: 18 6 * * *
+    - cron: 30 6 * * *
 
 jobs:
   deploy:
@@ -31,8 +31,7 @@ jobs:
 
       - name: Collecting Dynamic Data
         run: |
-          ./dataCollector/collect-github-comments.sh
-          ./dataCollector/collect-wordpress-comments.sh
+          ./dataCollector/collect-upload-dynamic-data.sh
         env:
           WP_TOKEN: ${{ secrets.WP_TOKEN }}
           WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
