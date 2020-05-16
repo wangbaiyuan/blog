@@ -3,7 +3,6 @@ name: Scheduled Job
 on:
   schedule:
     - cron: 0 18 * * *
-on:
   push:
     branches: [ master ]
   pull_request:
