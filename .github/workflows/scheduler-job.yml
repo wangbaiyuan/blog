@@ -35,6 +35,12 @@ jobs:
         run: yarn install
 
       - name: Collecting Dynamic Data
+        run: ./dataCollector/collect-dynamic-data.sh
+        env:
+          WP_TOKEN: ${{ secrets.WP_TOKEN }}
+          WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAGE_TOKEN }}
+      - name: Uploading Dynamic Data
         uses: saltbo/uptoc@master
         with:
           driver: qiniu
