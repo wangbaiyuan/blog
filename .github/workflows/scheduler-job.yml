@@ -2,7 +2,7 @@ name: Scheduled Job
 
 on:
   schedule:
-    - cron: 30 6 * * *
+    - cron: 47 6 * * *
 
 jobs:
   deploy:
@@ -30,9 +30,12 @@ jobs:
         run: yarn install
 
       - name: Collecting Dynamic Data
-        run: |
-          ./dataCollector/collect-upload-dynamic-data.sh
+        uses: saltbo/uptoc@master
+        with:
+          driver: qiniu
+          endpoint: huadong
+          bucket: hexo-blog-dynamic-data
+          dist: source/_data
         env:
-          WP_TOKEN: ${{ secrets.WP_TOKEN }}
-          WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
-          GITHUB_TOKEN: ${{ secrets.GH_PAGE_TOKEN }}
+          UPTOC_UPLOADER_AK: ${{ secrets.QINIU_KEYID }}
+          UPTOC_UPLOADER_SK: ${{ secrets.QINIU_KEYSECRET }}
