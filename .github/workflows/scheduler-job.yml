@@ -3,11 +3,11 @@ name: Scheduled Job
 on:
   schedule:
     - cron: 0 18 * * *
-#on:
-#  push:
-#    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   deploy:
