@@ -32,7 +32,7 @@ jobs:
         run: yarn install
 
       - name: Collecting Data
-        sh: ./dataCollector/run.sh
+        run: ./dataCollector/run.sh
         env:
           WP_TOKEN: ${{ secrets.WP_TOKEN }}
           WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
