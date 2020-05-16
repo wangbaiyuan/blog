@@ -60,7 +60,7 @@ const getAllGHIssueComments = async () => {
 }
 
 getAllGHIssueComments()
-    .then(comments => console.log(comments))
+    .then(comments => console.log(JSON.stringify(comments)))
     .catch(error => {
         console.error(error);
         process.exit(1)
