@@ -17,7 +17,7 @@ timezone: 'Asia/Shanghai'
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://wangbaiyuan.cn
 root: /
-permalink: :title.html
+permalink: :slug.html
 permalink_defaults: zh-CN
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
