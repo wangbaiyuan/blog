@@ -55,8 +55,14 @@ const getAllGHIssueComments = async () => {
                         }
                     ))
                 })
-        ));
+        ))
+    ;
     return comments.flat();
 }
 
-getAllGHIssueComments().then(comments => console.log(comments));
+getAllGHIssueComments()
+    .then(comments => console.log(comments))
+    .catch(error => {
+        console.error(error);
+        process.exit(1)
+    });
