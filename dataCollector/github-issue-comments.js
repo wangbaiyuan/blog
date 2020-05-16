@@ -55,8 +55,7 @@ const getAllGHIssueComments = async () => {
                         }
                     ))
                 })
-        ))
-    ;
+        ));
     return comments.flat();
 }
 
