@@ -49,7 +49,7 @@ const getAllGHIssueComments = async () => {
                     const comment_post_hashID = issue.labels.nodes.filter(label => label.name !== 'Gitalk')[0].name;
                     return issue.comments.nodes.map(comment => ({
                             comment_content: comment.bodyHTML,
-                            comment_date: comment.updatedAt,
+                            comment_date_gmt: comment.updatedAt,
                             comment_author: comment.author.name,
                             comment_post_hashID,
                         }
