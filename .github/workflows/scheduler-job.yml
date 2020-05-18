@@ -40,7 +40,7 @@ jobs:
           WP_COMMENTS_API_URL: ${{ secrets.WP_COMMENTS_API_URL }}
           GITHUB_TOKEN: ${{ secrets.GH_PAGE_TOKEN }}
       - name: Uploading Dynamic Data
-        uses: saltbo/uptoc@v1.2.8
+        uses: saltbo/uptoc@v1.3.0
         with:
           driver: qiniu
           endpoint: huadong
