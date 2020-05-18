@@ -43,7 +43,7 @@ jobs:
         uses: saltbo/uptoc@v1.3.0
         with:
           driver: qiniu
-          endpoint: huadong
+          region: cn-east-1
           bucket: hexo-blog-dynamic-data
           dist: source/_data
         env:
