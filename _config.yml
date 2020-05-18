@@ -101,7 +101,7 @@ theme: hexo-theme-snippet
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/geekeren/wangbaiyuan.cn
+  repo: https://github.com/wangbaiyuan/blog
   branch: gh-pages
   token: $GITHUB_TOKEN
   name: github-action
