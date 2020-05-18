@@ -8,3 +8,4 @@ download() {
 }
 download wp-comments.json
 download github-comments.json
+download news.json
