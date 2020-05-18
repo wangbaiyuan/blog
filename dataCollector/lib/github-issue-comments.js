@@ -1,7 +1,7 @@
 const {GraphQLClient} = require('graphql-request');
 
-const name = 'wangbaiyuan.cn';
-const owner = 'geekeren';
+const name = 'blog';
+const owner = 'wangbaiyuan';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const client = new GraphQLClient('https://api.github.com/graphql', {
     headers: {
