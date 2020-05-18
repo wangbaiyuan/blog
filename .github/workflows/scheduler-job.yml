@@ -5,7 +5,7 @@ on:
     - cron: 0 18 * * *
   push:
     branches: [ master ]
-  pull_request:
+  pull_request:x
     branches: [ master ]
 
 jobs:
