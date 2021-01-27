@@ -19,12 +19,12 @@ Navicat极客人在数据库学习过程中用过的个人认为最优秀的一�
 一、用Navicat制作ER图
 ---------------
 
-  分别打开navicat的“模型”——“新建模型” \[caption id="attachment_1214" align="aligncenter" width="788"\][![navicat制作ER图](http://wangbaiyuan.cn/wp-content/uploads/2015/05/navicatForER_compressed.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/navicatForER_compressed.jpg) navicat制作ER图\[/caption\]  
+  分别打开navicat的“模型”——“新建模型” [![navicat制作ER图](http://wangbaiyuan.cn/wp-content/uploads/2015/05/navicatForER_compressed.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/navicatForER_compressed.jpg) navicat制作ER图  
 
 二、将ER图导出为SQL语句
 --------------
 
-如图 \[caption id="attachment_1215" align="aligncenter" width="698"\][![Navicat根据ER图导出为SQL](http://wangbaiyuan.cn/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg) Navicat根据ER图导出为SQL\[/caption\] 打开工具——导出SQL 这样只要设计出ER图，所有的建表语句，包括主键、外键关系，Navicat将自动为我们生成。
+如图 [![Navicat根据ER图导出为SQL](http://wangbaiyuan.cn/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg) Navicat根据ER图导出为SQL 打开工具——导出SQL 这样只要设计出ER图，所有的建表语句，包括主键、外键关系，Navicat将自动为我们生成。
 
 三、将现成的数据库转换为ER图
 ---------------

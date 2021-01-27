@@ -47,7 +47,7 @@ ProMetal
 
 *   2.把下列E-R关系模型进行E-R映射算法转换。按照练习七的九个步骤进行映射，明确标示出每一步骤，没有此步骤这标志“无”
 
-\[caption id="attachment_1273" align="aligncenter" width="643"\][![SSD7_ER_规范化](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_20-11-26.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_20-11-26.jpg) SSD7\_ER\_规范化\[/caption\]  
+[![SSD7_ER_规范化](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_20-11-26.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_20-11-26.jpg) SSD7\_ER\_规范化  
 
 一）规范化
 -----

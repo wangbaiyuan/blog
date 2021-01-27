@@ -15,7 +15,7 @@ date: 2015-06-14 09:40:35
 测试效果：
 -----
 
-\[caption id="attachment_1280" align="aligncenter" width="596"\][![PHP用SMTP发邮件支持SSL](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-42-47.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-42-47.jpg) PHP用SMTP发邮件支持SSL\[/caption\]
+[![PHP用SMTP发邮件支持SSL](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-42-47.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-42-47.jpg) PHP用SMTP发邮件支持SSL
 
 PHP用SMTP发邮件(支持SSL)代码
 --------------------

@@ -26,7 +26,7 @@ Deny from all
 Require valid-user
 Satisfy any
 
-注意AuthUserFile 后面是.htpasswd文件的路径，这个路径是主机商给你的绝对路径，不是带你的域名的路径。在.htpasswd文件中记录了用户名和密码，不过这些用户名和密码都是加密过的非明文密码。 密码存放的格式是： 用户名:密码 怎样生成htpasswd密码请访问：http://tool.oschina.net/htpasswd \[caption id="attachment_1289" align="aligncenter" width="726"\][![htpasswd在线生成](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_22-53-31.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_22-53-31.jpg) htpasswd在线生成\[/caption\] 将生成结果复制后保存在一个命名为“.htpasswd”的文件中，放在网站根目录。注意AuthUserFile 后面就是这个.htpasswd文件的路径。
+注意AuthUserFile 后面是.htpasswd文件的路径，这个路径是主机商给你的绝对路径，不是带你的域名的路径。在.htpasswd文件中记录了用户名和密码，不过这些用户名和密码都是加密过的非明文密码。 密码存放的格式是： 用户名:密码 怎样生成htpasswd密码请访问：http://tool.oschina.net/htpasswd [![htpasswd在线生成](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_22-53-31.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_22-53-31.jpg) htpasswd在线生成 将生成结果复制后保存在一个命名为“.htpasswd”的文件中，放在网站根目录。注意AuthUserFile 后面就是这个.htpasswd文件的路径。
 
 密码保护网站文件
 --------
@@ -46,4 +46,4 @@ Satisfy any
 效果预览
 ----
 
-\[caption id="attachment_1290" align="aligncenter" width="361"\][![htpasswd设置密码保护目录](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_23-00-37.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_23-00-37.jpg) htpasswd设置密码保护目录\[/caption\]
+[![htpasswd设置密码保护目录](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_23-00-37.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_23-00-37.jpg) htpasswd设置密码保护目录

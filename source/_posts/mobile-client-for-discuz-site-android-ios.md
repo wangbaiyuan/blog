@@ -36,6 +36,6 @@ date: 2015-03-06 14:31:54
 应用截图预览
 ------
 
-[!["百源IT论坛"安卓APP首页](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-26-38-568_thumb.jpg ""百源IT论坛"安卓APP首页")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-26-38-568.jpg) \[caption id="" align="aligncenter" width="196"\][![百源IT论坛——用户中心](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-16-33-421_thumb.jpg "Screenshot_2015-03-06-14-16-33-421")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-16-33-421.jpg) 百源IT论坛——用户中心\[/caption\] \[caption id="" align="aligncenter" width="333"\][![客户端发帖](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb2.png "客户端发帖")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image2.png) 客户端发帖\[/caption\]
+[!["百源IT论坛"安卓APP首页](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-26-38-568_thumb.jpg ""百源IT论坛"安卓APP首页")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-26-38-568.jpg) [![百源IT论坛——用户中心](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-16-33-421_thumb.jpg "Screenshot_2015-03-06-14-16-33-421")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-16-33-421.jpg) 百源IT论坛——用户中心 [![客户端发帖](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb2.png "客户端发帖")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image2.png) 客户端发帖
 
 ### 如果你想尝试其他第三方制作app，可能参考我之前写的文章：[利用第三方网站在线做自己的APP | 王柏元的博客 http://wangbaiyuan.cn/107.html](http://wangbaiyuan.cn/107.html "【转载】利用第三方网站在线做自己的APP")

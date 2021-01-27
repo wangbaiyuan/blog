@@ -13,7 +13,7 @@ abbrlink: 40108
 date: 2015-12-29 13:42:55
 ---
 
-前几天在一个网站上发现了一个炫酷的导航网页，界面美观大气，采用windows8磁贴风格、网站图标采用扁平化设计。后来发现这个导航网页是开放源码的，于是就下载了一份，并做了细微的修改与优化放在我的主机上，取名“百元导航”。之后我就自豪将“百元导航”设置为我所有浏览器的主页。因为我可以自信地告诉你，这个导航网页二次加载速度绝对快于任何导航网站（不服可亲测），包括主流的百度搜索、360导航。话不多说，[百元导航的网址：http://wangbaiyuan.cn/daohang](http://wangbaiyuan.cn/daohang)，欢迎大家将其设置为你的浏览器主页和提出宝贵意见。 \[caption id="attachment_1577" align="aligncenter" width="1251"\][![百元导航网](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-29_13-08-19.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-29_13-08-19.jpg) 百元导航网\[/caption\]
+前几天在一个网站上发现了一个炫酷的导航网页，界面美观大气，采用windows8磁贴风格、网站图标采用扁平化设计。后来发现这个导航网页是开放源码的，于是就下载了一份，并做了细微的修改与优化放在我的主机上，取名“百元导航”。之后我就自豪将“百元导航”设置为我所有浏览器的主页。因为我可以自信地告诉你，这个导航网页二次加载速度绝对快于任何导航网站（不服可亲测），包括主流的百度搜索、360导航。话不多说，[百元导航的网址：http://wangbaiyuan.cn/daohang](http://wangbaiyuan.cn/daohang)，欢迎大家将其设置为你的浏览器主页和提出宝贵意见。 [![百元导航网](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-29_13-08-19.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-29_13-08-19.jpg) 百元导航网
 
 0.3s的极速加载体验
 -----------

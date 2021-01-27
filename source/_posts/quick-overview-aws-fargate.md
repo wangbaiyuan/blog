@@ -13,7 +13,7 @@ date: 2018-11-05 10:16:48
 
 AWS Fargate 发布于2017年11月的re:Invent 大会，是一项让您无需管理服务器或集群即可运行容器的技术，我们只用关心应用镜像及其所需的资源即可。
 
-\[caption id="" align="aligncenter" width="743"\]![AWS Fargate在技术雷达上的位置](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416185422120.png) AWS Fargate在技术雷达上的位置\[/caption\]
+![AWS Fargate在技术雷达上的位置](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416185422120.png) AWS Fargate在技术雷达上的位置
 
 AWS Fargate: 关键词
 ----------------
@@ -41,7 +41,7 @@ AWS Fargate: 关键词
 从容器运行平台方面：Fargate相比EC2 Instance 的不同、优势
 --------------------------------------
 
-\[caption id="" align="aligncenter" width="644"\]![EC2 vs Fargate：架构](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416185423211.png) EC2 vs Fargate：架构\[/caption\]
+![EC2 vs Fargate：架构](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416185423211.png) EC2 vs Fargate：架构
 
 ### EC2 Instance vs Fargate：安全性
 

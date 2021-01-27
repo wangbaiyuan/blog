@@ -74,7 +74,7 @@ Disallow: /*?connect=* Disallow: /kod/* Disallow: /api/*
 三、百度站长工具robots.txt工具的使用方法
 -------------------------
 
-百度站长工具robots.txt工具网址：[http://zhanzhang.baidu.com/robots/index](http://zhanzhang.baidu.com/robots/index "http://zhanzhang.baidu.com/robots/index") \[caption id="" align="alignnone" width="644"\][![百度站长工具robots.txt工具的使用方法](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb4.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image4.png) 百度站长工具robots.txt工具的使用方法\[/caption\]    
+百度站长工具robots.txt工具网址：[http://zhanzhang.baidu.com/robots/index](http://zhanzhang.baidu.com/robots/index "http://zhanzhang.baidu.com/robots/index") [![百度站长工具robots.txt工具的使用方法](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb4.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image4.png) 百度站长工具robots.txt工具的使用方法    
 
 *   **检测并更新**：在文本框里输入网站点击检测并更新，百度将抓取你的robots.txt文件，如果你近期robots.txt最近有更新，这将马上通知百度搜索蜘蛛更新它的爬行规则，使你修改后的robots.txt马上生效。
 *   **规则校验：**你可以提取自己的robots.txt，然后验证一下你的robots.txt语法是否正确，检验你想要禁止蜘蛛爬行的网址是否能有效屏蔽；

@@ -22,7 +22,7 @@ IPV6的好处是地址长（128位二进制），所以数量多到可以标记�
 第二步，IPV6域名连接远程桌面
 ----------------
 
-打开远程桌面输入你解析的IPV6域名即可： \[caption id="attachment_1292" align="aligncenter" width="411"\][![IPV6远程桌面](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-19_13-15-33.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-19_13-15-33.jpg) IPV6远程桌面\[/caption\]
+打开远程桌面输入你解析的IPV6域名即可： [![IPV6远程桌面](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-19_13-15-33.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-19_13-15-33.jpg) IPV6远程桌面
 
 问：锐捷没登或者断了，连不了远程怎么办？
 --------------------

@@ -64,4 +64,4 @@ private static String ApiKey="yourApiKey";
 测试效果：
 -----
 
-\[caption id="attachment_1196" align="aligncenter" width="718"\][![图灵机器人引入java](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-17_03-27-22.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-17_03-27-22.jpg) 图灵机器人引入java\[/caption\]
+[![图灵机器人引入java](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-17_03-27-22.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-17_03-27-22.jpg) 图灵机器人引入java

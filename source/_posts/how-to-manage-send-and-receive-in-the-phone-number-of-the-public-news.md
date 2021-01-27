@@ -17,9 +17,9 @@ date: 2015-04-17 21:24:25
 手机端管理公众号、收发粉丝私信
 ---------------
 
-微信虽然没有为用户提供良好移动端管理环境，但是第三方的微信管理平台早已坐不住了。所以官方没有，我们不妨使用第三方平台管理。在此向大家介绍一款手机管理公众号APP：公众平台助手。大家可以在各大移动商店搜索下载。 这款APP是第三方开发，虽然有安全认证，但是不是腾讯的亲儿子，有没有后门不得而知，大家可酌而后行之。 这是消息列表： [![手机端管理公众号、收发粉丝私信](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb2.png "手机端管理公众号、收发粉丝私信")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image2.png)   这是用户管理： \[caption id="" align="aligncenter" width="265"\][![怎样在手机中管理、收发公众号消息](http://wangbaiyuan.cn/wp-content/uploads/2015/04/6D_A1LM08I8W_YU3S1GI_thumb.png "怎样在手机中管理、收发公众号消息")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/6D_A1LM08I8W_YU3S1GI.png) 怎样在手机中管理、收发公众号消息\[/caption\]   当然还可以修改备注、发消息，这里极客人就不做赘述了，大家一用便知； 不过公众平台助手不提供群发图文的功能，所以接下来的经验就是解决这一问题的。
+微信虽然没有为用户提供良好移动端管理环境，但是第三方的微信管理平台早已坐不住了。所以官方没有，我们不妨使用第三方平台管理。在此向大家介绍一款手机管理公众号APP：公众平台助手。大家可以在各大移动商店搜索下载。 这款APP是第三方开发，虽然有安全认证，但是不是腾讯的亲儿子，有没有后门不得而知，大家可酌而后行之。 这是消息列表： [![手机端管理公众号、收发粉丝私信](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb2.png "手机端管理公众号、收发粉丝私信")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image2.png)   这是用户管理： [![怎样在手机中管理、收发公众号消息](http://wangbaiyuan.cn/wp-content/uploads/2015/04/6D_A1LM08I8W_YU3S1GI_thumb.png "怎样在手机中管理、收发公众号消息")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/6D_A1LM08I8W_YU3S1GI.png) 怎样在手机中管理、收发公众号消息   当然还可以修改备注、发消息，这里极客人就不做赘述了，大家一用便知； 不过公众平台助手不提供群发图文的功能，所以接下来的经验就是解决这一问题的。
 
 微信关注“公众号安全助手”，手机随时随地群发公众号消息
 ---------------------------
 
-怎么关注公众号就不用我多说了，公众号安全助手是微信官方的公众号，使用起来安全也很方便，你需要为自己的公众号绑定管理员微信号，然后这个管理员微信号给“公众号安全助手”的所有消息，都会方便地群发给订阅用户。 \[caption id="" align="aligncenter" width="274"\][![怎样在手机中管理、收发公众号消息](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb3.png "怎样在手机中管理、收发公众号消息")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image3.png) 怎样在手机中管理、收发公众号消息\[/caption\]   更多IT经验、公众号运营经验，请访问：[http://weixin.wangbaiyuan.cn](http://weixin.wangbaiyuan.cn)扫码关注一下我的公众号——“极客中心”。
+怎么关注公众号就不用我多说了，公众号安全助手是微信官方的公众号，使用起来安全也很方便，你需要为自己的公众号绑定管理员微信号，然后这个管理员微信号给“公众号安全助手”的所有消息，都会方便地群发给订阅用户。 [![怎样在手机中管理、收发公众号消息](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb3.png "怎样在手机中管理、收发公众号消息")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image3.png) 怎样在手机中管理、收发公众号消息   更多IT经验、公众号运营经验，请访问：[http://weixin.wangbaiyuan.cn](http://weixin.wangbaiyuan.cn)扫码关注一下我的公众号——“极客中心”。

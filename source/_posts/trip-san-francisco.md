@@ -16,7 +16,7 @@ tags: ''
 
 飞机降落前的旧金山，青山如黛，江山如画，山在飘渺虚无间。
 
-\[caption id="" align="alignnone" width="900"\]![山在缥缈虚无间](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091305118.jpg) 山在缥缈虚无间\[/caption\]
+![山在缥缈虚无间](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091305118.jpg) 山在缥缈虚无间
 
 ![鸟瞰下鳞次栉比的街道，就像美国地图一样，被切分得规规整整。](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091306215.jpg)
 
@@ -31,7 +31,7 @@ tags: ''
 
 ![鸟瞰下鳞次栉比的街道，就像美国地图一样，被切分得规规整整。](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091307316.jpg)
 
-\[caption id="" align="aligncenter" width="602"\]![陈旧而意蕴十足的街头](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091308413.jpg) 陈旧而意蕴十足的街头\[/caption\]
+![陈旧而意蕴十足的街头](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091308413.jpg) 陈旧而意蕴十足的街头
 
 ![image](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190416091309517.jpg)
 
@@ -55,9 +55,9 @@ tags: ''
 
 ![image](https://wangbaiyuan.cn/wp-content/uploads/2019/04/201904160913181313.jpg)
 
-\[caption id="" align="alignnone" width="900"\]![在“南京小馆”吃了第一顿饱饭](https://wangbaiyuan.cn/wp-content/uploads/2019/04/201904160913191419.jpg) 在“南京小馆”吃了第一顿饱饭\[/caption\]
+![在“南京小馆”吃了第一顿饱饭](https://wangbaiyuan.cn/wp-content/uploads/2019/04/201904160913191419.jpg) 在“南京小馆”吃了第一顿饱饭
 
-\[caption id="" align="alignnone" width="900"\]![金门大桥](https://wangbaiyuan.cn/wp-content/uploads/2019/04/201904160913201518.jpg) 金门大桥\[/caption\]
+![金门大桥](https://wangbaiyuan.cn/wp-content/uploads/2019/04/201904160913201518.jpg) 金门大桥
 
 ![image](https://wangbaiyuan.cn/wp-content/uploads/2019/04/201904160913211618.jpg)
 

@@ -61,7 +61,7 @@ date: 2016-01-09 23:22:02
 网页端实现已安装客户端则调用、无则下载
 -------------------
 
-在服务端我们需要动态生成当前网页对应的APPLINK，并通过一个悬浮固定的div显示applink，以便醒目吸引用户点击。比如极客人实现的在手机网页、文章页面，生成有该链接的div（电脑不予显示）： \[caption id="attachment_1603" align="aligncenter" width="960"\][![博客app自动链接调用下载](http://wangbaiyuan.cn/wp-content/uploads/2016/01/wangbaiyuan.cn_2016-01-09_23-20-51.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/01/wangbaiyuan.cn_2016-01-09_23-20-51.jpg) 博客app自动链接调用下载\[/caption\]
+在服务端我们需要动态生成当前网页对应的APPLINK，并通过一个悬浮固定的div显示applink，以便醒目吸引用户点击。比如极客人实现的在手机网页、文章页面，生成有该链接的div（电脑不予显示）： [![博客app自动链接调用下载](http://wangbaiyuan.cn/wp-content/uploads/2016/01/wangbaiyuan.cn_2016-01-09_23-20-51.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/01/wangbaiyuan.cn_2016-01-09_23-20-51.jpg) 博客app自动链接调用下载
 
 <?php
 function addOpenAPPlink(){

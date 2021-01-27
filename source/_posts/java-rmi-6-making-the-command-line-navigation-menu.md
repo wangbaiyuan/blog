@@ -16,12 +16,12 @@ date: 2015-06-13 07:06:12
 效果预览：
 -----
 
-\[caption id="attachment_1277" align="aligncenter" width="717"\][![java命令行导航菜单](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-15-44.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-15-44.jpg) java命令行导航菜单\[/caption\]
+[![java命令行导航菜单](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-15-44.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-15-44.jpg) java命令行导航菜单
 
 MeetingClient.java
 ------------------
 
-下述代码通过匹配用户输入的main函数参数，分别执行在上一篇文章中定义的方法。其中输入GUI和不输入参数将启动GUI模式。 \[caption id="attachment_1278" align="aligncenter" width="781"\][![java命令行导航菜单2](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-33-21.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-33-21.jpg) java命令行导航菜单2\[/caption\]  
+下述代码通过匹配用户输入的main函数参数，分别执行在上一篇文章中定义的方法。其中输入GUI和不输入参数将启动GUI模式。 [![java命令行导航菜单2](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-33-21.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-33-21.jpg) java命令行导航菜单2  
 
 package cn.wangbaiyuan;
 

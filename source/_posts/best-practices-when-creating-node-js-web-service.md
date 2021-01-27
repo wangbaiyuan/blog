@@ -25,7 +25,7 @@ Express是目前最流行的NodeJS web框架。全局安装一个express-generat
 *   全局安装命令：`npm install express-generator -g`
 *   新建一个名为**hello-express**项目: `express hello-express`
     
-    \[caption id="attachment_3211" align="aligncenter" width="1170"\][![使用脚手架初始化Express项目](https://wangbaiyuan.cn/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png) 使用脚手架初始化Express项目\[/caption\]
+    [![使用脚手架初始化Express项目](https://wangbaiyuan.cn/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png) 使用脚手架初始化Express项目
     
 
 ### 使用Swagger脚手架

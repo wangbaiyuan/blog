@@ -16,11 +16,11 @@ date: 2015-05-31 12:20:33
 一、问题分析
 ------
 
-我们知道网关是连接两个不同网络或者说一个网络通向其它网络的IP地址。极客人在命令行输入“ipconfig”获取到本机IP信息如下： \[caption id="attachment_1250" align="aligncenter" width="677"\][![IPconfig](http://wangbaiyuan.cn/wp-content/uploads/2015/05/IPconfig.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/IPconfig.jpg) IPconfig\[/caption\] 如图显然“本地连接3”的马上6和“本地连接”的校园网不在一个网段。然后我在命令行输入“route print”获取本机的路由信息： \[caption id="attachment_1251" align="aligncenter" width="633"\][![IPV4路由表](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-38.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-38.jpg) IPV4路由表\[/caption\] 关键是如图第一条：网络目标为0.0.0.0的对应网关是马上6的网关地址：13.9.0.1，这意味着我们访问所有除做了专门记录的网络目标都会把数据交付给13.9.0.1网关，而不是校园网的网关10.22.56.1。极客人同时连上锐捷和马上6后果然访问不了学校的内部IP，如学院FTP服务器IP：10.128.48.10，以及IP为192.168.4.*的学校实验室电脑也无法访问我宿舍的电脑。所以我需要做的是为这些IP配置网关为校园网网关。 下面是不仅仅适用于校园网的用命令行同时访问内外网的方法。
+我们知道网关是连接两个不同网络或者说一个网络通向其它网络的IP地址。极客人在命令行输入“ipconfig”获取到本机IP信息如下： [![IPconfig](http://wangbaiyuan.cn/wp-content/uploads/2015/05/IPconfig.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/IPconfig.jpg) IPconfig 如图显然“本地连接3”的马上6和“本地连接”的校园网不在一个网段。然后我在命令行输入“route print”获取本机的路由信息： [![IPV4路由表](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-38.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-38.jpg) IPV4路由表 关键是如图第一条：网络目标为0.0.0.0的对应网关是马上6的网关地址：13.9.0.1，这意味着我们访问所有除做了专门记录的网络目标都会把数据交付给13.9.0.1网关，而不是校园网的网关10.22.56.1。极客人同时连上锐捷和马上6后果然访问不了学校的内部IP，如学院FTP服务器IP：10.128.48.10，以及IP为192.168.4.*的学校实验室电脑也无法访问我宿舍的电脑。所以我需要做的是为这些IP配置网关为校园网网关。 下面是不仅仅适用于校园网的用命令行同时访问内外网的方法。
 
 二、用命令行同时访问内外网
 -------------
 
-在仅连接校园网状态下，输入命令行ipconfig，获取到“默认网关”：10.22.56.1，子网掩码：255.255.255.0 \[caption id="attachment_1252" align="aligncenter" width="634"\][![获取校园网网关](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-42.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-42.jpg) 获取校园网网关\[/caption\] 为内网IP配置网关和子网掩码的命令指示符（管理员运行）：
+在仅连接校园网状态下，输入命令行ipconfig，获取到“默认网关”：10.22.56.1，子网掩码：255.255.255.0 [![获取校园网网关](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-42.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-31_12-13-42.jpg) 获取校园网网关 为内网IP配置网关和子网掩码的命令指示符（管理员运行）：
 
 > route add -p 10.22.0.0 mask 255.255.255.0 10.22.56.1 route add -p 10.128.0.0 mask 255.255.255.0 10.22.56.1 route add -p 192.168.4.0 mask 255.255.255.0 10.22.56.1

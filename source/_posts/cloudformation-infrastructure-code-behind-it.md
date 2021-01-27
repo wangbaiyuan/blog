@@ -120,7 +120,7 @@ Cloudformation的声明式操作为其提供了幂等性的特性，以为我们
 
 一种理想的方式是，和修改业务代码一样，当我们要对基础设施进行变更时，通过修改基础设施的代码，提交到git仓库，触发CI/CD流水线运行基础设施代码，然后达到更新基础设施的目的。  
 
-\[caption id="" align="aligncenter" width="500"\]![持续集成](https://wangbaiyuan.cn/wp-content/uploads/2018/11/20181116134234318.jpg) 持续集成\[/caption\]
+![持续集成](https://wangbaiyuan.cn/wp-content/uploads/2018/11/20181116134234318.jpg) 持续集成
 
 同时根据云计算服务商提供的反馈，更新CI/CD流水线的部署状态：红则失败绿则失败。
 

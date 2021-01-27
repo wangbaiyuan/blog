@@ -15,7 +15,7 @@ tags: ''
 
 脑洞一下：中台以后各个部门的数据以微服务API形式放在API store里面供其它部分消费，为了避免部门打架、中台成本谁来出、费用怎么收的问题。在想能不能基于istio开发为请求计费的插件（计费链），技术实现的大概思路就是就是像zipkin每个调用单元（span）加一个价格，一次API的价格等于调用链路中所有单元（span）价格的求和。
 
-\[caption id="attachment_3413" align="aligncenter" width="1440"\][![](https://wangbaiyuan.cn/wp-content/uploads/2019/06/timg-2.jpeg)](https://wangbaiyuan.cn/wp-content/uploads/2019/06/timg-2.jpeg) 最后的大概可视化效果就是这张图的时间ms，换成人民币单位（估计不要一分钱）\[/caption\]
+[![](https://wangbaiyuan.cn/wp-content/uploads/2019/06/timg-2.jpeg)](https://wangbaiyuan.cn/wp-content/uploads/2019/06/timg-2.jpeg) 最后的大概可视化效果就是这张图的时间ms，换成人民币单位（估计不要一分钱）
 
 比如调用一次A服务某API价格为a，一次B服务某API价格为b，调一次C服务需要调A和B，那么C调用费用就是a + b + c。其中C分别要给别的服务a和b的费用，c是给自己的。上面为了介绍思想，这里只是做一个简单的求和，其实也许我们可以做更复杂的方案。就像卖商品一样卖自己的API请求。
 

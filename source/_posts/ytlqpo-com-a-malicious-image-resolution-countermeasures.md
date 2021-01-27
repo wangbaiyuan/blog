@@ -27,7 +27,7 @@ date: 2015-05-19 13:22:16
 
 haosou. ytlqpo.com 镜像好搜网站
 
-\[caption id="attachment_1209" align="aligncenter" width="683"\][![360被镜像](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-19_09-21-30.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-19_09-21-30.jpg) 号称安全神站的360也未能幸免\[/caption\] 不过恭喜百度搜索主页神奇地幸免了
+[![360被镜像](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-19_09-21-30.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-19_09-21-30.jpg) 号称安全神站的360也未能幸免 不过恭喜百度搜索主页神奇地幸免了
 
 二、测试的站长朋友网站被镜像的有：
 -----------------

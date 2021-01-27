@@ -44,7 +44,7 @@ date: 2015-06-11 12:23:06
 rmimeetingER图
 -------------
 
-\[caption id="attachment_1271" align="aligncenter" width="678"\][![rmimeetingER图](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_12-30-38.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_12-30-38.jpg) rmimeetingER图\[/caption\]
+[![rmimeetingER图](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_12-30-38.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_12-30-38.jpg) rmimeetingER图
 
 建表语句
 ----
