@@ -29,7 +29,15 @@ date: 2016-02-17 12:17:28
 
 #### 第一种分类：
 
-1、 GPS，WGS-84，原始坐标体系。一般用国际标准的GPS记录仪记录下来的坐标，都是GPS的坐标。很可惜，在中国，任何一个地图产品都不允许使用GPS坐标，据说是为了保密。GPS坐标形式如图，度分秒形式的经纬度： [![百度地图API位置偏移的校准算法1](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-34.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-34.jpg) 百度地图API位置偏移的校准算法1   [![百度地图API位置偏移的校准算法2](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-54.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-54.jpg) 百度地图API位置偏移的校准算法2 2、 GCJ-02，国测局02年发布的坐标体系。又称“火星坐标”。在中国，必须至少使用GCJ-02的坐标体系。比如谷歌，腾讯，高德都在用这个坐标体系。**GCJ-02****也是国内最广泛使用的坐标体系**。 3、 其他坐标体系。一般都是由GCJ-02进过偏移算法得到的。这种体系就根据每个公司的不同，坐标体系都不一样了。比如，百度和搜狗就使用自己的坐标体系，与其他坐标体系不兼容。
+1、 GPS，WGS-84，原始坐标体系。一般用国际标准的GPS记录仪记录下来的坐标，都是GPS的坐标。很可惜，在中国，任何一个地图产品都不允许使用GPS坐标，据说是为了保密。GPS坐标形式如图，度分秒形式的经纬度： [![百度地图API位置偏移的校准算法1](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-34.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-34.jpg)
+
+百度地图API位置偏移的校准算法1
+ 
+ [![百度地图API位置偏移的校准算法2](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-54.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-54.jpg)
+ 
+ 百度地图API位置偏移的校准算法2
+  
+  2、 GCJ-02，国测局02年发布的坐标体系。又称“火星坐标”。在中国，必须至少使用GCJ-02的坐标体系。比如谷歌，腾讯，高德都在用这个坐标体系。**GCJ-02****也是国内最广泛使用的坐标体系**。 3、 其他坐标体系。一般都是由GCJ-02进过偏移算法得到的。这种体系就根据每个公司的不同，坐标体系都不一样了。比如，百度和搜狗就使用自己的坐标体系，与其他坐标体系不兼容。
 
 #### 第二种分类：
 
