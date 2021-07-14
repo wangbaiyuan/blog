@@ -1,0 +1,74 @@
+<!DOCTYPE HTML><html lang="zh-CN,en,default"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta http-equiv="Cache-Control" content="no-siteapp"><meta http-equiv="Cache-Control" content="no-transform"><meta name="renderer" content="webkit|ie-comp|ie-stand"><meta name="apple-mobile-web-app-capable" content="王柏元的博客"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no,email=no,adress=no"><meta name="browsermode" content="application"><meta name="screen-orientation" content="portrait"><meta name="theme-version" content="1.2.3"><meta name="root" content="/"><link rel="dns-prefetch" href="https://wangbaiyuan.cn"><meta name="keywords" content="个人程序库,android,android开发,API,JAVA,json,在线应用"><meta name="description" content="由于百度翻译、有道翻译等翻译服务都开放了自己的API，开发者可以使用它们提供的API很简单就能开发出自己的翻译软件。自己开发的软件可能在功能上不及它们强大，但是翻译的结果是一样的，同时不会内置其..."><meta name="robots" content="all"><meta name="google" content="all"><meta name="googlebot" content="all"><meta name="verify" content="all"><title> Android(Java)解析有道翻译API-Json数据 | 王柏元的博客 | 博学广问，自律静思</title><link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/font-awesome.min.css?rev=214e9f165f17df852ea523439e9d824f"><link rel="stylesheet" href="/css/style.css?rev=15818be44b30c0294ab041d90fb8a3d9"></head></html><!--[if lte IE 8]><style>
+    html{ font-size: 1em }
+</style><![endif]--><!--[if lte IE 9]><div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div><![endif]--><body><header class="main-header" style="background-image:url(
+    /img/banner.jpg)"><div class="main-header-box"> <a class="header-avatar" href="/" title='Baiyuan Wang'><img src="/img/avatar.jpg?rev=5dbc1316a462385e805093570ba1c118" alt="logo头像" class="img-responsive center-block"></a><div class="branding"><h2> 博学广问，自律静思</h2></div></div></header><nav class="main-navigation"><div class="container"><div class="row"><div class="col-sm-12"><div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav"><span class="sr-only"></span><i class="fa fa-bars"></i></span> <a class="navbar-brand" href="https://wangbaiyuan.cn">王柏元的博客</a></div><div class="collapse navbar-collapse" id="main-menu"><ul class="menu"><li role="presentation" class="text-center"><a href="/"><i class="fa fa-home"></i> 首页</a></li><li role="presentation" class="text-center"><a href="/categories/技术/"><i class="fa fa-shield"></i> 技术</a></li><li role="presentation" class="text-center"><a href="/categories/岁月/"><i class="fa fa-heartbeat"></i> 岁月</a></li><li role="presentation" class="text-center"><a href="/categories/极客视点/"><i class="fa fa-slideshare"></i> 观点</a></li><li role="presentation" class="text-center"><a href="/moment/"><i class="fa fa-slideshare"></i> 业界动态</a></li><li role="presentation" class="text-center"><a href="/archives/"><i class="fa fa-history"></i> 时间轴</a></li></ul></div></div></div></div></nav><section class="content-wrap"><div class="container"><div class="row"><main class="col-md-8 main-content m-post"><p id="process"></p><article class="post"><div class="post-head"><h1 id="Android(Java)解析有道翻译API-Json数据"> Android(Java)解析有道翻译API-Json数据</h1><div class="post-meta"><span class="categories-meta fa-wrap"><i class="fa fa-folder-open-o"></i> <a class="category-link" href="/categories/软件开发/">软件开发</a></span><span class="fa-wrap"><i class="fa fa-tags"></i> <span class="tags-meta"><a class="tag-link" href="/tags/API/">API</a> <a class="tag-link" href="/tags/JAVA/">JAVA</a> <a class="tag-link" href="/tags/android/">android</a> <a class="tag-link" href="/tags/android开发/">android开发</a> <a class="tag-link" href="/tags/json/">json</a></span></span><span class="fa-wrap"><i class="fa fa-clock-o"></i> <span class="date-meta">2015/08/24</span></span></div></div><div class="post-body post-content"><p>由于百度翻译、有道翻译等翻译服务都开放了自己的API，开发者可以使用它们提供的API很简单就能开发出自己的翻译软件。自己开发的软件可能在功能上不及它们强大，但是翻译的结果是一样的，同时不会内置其它偷跑流量的进程，同时界面也相对简洁，随心所欲地进行修改。 <a href="http://wangbaiyuan.cn/wp-content/uploads/2015/03/API.jpg"><img src="http://wangbaiyuan.cn/wp-content/uploads/2015/03/API.jpg" alt="API"></a> 首先在有道API进行申请API ID和KEY后，将下列程序中clientID和clientSecret替换为ID和KEY，通过GET请求获得字符串进行解析。下面是我使用java解析JSON数据的代码：</p><h2 id="Android-Java-解析有道翻译API-Json数据"><a href="#Android-Java-解析有道翻译API-Json数据" class="headerlink" title="Android(Java)解析有道翻译API-Json数据"></a>Android(Java)解析有道翻译API-Json数据</h2><p>private String clientID=”你在有道API申请的ID”;<br>private String clientSecret=”你在有道API申请的密钥”;<br>Handler errHander = new Handler() {<br> @Override<br> public void handleMessage(Message msg) {<br> String notice = “”;<br> switch (msg.what) {<br> case 20:<br> notice = “要翻译的文本过长”;<br> break;<br> case 30:<br> notice = “无法进行有效的翻译”;<br> break;<br> case 40:<br> notice = “不支持的语言类型”;<br> break;<br> case 50:<br> notice = “无效的key”;<br> break;<br> case 60:<br> notice = “无词典结果”;<br> break;<br> }<br> Toast.makeText(MainActivity.this, notice, Toast.LENGTH_SHORT);<br> }<br> };<br> Handler hander = new Handler() {<br> @Override<br> public void handleMessage(Message msg) {</p><pre><code>        if (msg.what == 0x123) {
+            toString.setText(reply);
+        } else if (msg.what == 0x124) {
+            Toast.makeText(MainActivity.this, &quot;查询失败，请检查联网&quot;, Toast.LENGTH_SHORT).show();
+        }
+    }
+};
+private Runnable askForYouDao = new Runnable() {
+    @Override
+    public void run() {
+        try {
+            String url_path = &quot;http://fanyi.youdao.com/openapi.do?keyfrom=&quot; + clientID
+                    \+ &quot;&amp;key=&quot; + clientSecret + &quot;&amp;type=data&amp;doctype=json&amp;version=1.1&amp;q=&quot;
+                    \+ URLEncoder.encode(keywords, &quot;utf8&quot;);
+            URL getUrl = new URL(url_path);
+            HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
+            connection.setConnectTimeout(3000);
+            connection.connect();
+            BufferedReader replyReader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream(), &quot;utf-8&quot;));//约定输入流的编码
+            reply = replyReader.readLine();
+            JSONObject replyJson = new JSONObject(reply);
+            String errorCode = replyJson.getString(&quot;errorCode&quot;);
+            if (errorCode.equals(&quot;0&quot;)) {
+                String query = replyJson.getString(&quot;query&quot;);
+                JSONArray translation
+                        = replyJson.has(&quot;translation&quot;) ? replyJson.getJSONArray(&quot;translation&quot;) : null;
+                JSONObject basic
+                        = replyJson.has(&quot;basic&quot;) ? replyJson.getJSONObject(&quot;basic&quot;) : null;
+                JSONArray web
+                        = replyJson.has(&quot;web&quot;) ? replyJson.getJSONArray(&quot;web&quot;) : null;
+                String phonetic=null;
+                String uk_phonetic=null;
+                String us_phonetic=null;
+                JSONArray explains=null;
+                if(basic!=null){
+                  phonetic=basic.has(&quot;phonetic&quot;)? basic.getString(&quot;phonetic&quot;):null;
+                   uk_phonetic=basic.has(&quot;uk-phonetic&quot;)? basic.getString(&quot;uk-phonetic&quot;):null;
+                   us_phonetic=basic.has(&quot;us-phonetic&quot;)? basic.getString(&quot;us-phonetic&quot;):null;
+                    explains=basic.has(&quot;explains&quot;)? basic.getJSONArray(&quot;explains&quot;):null;
+                }
+</code></pre><p>// if(web!=null){<br>// JSONArray webs=web.getJSONObject()<br>// }<br> String translationStr=””;<br> if(translation!=null){<br> translationStr=”\n翻译：\n”;<br> for(int i=0;i&lt;translation.length();i++){<br> translationStr+=”\t【”+(i+1)+”】”+translation.getString(i)+”\n”;<br> }<br> }<br> String phoneticStr=(phonetic!=null? “\n发音：”+phonetic:””)<br> +(uk_phonetic!=null? “\n英式发音：”+uk_phonetic:””)<br> +(us_phonetic!=null? “\n美式发音：”+us_phonetic:””);<br> String explainStr=””;<br> if(explains!=null){<br> explainStr=”\n\n释义：\n”;<br> for(int i=0;i&lt;explains.length();i++){<br> explainStr+=”\t【”+(i+1)+”】”+explains.getString(i)+”\n”;<br> }<br> }</p><pre><code>    reply=&quot;原文：&quot;+query+&quot;\\n&quot;+translationStr+phoneticStr+explainStr;
+
+
+    hander.sendEmptyMessage(0x123);
+} else {
+</code></pre><p>// Message errorMsg=new Message();<br> int what = Integer.parseInt(errorCode);<br>// errorMsg.what=what;<br> errHander.sendEmptyMessage(what);<br> }</p><pre><code>        } catch (Exception e) {
+            Log.e(&quot;errss&quot;, e.getMessage());
+            hander.sendEmptyMessage(0x124);
+        }
+
+    }
+
+};
+</code></pre></div><div class="post-footer"><div> 转载声明： 商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明:</b></br> 原文出处： <a href="https://wangbaiyuan.cn/android-java-parsing-api-youdao-translation-json-data.html" target="_blank">王柏元的博客 >> Android(Java)解析有道翻译API-Json数据</a></div><div></div></div></article><div class="article-nav prev-next-wrap clearfix"><a href="/translation-phinx-introduction-installation-phinx-tutorial-1.html" class="pre-post btn btn-default" title='【译】Phinx的介绍与安装-Phinx教程(1)'><i class="fa fa-angle-left fa-fw"></i> <span class="hidden-lg">上一篇</span> <span class="hidden-xs">【译】Phinx的介绍与安装-Phinx教程(1)</span></a> <a href="/android-development-authority-books.html" class="next-post btn btn-default" title='Android开发权限大全'><span class="hidden-lg">下一篇</span> <span class="hidden-xs">Android开发权限大全</span><i class="fa fa-angle-right fa-fw"></i></a></div><div id="comments"><script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script><link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet"><div id="gitalk-container"><div class="gt-container detail"></div></div><script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "51595",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script><div class="gt-container detail"></div></div></main><aside class="col-md-4 sidebar"><div class="widget"><h3 class="title"> 关注我</h3><div class="content follow_me"><a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github"><i class="github fa fa-github"></i></a><a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email"><i class="envelope-o fa fa-envelope-o"></i></a><a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo"><i class="weibo fa fa-weibo"></i></a><a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss"><i class="feed fa fa-feed"></i></a></div></div><div class="widget"><h3 class="title"> 订阅微信公众号</h3><div class="content subscribe_wechat"><div> <img width="200" src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"/></div><div> 扫一扫关注<br/> 《我是极客人》微信公众号</div></div></div></aside><aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix"><div class="widget"><h3 class="title"> 文章目录</h3><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android-Java-解析有道翻译API-Json数据"><span class="toc-text">Android(Java)解析有道翻译API-Json数据</span></a></li></ol></div></aside></div></div></section><footer class="main-footer"><div class="copyright"><div class="container"><div class="row"><div class="col-sm-12"> <span>&copy; 2014 - 2021 <a href="https://wangbaiyuan.cn" target="_blank">王柏元的博客</a> <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">陕ICP备15001016号</a></span> |<span><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355">
+    </script></span> | <span>Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a></span> | <span>Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links" target="_blank" rel="nofollow">Snippet Pro</a></span></div></div></div></div><script src="/js/app.js?rev=77dd9e0f99d609cce8503212c1c8b585"></script><a id="back-to-top" class="icon-btn hide"><i class="fa fa-chevron-up"></i></a></footer></body></html>

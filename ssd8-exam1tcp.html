@@ -1,0 +1,152 @@
+<!DOCTYPE HTML><html lang="zh-CN,en,default"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta http-equiv="Cache-Control" content="no-siteapp"><meta http-equiv="Cache-Control" content="no-transform"><meta name="renderer" content="webkit|ie-comp|ie-stand"><meta name="apple-mobile-web-app-capable" content="王柏元的博客"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no,email=no,adress=no"><meta name="browsermode" content="application"><meta name="screen-orientation" content="portrait"><meta name="theme-version" content="1.2.3"><meta name="root" content="/"><link rel="dns-prefetch" href="https://wangbaiyuan.cn"><meta name="keywords" content="SSD8"><meta name="description" content="This is Exam1 for SSD8 practice. It is expected that the extreme guests will write a series. The ..."><meta name="robots" content="all"><meta name="google" content="all"><meta name="googlebot" content="all"><meta name="verify" content="all"><title> SSD8_Exam1[TCP Chat Server] | 王柏元的博客 | 博学广问，自律静思</title><link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/font-awesome.min.css?rev=214e9f165f17df852ea523439e9d824f"><link rel="stylesheet" href="/css/style.css?rev=15818be44b30c0294ab041d90fb8a3d9"></head></html><!--[if lte IE 8]><style>
+    html{ font-size: 1em }
+</style><![endif]--><!--[if lte IE 9]><div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div><![endif]--><body><header class="main-header" style="background-image:url(
+    /img/banner.jpg)"><div class="main-header-box"> <a class="header-avatar" href="/" title='Baiyuan Wang'><img src="/img/avatar.jpg?rev=5dbc1316a462385e805093570ba1c118" alt="logo头像" class="img-responsive center-block"></a><div class="branding"><h2> 博学广问，自律静思</h2></div></div></header><nav class="main-navigation"><div class="container"><div class="row"><div class="col-sm-12"><div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav"><span class="sr-only"></span><i class="fa fa-bars"></i></span> <a class="navbar-brand" href="https://wangbaiyuan.cn">王柏元的博客</a></div><div class="collapse navbar-collapse" id="main-menu"><ul class="menu"><li role="presentation" class="text-center"><a href="/"><i class="fa fa-home"></i> 首页</a></li><li role="presentation" class="text-center"><a href="/categories/技术/"><i class="fa fa-shield"></i> 技术</a></li><li role="presentation" class="text-center"><a href="/categories/岁月/"><i class="fa fa-heartbeat"></i> 岁月</a></li><li role="presentation" class="text-center"><a href="/categories/极客视点/"><i class="fa fa-slideshare"></i> 观点</a></li><li role="presentation" class="text-center"><a href="/moment/"><i class="fa fa-slideshare"></i> 业界动态</a></li><li role="presentation" class="text-center"><a href="/archives/"><i class="fa fa-history"></i> 时间轴</a></li></ul></div></div></div></div></nav><section class="content-wrap"><div class="container"><div class="row"><main class="col-md-8 main-content m-post"><p id="process"></p><article class="post"><div class="post-head"><h1 id="SSD8_Exam1[TCP Chat Server]"> SSD8_Exam1[TCP Chat Server]</h1><div class="post-meta"><span class="categories-meta fa-wrap"><i class="fa fa-folder-open-o"></i> <a class="category-link" href="/categories/Algorithm-language/">Algorithm language</a></span><span class="fa-wrap"><i class="fa fa-tags"></i> <span class="tags-meta"><a class="tag-link" href="/tags/SSD8/">SSD8</a></span></span><span class="fa-wrap"><i class="fa fa-clock-o"></i> <span class="date-meta">2015/05/29</span></span></div></div><div class="post-body post-content"><p>This is Exam1 for SSD8 practice. It is expected that the extreme guests will write a series. The update frequency will be synchronized with the 2013 level progress of the NWPU Network and Distributed Computing Lab.Click on the tag or search for “SSD8” on this site to get updated SSD8 answers.The previous exercise: SSD8_EX2 [UDP vs TCP]; if you want to continue tracking SSD practice, it is recommended to subscribe to this site. This exercise uses a multi-threaded, TCP communication protocol to create a multi-user chat software, which broadcasts user online and offline messages and normal exchange information to all connected users.The main idea of ​​the very guest is to create a hash map of the socket, traverse the hashmap and communicate with many clients.</p><h2 id="First-the-experimental-topics"><a href="#First-the-experimental-topics" class="headerlink" title="First, the experimental topics"></a>First, the experimental topics</h2><p>According to the list of chat protocols given below, use Java sockets to implement a simple TCP chat server.The server should have the following features: Reading information from each client (2); Can forward the read information to all clients; 3. Obtain the port information through the command line; 4. Listen for specific port (port) request information; 5. Ability to handle concurrent connections, which requires the use of multiple threads to handle each connection. A graphical client GUIClient.jar has been provided in the question.</p><h3 id="GUIClient-jar-decompiled-file-in-“Related-Downloads”-which-is-the-client’s-source-code"><a href="#GUIClient-jar-decompiled-file-in-“Related-Downloads”-which-is-the-client’s-source-code" class="headerlink" title="GUIClient.jar decompiled file in “Related Downloads”, which is the client’s source code"></a><strong>GUIClient.jar decompiled file in “Related Downloads”, which is the client’s source code</strong></h3><h2 id="Second-Chat-Server-server-code"><a href="#Second-Chat-Server-server-code" class="headerlink" title="Second, Chat Server server code"></a>Second, Chat Server server code</h2><h3 id="Chat-Server-java"><a href="#Chat-Server-java" class="headerlink" title="Chat Server.java:"></a>Chat Server.java:</h3><p>Package cn.wangbaiyuan;</p><p>Import java.io.DataInputStream;<br>Import java.io.DataOutputStream;<br>Import java.io.IOException;<br>Import java.io.PrintWriter;<br>Import java.io.UnsupportedEncodingException;<br>Import java.net.ServerSocket;<br>Import java.net.Socket;<br>Import java.text.SimpleDateFormat;<br>Import java.util.Calendar;<br>Import java.util.Date;<br>Import java.util.HashMap;<br>Import java.util.Iterator;<br>Import java.util.NoSuchElementException;<br>Import java.util.StringTokenizer;</p><p>/**<br> * ChatServer class to start the server service<br> *<br> * @author <a href="http://wangbaiyuan" target="_blank" rel="noopener">Wang Baiyuan</a><br> <em>The code is <a href="http://wangbaiyuan" target="_blank" rel="noopener">Wang Baiyuan</a> original and it is released synchronously in</em> <a href="http://wangbaiyuan.cn/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">Wang Baiyuan’s blog</a> reproduced please indicate the source<br> <em>/<br>Public class ChatServer {<br> Private static HashMap&lt;String, Socket&gt; serverSocketMap = new HashMap&lt;String, Socket&gt;();<br> ServerSocket serverSocket;<br> Private int port = 1234;<br>/\</em>*<br> * Start chat server service<br> * @throws IOException throws IOException<br> */<br> Public ChatServer() throws IOException {<br> serverSocket = new ServerSocket(port);<br> System.out.println(“ChatServer server startup…”);<br> }</p><pre><code>Public void service() {
+    While (true) {
+        Socket socket = null;
+        Try {
+            Socket = serverSocket.accept();
+            Thread work = new Thread(new Handler(socket)); // Create worker thread for client connection
+            Work.start();
+        } Catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+/\*\*
+ \* Handle child thread classes
+</code></pre><p> * @author <a href="http://wangbaiyuan" target="_blank" rel="noopener">Wang Baiyuan</a><br> <em>The code is <a href="http://wangbaiyuan" target="_blank" rel="noopener">Wang Baiyuan</a> original and it is released synchronously in</em> <a href="http://wangbaiyuan.cn/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">Wang Baiyuan’s blog</a> reproduced please indicate the source<br> */<br> Public class Handler implements Runnable { // thread responsible for communicating with a single client<br> Private Socket socket;<br> DataInputStream br;<br> DataOutputStream bw;<br> PrintWriter pw;</p><pre><code>Public Handler(Socket socket) throws UnsupportedEncodingException,
+        IOException {
+    This.socket = socket;
+}
+
+@SuppressWarnings(&quot;deprecation&quot;)
+/\*\*
+ \* Initialize when there is a new connection and broadcast information to connected users
+ \* @throws IOException
+ */
+Public void initStream() throws IOException { // Initialize input and output stream object methods
+    Br = new DataInputStream(socket.getInputStream());
+    Bw = new DataOutputStream(socket.getOutputStream());
+    String str1 = br.readUTF();
+    System.out.println(str1);
+    StringTokenizer localStringTokenizer1 = new StringTokenizer(str1,
+            &quot;^&quot;);//split the string
+    Try {
+        String head = localStringTokenizer1.nextToken();
+        System.out.println(head);
+        String nameIP = localStringTokenizer1.nextToken();
+        StringTokenizer localStringTokenizer2 = new StringTokenizer(
+                nameIP, &quot;@&quot;);
+        String name = localStringTokenizer2.nextToken();
+        serverSocketMap.put(name, socket);
+        String ip = localStringTokenizer2.nextToken();
+        String member = localStringTokenizer1.nextToken();
+        String message = localStringTokenizer1.nextToken();
+        String message_join = &quot;m^system@10.22.56.186^all^&quot; + name
+                \+ &quot; has joined from &quot; + ip + &quot;__\[time:&quot; + nowTime()
+                \+ &quot;\]^&quot;;
+        sentoAll(name, message_join);
+    } Catch (NoSuchElementException localNoSuchElementException) {
+        System.out.println(&quot;GUIClient: No Such Element Exception&quot;);
+    }
+}
+
+/\*\*
+ \* Mass messaging
+ \* @param name
+ \* News source of group messaging - nickname
+ \* @param message
+ \* Bulk news message
+ \* @throws IOException
+ */
+Public void sentoAll(String name, String message) throws IOException {
+    Iterator iterator = serverSocketMap.keySet().iterator();
+    While (iterator.hasNext()) {
+        String key = (String) iterator.next();
+        Socket received = serverSocketMap.get(key);
+        Bw = new DataOutputStream(received.getOutputStream());
+        bw.writeUTF(message);
+
+    }
+}
+</code></pre><p>/**<br> * Get current time<br> * @return current time<br> */<br> Public String nowTime() {<br> Calendar c = Calendar.getInstance();<br> c.setTimeInMillis(new Date().getTime());<br> SimpleDateFormat dateFormat = new SimpleDateFormat(<br> “yy-MM-dd HH:mm:ss”);<br> Return dateFormat.format(c.getTime());<br> }</p><pre><code>    /\*\*
+     \* Execute sending content
+     */
+    Public void run() { // Execution contents
+        Try {
+            System.out.println(socket.getInetAddress() + &quot;joined group chat&quot;);
+            initStream(); // Initialize input/output stream object
+            String info = null;
+            While (null != (info = br.readUTF())) {
+                StringTokenizer localStringTokenizer1 = new StringTokenizer(
+                        Info, &quot;^&quot;);
+                Try {
+                    String head = localStringTokenizer1.nextToken();
+                    String nameIP = localStringTokenizer1.nextToken();
+                    StringTokenizer localStringTokenizer2 = new StringTokenizer(
+                            nameIP, &quot;@&quot;);
+                    String name = localStringTokenizer2.nextToken();
+                    String ip = localStringTokenizer2.nextToken();
+                    String member = localStringTokenizer1.nextToken();
+                    String message = localStringTokenizer1.nextToken();
+                    If (head.equals(&quot;m&quot;)) {
+                        String message_exchange = &quot;m^&quot; + name
+                                \+ &quot;@10.22.56.186^all^&quot; + message
+                                \+ &quot;___\[time:&quot; + nowTime() + &quot;\]^&quot;;
+                        sentoAll(name, message_exchange);
+
+                    } Else if (head.equals(&quot;j&quot;)) {
+                        String message_join = &quot;j^system@10.22.56.186^all^&quot;
+                                \+ name + &quot; has joined from &quot; + ip
+                                \+ &quot;___\[time:&quot; + nowTime() + &quot;\]^&quot;;
+                        sentoAll(name, message_join);
+
+                    } Else if (head.equals(&quot;p&quot;)) {
+                        String message_exit = &quot;m^system@10.22.56.186^all^&quot;
+                                \+ name + &quot; has leaved! ___\[time:&quot;
+                                \+ nowTime() + &quot;\]^&quot;;
+                        serverSocketMap.remove(name);
+                        sentoAll(name, message_exit);
+                    }
+                } Catch (NoSuchElementException localNoSuchElementException) {
+                    System.out
+                            .println(&quot;GUIClient: No Such Element Exception&quot;);
+                }
+                System.out.println(info);
+            }
+        } Catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            If (null != socket) {
+                Try {
+                    Socket.close();
+                } Catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+Public static void main(String\[\] args) throws IOException {
+    New ChatServer().service(); // Start the service
+}
+</code></pre><p>}</p></div><div class="post-footer"><div> 转载声明： 商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明:</b></br> 原文出处： <a href="https://wangbaiyuan.cn/ssd8-exam1tcp.html" target="_blank">王柏元的博客 >> SSD8_Exam1[TCP Chat Server]</a></div><div></div></div></article><div class="article-nav prev-next-wrap clearfix"><a href="/ssd8-exam1-e3-80-90tcp-chat-server-e3-80-91.html" class="pre-post btn btn-default" title='SSD8_Exam1【TCP Chat Server】'><i class="fa fa-angle-left fa-fw"></i> <span class="hidden-lg">上一篇</span> <span class="hidden-xs">SSD8_Exam1【TCP Chat Server】</span></a> <a href="/wordpress-function-hook-hook-book-1.html" class="next-post btn btn-default" title='wordpress函数钩子（hook）大全(1)'><span class="hidden-lg">下一篇</span> <span class="hidden-xs">wordpress函数钩子（hook）大全(1)</span><i class="fa fa-angle-right fa-fw"></i></a></div><div id="comments"><script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script><link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet"><div id="gitalk-container"><div class="gt-container detail"></div></div><script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "62920",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script><div class="gt-container detail"></div></div></main><aside class="col-md-4 sidebar"><div class="widget"><h3 class="title"> 关注我</h3><div class="content follow_me"><a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github"><i class="github fa fa-github"></i></a><a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email"><i class="envelope-o fa fa-envelope-o"></i></a><a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo"><i class="weibo fa fa-weibo"></i></a><a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss"><i class="feed fa fa-feed"></i></a></div></div><div class="widget"><h3 class="title"> 订阅微信公众号</h3><div class="content subscribe_wechat"><div> <img width="200" src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"/></div><div> 扫一扫关注<br/> 《我是极客人》微信公众号</div></div></div></aside><aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix"><div class="widget"><h3 class="title"> 文章目录</h3><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#First-the-experimental-topics"><span class="toc-text">First, the experimental topics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUIClient-jar-decompiled-file-in-“Related-Downloads”-which-is-the-client’s-source-code"><span class="toc-text">GUIClient.jar decompiled file in “Related Downloads”, which is the client’s source code</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Second-Chat-Server-server-code"><span class="toc-text">Second, Chat Server server code</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chat-Server-java"><span class="toc-text">Chat Server.java:</span></a></li></ol></li></ol></div></aside></div></div></section><footer class="main-footer"><div class="copyright"><div class="container"><div class="row"><div class="col-sm-12"> <span>&copy; 2014 - 2021 <a href="https://wangbaiyuan.cn" target="_blank">王柏元的博客</a> <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">陕ICP备15001016号</a></span> |<span><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355">
+    </script></span> | <span>Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a></span> | <span>Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links" target="_blank" rel="nofollow">Snippet Pro</a></span></div></div></div></div><script src="/js/app.js?rev=77dd9e0f99d609cce8503212c1c8b585"></script><a id="back-to-top" class="icon-btn hide"><i class="fa fa-chevron-up"></i></a></footer></body></html>
