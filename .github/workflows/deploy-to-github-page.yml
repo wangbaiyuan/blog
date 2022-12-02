@@ -32,15 +32,6 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: yarn install
-
-      - name: Download Dynamic Data
-        run: ./dataCollector/download-data.sh
-        env:
-          WP_TOKEN: ${{ secrets.WP_TOKEN }}
-          QINIU_KEYID: ${{ secrets.QINIU_KEYID }}
-          QINIU_KEYSECRET: ${{ secrets.QINIU_KEYSECRET }}
-          QINIU_BUCKET_DOMAIN: ${{ secrets.QINIU_BUCKET_DOMAIN }}
-
       - name: Build
         run: yarn build
       - name: Deploy
