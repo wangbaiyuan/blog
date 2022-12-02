@@ -3000,33 +3000,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^3.0.0":
-  version: 3.0.12
-  resolution: "graceful-fs@npm:3.0.12"
-  dependencies:
-    natives: ^1.1.3
-  checksum: c7c6c333a174d07492823fc2ff9231fb9247eac182831dce795dfd624e74b1376649cd0682f8d21ada648bf7b4c72bb497c98b4028b410ae37e5ad289d762824
-  languageName: node
-  linkType: hard
-
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.1.4, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0":
-  version: 4.2.4
-  resolution: "graceful-fs@npm:4.2.4"
-  checksum: 9d58c444eb4f391ce30b451aae8a8af2bd675d9f6f624719e97306f571ab89b2bd2b5f9025199bc63a2edfe2e53e7701554012f32a708148d53aa689163728cc
-  languageName: node
-  linkType: hard
-
-"graceful-fs@npm:^4.2.6":
+"graceful-fs@npm:^4.2.10":
   version: 4.2.10
   resolution: "graceful-fs@npm:4.2.10"
   checksum: 3f109d70ae123951905d85032ebeae3c2a5a7a997430df00ea30df0e3a6c60cf6689b109654d6fdacd28810a053348c4d14642da1d075049e6be1ba5216218da
-  languageName: node
-  linkType: hard
-
-"graceful-fs@npm:~1.2.0":
-  version: 1.2.3
-  resolution: "graceful-fs@npm:1.2.3"
-  checksum: e40637fe703134214b9eb0c77d6eed336842d47259cb9c6b3fe8e9f864363d8cc7a062309899be4a0ba12e75d1a264adad3c43376c42d251a8dc0c4442ec8232
   languageName: node
   linkType: hard
 
@@ -5792,13 +5769,6 @@ keyword-extractor@latest:
     snapdragon: ^0.8.1
     to-regex: ^3.0.1
   checksum: 54d4166d6ef08db41252eb4e96d4109ebcb8029f0374f9db873bd91a1f896c32ec780d2a2ea65c0b2d7caf1f28d5e1ea33746a470f32146ac8bba821d80d38d8
-  languageName: node
-  linkType: hard
-
-"natives@npm:^1.1.3":
-  version: 1.1.6
-  resolution: "natives@npm:1.1.6"
-  checksum: f9823dddba1eb71dc34f7e684d6d2bb39e709bdc54c42e89f27ec4a87966564644d88d2ea332ddfb91d00129a03d8e73abc35b09a0d985a80d6eaad95f3c1887
   languageName: node
   linkType: hard
 
