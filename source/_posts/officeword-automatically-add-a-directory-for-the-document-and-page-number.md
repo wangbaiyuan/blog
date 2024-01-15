@@ -19,14 +19,14 @@ date: 2015-05-03 17:50:20
 一、为标题添加标题样式
 -----------
 
-对于数模论文、书籍，一般结构性很强，在为章节标注标题时，我们尽量不要把文字简单加粗、加大字号来充当标题，而应该给标题文字严格地添加”标题一“、”标题二“等标题样式。添加标题样式，word不仅会帮你把标题文字加粗加字号，还会识别出内容间的层次关系：比如标题一是标题二的父级，标题二是标题三的父级。 [![officeWord为文档自动添加目录和页码](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb.png "officeWord为文档自动添加目录和页码")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image.png) 至于添加严格的标题样式和标题间层级关系有什么作用？当然是为了下面的添加目录。
+对于数模论文、书籍，一般结构性很强，在为章节标注标题时，我们尽量不要把文字简单加粗、加大字号来充当标题，而应该给标题文字严格地添加”标题一“、”标题二“等标题样式。添加标题样式，word不仅会帮你把标题文字加粗加字号，还会识别出内容间的层次关系：比如标题一是标题二的父级，标题二是标题三的父级。 [![officeWord为文档自动添加目录和页码](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb.png "officeWord为文档自动添加目录和页码")](http://baiyuan.wang/wp-content/uploads/2015/05/image.png) 至于添加严格的标题样式和标题间层级关系有什么作用？当然是为了下面的添加目录。
 
 二、Word为文档自动添加目录和页码
 ------------------
 
-设置完标题样式后，以极客人使用的word2010为例， [![officeWord为文档自动添加目录和页码](http://wangbaiyuan.cn/wp-content/uploads/2015/05/ZNC5DOX87JX88W_L6_thumb.png "officeWord为文档自动添加目录和页码")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/ZNC5DOX87JX88W_L6.png) 打开”引用“选项卡——目录——添加目录，选择”自动“目录和你喜欢的样式，你就能看到自动添加的目录了： [![2JG2IU7F1NL2KJZE3]3Q`AE](http://wangbaiyuan.cn/wp-content/uploads/2015/05/2JG2IU7F1NL2KJZE33QAE_thumb.png "2JG2IU7F1NL2KJZE3]3Q`AE")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/2JG2IU7F1NL2KJZE33QAE.png) 如上图所示，word会根据标题间的层级关系为目录的标题设置段前缩进，如：一、问题的重述 二、问题的分析都是标题一样式；1.1问题背景 1.2问题提出都是标题二样式，所以看到1.1问题背景缩在一、问题的重述后面。添加目录后，如果你添加了新的内容或标题，导致目录应该相应变化时，请点击上面添加的目录，点击”更新目录“，目录内容和页码会自动更新；而且，当按”ctrl“和点击目录中对应的标题，word会自动跳到标题的位置。 [![QQ截图20150503174317](http://wangbaiyuan.cn/wp-content/uploads/2015/05/QQ20150503174317_thumb.png "QQ截图20150503174317")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/QQ20150503174317.png)  
+设置完标题样式后，以极客人使用的word2010为例， [![officeWord为文档自动添加目录和页码](http://baiyuan.wang/wp-content/uploads/2015/05/ZNC5DOX87JX88W_L6_thumb.png "officeWord为文档自动添加目录和页码")](http://baiyuan.wang/wp-content/uploads/2015/05/ZNC5DOX87JX88W_L6.png) 打开”引用“选项卡——目录——添加目录，选择”自动“目录和你喜欢的样式，你就能看到自动添加的目录了： [![2JG2IU7F1NL2KJZE3]3Q`AE](http://baiyuan.wang/wp-content/uploads/2015/05/2JG2IU7F1NL2KJZE33QAE_thumb.png "2JG2IU7F1NL2KJZE3]3Q`AE")](http://baiyuan.wang/wp-content/uploads/2015/05/2JG2IU7F1NL2KJZE33QAE.png) 如上图所示，word会根据标题间的层级关系为目录的标题设置段前缩进，如：一、问题的重述 二、问题的分析都是标题一样式；1.1问题背景 1.2问题提出都是标题二样式，所以看到1.1问题背景缩在一、问题的重述后面。添加目录后，如果你添加了新的内容或标题，导致目录应该相应变化时，请点击上面添加的目录，点击”更新目录“，目录内容和页码会自动更新；而且，当按”ctrl“和点击目录中对应的标题，word会自动跳到标题的位置。 [![QQ截图20150503174317](http://baiyuan.wang/wp-content/uploads/2015/05/QQ20150503174317_thumb.png "QQ截图20150503174317")](http://baiyuan.wang/wp-content/uploads/2015/05/QQ20150503174317.png)  
 
 附录：word必会：页脚加页码
 ---------------
 
-word文档的页码也不需要自己手动添加，选择”插入——页码“，选择页码即可，几种页码样式请自己选择。这样在建立一个新的word页面时，新页面的页码也会同步添加。 [![H)MZD6B3ME17$ZS`1F]A_N2](http://wangbaiyuan.cn/wp-content/uploads/2015/05/HMZD6B3ME17ZS1FA_N2_thumb.png "H)MZD6B3ME17$ZS`1F]A_N2")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/HMZD6B3ME17ZS1FA_N2.png)
+word文档的页码也不需要自己手动添加，选择”插入——页码“，选择页码即可，几种页码样式请自己选择。这样在建立一个新的word页面时，新页面的页码也会同步添加。 [![H)MZD6B3ME17$ZS`1F]A_N2](http://baiyuan.wang/wp-content/uploads/2015/05/HMZD6B3ME17ZS1FA_N2_thumb.png "H)MZD6B3ME17$ZS`1F]A_N2")](http://baiyuan.wang/wp-content/uploads/2015/05/HMZD6B3ME17ZS1FA_N2.png)

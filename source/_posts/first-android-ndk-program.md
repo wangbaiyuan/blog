@@ -12,7 +12,7 @@ abbrlink: 20753
 date: 2016-01-08 22:26:20
 ---
 
-NDK(android native develop kits ):android 本地开发工具集 ,可以把c/c++ ->编译成一个 linux下可以执行的二进制文件 java代码里面就可以通过jni 调用执行二进制的文件。 什么是JNI ：java本地开发接口,JNI是一个协议这个协议用来沟通java代码和外部的本地代码(c/c++).通过这个协议,java代码就可以调用外部的c/c++，代码外部的c/c++代码也可以调用java代码。 java可以实现上层应用的开发，但是不能写底层驱动，有些android项目必须和底层硬件打交道，比如要精确快速的获取某种传感器的值，那么java是不能办到的，那怎么办，就通过JNI开发，通过c/c++完成底层驱动或者值得获取，然后将值传回到java层。同样java层也可以将数据传递给c/c++层，这样通过JNI完成数据的交互。 [![android_studio_NDK](http://wangbaiyuan.cn/wp-content/uploads/2016/01/android_studio_NDK.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/01/android_studio_NDK.jpg) android\_studio\_NDK
+NDK(android native develop kits ):android 本地开发工具集 ,可以把c/c++ ->编译成一个 linux下可以执行的二进制文件 java代码里面就可以通过jni 调用执行二进制的文件。 什么是JNI ：java本地开发接口,JNI是一个协议这个协议用来沟通java代码和外部的本地代码(c/c++).通过这个协议,java代码就可以调用外部的c/c++，代码外部的c/c++代码也可以调用java代码。 java可以实现上层应用的开发，但是不能写底层驱动，有些android项目必须和底层硬件打交道，比如要精确快速的获取某种传感器的值，那么java是不能办到的，那怎么办，就通过JNI开发，通过c/c++完成底层驱动或者值得获取，然后将值传回到java层。同样java层也可以将数据传递给c/c++层，这样通过JNI完成数据的交互。 [![android_studio_NDK](http://baiyuan.wang/wp-content/uploads/2016/01/android_studio_NDK.jpg)](http://baiyuan.wang/wp-content/uploads/2016/01/android_studio_NDK.jpg) android\_studio\_NDK
 
 为何要用到NDK?
 ---------

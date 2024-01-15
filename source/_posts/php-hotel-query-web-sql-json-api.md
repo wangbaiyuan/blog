@@ -42,7 +42,7 @@ Write a program to help an online customer find the cheapest hotel. The input to
 项目文件结构
 ------
 
-[![hotel](http://wangbaiyuan.cn/wp-content/uploads/2015/07/hotel.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/07/hotel.jpg)    
+[![hotel](http://baiyuan.wang/wp-content/uploads/2015/07/hotel.jpg)](http://baiyuan.wang/wp-content/uploads/2015/07/hotel.jpg)    
 
 公用代码
 ----
@@ -260,10 +260,10 @@ echo "<tr><td>".$choice\['name'\]."</td><td>".$choice\['price'\]."</td><td>".$ch
 	</body>
 </html>
 
-*   **演示网址：[http://wangbaiyuan.cn/others/hotel_reservation/index.php](http://wangbaiyuan.cn/others/hotel_reservation/index.php)**
+*   **演示网址：[http://baiyuan.wang/others/hotel_reservation/index.php](http://baiyuan.wang/others/hotel_reservation/index.php)**
 *   **演示截图：**
 
-[![360截图-27702189](http://wangbaiyuan.cn/wp-content/uploads/2015/07/wangbaiyuan.cn_2015-07-27_21-52-44.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/07/wangbaiyuan.cn_2015-07-27_21-52-44.jpg) [![360截图-27714919](http://wangbaiyuan.cn/wp-content/uploads/2015/07/wangbaiyuan.cn_2015-07-27_21-52-46.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/07/wangbaiyuan.cn_2015-07-27_21-52-46.jpg)
+[![360截图-27702189](http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-44.jpg)](http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-44.jpg) [![360截图-27714919](http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-46.jpg)](http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-46.jpg)
 
 可扩展到其他平台的JSON输出代码
 -----------------

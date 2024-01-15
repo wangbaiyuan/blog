@@ -13,7 +13,7 @@ abbrlink: 3992
 date: 2015-12-30 12:01:08
 ---
 
-使用网上开源的导航站源码制作了我的导航网页“百元导航”后，总觉得它丢掉了导航网站的一个很重要的东西—搜索框。于是极客人为自己的导航站加入了搜索框的功能，支持百度搜索、好搜、极客搜、CSDN搜索、蒲公英PT搜索等（可以加代码轻松扩展），除了网站界面使用了网上的代码，逻辑处理部分的js代码全由本人实现。 [![带搜索提示的搜索框百元导航网](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190423121246120.jpg)](https://wangbaiyuan.cn/wp-content/uploads/2019/04/20190423121246120.jpg) 带搜索提示的搜索框百元导航网
+使用网上开源的导航站源码制作了我的导航网页“百元导航”后，总觉得它丢掉了导航网站的一个很重要的东西—搜索框。于是极客人为自己的导航站加入了搜索框的功能，支持百度搜索、好搜、极客搜、CSDN搜索、蒲公英PT搜索等（可以加代码轻松扩展），除了网站界面使用了网上的代码，逻辑处理部分的js代码全由本人实现。 [![带搜索提示的搜索框百元导航网](https://baiyuan.wang/wp-content/uploads/2019/04/20190423121246120.jpg)](https://baiyuan.wang/wp-content/uploads/2019/04/20190423121246120.jpg) 带搜索提示的搜索框百元导航网
 
 html代码：
 -------
@@ -68,7 +68,7 @@ javascript代码
             $("#params").append('<input name="'+name+'" value="'+value+'" type="hidden">');
         }
         function setSearchEngine(searchIndex){
-            var jk="http://so.wangbaiyuan.cn/cse/search";
+            var jk="http://so.baiyuan.wang/cse/search";
             var bd="https://www.baidu.com/s";
             var gg="https://www.google.com/search";
             var hs="https://www.haosou.com/s";

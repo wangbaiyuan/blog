@@ -17,12 +17,12 @@ date: 2015-06-19 13:21:12
 第一步，获取本机IPV6地址并域名解析
 -------------------
 
-IPV6的好处是地址长（128位二进制），所以数量多到可以标记地球上任何一粒沙子，它的缺点也正是地址长——记不住。所以远程桌面管理你的计算机肯定不能使用IPv6地址了，用域名解析的方式是必然的选择。 IPv6域名解析和IPv4无异，你只需要在域名管理中添加一个AAAA记录即可。 具体怎么获取本机的IPv6地址进行IPv6域名解析请参照：[http://wangbaiyuan.cn/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0](http://wangbaiyuan.cn/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0 "http://wangbaiyuan.cn/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0") **比如极客人解析的域名就是：ipv6.wangbaiyuan.cn。**
+IPV6的好处是地址长（128位二进制），所以数量多到可以标记地球上任何一粒沙子，它的缺点也正是地址长——记不住。所以远程桌面管理你的计算机肯定不能使用IPv6地址了，用域名解析的方式是必然的选择。 IPv6域名解析和IPv4无异，你只需要在域名管理中添加一个AAAA记录即可。 具体怎么获取本机的IPv6地址进行IPv6域名解析请参照：[http://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0](http://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0 "http://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0") **比如极客人解析的域名就是：ipv6.baiyuan.wang。**
 
 第二步，IPV6域名连接远程桌面
 ----------------
 
-打开远程桌面输入你解析的IPV6域名即可： [![IPV6远程桌面](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-19_13-15-33.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-19_13-15-33.jpg) IPV6远程桌面
+打开远程桌面输入你解析的IPV6域名即可： [![IPV6远程桌面](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-19_13-15-33.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-19_13-15-33.jpg) IPV6远程桌面
 
 问：锐捷没登或者断了，连不了远程怎么办？
 --------------------

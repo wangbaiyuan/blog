@@ -22,7 +22,7 @@ package="cn.wangbaiyuan.translate"
 android:versionCode="2"
 android:versionName="1.1" >
 
-上述代码表示应用的包名为cn.wangbaiyuan.translate，版本号code：2，版本名Name：1.1；前者一般是给开发者比较版本是否有升级用的，后者是展示给用户看的。 [![W020140901303931719545](http://wangbaiyuan.cn/wp-content/uploads/2015/08/W020140901303931719545.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/W020140901303931719545.jpg) 在Eclipse中使用修改AndroidManifest.xml修改版本号是完全没有问题的，但是极客人在Android Studio上试过仅仅修改AndroidManifest.xml内容是没有效果的，虽然我把android:versionName赋值为1.1，但是在手机上显示的版本号始终是之前的1.0.。
+上述代码表示应用的包名为cn.wangbaiyuan.translate，版本号code：2，版本名Name：1.1；前者一般是给开发者比较版本是否有升级用的，后者是展示给用户看的。 [![W020140901303931719545](http://baiyuan.wang/wp-content/uploads/2015/08/W020140901303931719545.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/W020140901303931719545.jpg) 在Eclipse中使用修改AndroidManifest.xml修改版本号是完全没有问题的，但是极客人在Android Studio上试过仅仅修改AndroidManifest.xml内容是没有效果的，虽然我把android:versionName赋值为1.1，但是在手机上显示的版本号始终是之前的1.0.。
 
 androidStudio开发安卓应用设置版本号
 ------------------------

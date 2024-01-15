@@ -40,7 +40,7 @@ import ExpandableText from 'rn-expandable-text'
 Demos
 -----
 
-[![](https://wangbaiyuan.cn/wp-content/uploads/2019/05/20190520083013116.gif)](https://wangbaiyuan.cn/wp-content/uploads/2019/05/20190520083013116.gif)
+[![](https://baiyuan.wang/wp-content/uploads/2019/05/20190520083013116.gif)](https://baiyuan.wang/wp-content/uploads/2019/05/20190520083013116.gif)
 
 Properties
 ----------
@@ -82,4 +82,4 @@ Follow Me
 
 #### Follow me on Wechat
 
-#### ![](https://wangbaiyuan.cn/wp-content/uploads/2019/05/20190520083014211.jpg)
+#### ![](https://baiyuan.wang/wp-content/uploads/2019/05/20190520083014211.jpg)

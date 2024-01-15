@@ -24,7 +24,7 @@ new Thread( new Runnable() {
   }           
 }).start();
 
-可以实现功能，刷新UI界面。但是这样是不行的，因为它违背了单线程模型：Android UI操作并不是线程安全的并且这些操作必须在UI线程中执行。 [![W020140901303931719545](http://wangbaiyuan.cn/wp-content/uploads/2015/08/W020140901303931719545.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/W020140901303931719545.jpg)
+可以实现功能，刷新UI界面。但是这样是不行的，因为它违背了单线程模型：Android UI操作并不是线程安全的并且这些操作必须在UI线程中执行。 [![W020140901303931719545](http://baiyuan.wang/wp-content/uploads/2015/08/W020140901303931719545.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/W020140901303931719545.jpg)
 
 **方法二：（Thread+Handler)**
 ------------------------

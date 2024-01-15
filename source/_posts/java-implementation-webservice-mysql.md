@@ -23,7 +23,7 @@ date: 2015-06-26 14:59:33
 
 ### 运行截图
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv11.png) ![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv2.png) 添加用户： ![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv31.png) 添加事项： ![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv41.png) 查询事项： ![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv51.png) 删除事项： ![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv61.png) 清空事项： ![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv71.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv11.png) ![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv2.png) 添加用户： ![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv31.png) 添加事项： ![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv41.png) 查询事项： ![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv51.png) 删除事项： ![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv61.png) 清空事项： ![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv71.png)
 
 ### 服务器端代码是怎么实现的
 
@@ -31,7 +31,7 @@ date: 2015-06-26 14:59:33
 
 #### 下面是示意图：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/062615_0650_javawebserv81.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv81.png)
 
 ### 客户端代码是怎么实现的
 
@@ -54,7 +54,7 @@ public static void main(String\[\] args){
                 \+ "请输入命令：";
         String about="WebService待办事项客户端©王柏元—命令行行版:\\n"
                 \+ "作者:王柏元\\n"
-                \+ "个人网站：http://wangbaiyuan.cn\\n"
+                \+ "个人网站：http://baiyuan.wang\\n"
                 \+ "运行模式：命令行环境\\n"
                 \+ "程序介绍：使用Java WebService创建一个待办事项管理系统。"
                 \+ "不同的用户可以使用这个待办事项管理系统执行查询、添加和删除"
@@ -118,4 +118,4 @@ public static void main(String\[\] args){
                 }
         }
 
-  对于菜单的实现原理请参考我的博客文章：[http://wangbaiyuan.cn/java-rmi-6-making-the-command-line-navigation-menu.html](http://wangbaiyuan.cn/java-rmi-6-making-the-command-line-navigation-menu.html)
+  对于菜单的实现原理请参考我的博客文章：[http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html](http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html)

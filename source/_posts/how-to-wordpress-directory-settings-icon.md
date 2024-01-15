@@ -11,7 +11,7 @@ abbrlink: 14072
 date: 2015-01-28 16:48:55
 ---
 
-访问本站的朋友可以发现，笔者的导航菜单是带图标的，而wordpress导航菜单默认是没有图标的，下面是我的博客图示效果： [![mulu_compressed](http://wangbaiyuan.cn/wp-content/uploads/2015/01/mulu_compressed.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/01/mulu_compressed.jpg) 而且这些图标就像文字一样，可以改变它的颜色，可以美化我们的网页界面。在此，抛砖引玉出一个名词：Font Awesome
+访问本站的朋友可以发现，笔者的导航菜单是带图标的，而wordpress导航菜单默认是没有图标的，下面是我的博客图示效果： [![mulu_compressed](http://baiyuan.wang/wp-content/uploads/2015/01/mulu_compressed.jpg)](http://baiyuan.wang/wp-content/uploads/2015/01/mulu_compressed.jpg) 而且这些图标就像文字一样，可以改变它的颜色，可以美化我们的网页界面。在此，抛砖引玉出一个名词：Font Awesome
 
 Font Awesome介绍
 --------------
@@ -61,4 +61,4 @@ Font Awesome的使用
 
 <i class="fa fa-home"></i>首页
 
-[![wordpress目录设置图标](http://wangbaiyuan.cn/wp-content/uploads/2015/01/mulu2_compressed.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/01/mulu2_compressed.jpg) 现在一般的主题都已经引用了Font Awesome，你不妨直接尝试最后一步，看是否能成功加载图标，这样能省去你的许多时间
+[![wordpress目录设置图标](http://baiyuan.wang/wp-content/uploads/2015/01/mulu2_compressed.jpg)](http://baiyuan.wang/wp-content/uploads/2015/01/mulu2_compressed.jpg) 现在一般的主题都已经引用了Font Awesome，你不妨直接尝试最后一步，看是否能成功加载图标，这样能省去你的许多时间

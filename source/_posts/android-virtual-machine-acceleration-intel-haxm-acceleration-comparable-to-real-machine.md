@@ -19,17 +19,17 @@ date: 2015-05-04 11:08:43
 一、下载CPU/aBI为intel atom的安卓系统镜像
 -----------------------------
 
-[![](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb1.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image1.png) 肯定考虑到兼容性问题和其他极客人也不知道的原因，网上下载的现成的安卓虚拟机往往是“armeabi-v7a”，这个架构的CPU系统镜像不Intel(R) Virtualization Technology (VT) 的硬件加速，这是导致安卓虚拟机卡慢的原因，可能大部分的朋友和极客人以前的想法一样，是java虚拟机拖慢了安卓虚拟机的速度。 打开SDK管理器 [![](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb2.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image2.png) 请按图中所述选择一项intel的系统镜像下载： Intel x86 Atom System Image Intel x86 Atom_64 System Image ARM EABI v7a System Image
+[![](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb1.png)](http://baiyuan.wang/wp-content/uploads/2015/05/image1.png) 肯定考虑到兼容性问题和其他极客人也不知道的原因，网上下载的现成的安卓虚拟机往往是“armeabi-v7a”，这个架构的CPU系统镜像不Intel(R) Virtualization Technology (VT) 的硬件加速，这是导致安卓虚拟机卡慢的原因，可能大部分的朋友和极客人以前的想法一样，是java虚拟机拖慢了安卓虚拟机的速度。 打开SDK管理器 [![](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb2.png)](http://baiyuan.wang/wp-content/uploads/2015/05/image2.png) 请按图中所述选择一项intel的系统镜像下载： Intel x86 Atom System Image Intel x86 Atom_64 System Image ARM EABI v7a System Image
 
 二、下载并安装 Intel HAXM 扩展
 ---------------------
 
-打开SDK管理器，如图勾选Intel HAXM 下载并安装   [![](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb3.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image3.png)
+打开SDK管理器，如图勾选Intel HAXM 下载并安装   [![](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb3.png)](http://baiyuan.wang/wp-content/uploads/2015/05/image3.png)
 
 三、新建CPU/ABI为Intel Atom的安卓虚拟机
 ----------------------------
 
-完成上面几步后新建CPU/ABI为Intel Atom的安卓虚拟机，然后启动这一虚拟机就行了，你会发现安卓虚拟机天生就慢的想法是不对的！ [![](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb4.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image4.png)  
+完成上面几步后新建CPU/ABI为Intel Atom的安卓虚拟机，然后启动这一虚拟机就行了，你会发现安卓虚拟机天生就慢的想法是不对的！ [![](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb4.png)](http://baiyuan.wang/wp-content/uploads/2015/05/image4.png)  
 
 四、相关下载：
 -------

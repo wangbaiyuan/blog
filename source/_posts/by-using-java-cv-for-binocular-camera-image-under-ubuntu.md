@@ -55,7 +55,7 @@ Thread.sleep(50);//50毫秒刷新一次图像
 
 如果不对分辨率进行任何的设置，得到的效果是这样的：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2017/03/20170306200826116.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2017/03/20170306200826116.jpg)
 
 双目摄像头画面
 
@@ -116,7 +116,7 @@ public class Camera
 
 图片分离以后的效果是这样的：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2017/03/20170306200827214.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2017/03/20170306200827214.jpg)
 
 双目摄像头图像分离
 

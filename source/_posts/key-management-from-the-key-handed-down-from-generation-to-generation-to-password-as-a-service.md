@@ -52,7 +52,7 @@ date: 2019-10-10 10:49:08
 持续集成流水线中的密钥管理
 -------------
 
-[![](https://wangbaiyuan.cn/wp-content/uploads/2019/10/Screen-Shot-2019-10-15-at-11.01.32.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/10/Screen-Shot-2019-10-15-at-11.01.32.png)
+[![](https://baiyuan.wang/wp-content/uploads/2019/10/Screen-Shot-2019-10-15-at-11.01.32.png)](https://baiyuan.wang/wp-content/uploads/2019/10/Screen-Shot-2019-10-15-at-11.01.32.png)
 
 在现在的Web项目的CI/CD流程中，通常会将项目代码经过构建打包生成docker镜像（制品）；在部署阶段，不同环境会**采用相同的docker镜像**，但是会使用**不同的环境变量**（比如集群、域名、数据库地址密码等）传入到docker的运行时，从而完成在不同环境的部署。 环境（变量）在不同的CI/CD中有不同形式，比如的Jenkins的Credential、GoCD的Environment、CircleCI的Context。 如果将所有的部署与运行时所需要的密钥数据都保存到pipeline上，会导致下面的问题
 
@@ -71,7 +71,7 @@ date: 2019-10-10 10:49:08
 *   密码的服务化
 *   丰富的第三方集成：实现认证的扩展、多平台密钥管理
 
-![Vault架构](https://wangbaiyuan.cn/wp-content/uploads/2019/10/20191015025844212.jpg)
+![Vault架构](https://baiyuan.wang/wp-content/uploads/2019/10/20191015025844212.jpg)
 
 服务化后的vault可以做到
 

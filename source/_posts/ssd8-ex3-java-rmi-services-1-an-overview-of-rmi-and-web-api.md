@@ -22,19 +22,19 @@ RMI和网络API
 SSD8_EX3问题概述：
 -------------
 
-  这是[SSD8](http://wangbaiyuan.cn/tag/ssd8)练习的Ex3，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式系统实验课2013级进度同步。点击标签或在本站搜索“[SSD8](http://wangbaiyuan.cn/tag/ssd8)”即可获取已更新的[SSD8](http://wangbaiyuan.cn/tag/ssd8)答案。上一练习：[SSD8_Exam1【TCP Chat Server】;](http://wangbaiyuan.cn/ssd8-exam1%E3%80%90tcp-chat-server%E3%80%91.html)如果你想继续跟踪SSD练习进展，建议[订阅本站](http://wangbaiyuan.cn/newsletter?action=subscribe)。 1) 使用Java RMI创建一个分布式议程共享服务。不同的用户可以使用这个共享议程服务执行查询、添加和删除会议的操作。服务器支持会议的登记和清除等功能； 2) 议程共享服务包括以下功能：用户注册、添加会议、查询会议、删除会议、清除会议； 相关代码和分析将在后续文章中给出。
+  这是[SSD8](http://baiyuan.wang/tag/ssd8)练习的Ex3，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式系统实验课2013级进度同步。点击标签或在本站搜索“[SSD8](http://baiyuan.wang/tag/ssd8)”即可获取已更新的[SSD8](http://baiyuan.wang/tag/ssd8)答案。上一练习：[SSD8_Exam1【TCP Chat Server】;](http://baiyuan.wang/ssd8-exam1%E3%80%90tcp-chat-server%E3%80%91.html)如果你想继续跟踪SSD练习进展，建议[订阅本站](http://baiyuan.wang/newsletter?action=subscribe)。 1) 使用Java RMI创建一个分布式议程共享服务。不同的用户可以使用这个共享议程服务执行查询、添加和删除会议的操作。服务器支持会议的登记和清除等功能； 2) 议程共享服务包括以下功能：用户注册、添加会议、查询会议、删除会议、清除会议； 相关代码和分析将在后续文章中给出。
 
 系列文章链接：
 -------
 
-[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
+[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
+[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
+[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
+[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
+[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://wangbaiyuan.cn/java-rmi-6-making-the-command-line-navigation-menu.html)
+[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html)

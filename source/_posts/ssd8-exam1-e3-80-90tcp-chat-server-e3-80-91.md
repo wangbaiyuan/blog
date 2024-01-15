@@ -10,7 +10,7 @@ abbrlink: 32005
 date: 2015-05-29 12:55:44
 ---
 
-这是[SSD8](http://wangbaiyuan.cn/tag/ssd8 "查看更多关于 SSD8 的文章")练习的Exam1，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式计算实验课2013级进度同步。点击标签或在本站搜索“[SSD8](http://wangbaiyuan.cn/tag/ssd8 "查看更多关于 SSD8 的文章")”即可获取已更新的SSD8答案。上一练习：[SSD8_EX2【UDP vs TCP】](http://wangbaiyuan.cn/ssd8-ex2-udp-vs-tcp.html);如果你想继续跟踪SSD练习进展，建议[订阅本站](http://wangbaiyuan.cn/newsletter?action=subscribe)。 本次练习采用多线程、TCP通信协议制作一个多人聊天软件，将用户上线下线消息、正常交流信息对所有连接的用户进行广播。极客人的主要思维是建立socket的hashmap，遍历hashmap与众多客户端通信。
+这是[SSD8](http://baiyuan.wang/tag/ssd8 "查看更多关于 SSD8 的文章")练习的Exam1，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式计算实验课2013级进度同步。点击标签或在本站搜索“[SSD8](http://baiyuan.wang/tag/ssd8 "查看更多关于 SSD8 的文章")”即可获取已更新的SSD8答案。上一练习：[SSD8_EX2【UDP vs TCP】](http://baiyuan.wang/ssd8-ex2-udp-vs-tcp.html);如果你想继续跟踪SSD练习进展，建议[订阅本站](http://baiyuan.wang/newsletter?action=subscribe)。 本次练习采用多线程、TCP通信协议制作一个多人聊天软件，将用户上线下线消息、正常交流信息对所有连接的用户进行广播。极客人的主要思维是建立socket的hashmap，遍历hashmap与众多客户端通信。
 
 一、实验题目
 ------
@@ -46,7 +46,7 @@ import java.util.StringTokenizer;
  \* 
  \* @author <a href="http://wangbaiyuan">王柏元</a>
  *代码为<a href="http://wangbaiyuan">王柏元</a>原创，并同步发布在
- *<a href="http://wangbaiyuan.cn/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">王柏元的博客</a>转载请注明来源
+ *<a href="http://baiyuan.wang/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">王柏元的博客</a>转载请注明来源
  */
 public class ChatServer {
 	private static HashMap<String, Socket> serverSocketMap = new HashMap<String, Socket>();
@@ -78,7 +78,7 @@ public class ChatServer {
 	 \* 处理子线程类
  \* @author <a href="http://wangbaiyuan">王柏元</a>
  *代码为<a href="http://wangbaiyuan">王柏元</a>原创，并同步发布在
- *<a href="http://wangbaiyuan.cn/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">王柏元的博客</a>转载请注明来源
+ *<a href="http://baiyuan.wang/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">王柏元的博客</a>转载请注明来源
  */
 	public class Handler implements Runnable { // 负责与单个客户通信的线程
 		private Socket socket;

@@ -47,7 +47,7 @@ tags: ''
 
 在笔者所在的团队里，能写DevOps的代码已经作为开发的标配技能。在新起一个Codebase的时候，我们往往需要考虑一下内容：  
 
-![一个项目的文件结构截图](https://wangbaiyuan.cn/wp-content/uploads/2018/11/20181116134234113.jpg)
+![一个项目的文件结构截图](https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234113.jpg)
 
 一个项目的文件结构截图
 
@@ -88,7 +88,7 @@ ECSAutoScalingGroup:
 
 同时我们可以使用AWS Cloudformation designer可视化地设计我们的基础架构及其之前的拓扑结构和关联关系，并导出代码。
 
-![AWS Cloudformation designer](https://wangbaiyuan.cn/wp-content/uploads/2018/11/20181116134234212.jpg)
+![AWS Cloudformation designer](https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234212.jpg)
 
 AWS Cloudformation designer
 
@@ -120,13 +120,13 @@ Cloudformation的声明式操作为其提供了幂等性的特性，以为我们
 
 一种理想的方式是，和修改业务代码一样，当我们要对基础设施进行变更时，通过修改基础设施的代码，提交到git仓库，触发CI/CD流水线运行基础设施代码，然后达到更新基础设施的目的。  
 
-![持续集成](https://wangbaiyuan.cn/wp-content/uploads/2018/11/20181116134234318.jpg) 持续集成
+![持续集成](https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234318.jpg) 持续集成
 
 同时根据云计算服务商提供的反馈，更新CI/CD流水线的部署状态：红则失败绿则失败。
 
 QA或者团队可以根据测试结果和发布计划通过流水线，将基础设施和业务代码一起推向下一阶段。
 
-![GoCD持续集成流水线](https://wangbaiyuan.cn/wp-content/uploads/2018/11/20181116134236418.jpg)
+![GoCD持续集成流水线](https://baiyuan.wang/wp-content/uploads/2018/11/20181116134236418.jpg)
 
 GoCD持续集成流水线
 

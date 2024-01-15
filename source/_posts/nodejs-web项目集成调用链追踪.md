@@ -23,7 +23,7 @@ date: 2019-12-23 13:11:14
 
 ### 工具方法
 
-[![](https://wangbaiyuan.cn/wp-content/uploads/2019/12/zipkin-architecture.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/12/zipkin-architecture.png)
+[![](https://baiyuan.wang/wp-content/uploads/2019/12/zipkin-architecture.png)](https://baiyuan.wang/wp-content/uploads/2019/12/zipkin-architecture.png)
 
 ```js
 

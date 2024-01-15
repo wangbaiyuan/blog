@@ -24,7 +24,7 @@ date: 2015-11-15 13:11:20
 *   取向量A的第一个元素m（即度最大）加入向量B，遍历B中的元素，如果m与B中元素（子集）中的元素都不相连，则加入到当前子集，如果相连则创建新子集。
 *   将向量A中m除去，重新对向量A按度大小排序，重复3
 
-[![undirectGraph](http://wangbaiyuan.cn/wp-content/uploads/2015/11/undirectGraph.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/11/undirectGraph.png)
+[![undirectGraph](http://baiyuan.wang/wp-content/uploads/2015/11/undirectGraph.png)](http://baiyuan.wang/wp-content/uploads/2015/11/undirectGraph.png)
 
 C++代码
 -----

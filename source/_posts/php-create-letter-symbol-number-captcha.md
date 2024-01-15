@@ -15,7 +15,7 @@ date: 2015-06-29 11:27:42
 效果演示：
 -----
 
-http://wangbaiyuan.cn/others/tools/captcha.php
+http://baiyuan.wang/others/tools/captcha.php
 
 php代码生成字母、符号、数字验证码图片
 --------------------

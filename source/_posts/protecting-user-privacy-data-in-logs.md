@@ -24,7 +24,7 @@ date: 2019-04-14 21:42:03
 
 在我们深入讨论怎样避免个人隐私数据出现在日志之前，我们来界定什么是_隐私数据_：
 
-*   个人可标识数据（PII）：如社会安全号码，数据组合（如名字+出生日期或姓氏+邮政编码）或用户生成的数据（如电子邮件或用户名，如[blog@mail.wangbaiyuan.cn](https://links.jianshu.com/go?to=mailto%3ABillGates%40hotmail.com)），手机号。
+*   个人可标识数据（PII）：如社会安全号码，数据组合（如名字+出生日期或姓氏+邮政编码）或用户生成的数据（如电子邮件或用户名，如[blog@mail.baiyuan.wang](https://links.jianshu.com/go?to=mailto%3ABillGates%40hotmail.com)），手机号。
 *   健康信息
 *   财务数据（如信用卡号）
 *   密码
@@ -109,16 +109,16 @@ Code Review是开发过程中可以保证代码质量的部分，比如在Code R
 *   通过日志中心提供的日志收集进程（代理程序、Agent），将机器实例的标准输出或者日志文件内容，推送到日志服务器
 *   通过AWS Lambda无服务器代码转发日志到日志中心
 
-[![](https://wangbaiyuan.cn/wp-content/uploads/2019/04/Log-Collection.jpg)](https://wangbaiyuan.cn/wp-content/uploads/2019/04/Log-Collection.jpg) 日志收集工具是日志到达日志中心的必经之地，在这个关口做好信息屏蔽，就可以对来自所有服务（多个微服务的情况下）的日志做集中式的处理。Datadog Agent直接提供了[屏蔽隐私数据的配置](https://docs.datadoghq.com/logs/log_collection/#scrub-sensitive-data-in-your-logs)，而AWS Lambda的代码则是我们可控的，可以自己实现代码层面的正则替换。   
+[![](https://baiyuan.wang/wp-content/uploads/2019/04/Log-Collection.jpg)](https://baiyuan.wang/wp-content/uploads/2019/04/Log-Collection.jpg) 日志收集工具是日志到达日志中心的必经之地，在这个关口做好信息屏蔽，就可以对来自所有服务（多个微服务的情况下）的日志做集中式的处理。Datadog Agent直接提供了[屏蔽隐私数据的配置](https://docs.datadoghq.com/logs/log_collection/#scrub-sensitive-data-in-your-logs)，而AWS Lambda的代码则是我们可控的，可以自己实现代码层面的正则替换。   
 
 八、日志系统中配置个人隐私信息的监控告警
 --------------------
 
-即使有了上面的实践，我们依旧不能保证个人隐私绝对不会出现在日志中，一方面我们可以在平时Debug、查看应用日志时有意识地检查有没有含有隐私信息，另一方面我们还是可以通过一些技术手段**将这一检测工作自动化**，并通过**告警系统通知**到团队成员进行处理。 [![](https://wangbaiyuan.cn/wp-content/uploads/2019/04/Screen-Shot-2019-04-18-at-13.13.53.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/04/Screen-Shot-2019-04-18-at-13.13.53.png) 在监控系统配置Email告警 这已经在笔者所在的团队中得到实践。我们使用Datadog作为日志、监控系统，成功实现在日志中出现Email信息时，Datadog能自动发送邮件通知。但是需要指出的一点是，因为Email可以很好地通过正则表达式进行匹配，同时被很多日志系统所支持。但是对于姓名这些信息，可能只能交给人工智能了。
+即使有了上面的实践，我们依旧不能保证个人隐私绝对不会出现在日志中，一方面我们可以在平时Debug、查看应用日志时有意识地检查有没有含有隐私信息，另一方面我们还是可以通过一些技术手段**将这一检测工作自动化**，并通过**告警系统通知**到团队成员进行处理。 [![](https://baiyuan.wang/wp-content/uploads/2019/04/Screen-Shot-2019-04-18-at-13.13.53.png)](https://baiyuan.wang/wp-content/uploads/2019/04/Screen-Shot-2019-04-18-at-13.13.53.png) 在监控系统配置Email告警 这已经在笔者所在的团队中得到实践。我们使用Datadog作为日志、监控系统，成功实现在日志中出现Email信息时，Datadog能自动发送邮件通知。但是需要指出的一点是，因为Email可以很好地通过正则表达式进行匹配，同时被很多日志系统所支持。但是对于姓名这些信息，可能只能交给人工智能了。
 
 总结
 --
 
-[![PII Protection](https://wangbaiyuan.cn/wp-content/uploads/2019/04/PII-Protection.jpg)](https://wangbaiyuan.cn/wp-content/uploads/2019/04/PII-Protection.jpg) PII Protection 从上面的阐述中可以看到，个人隐私信息的保护，已经不是请一个安全专家就能简单解决的问题，也不是单独的某个角色的工作，而是需要整个团队各个角色的通力合作。这就是DevSecOps理念。  
+[![PII Protection](https://baiyuan.wang/wp-content/uploads/2019/04/PII-Protection.jpg)](https://baiyuan.wang/wp-content/uploads/2019/04/PII-Protection.jpg) PII Protection 从上面的阐述中可以看到，个人隐私信息的保护，已经不是请一个安全专家就能简单解决的问题，也不是单独的某个角色的工作，而是需要整个团队各个角色的通力合作。这就是DevSecOps理念。  
 
 *   参考资料：[https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904](https://links.jianshu.com/go?to=https%3A%2F%2Fmedium.com%2F%40joecrobak%2Fseven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904)

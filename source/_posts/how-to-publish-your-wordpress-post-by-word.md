@@ -16,7 +16,7 @@ tags: ''
 
 使用word你可以在没有网络的情况下进行离线编辑你的文章，没有必要每次发布你的文章时都要登录你的网站后台。
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/02/022515_0253_officeword1.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/02/022515_0253_officeword1.png)
 
 怎样使用office word向你的博客发布文章
 ------------------------

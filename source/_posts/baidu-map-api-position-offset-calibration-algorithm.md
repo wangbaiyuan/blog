@@ -29,11 +29,11 @@ date: 2016-02-17 12:17:28
 
 #### 第一种分类：
 
-1、 GPS，WGS-84，原始坐标体系。一般用国际标准的GPS记录仪记录下来的坐标，都是GPS的坐标。很可惜，在中国，任何一个地图产品都不允许使用GPS坐标，据说是为了保密。GPS坐标形式如图，度分秒形式的经纬度： [![百度地图API位置偏移的校准算法1](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-34.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-34.jpg)
+1、 GPS，WGS-84，原始坐标体系。一般用国际标准的GPS记录仪记录下来的坐标，都是GPS的坐标。很可惜，在中国，任何一个地图产品都不允许使用GPS坐标，据说是为了保密。GPS坐标形式如图，度分秒形式的经纬度： [![百度地图API位置偏移的校准算法1](http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-15-34.jpg)](http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-15-34.jpg)
 
 百度地图API位置偏移的校准算法1
  
- [![百度地图API位置偏移的校准算法2](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-54.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-15-54.jpg)
+ [![百度地图API位置偏移的校准算法2](http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-15-54.jpg)](http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-15-54.jpg)
  
  百度地图API位置偏移的校准算法2
   
@@ -41,7 +41,7 @@ date: 2016-02-17 12:17:28
 
 #### 第二种分类：
 
-首先明白，所有坐标体系的原点，都是非洲。 [![百度地图API位置偏移的校准算法3](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-16-11.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/02/wangbaiyuan.cn_2016-02-17_12-16-11.jpg) 百度地图API位置偏移的校准算法3 1、 经纬度。这个是球面坐标，对于北京来说，就是(116.38817139.935961)这样的坐标。比如腾讯、高德、百度都是这样的经纬度坐标。谷歌是经纬度顺序写反的经纬度坐标。 如果是度分秒坐标，需要进行转换，才能得到这样的经纬度坐标。详见坐标转换。 2、 墨卡托坐标。平面坐标，相当于是直线距离，数字一般都比较大，像这样的。(215362.00021333335 99526.00034912192) 墨卡托坐标，主要用于程序的后台计算。直线距离嘛，加加减减几乎计算方便。 搜狗地图API就是直接使用的墨卡托坐标。
+首先明白，所有坐标体系的原点，都是非洲。 [![百度地图API位置偏移的校准算法3](http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-16-11.jpg)](http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-16-11.jpg) 百度地图API位置偏移的校准算法3 1、 经纬度。这个是球面坐标，对于北京来说，就是(116.38817139.935961)这样的坐标。比如腾讯、高德、百度都是这样的经纬度坐标。谷歌是经纬度顺序写反的经纬度坐标。 如果是度分秒坐标，需要进行转换，才能得到这样的经纬度坐标。详见坐标转换。 2、 墨卡托坐标。平面坐标，相当于是直线距离，数字一般都比较大，像这样的。(215362.00021333335 99526.00034912192) 墨卡托坐标，主要用于程序的后台计算。直线距离嘛，加加减减几乎计算方便。 搜狗地图API就是直接使用的墨卡托坐标。
 
 ### **二、坐标转换**
 

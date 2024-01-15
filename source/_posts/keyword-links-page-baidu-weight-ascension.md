@@ -11,7 +11,7 @@ abbrlink: 50544
 date: 2015-12-20 14:39:56
 ---
 
-百度搜索的排名常常根据页面搜索进入的流量大小进行变化，如果对于一个关键词很多人都会进入同一个网页，百度会认为这个网页能很好地解决这个问题，从而使这个网页在该关键词搜索时排在其它网页的前面。在百度站长平台的后台，我们可以知道有哪些关键词被百度搜索以及是否进入了我们的网页。我们可以通过做一个这个页面，里面全是搜索这些关键词的网址，访问以后进入我们的网站，从而提升我们的网站排名。[![百度流量关键词](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-20_14-35-04.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-20_14-35-04.jpg)
+百度搜索的排名常常根据页面搜索进入的流量大小进行变化，如果对于一个关键词很多人都会进入同一个网页，百度会认为这个网页能很好地解决这个问题，从而使这个网页在该关键词搜索时排在其它网页的前面。在百度站长平台的后台，我们可以知道有哪些关键词被百度搜索以及是否进入了我们的网页。我们可以通过做一个这个页面，里面全是搜索这些关键词的网址，访问以后进入我们的网站，从而提升我们的网站排名。[![百度流量关键词](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-20_14-35-04.jpg)](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-20_14-35-04.jpg)
 
 流量关键词链接页面提升百度权重
 ---------------
@@ -39,7 +39,7 @@ date: 2015-12-20 14:39:56
  \* Created by PhpStorm.
  \* project： wordpress-blog
  \* User: BrainWang
- \* Author_URL: http://wangbaiyuan.cn
+ \* Author_URL: http://baiyuan.wang
  \* Date: 2015/12/20
  \* Time: 14:03
  */

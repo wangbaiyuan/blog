@@ -16,7 +16,7 @@ date: 2019-08-31 23:28:49
 
 Brooks法则并不是像数据公式一样有严谨的推理，而且也没有介绍一个解决进度落后、除了增加人手以外还有什么通用方法。
  
- [![人月神话中提到的Brooks法则](https://wangbaiyuan.cn/wp-content/uploads/2019/08/088A6C27-5369-44D9-B5EC-DD9C02251A4E.jpeg)](https://wangbaiyuan.cn/wp-content/uploads/2019/08/088A6C27-5369-44D9-B5EC-DD9C02251A4E.jpeg)
+ [![人月神话中提到的Brooks法则](https://baiyuan.wang/wp-content/uploads/2019/08/088A6C27-5369-44D9-B5EC-DD9C02251A4E.jpeg)](https://baiyuan.wang/wp-content/uploads/2019/08/088A6C27-5369-44D9-B5EC-DD9C02251A4E.jpeg)
 
 实际上，敏捷会议中有一个叫做Cycle time。Cycle time的初衷应该就是解决这个问题，找出估算和实际时间出入很大的卡，对着这些卡，实际时间花的比估算的多，原因是什么，有什么可以采取的action；花的时间比估算的少，是为什么，有什么可以分享的东西。
 

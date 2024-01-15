@@ -30,7 +30,7 @@ date: 2015-05-25 21:44:12
 这里的手工提交不同于“链接提交”
 ----------------
 
-这里的手工提交是指对于百度站长验证站点提供的快速提交方式，支持批量多链接提交；而通常的“链接提交”是不需要你的网站是”百度站长平台验证站点“的，提交比较随意。 [![提交链接到百度](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-26_00-01-43.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-26_00-01-43.jpg) 提交链接到百度 [![手动提交](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-26_00-01-41.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-26_00-01-41.jpg) 手动提交 [![实时提交](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-26_00-01-38.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-26_00-01-38.jpg) 实时提交 而百度站长平台新推出的“实时主动推送”为验证站点站长分配了一个token准入密钥，一般可认为只有站长或者知晓密钥的网站管理员才有权限提交，所以提交需谨慎，极客人建议大家用它提交一些质量比较高的文章，不要提交垃圾链接，同时需要提醒大家的是：目前这种方式提交的URL是有限额的，比如王柏元的博客每天只能用实时主动提交方式提交50条，大量自动提交垃圾文章可能导致失去提交权限！
+这里的手工提交是指对于百度站长验证站点提供的快速提交方式，支持批量多链接提交；而通常的“链接提交”是不需要你的网站是”百度站长平台验证站点“的，提交比较随意。 [![提交链接到百度](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-43.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-43.jpg) 提交链接到百度 [![手动提交](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-41.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-41.jpg) 手动提交 [![实时提交](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-38.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-38.jpg) 实时提交 而百度站长平台新推出的“实时主动推送”为验证站点站长分配了一个token准入密钥，一般可认为只有站长或者知晓密钥的网站管理员才有权限提交，所以提交需谨慎，极客人建议大家用它提交一些质量比较高的文章，不要提交垃圾链接，同时需要提醒大家的是：目前这种方式提交的URL是有限额的，比如王柏元的博客每天只能用实时主动提交方式提交50条，大量自动提交垃圾文章可能导致失去提交权限！
 
 免插件百度链接提交-实时主动推送
 ----------------
@@ -44,7 +44,7 @@ function publish\_bd\_submit($post_ID){
     global $post;
     $bd\_submit\_enabled = true;
     if($bd\_submit\_enabled){
-        $bd\_submit\_site = "wangbaiyuan.cn";//此处填写你的域名
+        $bd\_submit\_site = "baiyuan.wang";//此处填写你的域名
         $bd\_submit\_token ="yourtoken";//此处填写你的token
         $api ="http://data.zz.baidu.com/urls?site=".$bd\_submit\_site."&token=".$bd\_submit\_token;
         if($post->post_status != "publish"){

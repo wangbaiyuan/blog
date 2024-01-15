@@ -58,7 +58,7 @@ Function
 
 当小程序发生脚本错误，或者 api 调用失败时，会触发 onError 并带上错误信息
 
-[![](http://wangbaiyuan.cn/wp-content/uploads/2018/08/timg.jpeg)](http://wangbaiyuan.cn/wp-content/uploads/2018/08/timg.jpeg)
+[![](http://baiyuan.wang/wp-content/uploads/2018/08/timg.jpeg)](http://baiyuan.wang/wp-content/uploads/2018/08/timg.jpeg)
 
 二、学习资料
 ------

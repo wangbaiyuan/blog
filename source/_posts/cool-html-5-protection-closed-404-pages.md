@@ -14,7 +14,7 @@ date: 2015-12-18 09:41:23
 网站一夜关键词降为0
 ----------
 
-王柏元的博客疑似被百度搜索K掉，自上个月17号以来关键词个数一路走低，直到这个月降为0，昨天甚至通过“王柏元的博客”、“王柏元”这样的关键词我的网站不在前5名、甚至无法搜索到我的网站，初步判断的原因可能是我上个月解析的www.wangbaiyuan.cn到本网站因为疏忽没有实行301重定向到wangbaiyuan.cn，导致百度搜索认为我的网站被镜像。在未找到确切原因之前，我决定通过百度站长平台采取闭站保护，防止不明原因对网站SEO进一步产生影响。   [![王柏元的博客被K](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-18_09-23-29.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-18_09-23-29.jpg)   闭站保护申请期间，百度要求被保护的网站要出于不能访问状态：全站HTTP状态码设置为404，或者将服务器关机服务器。通过域名不解析的方法是不能通过闭站保护审核的。所以对于虚拟主机用户不能切断服务器电源情况下，可以采用全站404的方式申请闭站保护。
+王柏元的博客疑似被百度搜索K掉，自上个月17号以来关键词个数一路走低，直到这个月降为0，昨天甚至通过“王柏元的博客”、“王柏元”这样的关键词我的网站不在前5名、甚至无法搜索到我的网站，初步判断的原因可能是我上个月解析的www.baiyuan.wang到本网站因为疏忽没有实行301重定向到baiyuan.wang，导致百度搜索认为我的网站被镜像。在未找到确切原因之前，我决定通过百度站长平台采取闭站保护，防止不明原因对网站SEO进一步产生影响。   [![王柏元的博客被K](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-18_09-23-29.jpg)](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-18_09-23-29.jpg)   闭站保护申请期间，百度要求被保护的网站要出于不能访问状态：全站HTTP状态码设置为404，或者将服务器关机服务器。通过域名不解析的方法是不能通过闭站保护审核的。所以对于虚拟主机用户不能切断服务器电源情况下，可以采用全站404的方式申请闭站保护。
 
 新建如下内容的index.php实现全站404
 -----------------------
@@ -286,4 +286,4 @@ exit();
 预览
 --
 
-![HTML5-404-闭站保护王柏元的博客](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-18_09-37-54.jpg) \[button class="demo" size="lg" href="http://wangbaiyuan.cn/others/index404.php" title="一个炫酷的HTML5 “闭站保护中”404页面"\]演示效果 \[/button\]
+![HTML5-404-闭站保护王柏元的博客](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-18_09-37-54.jpg) \[button class="demo" size="lg" href="http://baiyuan.wang/others/index404.php" title="一个炫酷的HTML5 “闭站保护中”404页面"\]演示效果 \[/button\]

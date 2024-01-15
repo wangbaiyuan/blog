@@ -11,7 +11,7 @@ abbrlink: 58989
 date: 2015-02-26 09:56:34
 ---
 
-![](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/024958KkY.jpg)
+![](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/024958KkY.jpg)
 
 网友“foto茄”：
 ----------

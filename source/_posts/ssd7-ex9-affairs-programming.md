@@ -9,7 +9,7 @@ date: 2015-06-18 11:22:54
 tags: ''
 ---
 
->  这是[SSD7](http://wangbaiyuan.cn/tag/ssd7 "查看更多关于 SSD7 的文章")练习的EX9，预计极客人将会写一个系列，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“[SSD7](http://wangbaiyuan.cn/tag/ssd7 "查看更多关于 SSD7 的文章")”即可获取已更新的SSD7答案。[上一练习：SSD7_Exam2【规范化、E-R映射】](http://wangbaiyuan.cn/ssd7-exam2-standardization-e-r-map.html)
+>  这是[SSD7](http://baiyuan.wang/tag/ssd7 "查看更多关于 SSD7 的文章")练习的EX9，预计极客人将会写一个系列，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“[SSD7](http://baiyuan.wang/tag/ssd7 "查看更多关于 SSD7 的文章")”即可获取已更新的SSD7答案。[上一练习：SSD7_Exam2【规范化、E-R映射】](http://baiyuan.wang/ssd7-exam2-standardization-e-r-map.html)
 
 下面使用**MySql**上的测试结果：
 

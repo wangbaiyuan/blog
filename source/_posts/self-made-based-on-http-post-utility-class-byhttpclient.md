@@ -86,7 +86,7 @@ date: 2015-06-10 11:13:49
             `java.io.IOException`
             
 
-[![2-13102101222Kc](http://wangbaiyuan.cn/wp-content/uploads/2015/06/2-13102101222Kc1.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/2-13102101222Kc1.jpg)
+[![2-13102101222Kc](http://baiyuan.wang/wp-content/uploads/2015/06/2-13102101222Kc1.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/2-13102101222Kc1.jpg)
 
 类 BYhttpClient代码
 ----------------
@@ -124,7 +124,7 @@ import android.widget.Toast;
  *
  */
 public class BYhttpClient {
-private String hostUrl="http://wangbaiyuan.cn/";
+private String hostUrl="http://baiyuan.wang/";
 private String encode;
 /\*\*
  \* 

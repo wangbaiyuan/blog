@@ -12,7 +12,7 @@ abbrlink: 58641
 date: 2015-04-22 15:11:08
 ---
 
-在上一篇博文中，我向大家介绍了依托虚拟主机为自制APP提供软件更新服务的第一节，向大家介绍了用PHP做软件更新信息API的具体过程，在上节我成功利用自己的虚拟主机建立了自己的API，通过URL传入ID值，获取了软件信息的JSON字符如下： \[callout class="info" title="使用PHP制作的API"\]{"sw\_id":"1","sw\_name":"BY通讯录","sw\_version":"1.2","sw\_url":"http://wangbaiyuan.cn/api/software/Contactss\_1\_2.apk","sw_description":" 1.BY通讯录，是王柏元自主开发的APP，作安卓开发入门试验之用；\\n 2.调用在自己虚拟主机上的数据库搭建的API，实现了版本更新功能；\\n 3.使用一些新的安卓技术。"}\[/callout\] 接下来，我以安卓为例向大家介绍在安卓开发中调用API并实现软件的检测更新、更新提示、下载更新、安装更新的系列过程。
+在上一篇博文中，我向大家介绍了依托虚拟主机为自制APP提供软件更新服务的第一节，向大家介绍了用PHP做软件更新信息API的具体过程，在上节我成功利用自己的虚拟主机建立了自己的API，通过URL传入ID值，获取了软件信息的JSON字符如下： \[callout class="info" title="使用PHP制作的API"\]{"sw\_id":"1","sw\_name":"BY通讯录","sw\_version":"1.2","sw\_url":"http://baiyuan.wang/api/software/Contactss\_1\_2.apk","sw_description":" 1.BY通讯录，是王柏元自主开发的APP，作安卓开发入门试验之用；\\n 2.调用在自己虚拟主机上的数据库搭建的API，实现了版本更新功能；\\n 3.使用一些新的安卓技术。"}\[/callout\] 接下来，我以安卓为例向大家介绍在安卓开发中调用API并实现软件的检测更新、更新提示、下载更新、安装更新的系列过程。
 
 依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析JSON、实现软件更新、自动安装
 =============================================
@@ -112,7 +112,7 @@ Runnable checkupdate = new Runnable(){
 
 @Override
 public void run() {
-String url_path = "http://wangbaiyuan.cn/api/update.php?id=1";
+String url_path = "http://baiyuan.wang/api/update.php?id=1";
 
 String jsonString = HttpUtils.getJsonContent(url_path);
 

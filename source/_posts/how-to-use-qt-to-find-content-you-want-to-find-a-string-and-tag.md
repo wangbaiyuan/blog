@@ -14,7 +14,7 @@ date: 2014-12-26 21:09:51
 效果预览:
 -----
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20141226130745_71553.png)
+![](http://baiyuan.wang/wp-content/uploads/2014/12/20141226130745_71553.png)
 
 代码分享：
 -----

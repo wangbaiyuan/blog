@@ -33,7 +33,7 @@ Docker Hub
 
 > 如果你第一次听说Docker Hub的话，可以这么理解，软件界有两个最大的公有仓库，一个是放代码的，叫github；还有一个是放docker镜像的，叫Dockerhub。
 
-![Github & Docker Hub](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180822113513119.jpg)
+![Github & Docker Hub](http://baiyuan.wang/wp-content/uploads/2018/08/20180822113513119.jpg)
 
 Github & Docker Hub
 
@@ -62,29 +62,29 @@ Docker Hub自动化构建允许我们关联GitHub 、 BitBucket 项目并根据�
 
 *   1.点击导航栏“create”选择“Automated Build”
 
-![Create automated build](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180822113514210.jpg)
+![Create automated build](http://baiyuan.wang/wp-content/uploads/2018/08/20180822113514210.jpg)
 
 Create automated build
 
 *   2.关联Github账号，中间可能要求登录Github账号
 
-![关联Github](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180822113514313.jpg)
+![关联Github](http://baiyuan.wang/wp-content/uploads/2018/08/20180822113514313.jpg)
 
 关联Github
 
 *   3.选择一个Github的Dockerfile项目 这里我使用的是一个在gradle里面集成git-crypt的docker项目：[https://github.com/geekeren/docker-gradle-gitcrypt](https://github.com/geekeren/docker-gradle-gitcrypt)
 
-![选择Github项目](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180822113515419.jpg)
+![选择Github项目](http://baiyuan.wang/wp-content/uploads/2018/08/20180822113515419.jpg)
 
 选择Github项目
 
 *   4.创建一个Dockerhub Repo
 
-![ 创建一个Dockerhub Repo](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180822113516517.jpg)
+![ 创建一个Dockerhub Repo](http://baiyuan.wang/wp-content/uploads/2018/08/20180822113516517.jpg)
 
 *   5\. 创建一个Dockerhub Repo
 
-![正在构建的Docker Image](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180822113517610.jpg)
+![正在构建的Docker Image](http://baiyuan.wang/wp-content/uploads/2018/08/20180822113517610.jpg)
 
 正在构建的Docker Image
 

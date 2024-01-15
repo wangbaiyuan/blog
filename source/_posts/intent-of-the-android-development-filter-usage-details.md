@@ -32,7 +32,7 @@ ComponentName com_name=getIntent().getComponent();
 TextView text=(TextView)findViewById(R.id.textView1);
 text.setText("组件包名："+com\_name.getPackageName()+"\\n组件类名："+com\_name.getClassName());
 
-  运行截图： [![clip_image001](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image001_thumb.png "clip_image001")![clip_image002](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image002_thumb.png "clip_image002")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image001.png) 点击第一个按钮显示运行结果：  
+  运行截图： [![clip_image001](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image001_thumb.png "clip_image001")![clip_image002](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image002_thumb.png "clip_image002")](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image001.png) 点击第一个按钮显示运行结果：  
 
 三、Intent的Action、category属性
 --------------------------
@@ -61,7 +61,7 @@ setContentView(R.layout.activity_component);
 TextView text=(TextView)findViewById(R.id.textView1);
 text.setText("此activity由含有action和category的intent启动\\nAction："+getIntent().getAction()+"\\ncategory："+getIntent().getCategories());
 
-  截图： [![Intent的Action、category属性](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image003_thumb.png "Intent的Action、category属性")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image003.png)
+  截图： [![Intent的Action、category属性](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image003_thumb.png "Intent的Action、category属性")](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image003.png)
 
 四、Intent的Data、Type属性
 --------------------
@@ -84,7 +84,7 @@ public void onClick(View v) {
 // TODO Auto-generated method stub
 Intent intent = new Intent();
 // 只设置Intent的Data属性
-intent.setData(Uri.parse("lee://wangbaiyuan.cn:8888/test"));
+intent.setData(Uri.parse("lee://baiyuan.wang:8888/test"));
 startActivity(intent);
 }};
 public OnClickListener schemeHostPath=new OnClickListener() {
@@ -93,7 +93,7 @@ public void onClick(View v) {
 // TODO Auto-generated method stub
 Intent intent = new Intent();
 // 只设置Intent的Data属性
-intent.setData(Uri.parse("lee://wangbaiyuan.cn:1234/android"));
+intent.setData(Uri.parse("lee://baiyuan.wang:1234/android"));
 startActivity(intent);
 }};
 public OnClickListener schemeHostPortPath=new OnClickListener() {
@@ -102,7 +102,7 @@ public void onClick(View v) {
 // TODO Auto-generated method stub
 Intent intent = new Intent();
 // 只设置Intent的Data属性
-intent.setData(Uri.parse("lee://wangbaiyuan.cn:8888/android"));
+intent.setData(Uri.parse("lee://baiyuan.wang:8888/android"));
 startActivity(intent);
 }};
 public OnClickListener schemeHostPortPathType=new OnClickListener() {
@@ -111,7 +111,7 @@ public void onClick(View v) {
 // TODO Auto-generated method stub
 Intent intent = new Intent();
 // 同时设置Intent的Data、Type属性
-intent.setDataAndType(Uri.parse("lee://wangbaiyuan.cn:8888/android")
+intent.setDataAndType(Uri.parse("lee://baiyuan.wang:8888/android")
 , "abc/xyz");
 startActivity(intent);
 }};
@@ -121,11 +121,11 @@ public void onClick(View v) {
 // TODO Auto-generated method stub
 Intent intent = new Intent();
 // 同时设置Intent的Data、Type属性
-intent.setData(Uri.parse("http://wangbaiyuan.cn"));
+intent.setData(Uri.parse("http://baiyuan.wang"));
 startActivity(intent);
 }};
 
-  运行截图： [![Intent的Data、Type属性](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image005_thumb.jpg "Intent的Data、Type属性")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image005.jpg)[![Intent的Data、Type属性](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image007_thumb.jpg "Intent的Data、Type属性")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/clip_image007.jpg)  
+  运行截图： [![Intent的Data、Type属性](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image005_thumb.jpg "Intent的Data、Type属性")](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image005.jpg)[![Intent的Data、Type属性](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image007_thumb.jpg "Intent的Data、Type属性")](http://baiyuan.wang/wp-content/uploads/2015/04/clip_image007.jpg)  
 
 五、Intent创建tab页面：
 ----------------
@@ -140,28 +140,28 @@ TabHost tabhost=getTabHost();
 tabhost.addTab(tabhost.newTabSpec("tab1")
 .setIndicator("IT业界",getResources().getDrawable(R.drawable.ic_launcher))
 .setContent(new Intent(this,webview.class)
-.putExtra("url", "http://wangbaiyuan.cn/itindustry"))
+.putExtra("url", "http://baiyuan.wang/itindustry"))
 );
 
 tabhost.addTab(tabhost.newTabSpec("tab2")
 .setIndicator("程序算法")
 .setContent(new Intent(this,webview.class)
-.putExtra("url", "http://wangbaiyuan.cn/code"))
+.putExtra("url", "http://baiyuan.wang/code"))
 );
 
 tabhost.addTab(tabhost.newTabSpec("tab3")
 .setIndicator("电脑技巧")
 .setContent(new Intent(this,webview.class)
-.putExtra("url", "http://wangbaiyuan.cn/computer-experience"))
+.putExtra("url", "http://baiyuan.wang/computer-experience"))
 );
 tabhost.addTab(tabhost.newTabSpec("tab3")
 .setIndicator("关于我")
 .setContent(new Intent(this,webview.class)
-.putExtra("url", "http://wangbaiyuan.cn/leave-message/about"))
+.putExtra("url", "http://baiyuan.wang/leave-message/about"))
 );
 }
 
-  运行结果： [![Intent创建tab页面](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb9.png "Intent创建tab页面")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image9.png)  
+  运行结果： [![Intent创建tab页面](http://baiyuan.wang/wp-content/uploads/2015/04/image_thumb9.png "Intent创建tab页面")](http://baiyuan.wang/wp-content/uploads/2015/04/image9.png)  
 
 代码下载
 ----

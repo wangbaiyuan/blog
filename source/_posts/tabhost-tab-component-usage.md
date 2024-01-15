@@ -14,7 +14,7 @@ date: 2015-04-01 20:20:34
 Tabhost选项卡组件的使用方法
 -----------------
 
-Tabhost选项卡组件个人认为是安卓APP中比较常见的，比如QQ，应用商店等都采用了选项卡。下面是QQ的选项卡：[![image](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image.png) QQ相信是国人必用，如图采用了消息、联系人、动态三个选项卡，并且为每个选项卡编写了不同的界面，这个我写的“联系人”相似，下面讲讲我是怎样实现选项卡并为每个选项制作不同交互界面的。 Tabhost选项卡使用布局代码：
+Tabhost选项卡组件个人认为是安卓APP中比较常见的，比如QQ，应用商店等都采用了选项卡。下面是QQ的选项卡：[![image](http://baiyuan.wang/wp-content/uploads/2015/04/image_thumb.png "image")](http://baiyuan.wang/wp-content/uploads/2015/04/image.png) QQ相信是国人必用，如图采用了消息、联系人、动态三个选项卡，并且为每个选项卡编写了不同的界面，这个我写的“联系人”相似，下面讲讲我是怎样实现选项卡并为每个选项制作不同交互界面的。 Tabhost选项卡使用布局代码：
 
 <?xml version="1.0" encoding="utf-8"?>
 <TabHost

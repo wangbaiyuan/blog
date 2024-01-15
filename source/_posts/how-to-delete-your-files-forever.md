@@ -14,23 +14,23 @@ date: 2015-01-03 12:05:57
 
 这是我计算机的磁盘占用情况：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150103034946_95113.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/01/20150103034946_95113.png)
 
 我们注意到我的F盘（媒体娱乐）还有30.6GB可用，我从F盘里选择一部大小为2.82G的电影"The.Interview.1080p.WEB-DL.x264.AC3.mp4"然后将其删除
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150103034522_52910.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/01/20150103034522_52910.png)
 
 我们可以在回收站找到它：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150103034719_85956.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/01/20150103034719_85956.png)
 
 请问我的F盘现在的剩余空间是不是30.6+2.82呢？
 
-答案是![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150103035141_34294.png)
+答案是![](http://baiyuan.wang/wp-content/uploads/2015/01/20150103035141_34294.png)
 
 可能大家知道用“shift+delete”可以永久删除文件，但在这里我向大家介绍的一种像拖入桌面回收站一样永久删除文件的方便方法：
 
-在我的桌面上有两个回收站： ![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150103035502_40728.png)，当我将文件拖到右边永久删除里时，是可以永久删除该文件的。
+在我的桌面上有两个回收站： ![](http://baiyuan.wang/wp-content/uploads/2015/01/20150103035502_40728.png)，当我将文件拖到右边永久删除里时，是可以永久删除该文件的。
 
 实现方法
 ----
@@ -47,4 +47,4 @@ exit /b
 
 你可以右键该快捷方式选择运行方式为“最小化”，备注“永久删除”，还可以改成你想要的个性图标：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150103040502_92708.png)
+![](http://baiyuan.wang/wp-content/uploads/2015/01/20150103040502_92708.png)

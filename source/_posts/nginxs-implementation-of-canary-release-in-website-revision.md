@@ -12,7 +12,7 @@ date: 2019-04-23 21:07:32
 
 在网站改版中我们希望选取部分用户进行金丝雀发布来给自己的新网站做“试点”，在确认新网站使用没有问题后，会慢慢加大新网站“试点”的比重，从而用到“金丝雀发布”。 “金丝雀发布”这一典故来源于采煤行业，据说以前矿工挖煤的时候，矿工下矿井前会先把金丝雀放进去，或者挖煤的时候一直带着金丝雀。金丝雀对甲烷和一氧化碳浓度比较敏感，会先报警。 矿工们用金丝雀对矿井进行空气测试的道理没沿用到软件行业。当我们要发布应用的新版本时，我们通常只会将部分流量切到新版本，当测试新版本应用没有问题时，再慢慢加大切向新版本流量的比例，这种发布方式被称为“金丝雀发布”。 那么，我们可以怎样实现金丝雀发布呢？ 在不涉及istio的情况下，我们一般会采用Nginx反向代理服务器来实现这种流量切分，通过编写nginx.conf规则来实现。 
 
-[![Nginx实现金丝雀发布](https://wangbaiyuan.cn/wp-content/uploads/2019/10/wangbaiyuan.cn_2019-10-23_13-25-07.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/10/wangbaiyuan.cn_2019-10-23_13-25-07.png)
+[![Nginx实现金丝雀发布](https://baiyuan.wang/wp-content/uploads/2019/10/baiyuan.wang_2019-10-23_13-25-07.png)](https://baiyuan.wang/wp-content/uploads/2019/10/baiyuan.wang_2019-10-23_13-25-07.png)
 
 方法一：没有“记忆”的随机流量切分
 -----------------
@@ -25,7 +25,7 @@ upstream service {
 }
 server {
     listen       80;
-    server_name  wangbaiyuan.cn;
+    server_name  baiyuan.wang;
     location / {
         proxy_pass http://service;
     }

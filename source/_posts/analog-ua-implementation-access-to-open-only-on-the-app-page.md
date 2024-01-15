@@ -16,12 +16,12 @@ date: 2015-03-29 11:15:45
 在电脑浏览器上打开时：
 -----------
 
-[![请用微信自带浏览器打开](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb10.png "请用微信自带浏览器打开")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image10.png)
+[![请用微信自带浏览器打开](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb10.png "请用微信自带浏览器打开")](http://baiyuan.wang/wp-content/uploads/2015/03/image10.png)
 
 通过修改浏览器UA后的结果：
 --------------
 
-[![image](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb11.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image11.png)
+[![image](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb11.png "image")](http://baiyuan.wang/wp-content/uploads/2015/03/image11.png)
 
 下面讲讲操作方法：
 ---------
@@ -31,7 +31,7 @@ date: 2015-03-29 11:15:45
 一.“谷歌浏览器”审查元素
 -------------
 
-使用右键—“审查元素” [![谷歌浏览器”审查元素](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb12.png "谷歌浏览器”审查元素")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image12.png) 点击审查元素手机小图标的按钮（element选项卡左边），进入模拟手机、平板电脑等其他终端的视图，下面在截图上做详解： [![谷歌浏览器模拟手机、平板电脑等其他终端](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb13.png "谷歌浏览器模拟手机、平板电脑等其他终端")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image13.png) 现在只需要在上图的UA里填写一下微信的UA就行了。那么微信的UA是什么呢？
+使用右键—“审查元素” [![谷歌浏览器”审查元素](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb12.png "谷歌浏览器”审查元素")](http://baiyuan.wang/wp-content/uploads/2015/03/image12.png) 点击审查元素手机小图标的按钮（element选项卡左边），进入模拟手机、平板电脑等其他终端的视图，下面在截图上做详解： [![谷歌浏览器模拟手机、平板电脑等其他终端](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb13.png "谷歌浏览器模拟手机、平板电脑等其他终端")](http://baiyuan.wang/wp-content/uploads/2015/03/image13.png) 现在只需要在上图的UA里填写一下微信的UA就行了。那么微信的UA是什么呢？
 
 二、怎样获取访问者的UA信息
 --------------
@@ -40,13 +40,13 @@ date: 2015-03-29 11:15:45
 
 ### 下面是一段标准的网站日志：
 
-61.*.43.34 - - \[25/Mar/2015:23:38:15 +0800\] "GET /how\_to\_write_robts-txt.html HTTP/1.1" 200 15071 "http://wangbaiyuan.cn/javascript-implementation-article-copy-plus-copyright-information.html" "Mozilla/5.0 (Linux; U; Android 4.4.2; zh-CN; Lenovo A808t Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/10.2.1.550 U3/0.8.0 Mobile Safari/534.30" qxu1098410053.my3w.com text/html "/usr/home/qxu1098410053/htdocs/index.php" 858930
+61.*.43.34 - - \[25/Mar/2015:23:38:15 +0800\] "GET /how\_to\_write_robts-txt.html HTTP/1.1" 200 15071 "http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html" "Mozilla/5.0 (Linux; U; Android 4.4.2; zh-CN; Lenovo A808t Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/10.2.1.550 U3/0.8.0 Mobile Safari/534.30" qxu1098410053.my3w.com text/html "/usr/home/qxu1098410053/htdocs/index.php" 858930
 
  
 
 *   其中“61.*.43.34 ”是访问者的IP，
 *   \[25/Mar/2015:23:38:15 +0800\]——访问日期
-*   [http://wangbaiyuan.cn/javascript-implementation-article-copy-plus-copyright-information.html](http://wangbaiyuan.cn/javascript-implementation-article-copy-plus-copyright-information.html)—访问网址
+*   [http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html](http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html)—访问网址
 
 ### 网址后面的就是UA信息了：
 

@@ -17,7 +17,7 @@ date: 2017-03-08 16:43:49
 
 Base64编解码算法在Nodejs的buffer组件中有支持，首先我们需要在React Native项目根目录下运行命令行安装buffer依赖： `npm install buffer --save` 安装完毕后，React Native根目录的app.json中的dependencies便会自动加入下面一条：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2017/03/20170308164248117.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2017/03/20170308164248117.jpg)
 
 React Native中添加Base64支持
 

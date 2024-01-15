@@ -21,17 +21,17 @@ date: 2015-06-11 12:23:06
 系列文章链接：
 -------
 
-[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
+[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
+[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
+[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
+[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
+[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://wangbaiyuan.cn/java-rmi-6-making-the-command-line-navigation-menu.html)
+[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html)
 
  
 
@@ -44,7 +44,7 @@ date: 2015-06-11 12:23:06
 rmimeetingER图
 -------------
 
-[![rmimeetingER图](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_12-30-38.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-10_12-30-38.jpg) rmimeetingER图
+[![rmimeetingER图](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-10_12-30-38.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-10_12-30-38.jpg) rmimeetingER图
 
 建表语句
 ----

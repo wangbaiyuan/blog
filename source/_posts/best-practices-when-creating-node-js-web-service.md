@@ -25,7 +25,7 @@ Express是目前最流行的NodeJS web框架。全局安装一个express-generat
 *   全局安装命令：`npm install express-generator -g`
 *   新建一个名为**hello-express**项目: `express hello-express`
     
-    [![使用脚手架初始化Express项目](https://wangbaiyuan.cn/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png) 使用脚手架初始化Express项目
+    [![使用脚手架初始化Express项目](https://baiyuan.wang/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png)](https://baiyuan.wang/wp-content/uploads/2019/05/Screen-Shot-2019-05-16-at-12.42.38.png) 使用脚手架初始化Express项目
     
 
 ### 使用Swagger脚手架
@@ -70,7 +70,7 @@ Express是目前最流行的NodeJS web框架。全局安装一个express-generat
 
 *   启动在线编辑：`swagger project edit`, 此时会打开系统浏览器，在浏览器中可以直接编辑swagger文档，并进行实时语法检查，同时浏览器里面的编辑变更会回写到代码。
 
-![](https://wangbaiyuan.cn/wp-content/uploads/2019/05/20190516042224214.jpg)
+![](https://baiyuan.wang/wp-content/uploads/2019/05/20190516042224214.jpg)
 
 Swagger实时编辑和语法校验
 
@@ -94,7 +94,7 @@ app.use(SwaggerUi(swaggerExpress.runner.swagger));
 
 访问[http://localhost:10010/docs/#/](https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A10010%2Fdocs%2F%23%2F)即可查看API文档：
 
-![](https://wangbaiyuan.cn/wp-content/uploads/2019/05/20190516042224316.jpg)
+![](https://baiyuan.wang/wp-content/uploads/2019/05/20190516042224316.jpg)
 
 Swagger UI
 

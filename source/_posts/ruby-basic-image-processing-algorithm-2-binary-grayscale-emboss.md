@@ -37,7 +37,7 @@ date: 2016-12-30 15:20:45
 
 ### 灰度效果：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230151843110.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230151843110.jpg)
 
 out_grey.jpg
 
@@ -67,7 +67,7 @@ out_grey.jpg
 
 ### 二值化效果
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230151844218.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230151844218.jpg)
 
 out_binary.jpg
 
@@ -91,7 +91,7 @@ out_binary.jpg
 
 ### 底片效果
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230151844320.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230151844320.jpg)
 
 out_contrary.jpg
 
@@ -127,7 +127,7 @@ out_contrary.jpg
 
 ### 浮雕效果
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230151844418.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230151844418.jpg)
 
 out_emboss.jpg
 

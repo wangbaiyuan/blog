@@ -87,7 +87,7 @@ electron-builder可以帮助我们完成electron应用的安装包打包，文�
 Docker
 ------
 
-Dockerhub除了是一个公用的docker镜像仓库，同时帮助我们在无需CI/CD的情况下免费、自动地构建docker镜像，具体可以参考[https://wangbaiyuan.cn/using-dockerhub-continually-build-container-mirroring.html](https://wangbaiyuan.cn/using-dockerhub-continually-build-container-mirroring.html)
+Dockerhub除了是一个公用的docker镜像仓库，同时帮助我们在无需CI/CD的情况下免费、自动地构建docker镜像，具体可以参考[https://baiyuan.wang/using-dockerhub-continually-build-container-mirroring.html](https://baiyuan.wang/using-dockerhub-continually-build-container-mirroring.html)
 
 *   实现在Github Release时自动构建Docker镜像并推送到Dockerhub
 *   根据Release版本号给镜像打版本标签、Latest标签

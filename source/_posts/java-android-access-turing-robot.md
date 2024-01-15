@@ -55,7 +55,7 @@ public static void main(String\[\] args) throws IOException {
 }
 }
 
-上面的代码需要引入json.jar包，因为图灵机器人返回的是个json格式字符串，需要用户自己做json解析。对于json解析的方法，我的前面一片转载文章又详细介绍：[解析json数据](http://wangbaiyuan.cn/parsing-json-data-android-development.html)，你在申请图灵机器人的API后，将
+上面的代码需要引入json.jar包，因为图灵机器人返回的是个json格式字符串，需要用户自己做json解析。对于json解析的方法，我的前面一片转载文章又详细介绍：[解析json数据](http://baiyuan.wang/parsing-json-data-android-development.html)，你在申请图灵机器人的API后，将
 
 private static String ApiKey="yourApiKey";
 
@@ -64,4 +64,4 @@ private static String ApiKey="yourApiKey";
 测试效果：
 -----
 
-[![图灵机器人引入java](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-17_03-27-22.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-17_03-27-22.jpg) 图灵机器人引入java
+[![图灵机器人引入java](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-17_03-27-22.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-17_03-27-22.jpg) 图灵机器人引入java

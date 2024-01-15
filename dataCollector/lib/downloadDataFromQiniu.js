@@ -13,7 +13,7 @@ const downloadFile = async (file) => {
     const privateDownloadUrl = bucketManager.privateDownloadUrl(privateBucketDomain, file, deadline);
     return axios.get(privateDownloadUrl, {
         headers: {
-            Referer: 'https://wangbaiyuan.cn'
+            Referer: 'https://baiyuan.wang'
         }
     }).then((res) => {
         console.log(res.data)

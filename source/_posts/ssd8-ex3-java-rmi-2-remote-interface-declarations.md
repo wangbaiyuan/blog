@@ -17,17 +17,17 @@ date: 2015-06-10 08:05:20
 系列文章链接：
 -------
 
-[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
+[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
+[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
+[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
+[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
+[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://wangbaiyuan.cn/java-rmi-6-making-the-command-line-navigation-menu.html)
+[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html)
 
   远程接口声明，这个类服务端和代码和客户端要保持一致。客户端通过调用接口，通过远程对象绑定，在服务器端实现具体方法的内容。接口里只定义了相关方法而没有进行方法实现。
 

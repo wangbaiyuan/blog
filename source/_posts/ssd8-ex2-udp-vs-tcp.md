@@ -10,7 +10,7 @@ abbrlink: 61801
 date: 2015-05-22 19:59:03
 ---
 
-这是SSD8练习的EX2，预计极客人将会写一个系列，此系列全为王柏元个人原创，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD8”即可获取已更新的SSD8答案。上一练习：[SSD8_EX1【Socket通信的Java实现代码】](http://wangbaiyuan.cn/ssd8-ex1-socket-communication-java-code.html);如果你想继续跟踪SSD练习进展，建议[订阅本站](http://wangbaiyuan.cn/newsletter?action=subscribe)。
+这是SSD8练习的EX2，预计极客人将会写一个系列，此系列全为王柏元个人原创，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD8”即可获取已更新的SSD8答案。上一练习：[SSD8_EX1【Socket通信的Java实现代码】](http://baiyuan.wang/ssd8-ex1-socket-communication-java-code.html);如果你想继续跟踪SSD练习进展，建议[订阅本站](http://baiyuan.wang/newsletter?action=subscribe)。
 
 问题简述
 ----
@@ -71,7 +71,7 @@ import java.net.SocketTimeoutException;
 /\*\*
 \* 基于UDP协议的客户端类,完成用UDP协议向服务器发送数据包
 \* @author 王柏元
-*{@linkplain http://wangbaiyuan.cn} 
+*{@linkplain http://baiyuan.wang} 
 */
 public class UDPClient {
     static int remotePort=1888; //服务器端口

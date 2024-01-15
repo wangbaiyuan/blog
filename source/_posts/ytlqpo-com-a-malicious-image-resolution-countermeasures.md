@@ -17,7 +17,7 @@ date: 2015-05-19 13:22:16
 
 前天在百度搜索王柏元的博客网站关键词时，猛地在百度结果的第一页中发现了一个标题、简介和我完全一样的网站，不看不知道，这个网站还不是传统意义上的抄袭、盗链，不仅仅把我的网站全部照搬，而且把网页里所有的链接都置换成那个镜像网站地址的。 我这才知道：我的网站被人家恶意镜像了。 和一般的镜像不太一样，这个镜像网站不仅仅是针对我一个网站，而是自动镜像。主要表现为：
 
-*   ①我的网址：[http://wangbaiyuan.cn](http://wangbaiyuan.cn);镜像网址就是：wangbaiyuan.ytlqpo.com。另外一个网站网址：[http://weixin.wangbaiyuan.cn](http://weixin.wangbaiyuan.cn),镜像网址就是weixinwangbaiyuan.ytlqpo.com经过本人测试：把你的网站网址去掉主机记录和顶级域名，加上.ytlqpo.com，就知道你自己有没有被镜像！
+*   ①我的网址：[http://baiyuan.wang](http://baiyuan.wang);镜像网址就是：wangbaiyuan.ytlqpo.com。另外一个网站网址：[http://weixin.baiyuan.wang](http://weixin.baiyuan.wang),镜像网址就是weixinwangbaiyuan.ytlqpo.com经过本人测试：把你的网站网址去掉主机记录和顶级域名，加上.ytlqpo.com，就知道你自己有没有被镜像！
 *   ②为镜像网站里所有链接添加镜像，比如我的网站里有个友情链接：[http://www.zhiyanblog.com](http://www.zhiyanblog.com),这个友情链接就会置换成：zhiyanblog.ytlqpo.com.
 
 一、经过本人测试中招的大网站有：
@@ -27,12 +27,12 @@ date: 2015-05-19 13:22:16
 
 haosou. ytlqpo.com 镜像好搜网站
 
-[![360被镜像](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-19_09-21-30.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/wangbaiyuan.cn_2015-05-19_09-21-30.jpg) 号称安全神站的360也未能幸免 不过恭喜百度搜索主页神奇地幸免了
+[![360被镜像](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-19_09-21-30.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-19_09-21-30.jpg) 号称安全神站的360也未能幸免 不过恭喜百度搜索主页神奇地幸免了
 
 二、测试的站长朋友网站被镜像的有：
 -----------------
 
-zhiyan blog.ytl qpo.com 镜像[http://www.zhiyanblog.com](http://www.zhiyanblog.com) nai ba.ytlqpo.com 镜像naiba.im wangb aiyuan .ytlqpo.com 镜像[http://wangbaiyuan.cn](http://wangbaiyuan.cn)
+zhiyan blog.ytl qpo.com 镜像[http://www.zhiyanblog.com](http://www.zhiyanblog.com) nai ba.ytlqpo.com 镜像naiba.im wangb aiyuan .ytlqpo.com 镜像[http://baiyuan.wang](http://baiyuan.wang)
 
 三、恶意镜像很危险
 ---------
@@ -65,7 +65,7 @@ fclose($handle);
 
 Deny from 104.194.16.230
 
-对于htaccess屏蔽IP的方法，我的之前一篇文章有详细介绍：[htaccess屏蔽ip访问](http://wangbaiyuan.cn/web-hosting-how-to-block-specified-ip-or-network-segments.html)。 当你再次用镜像网址访问你的网站的时候就会报403错误了，现在百度即使收录了这个网址对你的网站也不会产生任何影响.
+对于htaccess屏蔽IP的方法，我的之前一篇文章有详细介绍：[htaccess屏蔽ip访问](http://baiyuan.wang/web-hosting-how-to-block-specified-ip-or-network-segments.html)。 当你再次用镜像网址访问你的网站的时候就会报403错误了，现在百度即使收录了这个网址对你的网站也不会产生任何影响.
 
 ### 3.反制措施
 

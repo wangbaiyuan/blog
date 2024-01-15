@@ -16,7 +16,7 @@ abbrlink: 51595
 date: 2015-08-24 08:14:18
 ---
 
-由于百度翻译、有道翻译等翻译服务都开放了自己的API，开发者可以使用它们提供的API很简单就能开发出自己的翻译软件。自己开发的软件可能在功能上不及它们强大，但是翻译的结果是一样的，同时不会内置其它偷跑流量的进程，同时界面也相对简洁，随心所欲地进行修改。 [![API](http://wangbaiyuan.cn/wp-content/uploads/2015/03/API.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/03/API.jpg) 首先在有道API进行申请API ID和KEY后，将下列程序中clientID和clientSecret替换为ID和KEY，通过GET请求获得字符串进行解析。下面是我使用java解析JSON数据的代码：
+由于百度翻译、有道翻译等翻译服务都开放了自己的API，开发者可以使用它们提供的API很简单就能开发出自己的翻译软件。自己开发的软件可能在功能上不及它们强大，但是翻译的结果是一样的，同时不会内置其它偷跑流量的进程，同时界面也相对简洁，随心所欲地进行修改。 [![API](http://baiyuan.wang/wp-content/uploads/2015/03/API.jpg)](http://baiyuan.wang/wp-content/uploads/2015/03/API.jpg) 首先在有道API进行申请API ID和KEY后，将下列程序中clientID和clientSecret替换为ID和KEY，通过GET请求获得字符串进行解析。下面是我使用java解析JSON数据的代码：
 
 Android(Java)解析有道翻译API-Json数据
 -----------------------------

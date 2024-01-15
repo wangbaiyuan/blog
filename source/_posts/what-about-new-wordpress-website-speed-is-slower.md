@@ -11,7 +11,7 @@ abbrlink: 40424
 date: 2015-01-11 19:09:24
 ---
 
-新建立的wordpress站点，不管是前台还是后台，一般会有打开速度的问题。笔者也遇到这个问题，接下来向大家介绍：新建wordpress网站速度慢怎么办 出现的原因有两个:1.google在中国大陆被网络长城屏蔽，导致网站引用Google 的资源无法加载；2.wordpress的Gravatar头像无法加载（也是墙掉的结果）； [![design_ad_193099_m](http://wangbaiyuan.cn/wp-content/uploads/2015/05/design_ad_193099_m.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/design_ad_193099_m.jpg)
+新建立的wordpress站点，不管是前台还是后台，一般会有打开速度的问题。笔者也遇到这个问题，接下来向大家介绍：新建wordpress网站速度慢怎么办 出现的原因有两个:1.google在中国大陆被网络长城屏蔽，导致网站引用Google 的资源无法加载；2.wordpress的Gravatar头像无法加载（也是墙掉的结果）； [![design_ad_193099_m](http://baiyuan.wang/wp-content/uploads/2015/05/design_ad_193099_m.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/design_ad_193099_m.jpg)
 
 怎样解决google字体无法加载问题
 ------------------

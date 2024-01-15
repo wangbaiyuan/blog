@@ -20,7 +20,7 @@ date: 2018-05-04 15:44:32
 
 当前的开源分布式跟踪系统包括Zipkin，HTrace，X-Trace和Trace。还有[OpenTracing项目](http://opentracing.io/)，旨在提供与供应商[无关的](https://docs.oracle.com/cd/E13222_01/wls/docs100/programming/context.html) API，以便可以在所有流行的平台上实施分布式跟踪和[上下文传播](https://docs.oracle.com/cd/E13222_01/wls/docs100/programming/context.html)。 Battery Ventures的技术研究员，Netflix前任首席架构师Adrian Cockcroft在[最近的一次演讲中](http://www.slideshare.net/adriancockcroft/microservices-application-tracing-standards-and-simulators-adrians-at-oscon)描述了分布式跟踪，他说：“分布式跟踪系统几乎实时地收集端到端延迟图（迹线）。你可以比较痕迹来理解为什么某些请求需要比其他请求更长的时间。 并非所有可用的开源分布式跟踪系统都包含拓扑可视化功能，这可能是一项重要功能。拓扑可视化对微应用架构和其他分布式应用程序中的应用程序布局进行映射或图表化。当您需要发现性能问题和其他问题时，这样做非常重要。
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2018/05/20180504154312115.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2018/05/20180504154312115.jpg)
 
 SimianViz演示屏幕截图，更复杂的Netflix可视化：[查看现场演示](http://simianviz.surge.sh/netflix)。 Adrian Cockcroft最近发布了一个新的开源工具[SimianViz](https://github.com/adrianco/spigo)（以前称为Spigo），它可以生成对复杂微服务的大规模模拟。公司可以使用这些模拟来进行拓扑可视化，并且可以对微服务监控解决方案进行压力测试，而无需设置大型测试配置。 Netflix和LinkedIn等主要技术公司已经建立了自己的分布式跟踪和性能监控解决方案。对于Netflix而言，由于其需要可扩展性，因此对其多种分布式跟踪工具的需求受到驱动，因为大多数商业工具无法在Netflix所需的级别进行扩展。Netflix还使用各种可视化工具，包括按需CPU [火焰图](http://techblog.netflix.com/2016/04/saving-13-million-computational-minutes.html)来分析和优化Java和Node.js应用程序的性能。 LinkedIn有一个实时[分布式跟踪系统](https://engineering.linkedin.com/distributed-service-call-graph/real-time-distributed-tracing-website-performance-and-efficiency)，它使用Apache Samza结果来构建实时呼叫图。调用图用于LinkedIn分布式架构的性能优化和根本原因分析。 大多数公司没有像LinkedIn和Netflix这样的公司的大量资源，因此从头开始构建定制的分布式跟踪和性能监控解决方案可能是不可能的。幸运的是，任何规模公司的开发人员都可以使用许多工具来监视和可视化分布式应用程序。
 
@@ -32,28 +32,28 @@ SimianViz演示屏幕截图，更复杂的Netflix可视化：[查看现场演示
 AppDynamics
 -----------
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2018/05/20180504154315215.png)
+![](http://baiyuan.wang/wp-content/uploads/2018/05/20180504154315215.png)
 
 图片来源：[AppDynamics](https://www.appdynamics.com/product/application-performance-management/) 虽然[AppDynamics](https://www.appdynamics.com/product/application-performance-management/)已经有相当长的一段时间了，但该公司在2015年6月推出了机器学习驱动的APM产品，以监控，管理和分析诸如微服务之类的复杂体系结构。AppDynamics实时显示应用程序性能并自动发现应用程序拓扑和相互依赖关系。其APM工具还包括分布式跟踪，拓扑可视化和动态标记。 开发人员可以使用AppDynamics来确定分布式应用程序的运行状况，了解事务路径，确定服务失败的根本原因，并获得对微服务体系结构的其他重要见解。AppDynamics API可以帮助扩展和定制平台的功能。
 
 Instana
 -------
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2018/05/20180504154434319.png)
+![](http://baiyuan.wang/wp-content/uploads/2018/05/20180504154434319.png)
 
 图片来源：[Instana](https://www.instana.com/) Instana是Web应用程序的监控和管理平台，成立于2015年4月。其关键特征之一是智能虚拟机器人助理Stan。 Stan帮助Instana用户（即开发人员和DevOps）通过即时通知来监控和优化复杂的应用程序和体系结构。Stan拥有丰富的DevOps知识，并不断学习和理解尖端的应用程序组件和体系结构。机器人助手依赖于多种技术，包括动态依赖图，自动发现和传感以及组件和系统的健康预测。Instana还包含一个实时知识引擎，可自动发现应用拓扑和相互依赖关系。 Instana使用机器学习，数学算法和专有知识系统来提供动态图形和可视化。Instana公司承诺，开发人员可以测量分布式应用程序的健康状况（延迟，错误率等），了解服务关系和相互依赖性，调查特定事件和服务故障（实时和历史），并获得更好的理解的整体应用程序。
 
 Netsil
 ------
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2018/05/20180504154436413.png)
+![](http://baiyuan.wang/wp-content/uploads/2018/05/20180504154436413.png)
 
 图片来源：[Netsil](http://netsil.com/product/) [Netsil](http://netsil.com/product/)分布式应用监控和分析平台成立于2016年，自动发现完整的应用拓扑结构，持续监控分布式应用，执行分布式跟踪以及分析应用指标（从历史到现在）。 基于微服务的应用程序由多个服务组成，通常使用不同的语言和框架构建。虽然分布式应用程序的服务可能使用多种语言和框架，但这些服务的协议通常是相同的（REST，HTTP，RPC，pub / sub等）。像Netsil这样的一些APM工具可以与这些通用协议监控服务集成，无论语言或框架如何。 Netsil监视和捕获分布式应用程序服务交互数据，以创建可视化，帮助开发人员发现和管理事件，衡量应用程序的整体运行状况，并理解应用程序的组件和依赖关系。
 
 OpsClarity
 ----------
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2018/05/20180504154440513.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2018/05/20180504154440513.jpg)
 
 图片来源：[OpsClarity](https://www.opsclarity.com/) [OpsClarity](https://www.opsclarity.com/)于2015年12月推出，是一款面向高速Web规模应用的智能监控和分析平台。OpsClarity承诺的功能包括自动拓扑发现和度量收集，拓扑可视化和性能监控。 它的一个组成部分是一个操作知识图表，它理解并不断学习操作数据模型，服务拓扑和其他应用程序/系统性能基线。开发人员可以利用OpsClarity [RESTful API](https://support.opsclarity.com/hc/en-us/articles/213700557-Custom-metrics-API)来捕获自定义指标，为每个指标标注注释，并推送指标和事件。OpsClarity还提供了监视和分析工具，可显示自上而下的统一视图以及深入数据可视化。 OpsClarity使用AI和图形分析来可视化和分析大规模分布式应用程序。基础架构主机地图显示每台主机或服务的运行状况; 拓扑图帮助开发人员了解服务依赖性和基础架构组件; 时间线功能使开发人员能够回顾并查看以前的系统状态，以了解错误和失败的发生情况。
 

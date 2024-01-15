@@ -15,7 +15,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://wangbaiyuan.cn
+url: https://baiyuan.wang
 root: /
 permalink: :slug.html
 permalink_defaults: zh-CN
@@ -105,4 +105,4 @@ deploy:
   branch: gh-pages
   token: $GITHUB_TOKEN
   name: github-action
-  email: github-action@wangbaiyuan.cn
+  email: github-action@baiyuan.wang

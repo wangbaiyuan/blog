@@ -13,7 +13,7 @@ abbrlink: 12977
 date: 2015-05-09 23:01:36
 ---
 
-这篇文章主要是利用.htaccess去对网站做设定、限制目录读取，强化WordPress网站整体安全，不过你也别忘了要设定强一点的密码。 接下来极客人要介绍的主要是透过.htaccess对网站做一个基础的强化，保护wp-admin目录、限制wp-includes目录读取、防垃圾留言、禁止目录索引、限制wp-config.php访问权限等等，算是很基础的网站安全防护，不论你网站是否遭受攻击，其实这些都是必要性的安全防护。当然，进行了下面的网站安全防护不代表你被不会被黑客入侵，而是多一层保障、降低一些被攻击几率。 [![01300000165488123666522066630](http://wangbaiyuan.cn/wp-content/uploads/2015/05/01300000165488123666522066630.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/01300000165488123666522066630.jpg)  
+这篇文章主要是利用.htaccess去对网站做设定、限制目录读取，强化WordPress网站整体安全，不过你也别忘了要设定强一点的密码。 接下来极客人要介绍的主要是透过.htaccess对网站做一个基础的强化，保护wp-admin目录、限制wp-includes目录读取、防垃圾留言、禁止目录索引、限制wp-config.php访问权限等等，算是很基础的网站安全防护，不论你网站是否遭受攻击，其实这些都是必要性的安全防护。当然，进行了下面的网站安全防护不代表你被不会被黑客入侵，而是多一层保障、降低一些被攻击几率。 [![01300000165488123666522066630](http://baiyuan.wang/wp-content/uploads/2015/05/01300000165488123666522066630.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/01300000165488123666522066630.jpg)  
 
 一、限制wp-admin目录IP
 ----------------
@@ -86,12 +86,12 @@ deny from all
 六、防垃圾留言攻击
 ---------
 
-以下这段语法是保护你的留言防止被机器人垃圾留言攻击，主要屏蔽没有referrer的请求，但极客人使用过后发现成效有限，建议再加装Akismet和quiz保护会更好。请将下述代码加入到根目录的.htaccess文件，其中的”wangbaiyuan.cn”请换成你自己的网站网址。
+以下这段语法是保护你的留言防止被机器人垃圾留言攻击，主要屏蔽没有referrer的请求，但极客人使用过后发现成效有限，建议再加装Akismet和quiz保护会更好。请将下述代码加入到根目录的.htaccess文件，其中的”baiyuan.wang”请换成你自己的网站网址。
 
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{REQUEST_URI} .wp-comments-post\\.php*
-RewriteCond %{HTTP_REFERER} !.\*wangbaiyuan.cn.\* \[OR\]
+RewriteCond %{HTTP_REFERER} !.\*baiyuan.wang.\* \[OR\]
 RewriteCond %{HTTP\_USER\_AGENT} ^$
 RewriteRule (.*) ^http://%{REMOTE_ADDR}/$ \[R=301,L\]
 

@@ -16,12 +16,12 @@ date: 2015-06-13 07:06:12
 效果预览：
 -----
 
-[![java命令行导航菜单](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-15-44.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-15-44.jpg) java命令行导航菜单
+[![java命令行导航菜单](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-15-44.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-15-44.jpg) java命令行导航菜单
 
 MeetingClient.java
 ------------------
 
-下述代码通过匹配用户输入的main函数参数，分别执行在上一篇文章中定义的方法。其中输入GUI和不输入参数将启动GUI模式。 [![java命令行导航菜单2](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-33-21.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-12_19-33-21.jpg) java命令行导航菜单2  
+下述代码通过匹配用户输入的main函数参数，分别执行在上一篇文章中定义的方法。其中输入GUI和不输入参数将启动GUI模式。 [![java命令行导航菜单2](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-33-21.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-33-21.jpg) java命令行导航菜单2  
 
 package cn.wangbaiyuan;
 
@@ -36,7 +36,7 @@ import java.sql.SQLException;
  \* RMI会议客户端
  \* @author 王柏元
  *
- *{@linkplain http://wangbaiyuan.cn}
+ *{@linkplain http://baiyuan.wang}
  */
 public class MeetingClient {
 	public static void main(String args\[\]) throws IOException{
@@ -59,7 +59,7 @@ public class MeetingClient {
 					\+ "请输入命令：";
 			String about="RMI会议客户端©王柏元—命令行行版:\\n"
 					\+ "作者:王柏元\\n"
-					\+ "个人网站：http://wangbaiyuan.cn\\n"
+					\+ "个人网站：http://baiyuan.wang\\n"
 					\+ "运行模式：GUI和命令行双环境\\n"
 					\+ "程序介绍：使用Java RMI创建一个分布式议程共享服务。"
 					\+ "不同的用户可以使用这个共享议程服务执行查询、添加和删除"
@@ -142,14 +142,14 @@ public class MeetingClient {
 系列文章链接：
 -------
 
-[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
+[SSD8\_Ex3【JAVA\_RMI服务】(1)概述RMI和网络API](http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
+[SSD8\_Ex3【JAVA\_RMI】(2)远程接口声明](http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
+[SSD8\_Ex3【JAVA\_RMI】(3)开启RMI服务](http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
+[SSD8\_Ex3【JAVA\_RMI】(4)会议数据库建表](http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://wangbaiyuan.cn/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
+[SSD8\_Ex3【JAVA\_RMI】(5)数据库连接和会议方法定义](http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html)
 
-[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://wangbaiyuan.cn/java-rmi-6-making-the-command-line-navigation-menu.html)
+[SSD8\_Ex3【JAVA\_RMI】(6)制作命令行导航菜单](http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html)

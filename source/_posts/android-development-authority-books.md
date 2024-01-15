@@ -12,7 +12,7 @@ abbrlink: 31112
 date: 2015-08-23 20:27:18
 ---
 
-在安卓开发中，应用在访问手机硬件资源如SD读写、网络访问、定位、调用摄像头，或者联系人、打电话等系统服务时都要向android系统申请权限。权限机制有利于保护使用者的手机安全。曾经碰到许多木马软件在后台给你发短信，神不知鬼不觉就扣了话费。这种木马软件能发送短信的前提就是向android系统申请了发送短信的权限。现在许多的安全软件都有禁止应用权限的功能，即使 手机应用在申请了访问一些手机资源的权限也可以强行禁止访问。 [![permit](http://wangbaiyuan.cn/wp-content/uploads/2015/08/permit.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/permit.jpg) 对于开发者，为应用申请权限的方法就是在项目清单文件中<manifest />添加如： <uses-permission android:name="android.permission.CALL_PHONE（权限名）" /> 下面是安卓开发应用权限大全：
+在安卓开发中，应用在访问手机硬件资源如SD读写、网络访问、定位、调用摄像头，或者联系人、打电话等系统服务时都要向android系统申请权限。权限机制有利于保护使用者的手机安全。曾经碰到许多木马软件在后台给你发短信，神不知鬼不觉就扣了话费。这种木马软件能发送短信的前提就是向android系统申请了发送短信的权限。现在许多的安全软件都有禁止应用权限的功能，即使 手机应用在申请了访问一些手机资源的权限也可以强行禁止访问。 [![permit](http://baiyuan.wang/wp-content/uploads/2015/08/permit.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/permit.jpg) 对于开发者，为应用申请权限的方法就是在项目清单文件中<manifest />添加如： <uses-permission android:name="android.permission.CALL_PHONE（权限名）" /> 下面是安卓开发应用权限大全：
 
 Android开发权限大全
 -------------

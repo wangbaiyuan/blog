@@ -10,7 +10,7 @@ abbrlink: 46149
 date: 2015-04-13 15:27:20
 ---
 
-当Activity处于应用中运行时，它的活动状态是由安卓操作系统通过栈的方式进行管理的，当前正在进行的Activity位于栈顶。随着不同应用的进行，每一个Activity都可以从活动状态转入非活动状态。下面是android的ACTIVITY生命周期的图示： [![](http://wangbaiyuan.cn/wp-content/uploads/2015/04/1341462194_3261.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/04/1341462194_3261.jpg)
+当Activity处于应用中运行时，它的活动状态是由安卓操作系统通过栈的方式进行管理的，当前正在进行的Activity位于栈顶。随着不同应用的进行，每一个Activity都可以从活动状态转入非活动状态。下面是android的ACTIVITY生命周期的图示： [![](http://baiyuan.wang/wp-content/uploads/2015/04/1341462194_3261.jpg)](http://baiyuan.wang/wp-content/uploads/2015/04/1341462194_3261.jpg)
 
 安卓ACTIVITY生命周期的的四个阶段
 --------------------

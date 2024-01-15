@@ -37,4 +37,4 @@ add\_action( 'login\_form', 'username\_or\_email_login' );
 附录
 --
 
-了解更多纯代码实现插件功能的方法，你可以参考[wordpress无插件实现六个经典功能](http://wangbaiyuan.cn/790.html "wordpress无插件实现六个经典功能")
+了解更多纯代码实现插件功能的方法，你可以参考[wordpress无插件实现六个经典功能](http://baiyuan.wang/790.html "wordpress无插件实现六个经典功能")

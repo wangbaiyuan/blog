@@ -33,7 +33,7 @@ date: 2015-10-16 21:21:18
 *   IF(interrupt flag)
 *   AF(auxiliary flag)
 
-[![help](http://wangbaiyuan.cn/wp-content/uploads/2015/08/help.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/help.jpg)
+[![help](http://baiyuan.wang/wp-content/uploads/2015/08/help.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/help.jpg)
 
 命令类
 ---

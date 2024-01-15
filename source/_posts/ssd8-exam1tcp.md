@@ -46,7 +46,7 @@ Import java.util.StringTokenizer;
  \* 
  \* @author <a href="http://wangbaiyuan">Wang Baiyuan</a>
  *The code is <a href="http://wangbaiyuan">Wang Baiyuan</a> original and it is released synchronously in
- *<a href="http://wangbaiyuan.cn/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">Wang Baiyuan's blog</a> reproduced please indicate the source
+ *<a href="http://baiyuan.wang/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">Wang Baiyuan's blog</a> reproduced please indicate the source
  */
 Public class ChatServer {
 	Private static HashMap<String, Socket> serverSocketMap = new HashMap<String, Socket>();
@@ -78,7 +78,7 @@ Public class ChatServer {
 	 \* Handle child thread classes
  \* @author <a href="http://wangbaiyuan">Wang Baiyuan</a>
  *The code is <a href="http://wangbaiyuan">Wang Baiyuan</a> original and it is released synchronously in
- *<a href="http://wangbaiyuan.cn/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">Wang Baiyuan's blog</a> reproduced please indicate the source
+ *<a href="http://baiyuan.wang/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">Wang Baiyuan's blog</a> reproduced please indicate the source
  */
 	Public class Handler implements Runnable { // thread responsible for communicating with a single client
 		Private Socket socket;

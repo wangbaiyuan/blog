@@ -16,7 +16,7 @@ date: 2014-12-25 17:07:47
 1.ui文件中布局
 ---------
 
-[![20120323102431765](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102431765.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102431765.jpg)
+[![20120323102431765](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102431765.jpg)](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102431765.jpg)
 
 2.主要程序
 ------
@@ -98,7 +98,7 @@ void MainWindow::on\_pushButton\_3_clicked()
 
 ### dialog1.cpp
 
-1.  [![20120323102433789](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102433789.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102433789.jpg)#include "dialog1.h"
+1.  [![20120323102433789](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102433789.jpg)](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102433789.jpg)#include "dialog1.h"
     #include "ui_dialog1.h"
     Dialog1::Dialog1(QWidget *parent) :
         QDialog(parent),
@@ -123,4 +123,4 @@ dialog2.cpp与Dialog1相似 关键点： this->close(); dialog2.show(); dialog2.
 
 ### 运行结果：
 
-[![20120323102434387](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102434387.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102434387.jpg)[![20120323102435896](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102435896.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2014/12/20120323102435896.jpg)
+[![20120323102434387](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102434387.jpg)](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102434387.jpg)[![20120323102435896](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102435896.jpg)](http://baiyuan.wang/wp-content/uploads/2014/12/20120323102435896.jpg)

@@ -37,7 +37,7 @@ ElasticSearch VS 数据库
 
 常见的消息队列采用“发布-订阅”模式，初入门者几乎可以认为这是个“观察者模式”。
 
-![消息队列模式-“发布-订阅”模式](https://wangbaiyuan.cn/wp-content/uploads/2019/03/20190314095430110.jpg)
+![消息队列模式-“发布-订阅”模式](https://baiyuan.wang/wp-content/uploads/2019/03/20190314095430110.jpg)
 
 消息队列模式-“发布-订阅”模式
 
@@ -59,7 +59,7 @@ ES索引更改发生在ElasticSearch 索引结构发生变化，比如随着业�
 *   服务升级完成：新服务V2启动完成，负载均衡切换指向，将访问流量导向新服务V2
 *   服务升级完成：负载均衡切换指向后停掉旧服务V1
 
-![蓝绿部署](https://wangbaiyuan.cn/wp-content/uploads/2019/03/20190314095430213.jpg)
+![蓝绿部署](https://baiyuan.wang/wp-content/uploads/2019/03/20190314095430213.jpg)
 
 蓝绿部署
 

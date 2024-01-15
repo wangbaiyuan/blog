@@ -14,7 +14,7 @@ date: 2015-11-01 22:36:58
 
 > 两个字符串走进酒吧。 第一个字符串对服务员说：“给我来一瓶啤酒烫烫烫烫烫烫烫烫烫烫烫烫烫烫烫”。 “请原谅我的朋友，”第二个字符串说：“他忘了加\\0”。
 
-  初听这个所谓笑话的时候感觉莫名奇妙，直到昨天调代码遇到字符数组中出现的情况才明白了一二: [![QQ图片20151101222601](http://wangbaiyuan.cn/wp-content/uploads/2015/11/wangbaiyuan.cn_2015-11-01_22-26-13.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/11/wangbaiyuan.cn_2015-11-01_22-26-13.png) **至于出现烫烫烫的原因，下面是从百度抠下来的解释：** 在用VC写代码时，经常会遇到在栈中申请空间的并且没有被初始化的字符数组就会显示"烫烫烫烫。。。"，虽然是知道编译器对栈中没有初始化的数据会进行默认的初始化工作。如下面的代码：
+  初听这个所谓笑话的时候感觉莫名奇妙，直到昨天调代码遇到字符数组中出现的情况才明白了一二: [![QQ图片20151101222601](http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-26-13.png)](http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-26-13.png) **至于出现烫烫烫的原因，下面是从百度抠下来的解释：** 在用VC写代码时，经常会遇到在栈中申请空间的并且没有被初始化的字符数组就会显示"烫烫烫烫。。。"，虽然是知道编译器对栈中没有初始化的数据会进行默认的初始化工作。如下面的代码：
 
 int main(void)
 {
@@ -51,7 +51,7 @@ int main(void)
 （参考：）
 -----
 
-在Debug 模式下，VC 会把未初始化的栈内存全部填成0xcc。会把未初始化的堆内存全部填成0xcd。但是Release 模式下不会有这种附加动作，原来那块内存里是什么就是什么。 未初始化的变量会被系统赋初值为0xCC,超过了ASCII码0-127这个范围，因此这个“字符串”被系统当成了宽字符组成的字符串，即两个字节数据组成一个字符，而0xCCCC表示的宽字符正好是乱码中的那个“烫”字。同理，0Xcdcd就是“屯”字。   [![360截图-171395703](http://wangbaiyuan.cn/wp-content/uploads/2015/11/wangbaiyuan.cn_2015-11-01_22-41-48.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/11/wangbaiyuan.cn_2015-11-01_22-41-48.jpg) [![360截图-171437546](http://wangbaiyuan.cn/wp-content/uploads/2015/11/wangbaiyuan.cn_2015-11-01_22-41-53.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/11/wangbaiyuan.cn_2015-11-01_22-41-53.jpg)
+在Debug 模式下，VC 会把未初始化的栈内存全部填成0xcc。会把未初始化的堆内存全部填成0xcd。但是Release 模式下不会有这种附加动作，原来那块内存里是什么就是什么。 未初始化的变量会被系统赋初值为0xCC,超过了ASCII码0-127这个范围，因此这个“字符串”被系统当成了宽字符组成的字符串，即两个字节数据组成一个字符，而0xCCCC表示的宽字符正好是乱码中的那个“烫”字。同理，0Xcdcd就是“屯”字。   [![360截图-171395703](http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-41-48.jpg)](http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-41-48.jpg) [![360截图-171437546](http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-41-53.jpg)](http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-41-53.jpg)
 
 ‘\\0’的含义
 --------

@@ -27,13 +27,13 @@ date: 2016-01-01 11:23:23
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="wbyblog" android:host="wangbaiyuan.cn"
+                <data android:scheme="wbyblog" android:host="baiyuan.wang"
                     android:pathPrefix="/home"/>
 </intent-filter>
 
 并做了一个网页亲测成功：
 ------------
 
-<a href="wbyblog://wangbaiyuan.cn/home">打开首页</a><!--这就是上面mainActivity的调用-->
-<a href="wbyblog://wangbaiyuan.cn/post?postid=1024&amp;title=安卓如何实现浏览器调用其他应用程序">打开文章</a>
-<a href="wbyblog://wangbaiyuan.cn/category?id=10">打开目录</a>
+<a href="wbyblog://baiyuan.wang/home">打开首页</a><!--这就是上面mainActivity的调用-->
+<a href="wbyblog://baiyuan.wang/post?postid=1024&amp;title=安卓如何实现浏览器调用其他应用程序">打开文章</a>
+<a href="wbyblog://baiyuan.wang/category?id=10">打开目录</a>

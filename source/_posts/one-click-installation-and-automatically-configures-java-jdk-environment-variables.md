@@ -37,7 +37,7 @@ set myjavapath=D:\\Java\\jdk
 
 IF EXIST %myjavapath%\\bin\\java.exe (
 echo.   自动配置java环境变量，来自—王柏元的博客—
-echo.                有问题到 http://blog.wangbaiyuan.cn留言
+echo.                有问题到 http://blog.baiyuan.wang留言
 echo. 
 echo    在 D 盘发现java程序，注册环境变量请按任意键
 echo.
@@ -74,7 +74,7 @@ echo 祝贺您成功安装了Java SE Development Kit !
 echo.
 goto END
 )
-echo 貌似安装不成功，您得自己想办法了，也可到我的博客http://blog.wangbaiyuan.cn/?p=445留言！
+echo 貌似安装不成功，您得自己想办法了，也可到我的博客http://blog.baiyuan.wang/?p=445留言！
 echo.
 goto END
 

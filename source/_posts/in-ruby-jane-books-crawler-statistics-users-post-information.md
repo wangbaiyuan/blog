@@ -20,7 +20,7 @@ tags: ''
     > 我们可以获取用户的关注、粉丝、文章、字数、收获喜欢等信息
     
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161216125613111.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161216125613111.jpg)
 
 Paste_Image.png
 
@@ -35,7 +35,7 @@ Paste_Image.png
 
 [http://www.jianshu.com/users/用户ID（暂估计这么说）/latest_articles?page=m](http://www.jianshu.com/users/%E7%94%A8%E6%88%B7ID%EF%BC%88%E6%9A%82%E4%BC%B0%E8%AE%A1%E8%BF%99%E4%B9%88%E8%AF%B4%EF%BC%89/latest_articles?page=m)
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161216125614220.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161216125614220.jpg)
 
 Paste_Image.png
 
@@ -222,7 +222,7 @@ end
 
     today = Time.new;
     timeStr= today.strftime("(%Y-%m-%d %H:%M:%S)");
-    footer="Powered By <a target=\\"_blank\\" href=\\"http://wangbaiyuan.cn\\">BrainWang@ThoughtWorks</a>"
+    footer="Powered By <a target=\\"_blank\\" href=\\"http://baiyuan.wang\\">BrainWang@ThoughtWorks</a>"
     out = tplContent.gsub(/@\\{title\\}/, title)
     out = out.gsub(/@\\{content\\}/, content)
     out = out.gsub(/@\\{footer\\}/, footer)

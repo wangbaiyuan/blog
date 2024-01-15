@@ -55,7 +55,7 @@ Shutdown hook
 怎样验证异步日志收集是否生效
 --------------
 
-按照Logback的文档实现异步日志很简单，那么怎么验证异步日志有没有生效就是个问题。这里引入一个“**VisualVM**”工具，它可以列出一个Java进程所包含的线程。可以看到下面的AsyncAppender-Works-xxx就是日志收集线程。 [![](https://wangbaiyuan.cn/wp-content/uploads/2019/05/WechatIMG371.png)](https://wangbaiyuan.cn/wp-content/uploads/2019/05/WechatIMG371.png)
+按照Logback的文档实现异步日志很简单，那么怎么验证异步日志有没有生效就是个问题。这里引入一个“**VisualVM**”工具，它可以列出一个Java进程所包含的线程。可以看到下面的AsyncAppender-Works-xxx就是日志收集线程。 [![](https://baiyuan.wang/wp-content/uploads/2019/05/WechatIMG371.png)](https://baiyuan.wang/wp-content/uploads/2019/05/WechatIMG371.png)
 
 扩展资料
 ----

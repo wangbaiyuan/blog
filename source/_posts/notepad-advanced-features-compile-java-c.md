@@ -17,7 +17,7 @@ Notepad++是极客人非常喜欢的一款电脑客户端的编辑器，它的�
 1.下载安装NppExec插件
 ---------------
 
-分别打开插件——pluginManeger菜单，点击“Show Plugin Manager”打开Notepad++的插件管理： [![下载安装NppExec插件](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb5.png "下载安装NppExec插件")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image5.png)   在available选项卡中找到“NppExec”选择安装，重启notepad++。
+分别打开插件——pluginManeger菜单，点击“Show Plugin Manager”打开Notepad++的插件管理： [![下载安装NppExec插件](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb5.png "下载安装NppExec插件")](http://baiyuan.wang/wp-content/uploads/2015/05/image5.png)   在available选项卡中找到“NppExec”选择安装，重启notepad++。
 
 2.按F6编译并运行java文件
 ----------------
@@ -41,8 +41,8 @@ java -cp "$(CURRENT\_DIRECTORY)";"$(CURRENT\_DIRECTORY)/json.jar" $(NAME_PART)
 
 ### 实例展示：
 
-[![image](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb6.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image6.png)  
+[![image](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb6.png "image")](http://baiyuan.wang/wp-content/uploads/2015/05/image6.png)  
 
 ### 文件路径关系：
 
-[![image](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image_thumb7.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/image7.png)
+[![image](http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb7.png "image")](http://baiyuan.wang/wp-content/uploads/2015/05/image7.png)

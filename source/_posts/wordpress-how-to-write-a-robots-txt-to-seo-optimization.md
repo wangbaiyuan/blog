@@ -13,7 +13,7 @@ abbrlink: 29829
 date: 2015-04-19 11:26:05
 ---
 
-一般来说,我们希望搜索蜘蛛光顾我们的网站越多越好,我相信每个新手站长都会是站长工具的常客,一大早起来就是关注自己网站的收录量.收录量的增长是一张晴雨表,升则忧、降则喜，我想告诉广大的站长朋友这完全没有必要，收录量不是目的，我觉得我们关注的重点应该是怎样让自己的网站拥有更多的百度搜索流量。 robots.txt是搜索引擎爬行网站的控制文件，按照一定的语法告诉搜索引擎哪些网页能爬，哪些不能爬，对于robots.txtd的介绍和书写语法，你可以参考这篇博文：[网络蜘蛛访问控制文件robot.txt的写法](http://wangbaiyuan.cn/how_to_write_robts-txt.html "网络蜘蛛访问控制文件robot.txt的写法") 。 可能你想说，收录量不是越多越好吗？ 其实不然，网站的网页不是收录越多越好，大家都知道搜索引擎比较网络上的网页相似度（相似度太高的两个页面会分散权重）的时候，不仅仅会进行不同网站间的纵向比较，而且会进行同一网站不同页面间的比较，所以，比如对于个人博客的作者归档和首页，页面内容差不多一样，我们完全可以屏蔽蜘蛛访问作者归档的页面。下面我来详细地介绍一下wordpress怎样写robots.txt利于SEO优化。
+一般来说,我们希望搜索蜘蛛光顾我们的网站越多越好,我相信每个新手站长都会是站长工具的常客,一大早起来就是关注自己网站的收录量.收录量的增长是一张晴雨表,升则忧、降则喜，我想告诉广大的站长朋友这完全没有必要，收录量不是目的，我觉得我们关注的重点应该是怎样让自己的网站拥有更多的百度搜索流量。 robots.txt是搜索引擎爬行网站的控制文件，按照一定的语法告诉搜索引擎哪些网页能爬，哪些不能爬，对于robots.txtd的介绍和书写语法，你可以参考这篇博文：[网络蜘蛛访问控制文件robot.txt的写法](http://baiyuan.wang/how_to_write_robts-txt.html "网络蜘蛛访问控制文件robot.txt的写法") 。 可能你想说，收录量不是越多越好吗？ 其实不然，网站的网页不是收录越多越好，大家都知道搜索引擎比较网络上的网页相似度（相似度太高的两个页面会分散权重）的时候，不仅仅会进行不同网站间的纵向比较，而且会进行同一网站不同页面间的比较，所以，比如对于个人博客的作者归档和首页，页面内容差不多一样，我们完全可以屏蔽蜘蛛访问作者归档的页面。下面我来详细地介绍一下wordpress怎样写robots.txt利于SEO优化。
 
 wordpress怎样写robots.txt利于SEO优化
 =============================
@@ -74,7 +74,7 @@ Disallow: /*?connect=* Disallow: /kod/* Disallow: /api/*
 三、百度站长工具robots.txt工具的使用方法
 -------------------------
 
-百度站长工具robots.txt工具网址：[http://zhanzhang.baidu.com/robots/index](http://zhanzhang.baidu.com/robots/index "http://zhanzhang.baidu.com/robots/index") [![百度站长工具robots.txt工具的使用方法](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb4.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image4.png) 百度站长工具robots.txt工具的使用方法    
+百度站长工具robots.txt工具网址：[http://zhanzhang.baidu.com/robots/index](http://zhanzhang.baidu.com/robots/index "http://zhanzhang.baidu.com/robots/index") [![百度站长工具robots.txt工具的使用方法](http://baiyuan.wang/wp-content/uploads/2015/04/image_thumb4.png)](http://baiyuan.wang/wp-content/uploads/2015/04/image4.png) 百度站长工具robots.txt工具的使用方法    
 
 *   **检测并更新**：在文本框里输入网站点击检测并更新，百度将抓取你的robots.txt文件，如果你近期robots.txt最近有更新，这将马上通知百度搜索蜘蛛更新它的爬行规则，使你修改后的robots.txt马上生效。
 *   **规则校验：**你可以提取自己的robots.txt，然后验证一下你的robots.txt语法是否正确，检验你想要禁止蜘蛛爬行的网址是否能有效屏蔽；
@@ -102,4 +102,4 @@ Disallow: /*/*/feed/*
 Disallow: /*/*/*/feed/*
 Disallow:/articles/*
 Disallow:/shuoshuo/*
-Sitemap: http://wangbaiyuan.cn/sitemap_index.xml
+Sitemap: http://baiyuan.wang/sitemap_index.xml

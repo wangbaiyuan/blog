@@ -25,15 +25,15 @@ date: 2015-03-10 16:59:01
 三、插件截图
 ------
 
-#### 预览地址：[http://wangbaiyuan.cn/shuoshuo](http://wangbaiyuan.cn/shuoshuo)
+#### 预览地址：[http://baiyuan.wang/shuoshuo](http://baiyuan.wang/shuoshuo)
 
 ### 电脑端界面：
 
-[![shuoshuo](http://wangbaiyuan.cn/wp-content/uploads/2015/08/shuoshuo.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/shuoshuo.jpg)
+[![shuoshuo](http://baiyuan.wang/wp-content/uploads/2015/08/shuoshuo.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/shuoshuo.jpg)
 
 ### 手机端界面：
 
-[![mobileshuoshuo](http://wangbaiyuan.cn/wp-content/uploads/2015/08/mobileshuoshuo.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/mobileshuoshuo.jpg)   下面主要介绍一下核心代码： 首先在主题的functions.php里面加入以下代码：
+[![mobileshuoshuo](http://baiyuan.wang/wp-content/uploads/2015/08/mobileshuoshuo.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/mobileshuoshuo.jpg)   下面主要介绍一下核心代码： 首先在主题的functions.php里面加入以下代码：
 
 四、代码部分
 ------
@@ -70,7 +70,7 @@ register\_post\_type('shuoshuo',$args);
 <?php /*
 Template Name: 说说
 author: 王柏元
-url: http://wangbaiyuan.cn
+url: http://baiyuan.wang
 */
 
 get_header(); ?> 
@@ -92,7 +92,7 @@ CSS样式：
 \[toggle hide="yes" title="我的css样式：" color="red"\]
 
 #content-container{
-background: url() top left repeat,url(http://wangbaiyuan.cn/wp-content/uploads/2015/01/background.jpg) top center no-repeat;
+background: url() top left repeat,url(http://baiyuan.wang/wp-content/uploads/2015/01/background.jpg) top center no-repeat;
 background-attachment: fixed;
 background-size: 2px 2px,cover;
 }
@@ -254,4 +254,4 @@ background: #0c0;
 .shuoshuo li em{float:left;width:39px;height:10px;margin:34px 0 0 -1px;}
 }
 
-\[/toggle\] 然后新建一个页面，使它的页面模板为“说说”样式。你可以访问我的“[博客说说](http://wangbaiyuan.cn/shuoshuo/ "说说")”预览一
+\[/toggle\] 然后新建一个页面，使它的页面模板为“说说”样式。你可以访问我的“[博客说说](http://baiyuan.wang/shuoshuo/ "说说")”预览一

@@ -17,7 +17,7 @@ tags: ''
 
 3\. 同一周周六的访问几乎无例外地比周日访问量高
 
-4\. 春节比周六周日访问量更低[![](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Screen-Shot-2018-03-22-at-21.31.15.png)](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Screen-Shot-2018-03-22-at-21.31.15.png)
+4\. 春节比周六周日访问量更低[![](http://baiyuan.wang/wp-content/uploads/2018/03/Screen-Shot-2018-03-22-at-21.31.15.png)](http://baiyuan.wang/wp-content/uploads/2018/03/Screen-Shot-2018-03-22-at-21.31.15.png)
 
 再基于一些事实，访问本博客大都是国内程序员，可以有以下结论:
 

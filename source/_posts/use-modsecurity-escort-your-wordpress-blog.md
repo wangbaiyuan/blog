@@ -10,7 +10,7 @@ abbrlink: 34084
 date: 2019-03-12 15:28:12
 ---
 
-ModSecurity是一个入侵探测与阻止的引擎，它主要是用于Web应用程序所以也可以叫做Web应用程序防火墙；它可以作为Apache Web服务器的一个模块或单独的应用程序来运行。ModSecurity的目的是为增强Web应用程序的安全性，来保护Web应用程序避免遭受攻击. ![24173056_1dMG.gif](https://wangbaiyuan.cn/wp-content/uploads/2019/03/20190312152420118.gif)
+ModSecurity是一个入侵探测与阻止的引擎，它主要是用于Web应用程序所以也可以叫做Web应用程序防火墙；它可以作为Apache Web服务器的一个模块或单独的应用程序来运行。ModSecurity的目的是为增强Web应用程序的安全性，来保护Web应用程序避免遭受攻击. ![24173056_1dMG.gif](https://baiyuan.wang/wp-content/uploads/2019/03/20190312152420118.gif)
 
 Availability of ModSecurity 2.9.1
 
@@ -55,8 +55,8 @@ RUN a2enmod security2
 SecRuleEngine On
 
 <VirtualHost *:80>
-    ServerName wangbaiyuan.cn
-	ServerAdmin blog@mail.wangbaiyuan.cn
+    ServerName baiyuan.wang
+	ServerAdmin blog@mail.baiyuan.wang
 	DocumentRoot /var/www/html
 	ErrorLog ${APACHE\_LOG\_DIR}/error.log
 	CustomLog ${APACHE\_LOG\_DIR}/access.log cdn_combined
@@ -66,11 +66,11 @@ SecRuleEngine On
 
 *   XSS 测试
 
-curl 'https://wangbaiyuan.cn/?q="><script>alert(1)</script>'
+curl 'https://baiyuan.wang/?q="><script>alert(1)</script>'
 
 *   SQL 注入
 
-curl "https://wangbaiyuan.cn/?q='1 OR 1=1"
+curl "https://baiyuan.wang/?q='1 OR 1=1"
 
 开源项目
 ----

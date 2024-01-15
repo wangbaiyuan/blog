@@ -12,7 +12,7 @@ tags: ''
 
 许多“有抱负”或者热爱编程的程序员，对全栈工程师可能都是孜孜以求。全栈是一种极客精神，对软件的每一种编程语言、每一个开发平台都有着浓厚的兴趣，并愿意为之付出努力，全栈工程师应该对软件各个方面都有广泛的接触面，对软件有深刻的洞察力，这种广而深的见识将让我们开发出更加高效率地开发应用。 我们周遭的人对全栈的描述往往是“我熟悉C/C++，java；swift，Ruby都会一点，还能开发IOS、Android、Windows应用，Web前端后端都做过。用过这些框架：……”
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2017/03/20170309212512113.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2017/03/20170309212512113.jpg)
 
 全栈元素周期表，来自[xebialabs](https://xebialabs.com/periodic-table-of-devops-tools/#rd)
 

@@ -30,13 +30,13 @@ date: 2016-12-03 10:19:07
 
 ### wps
 
-wps office LInux版，强大的文字、表格、PPT办公软件。现在Android和Windows平台上的WPS office广告越来越多，而Linux上的却相当纯净。 ![图片.png](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161203102656115.jpg)
+wps office LInux版，强大的文字、表格、PPT办公软件。现在Android和Windows平台上的WPS office广告越来越多，而Linux上的却相当纯净。 ![图片.png](http://baiyuan.wang/wp-content/uploads/2016/12/20161203102656115.jpg)
 
 *   下载地址：http://community.wps.cn/download/
 
 ### 网易云音乐
 
-发布不久后我就安装了，和Windows下桌面版和UWP版长得一模一样，支持在线和本地音乐播放，桌面歌词。 ![图片.png](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161203102657215.jpg)
+发布不久后我就安装了，和Windows下桌面版和UWP版长得一模一样，支持在线和本地音乐播放，桌面歌词。 ![图片.png](http://baiyuan.wang/wp-content/uploads/2016/12/20161203102657215.jpg)
 
 *   下载地址：http://music.163.com/#/download
 
@@ -49,7 +49,7 @@ Linux下的QQ客户端，基本功能有的，但是感觉Bug比较多，因为�
 
 ### 多桌面和热区
 
-下载Unity Tweak Tool，和Mac一样支持将鼠标移到屏幕的边缘显示桌面、窗口平铺、任务切换等。这个在同时打开很多窗口的情况下十分方便用户操作。 ![图片.png](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161203102657315.jpg) ![图片.png](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161203102658412.jpg)
+下载Unity Tweak Tool，和Mac一样支持将鼠标移到屏幕的边缘显示桌面、窗口平铺、任务切换等。这个在同时打开很多窗口的情况下十分方便用户操作。 ![图片.png](http://baiyuan.wang/wp-content/uploads/2016/12/20161203102657315.jpg) ![图片.png](http://baiyuan.wang/wp-content/uploads/2016/12/20161203102658412.jpg)
 
 ### 调出命令行窗口快捷键
 

@@ -12,7 +12,7 @@ abbrlink: 26692
 date: 2016-01-15 13:56:51
 ---
 
-WebView是安卓下显示网页的控件，使用它可以实现一个简单的浏览器，访问互联网上的网页。也可以当作一个本地的文本显示控件，和textView类似。用 WebView 或者 TextView 来显示 HTML 内容，其交互的实现方式有较大的区别，以在 HTML 内容中的图片点击事件为例，在 WebView 模式下，开发人员需要通过注入 JavaScript 代码来进行点击事件的响应，Android 系统提供了 WebView 中 JavaScript 网页脚本调用 Java 类方法的机制；而在 TextView 中，图片会被解析为 ImageSpan，通过在 ImageSpan 上注册点击事件来响应。 [![webview显示富文本](http://wangbaiyuan.cn/wp-content/uploads/2016/01/wangbaiyuan.cn_2016-01-15_13-54-57.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2016/01/wangbaiyuan.cn_2016-01-15_13-54-57.jpg) webview显示富文本  
+WebView是安卓下显示网页的控件，使用它可以实现一个简单的浏览器，访问互联网上的网页。也可以当作一个本地的文本显示控件，和textView类似。用 WebView 或者 TextView 来显示 HTML 内容，其交互的实现方式有较大的区别，以在 HTML 内容中的图片点击事件为例，在 WebView 模式下，开发人员需要通过注入 JavaScript 代码来进行点击事件的响应，Android 系统提供了 WebView 中 JavaScript 网页脚本调用 Java 类方法的机制；而在 TextView 中，图片会被解析为 ImageSpan，通过在 ImageSpan 上注册点击事件来响应。 [![webview显示富文本](http://baiyuan.wang/wp-content/uploads/2016/01/baiyuan.wang_2016-01-15_13-54-57.jpg)](http://baiyuan.wang/wp-content/uploads/2016/01/baiyuan.wang_2016-01-15_13-54-57.jpg) webview显示富文本  
 
 一、webview显示富文本
 --------------

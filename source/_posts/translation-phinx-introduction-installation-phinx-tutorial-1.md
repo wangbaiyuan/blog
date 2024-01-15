@@ -14,14 +14,14 @@ abbrlink: 60764
 date: 2015-08-24 10:38:17
 ---
 
-> 本文由极客人原创翻译自：[http://phinx.readthedocs.org](http://phinx.readthedocs.org)，不周之处，敬请指正；系列文章请访问王柏元的博客[Phinx标签页](http://wangbaiyuan.cn/tag/phinx)或者用极客搜搜索：Phinx 获取所有文章目录
+> 本文由极客人原创翻译自：[http://phinx.readthedocs.org](http://phinx.readthedocs.org)，不周之处，敬请指正；系列文章请访问王柏元的博客[Phinx标签页](http://baiyuan.wang/tag/phinx)或者用极客搜搜索：Phinx 获取所有文章目录
 
  
 
 介绍
 --
 
-一个训练有素的开发者，善于使用SCM系统（Software configuration management ：软件配置管理）对其程序代码进行版本控制；那么，为什么他们不使用相同的方式对数据库进行版本控制呢? Phinx允许开发者一种清晰、简洁的方式来修改和操作数据库，依托Phinx提供了一个强大的API，你无需手工编写SQL，而是使用PHP代码来创建代码迁移。然后开发者可以使用他们喜欢的SCM来进行代码迁移。这使得Phinx代码迁移可以移植于不同数据库系统之间。Phinx会对已经进行过的代码迁移进行跟踪，这样你就可以少担心数据库的状态,而是专注于开发更好的软件。 ![help](http://wangbaiyuan.cn/wp-content/uploads/2015/08/help.jpg)
+一个训练有素的开发者，善于使用SCM系统（Software configuration management ：软件配置管理）对其程序代码进行版本控制；那么，为什么他们不使用相同的方式对数据库进行版本控制呢? Phinx允许开发者一种清晰、简洁的方式来修改和操作数据库，依托Phinx提供了一个强大的API，你无需手工编写SQL，而是使用PHP代码来创建代码迁移。然后开发者可以使用他们喜欢的SCM来进行代码迁移。这使得Phinx代码迁移可以移植于不同数据库系统之间。Phinx会对已经进行过的代码迁移进行跟踪，这样你就可以少担心数据库的状态,而是专注于开发更好的软件。 ![help](http://baiyuan.wang/wp-content/uploads/2015/08/help.jpg)
 
 目标
 --

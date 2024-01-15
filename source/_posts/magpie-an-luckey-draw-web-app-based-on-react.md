@@ -22,4 +22,4 @@ Magpie，“喜鹊”，取其“报喜”之意，故本系统是一款抽奖�
 [](https://github.com/geekeren/Magpie-LuckyDraw#%E9%A2%84%E8%A7%88)预览
 ---------------------------------------------------------------------
 
-[Try online](https://magpie.wangbaiyuan.cn/) [![预览](http://wangbaiyuan.cn/wp-content/uploads/2018/08/20180820192940111.gif)](https://github.com/geekeren/Magpie-LuckyDraw/blob/master/doc/image/drawing.gif)
+[Try online](https://magpie.baiyuan.wang/) [![预览](http://baiyuan.wang/wp-content/uploads/2018/08/20180820192940111.gif)](https://github.com/geekeren/Magpie-LuckyDraw/blob/master/doc/image/drawing.gif)

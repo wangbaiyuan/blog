@@ -12,7 +12,7 @@ abbrlink: 18774
 date: 2015-11-19 20:55:41
 ---
 
-C++扫描指定主机开放的端口，OS提供了connect()系统调用，用于与远程主机某端口建立连接，如果远程主机该端口处于帧听状态，则connect()连接成功；否则说明该端口关闭。   [![scanhosts](http://wangbaiyuan.cn/wp-content/uploads/2015/11/scanhosts.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/11/scanhosts.jpg)
+C++扫描指定主机开放的端口，OS提供了connect()系统调用，用于与远程主机某端口建立连接，如果远程主机该端口处于帧听状态，则connect()连接成功；否则说明该端口关闭。   [![scanhosts](http://baiyuan.wang/wp-content/uploads/2015/11/scanhosts.jpg)](http://baiyuan.wang/wp-content/uploads/2015/11/scanhosts.jpg)
 
 // ScanPorts.cpp : 定义控制台应用程序的入口点。
 //

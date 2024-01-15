@@ -17,11 +17,11 @@ date: 2015-06-15 21:55:57
 
 ### Fragment生命周期图：
 
-  [![android-fragment生命周期](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_21-55-22.png)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_21-55-22.png) android-fragment生命周期
+  [![android-fragment生命周期](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-16_21-55-22.png)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-16_21-55-22.png) android-fragment生命周期
 
 ### Fragment与Activity生命周期对比图：
 
-![android-fragment生命周期2](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-16_21-55-18.png)
+![android-fragment生命周期2](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-16_21-55-18.png)
 
 2   生命周期分析
 ----------

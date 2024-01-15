@@ -32,7 +32,7 @@ CREATE TABLE \`my_software\` (
   KEY \`sw\_version\` (\`sw\_version\`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-  建立的数据库表名为：mysoftware,结构如图： [![image](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image_thumb8.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/04/image8.png)
+  建立的数据库表名为：mysoftware,结构如图： [![image](http://baiyuan.wang/wp-content/uploads/2015/04/image_thumb8.png "image")](http://baiyuan.wang/wp-content/uploads/2015/04/image8.png)
 
 2.PHP调用数据库返回JSON格式字符串
 ---------------------
@@ -90,12 +90,12 @@ function  jsons_encode($array){
 }
 ?>
 
-  在这个文件里，通过”[http://wangbaiyuan.cn/api/update.php?id=1](http://wangbaiyuan.cn/api/update.php?id=1 "http://wangbaiyuan.cn/api/update.php?id=1")”GET方式接受传值，然后调用了db_connect.php文件连接的数据库，执行$string = "select * from my\_software where sw\_id=".$id;语句，然后对结果进行解析返回标准的JSON格式字符串。其中jsons_encode函数你可以参考我之前的一篇文章：[PHP用json_encode转换数组中文乱码进行理解](http://wangbaiyuan.cn/php-using-json-encode-an-array-of-chinese-characters.html "PHP用json_encode转换数组中文乱码")； 下面我制作成功后访问[http://wangbaiyuan.cn/api/update.php?id=1](http://wangbaiyuan.cn/api/update.php?id=1)的网页内容： \[callout class="info" title="使用PHP制作的API"\]{"sw\_id":"1","sw\_name":"BY通讯录","sw\_version":"1.2","sw\_url":"http://wangbaiyuan.cn/api/software/Contactss\_1\_2.apk","sw_description":" 1.BY通讯录，是王柏元自主开发的APP，作安卓开发入门试验之用；\\n 2.调用在自己虚拟主机上的数据库搭建的API，实现了版本更新功能；\\n 3.使用一些新的安卓技术。"}\[/callout\] 看到这段字符串你可能大脑就会兴奋了，你可能能想到下面就是根据不同平台对JSON数据进行解析的工作了
+  在这个文件里，通过”[http://baiyuan.wang/api/update.php?id=1](http://baiyuan.wang/api/update.php?id=1 "http://baiyuan.wang/api/update.php?id=1")”GET方式接受传值，然后调用了db_connect.php文件连接的数据库，执行$string = "select * from my\_software where sw\_id=".$id;语句，然后对结果进行解析返回标准的JSON格式字符串。其中jsons_encode函数你可以参考我之前的一篇文章：[PHP用json_encode转换数组中文乱码进行理解](http://baiyuan.wang/php-using-json-encode-an-array-of-chinese-characters.html "PHP用json_encode转换数组中文乱码")； 下面我制作成功后访问[http://baiyuan.wang/api/update.php?id=1](http://baiyuan.wang/api/update.php?id=1)的网页内容： \[callout class="info" title="使用PHP制作的API"\]{"sw\_id":"1","sw\_name":"BY通讯录","sw\_version":"1.2","sw\_url":"http://baiyuan.wang/api/software/Contactss\_1\_2.apk","sw_description":" 1.BY通讯录，是王柏元自主开发的APP，作安卓开发入门试验之用；\\n 2.调用在自己虚拟主机上的数据库搭建的API，实现了版本更新功能；\\n 3.使用一些新的安卓技术。"}\[/callout\] 看到这段字符串你可能大脑就会兴奋了，你可能能想到下面就是根据不同平台对JSON数据进行解析的工作了
 
 依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析API数据
 ==================================
 
-在下一节我将通过安卓示例，向大家讲解对JSON数据进行解析为自制APP提供软件更新服务，[查看下一节](http://wangbaiyuan.cn/relying-on-virtual-hosts-to-provide-homemade-app-software-update-services-b.html "依托虚拟主机为自制APP提供软件更新服务（二）")。
+在下一节我将通过安卓示例，向大家讲解对JSON数据进行解析为自制APP提供软件更新服务，[查看下一节](http://baiyuan.wang/relying-on-virtual-hosts-to-provide-homemade-app-software-update-services-b.html "依托虚拟主机为自制APP提供软件更新服务（二）")。
 
 代码下载
 ----

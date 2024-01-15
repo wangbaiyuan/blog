@@ -24,11 +24,11 @@ Arduino开源硬件平台的出现大大提高了硬件开发的效率，即使�
 
 ### PcDuino开发平台
 
-根据需求有众多的版本的开发板，由于本文需要远程控制小车（需要WIFI功能），同时能获取两路摄像头视频（可扩展的USB接口），于是选用了配备1GHz主频的AllWinner A20 SoC ARM中央处理器、无线Wifi网卡的PcDuino 3B型号。 [![](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Picture2.png)](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Picture2.png)
+根据需求有众多的版本的开发板，由于本文需要远程控制小车（需要WIFI功能），同时能获取两路摄像头视频（可扩展的USB接口），于是选用了配备1GHz主频的AllWinner A20 SoC ARM中央处理器、无线Wifi网卡的PcDuino 3B型号。 [![](http://baiyuan.wang/wp-content/uploads/2018/03/Picture2.png)](http://baiyuan.wang/wp-content/uploads/2018/03/Picture2.png)
 
 ### 电机驱动模块L298P
 
-智能控制的关键之一是对速度的控制,本文使用L298P电机驱动模块对智能小车进行驱动。L298P Shield直流电机驱动器可直接驱动直流电机，驱动电流达2A，并可以通过PWM进行调速，可插接到Arduino上使用，同时它还配备了一个舵机控制插口控制舵机，和蜂鸣器可用于倒车警报。 [![](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Picture1-1.png)](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Picture1-1.png)
+智能控制的关键之一是对速度的控制,本文使用L298P电机驱动模块对智能小车进行驱动。L298P Shield直流电机驱动器可直接驱动直流电机，驱动电流达2A，并可以通过PWM进行调速，可插接到Arduino上使用，同时它还配备了一个舵机控制插口控制舵机，和蜂鸣器可用于倒车警报。 [![](http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-1.png)](http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-1.png)
 
 ### 舵机控制模块
 
@@ -40,4 +40,4 @@ Arduino开源硬件平台的出现大大提高了硬件开发的效率，即使�
 
 ### 双目摄像头
 
-双目摄像头就是具有两个镜头的摄像头，随着VR和3D视频技术的发展，双目摄像头在一些VR摄像机、手机上得到广泛的应用。双目摄像头模仿人的双眼，通过两个摄像头拍摄的不同画面，可以应用于计算机视觉测距。 下图为市场上购买的双目摄像头模块，可以通过USB接口与PC、开发板等相连，同时支持UVC协议。[![](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Picture1-2.png)](http://wangbaiyuan.cn/wp-content/uploads/2018/03/Picture1-2.png)
+双目摄像头就是具有两个镜头的摄像头，随着VR和3D视频技术的发展，双目摄像头在一些VR摄像机、手机上得到广泛的应用。双目摄像头模仿人的双眼，通过两个摄像头拍摄的不同画面，可以应用于计算机视觉测距。 下图为市场上购买的双目摄像头模块，可以通过USB接口与PC、开发板等相连，同时支持UVC协议。[![](http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-2.png)](http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-2.png)

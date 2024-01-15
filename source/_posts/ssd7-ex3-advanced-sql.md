@@ -10,7 +10,7 @@ abbrlink: 22725
 date: 2015-05-11 19:31:05
 ---
 
-> 这是SSD7练习的EX3，预计极客人将会写一个系列，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD7”即可获取已更新的SSD7答案。[上一练习：SSD7_EX2【SQL】](http://wangbaiyuan.cn/ssd7-ex2-sql.html)
+> 这是SSD7练习的EX3，预计极客人将会写一个系列，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD7”即可获取已更新的SSD7答案。[上一练习：SSD7_EX2【SQL】](http://baiyuan.wang/ssd7-ex2-sql.html)
 
 原题摘要:
 -----
@@ -20,7 +20,7 @@ date: 2015-05-11 19:31:05
 英文：
 ---
 
-For this exercise, we will use the library schema. [![SSD7_EX3高级SQL](http://wangbaiyuan.cn/wp-content/uploads/2015/05/clip_image001_thumb.png "SSD7_EX3高级SQL")](http://wangbaiyuan.cn/wp-content/uploads/2015/05/clip_image001.png) It includes information about book titles in the library, information about library members, about the number of times the books were read by members, about the suppliers who supply books to the library, and about orders placed with the suppliers. To distinguish the table names used in this exercise from the table names in other exercise, each table name in this exercise ends with the character '4'. Point of clarification: The ReceivedDate column refers to the date when the Order was received by the system (i.e., recorded in the database). It does not refer to the date a consumer received the items ordered by him.  
+For this exercise, we will use the library schema. [![SSD7_EX3高级SQL](http://baiyuan.wang/wp-content/uploads/2015/05/clip_image001_thumb.png "SSD7_EX3高级SQL")](http://baiyuan.wang/wp-content/uploads/2015/05/clip_image001.png) It includes information about book titles in the library, information about library members, about the number of times the books were read by members, about the suppliers who supply books to the library, and about orders placed with the suppliers. To distinguish the table names used in this exercise from the table names in other exercise, each table name in this exercise ends with the character '4'. Point of clarification: The ReceivedDate column refers to the date when the Order was received by the system (i.e., recorded in the database). It does not refer to the date a consumer received the items ordered by him.  
 
 > _**作业还是自己做的好，以下是我做的结果，作交流学习之用，不要盲目抄袭，东西学会了才是自己的！答案可能有纰漏，欢迎指正，水平有限，仅供参考：**_
 

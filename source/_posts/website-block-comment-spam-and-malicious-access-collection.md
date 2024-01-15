@@ -50,7 +50,7 @@ antiEmptyUA();
 
 ### 下面是本站的效果截图：
 
-[![anti_robots](http://wangbaiyuan.cn/wp-content/uploads/2015/05/anti_robots.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/05/anti_robots.jpg) 下述代码和上面的代码一样，建议加在header.php最前面或者其他网站程序最先执行代码的最前面
+[![anti_robots](http://baiyuan.wang/wp-content/uploads/2015/05/anti_robots.jpg)](http://baiyuan.wang/wp-content/uploads/2015/05/anti_robots.jpg) 下述代码和上面的代码一样，建议加在header.php最前面或者其他网站程序最先执行代码的最前面
 
 ### 防止频繁访问的anticc()函数代码:
 
@@ -86,7 +86,7 @@ anticc(2)；根据你的需求修改时间值“2” 以上代码中function ant
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{REQUEST_URI} .wp-comments-post\\.php*
-RewriteCond %{HTTP_REFERER} !.\*wangbaiyuan.cn.\* \[OR\]
+RewriteCond %{HTTP_REFERER} !.\*baiyuan.wang.\* \[OR\]
 RewriteCond %{HTTP\_USER\_AGENT} ^$
 RewriteRule (.*) ^http://%{REMOTE_ADDR}/$ \[R=301,L\]
 </IfModule>
@@ -95,7 +95,7 @@ RewriteRule (.*) ^http://%{REMOTE_ADDR}/$ \[R=301,L\]
 四、禁止垃圾评论IP
 ----------
 
-直接将垃圾评论的IP加入黑名单，该IP访问时直接“403无权限访问”，还可以节约虚拟主机的流量。（但是一般垃圾评论的IP经常会变！） 由于文字较多，请参看我的一篇独立[博文：虚拟主机怎样屏蔽指定IP或网段](http://wangbaiyuan.cn/web-hosting-how-to-block-specified-ip-or-network-segments.html)做详细了解，在此不赘述。
+直接将垃圾评论的IP加入黑名单，该IP访问时直接“403无权限访问”，还可以节约虚拟主机的流量。（但是一般垃圾评论的IP经常会变！） 由于文字较多，请参看我的一篇独立[博文：虚拟主机怎样屏蔽指定IP或网段](http://baiyuan.wang/web-hosting-how-to-block-specified-ip-or-network-segments.html)做详细了解，在此不赘述。
 
 五、终极方法
 ------

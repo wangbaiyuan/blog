@@ -25,12 +25,12 @@ wordpress是最受欢迎的博客程序之一，但是却没有其它有些博�
 三、插件截图
 ------
 
-#### 预览地址：[http://wangbaiyuan.cn/shuoshuo](http://wangbaiyuan.cn/shuoshuo)
+#### 预览地址：[http://baiyuan.wang/shuoshuo](http://baiyuan.wang/shuoshuo)
 
 ### 电脑端界面：
 
-[![shuoshuo](http://wangbaiyuan.cn/wp-content/uploads/2015/08/shuoshuo.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/shuoshuo.jpg)
+[![shuoshuo](http://baiyuan.wang/wp-content/uploads/2015/08/shuoshuo.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/shuoshuo.jpg)
 
 ### 手机端界面：
 
-[![mobileshuoshuo](http://wangbaiyuan.cn/wp-content/uploads/2015/08/mobileshuoshuo.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/08/mobileshuoshuo.jpg)
+[![mobileshuoshuo](http://baiyuan.wang/wp-content/uploads/2015/08/mobileshuoshuo.jpg)](http://baiyuan.wang/wp-content/uploads/2015/08/mobileshuoshuo.jpg)

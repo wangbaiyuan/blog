@@ -23,7 +23,7 @@ date: 2015-06-21 15:13:00
 *   2.采用数据库管理BY请假条用户、课程信息、班级信息、请假记录、班级选课记录；
 *   3.采用JSON数据包形式传递数据：服务器为PHP语言查询数据库，客户端为安卓java语言解析；
 *   4.两种方式处理请假要求：辅导员可通过安卓客户端或者点击邮件中的链接直接通过浏览器GET方式实现批准、拒绝学生的请假要求；
-*   5.实现邮件提醒通知：使用[leavepaper@wangbaiyuan.cn](mailto:leavepaper@wangbaiyuan.cn)域名邮箱，当学生有新请假请求、辅导员批准或拒绝请假时，及时通知相关人员；
+*   5.实现邮件提醒通知：使用[leavepaper@baiyuan.wang](mailto:leavepaper@baiyuan.wang)域名邮箱，当学生有新请假请求、辅导员批准或拒绝请假时，及时通知相关人员；
 *   6.分享功能：BY请假条为你自动生成文本请假条，你可以将它分享给QQ、微博、朋友圈等社交媒体；同时辅导员在未上线可以用短信把假条发给TA；
 *   7.使用GET方式获取最新版本信息，并自动下载并安装；
 *   8.界面优化，添加沉浸式状态栏元素；
@@ -33,22 +33,22 @@ date: 2015-06-21 15:13:00
 三、软件截图
 ------
 
-![乐助手截屏_20150621122849718_compressed](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-40-00.jpg)
+![乐助手截屏_20150621122849718_compressed](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-40-00.jpg)
 
-[![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-40-42.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-40-42.jpg)
+[![](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-40-42.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-40-42.jpg)
 
-[![乐助手截屏_20150621153729708_compressed](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-39-57.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-39-57.jpg)
+[![乐助手截屏_20150621153729708_compressed](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-39-57.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-39-57.jpg)
 
- [![乐助手截屏_20150621122957134_compressed](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-39-02.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-39-02.jpg)
+ [![乐助手截屏_20150621122957134_compressed](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-39-02.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-39-02.jpg)
 
- [![乐助手截屏_20150621122824926_compressed](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-40-26.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-40-26.jpg)
+ [![乐助手截屏_20150621122824926_compressed](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-40-26.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-40-26.jpg)
 
- [![](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-54-21.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/06/wangbaiyuan.cn_2015-06-21_15-54-21.jpg)
+ [![](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-54-21.jpg)](http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-21_15-54-21.jpg)
 
 四、相关技术教程
 --------
 
-相关原创技术教程将陆续在王柏元的博客发布。敬请期待…… [基于http post的自制工具类BYhttpClient](http://wangbaiyuan.cn/self-made-based-on-http-post-utility-class-byhttpclient.html) [安卓开发实现沉浸式状态栏](http://wangbaiyuan.cn/android-development-for-immersion-status-bar.html) [依托虚拟主机为自制APP提供软件更新服务（一）](http://wangbaiyuan.cn/relying-on-virtual-hosts-to-provide-homemade-app-software-update-service-a.html) [依托虚拟主机为自制APP提供软件更新服务（二）](http://wangbaiyuan.cn/relying-on-virtual-hosts-to-provide-homemade-app-software-update-services-b.html)
+相关原创技术教程将陆续在王柏元的博客发布。敬请期待…… [基于http post的自制工具类BYhttpClient](http://baiyuan.wang/self-made-based-on-http-post-utility-class-byhttpclient.html) [安卓开发实现沉浸式状态栏](http://baiyuan.wang/android-development-for-immersion-status-bar.html) [依托虚拟主机为自制APP提供软件更新服务（一）](http://baiyuan.wang/relying-on-virtual-hosts-to-provide-homemade-app-software-update-service-a.html) [依托虚拟主机为自制APP提供软件更新服务（二）](http://baiyuan.wang/relying-on-virtual-hosts-to-provide-homemade-app-software-update-services-b.html)
 
 五、意见反馈
 ------

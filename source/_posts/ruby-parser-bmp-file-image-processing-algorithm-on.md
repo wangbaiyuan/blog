@@ -15,7 +15,7 @@ date: 2016-12-30 14:37:26
 
 BMP文件格式，又称为Bitmap（位图）或是DIB(Device-Independent Device，设备无关位图)，是Windows系统中广泛使用的图像文件格式 下面以Notepad++为分析工具，结合Windows的位图[数据结构](http://lib.csdn.net/base/datastructure)对BMP文件格式进行一个深度的剖析。 BMP文件的数据按照从文件头开始的先后顺序分为四个部分： **bmp文件头(bmp file header)：**提供文件的格式、大小等信息 **位图信息头(bitmap information)：**提供图像数据的尺寸、位平面数、压缩方式、颜色索引等信息 **调色板(color palette)：** 可选，如使用索引来表示图像，调色板就是索引与其对应的颜色的映射表 Ø **位图数据(bitmap data)：**就是图像数据啦^_^ 下面结合Windows结构体的定义，通过一个表来分析这四个部分。
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143602111.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602111.jpg)
 
 BMP文件数据结构
 
@@ -23,13 +23,13 @@ BMP文件数据结构
 
 ### BMP文件头数据结构
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143602218.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602218.jpg)
 
 Paste_Image.png
 
 ### 位图信息头数据结构
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143602311.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602311.jpg)
 
 位图信息头数据结构
 
@@ -37,7 +37,7 @@ Paste_Image.png
 
 每个像素占一个字节，取得这个字节后，以该字节为索引查询相应的颜色，并显示到相应的显示设备上就可以了。 注意：由于位图信息头中的图像高度是正数，所以位图数据在文件中的排列顺序是**从左下角到右上角，以行为主序排列的。**
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143602417.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602417.jpg)
 
 也即我们见到的第一个像素60是图像最左下角的数据，第二个人像素60为图像最后一行第二列的数据，…一直到最后一行的最后一列数据，后面紧接的是倒数第二行的第一列的数据，依此类推。
 
@@ -47,7 +47,7 @@ Paste_Image.png
 
 **对齐规则** 讲完了像素的排列规则以及各像素的颜色分量的排列规则，最后我们谈谈数据的对齐规则。我们知道Windows默认的扫描的最小单位是4字节，如果数据对齐满足这个值的话对于数据的获取速度等都是有很大的增益的。因此，BMP图像顺应了这个要求，要求每行的数据的长度必须是4的倍数，如果不够需要进行比特填充（以0填充），这样可以达到按行的快速存取。这时，位图数据区的大小就未必是 图片宽×每像素字节数×图片高 能表示的了，因为每行可能还需要进行比特填充。 填充后的每行的字节数为：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143603516.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603516.jpg)
 
 ，其中BPP（Bits Per Pixel）为每像素的比特数。 在程序中，我们可以表示为： **int iLineByteCnt = (((m\_iImageWidth * m\_iBitsPerPixel) + 31) >> 5) << 2;** 这样，位图数据区的大小为： **m\_iImageDataSize = iLineByteCnt * m\_iImageHeight;** 我们在扫描完一行数据后，也可能接下来的数据并不是下一行的数据，可能需要跳过一段填充数据： **skip = 4 - ((m\_iImageWidth * m\_iBitsPerPixel)>>3) & 3;**
 
@@ -91,7 +91,7 @@ Paste_Image.png
 
   file对象中的read(length)是从文件指针开始读出length个字节的数据，数据类型是字符串，通过unpack函数，我们可以通过传入unpack参数解析出bmp图片的数据结构。 以`@file.read(14).unpack('a2LS2L')`为例，根据上面的BMP文件数据结构的分析，read(14)是读出bmp文件的前14个字节的文件头，参数'a2LS2L'可以将14个字节的数据解析为 两个字符（1\*2字节）、一个Long型（1\*8字节）、两个Short型（2*2字节），分别取出bmp图片的文件类型（“BM”）、文件大小、两个保留字段、 **图像数据偏移量（@imageDataSize）** 。
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143603620.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603620.jpg)
 
 Paste_Image.png
 
@@ -167,7 +167,7 @@ Paste_Image.png
 
 其中每一行的无效数据：skipByteALine = 4 - ((2 * 24)>>3) & 3=2 为了更形象地表示图片像素与RGB数据的对应关系，在此我以二维矩阵的方式展示上面的一维数组：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143603719.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603719.jpg)
 
 Paste_Image.png
 
@@ -219,19 +219,19 @@ end
 
   原图：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143603811.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603811.jpg)
 
 raw.jpg
 
 处理效果：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/20161230143603918.jpg)
+![](http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603918.jpg)
 
 out_grey.jpg
 
 > 下篇文章我将介绍**二值化**、**浮雕滤镜**、**底片滤镜**等图像处理算法 **预览：**
 > 
-> ![](http://wangbaiyuan.cn/wp-content/uploads/2016/12/201612301436041014.jpg)
+> ![](http://baiyuan.wang/wp-content/uploads/2016/12/201612301436041014.jpg)
 > 
 > Paste_Image.png
 

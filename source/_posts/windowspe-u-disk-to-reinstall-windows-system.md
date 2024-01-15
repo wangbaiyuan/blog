@@ -30,7 +30,7 @@ date: 2015-03-08 18:40:00
 
 #### 2.大白菜PE去广告的具体方法
 
-进入大白菜u盘启动盘制作工具软件的”个性设置“菜单， ![](http://wangbaiyuan.cn/wp-content/uploads/2015/01/20150127125641_40467.jpg)  在右下方有个大白菜赞助商，把下面两个选项全部取消勾选，然后它会跳出一个取消密码。输入：”winbaicai.com“
+进入大白菜u盘启动盘制作工具软件的”个性设置“菜单， ![](http://baiyuan.wang/wp-content/uploads/2015/01/20150127125641_40467.jpg)  在右下方有个大白菜赞助商，把下面两个选项全部取消勾选，然后它会跳出一个取消密码。输入：”winbaicai.com“
 
 第二步，开机进入BIOS,选择系统启动项
 --------------------
@@ -40,12 +40,12 @@ date: 2015-03-08 18:40:00
 第三步，进入windowsPE系统
 -----------------
 
-在启动项选项中选择”u盘“启动按enter后，就进入了windows PE系统     [![image](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb3.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image3.png) 用上下方向键——“↑”“↓”选择【02】“运行大白菜WinPEx64正式版”，然后就正式进入了大白菜装机系统  
+在启动项选项中选择”u盘“启动按enter后，就进入了windows PE系统     [![image](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb3.png "image")](http://baiyuan.wang/wp-content/uploads/2015/03/image3.png) 用上下方向键——“↑”“↓”选择【02】“运行大白菜WinPEx64正式版”，然后就正式进入了大白菜装机系统  
 
 第四步：格式化C盘（装双系统时可以保留c盘，格式化D盘，将新系统装在D盘）
 -------------------------------------
 
-[![czxt (3)_compressed](http://wangbaiyuan.cn/wp-content/uploads/2015/03/czxt-3_compressed_thumb1.jpg "czxt (3)_compressed")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/czxt-3_compressed1.jpg)
+[![czxt (3)_compressed](http://baiyuan.wang/wp-content/uploads/2015/03/czxt-3_compressed_thumb1.jpg "czxt (3)_compressed")](http://baiyuan.wang/wp-content/uploads/2015/03/czxt-3_compressed1.jpg)
 
 第五步:加载系统镜像为虚拟光盘
 ---------------
@@ -55,7 +55,7 @@ date: 2015-03-08 18:40:00
 第六步:打开应用软件”Win系统安装器”安装系统
 ------------------------
 
-[![image](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb6.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image6.png)   选择install.wim文件： [![image](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image_thumb7.png "image")](http://wangbaiyuan.cn/wp-content/uploads/2015/03/image7.png)   点击开始安装。系统安装过程就开始了，大概花费8分钟，系统安装完毕，重启电脑即可。
+[![image](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb6.png "image")](http://baiyuan.wang/wp-content/uploads/2015/03/image6.png)   选择install.wim文件： [![image](http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb7.png "image")](http://baiyuan.wang/wp-content/uploads/2015/03/image7.png)   点击开始安装。系统安装过程就开始了，大概花费8分钟，系统安装完毕，重启电脑即可。
 
 最后
 --

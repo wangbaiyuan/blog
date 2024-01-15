@@ -18,9 +18,9 @@ tags: ''
 
 码农：
 
-![](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/01/073142rBz.jpg)
+![](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/01/073142rBz.jpg)
 
-2B程序员： ![](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/01/0731472eK.jpg)
+2B程序员： ![](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/01/0731472eK.jpg)
 
 求2的32次方：
 --------

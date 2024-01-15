@@ -10,14 +10,14 @@ abbrlink: 15084
 date: 2015-12-25 23:37:53
 ---
 
-今天是圣诞节，用了半天做了一个节日祝福语和节日主题，效果还不错。可以在洋节和中国节日（包括农历节日 春节、中秋节等等）当天更换王柏元的博客的节日主题，并在站点公告里送上节日祝福语。 下面是关键的PHP类：Lunar。其中的getFestival()函数可传入的实参是不定数目的，可以通过传入的公历年月日，不传入默认是当前的服务器时间，函数实现了判断指定日期是否是已经设定的节日：比如中秋节、春节，同时还输出节日祝福语或诗句，返回的形式是一个数组。其余几个函数实现了获取公历和农历之间的转换，农历还支持返回当前日期农历的天干地支纪年以及生肖。 [![PHP获取农历和节日](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-25_23-35-32.jpg)](http://wangbaiyuan.cn/wp-content/uploads/2015/12/wangbaiyuan.cn_2015-12-25_23-35-32.jpg) PHP获取农历和节日  
+今天是圣诞节，用了半天做了一个节日祝福语和节日主题，效果还不错。可以在洋节和中国节日（包括农历节日 春节、中秋节等等）当天更换王柏元的博客的节日主题，并在站点公告里送上节日祝福语。 下面是关键的PHP类：Lunar。其中的getFestival()函数可传入的实参是不定数目的，可以通过传入的公历年月日，不传入默认是当前的服务器时间，函数实现了判断指定日期是否是已经设定的节日：比如中秋节、春节，同时还输出节日祝福语或诗句，返回的形式是一个数组。其余几个函数实现了获取公历和农历之间的转换，农历还支持返回当前日期农历的天干地支纪年以及生肖。 [![PHP获取农历和节日](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-25_23-35-32.jpg)](http://baiyuan.wang/wp-content/uploads/2015/12/baiyuan.wang_2015-12-25_23-35-32.jpg) PHP获取农历和节日  
 
 <?php
 /\*\*
  \* Created by PhpStorm.
  \* project： wordpress-blog
  \* User: BrainWang
- \* Author_URL: http://wangbaiyuan.cn
+ \* Author_URL: http://baiyuan.wang
  \* Date: 2015/12/25
  \* Time: 11:45
  */

@@ -34,25 +34,25 @@ WLW可以自动侦测并保存您的网络日志的视觉主题。所以，您�
 
 1\. 安装完Writer后，会自动弹出如下图提示，点击下一步。
 
-[![steps1](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125801wXV.png "steps1")](http://xuhehuan.com/wp-content/uploads/2011/09/steps1.png)
+[![steps1](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125801wXV.png "steps1")](http://xuhehuan.com/wp-content/uploads/2011/09/steps1.png)
 
 2\. 选择”WordPress”，点击下一步。（如果您现在使用的日志服务没有在列表中，请选择“其他服务”，下面我将按“其他服务”的选项进行详解）
 
-[![steps2](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/1258026xY.png "steps2")](http://xuhehuan.com/wp-content/uploads/2011/09/steps2_thumb.png)
+[![steps2](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/1258026xY.png "steps2")](http://xuhehuan.com/wp-content/uploads/2011/09/steps2_thumb.png)
 
 3\. 点击下一步后，会提示您填写日志帐户信息。日志网址处请填写您的博客主页地址。用户名和密码为您博客后台的登录用户名和密码（不是您设置的日志显示昵称）。如果您的电脑非公用，可勾选“记住我的密码”。
 
-[![steps3](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125804r6p.png "steps3")](http://xuhehuan.com/wp-content/uploads/2011/09/steps3_thumb.png)
+[![steps3](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125804r6p.png "steps3")](http://xuhehuan.com/wp-content/uploads/2011/09/steps3_thumb.png)
 
 4\. 填写完帐户内容后，点击下一步，开始检测连接您的帐户，如下图。
 
-[![steps4](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/1258052en.png "steps4")](http://xuhehuan.com/wp-content/uploads/2011/09/steps4_thumb.png)
+[![steps4](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/1258052en.png "steps4")](http://xuhehuan.com/wp-content/uploads/2011/09/steps4_thumb.png)
 
 注：如果在连接日志服务器时，出现如下错误提示，需要手动修改相关文件：
 
 提示出错信息：“**无法连接到您的日志服务:服务器响应无效 – 从日志服务器接收的对 blogger.getUsersBlogs 方法的响应无效:Invalid response document returned from XmlRpc server 请尝试解决问题，然后重试**。”
 
-[![windowslivewriter](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125806sY2.png "windowslivewriter")](http://xuhehuan.com/wp-content/uploads/2011/09/windowslivewriter.png)
+[![windowslivewriter](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125806sY2.png "windowslivewriter")](http://xuhehuan.com/wp-content/uploads/2011/09/windowslivewriter.png)
 
 问题出现的根本原因是因为WordPress本身的一个bug，在utf-8编码下，xml-rpc返回的格式不正确，缺少了三个字节，要修正这个问题，操作如下：
 
@@ -70,15 +70,15 @@ b) 查找到以下语句：
 
 5\. 检测过程中会出现“是否要发布临时日志”的提示窗口，如下图。建议直接选择“否（N）”。
 
-[![steps5](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125808fXn.png "steps5")](http://xuhehuan.com/wp-content/uploads/2011/09/steps5_thumb.png)
+[![steps5](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125808fXn.png "steps5")](http://xuhehuan.com/wp-content/uploads/2011/09/steps5_thumb.png)
 
 6\. 检测完毕之后，会出现下面的窗口，默认情况下会直接提取您的博客Title。当然，您也可以自行输入昵称。点击“完成”，设置成功。
 
-[![steps6](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125809wTc.png "steps6")](http://xuhehuan.com/wp-content/uploads/2011/09/steps6_thumb.png)
+[![steps6](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125809wTc.png "steps6")](http://xuhehuan.com/wp-content/uploads/2011/09/steps6_thumb.png)
 
 当您想重新修改日志设置信息时，可以在WLW的“管理日志帐户”中重新编辑修改。如图：
 
-[![steps7](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125810R0L.png "steps7")](http://xuhehuan.com/wp-content/uploads/2011/09/steps7_thumb.png)
+[![steps7](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125810R0L.png "steps7")](http://xuhehuan.com/wp-content/uploads/2011/09/steps7_thumb.png)
 
 设置完以后就可以用Windows Live Writer写博客了，相比Wordpress自带的编辑器有很多优势，尤其对于多图日志，离线编写减少了上传图片的繁琐性。Writer的插入表格和地 图功能也是Wordpress自带编辑器所没有的，由于Windows Live Writer是微软的产品，所以插入的地图是Bing地图。
 
@@ -87,7 +87,7 @@ b) 查找到以下语句：
 
 Windows Live Writer还可以设置日志类别、Ping设置、作者、摘要、发布日期、标签、数据域（永久链接）等几乎所有Wordpress编辑器自带的功能（如下 图），但我用习惯的Simple Tags的一键标签（Click tags）功能，如果一定要用到的话可以使用Windows Live Writer发布完了再去Wordpress编辑器上再编辑一下。
 
-[![steps8](http://wangbaiyuan.cn/wp-content/uploads/auto_save_image2015/02/125812H4s.png "steps8")](http://xuhehuan.com/wp-content/uploads/2011/09/steps8_thumb.png)
+[![steps8](http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125812H4s.png "steps8")](http://xuhehuan.com/wp-content/uploads/2011/09/steps8_thumb.png)
 
 Windows Live Writer的预览功能比Wordpress要更加完善，点击预览按钮，可以直接预览发布后的效果（如果没有显示效果，请尝试联机更新主题）。
 
