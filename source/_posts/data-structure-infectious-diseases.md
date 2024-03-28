@@ -7,7 +7,7 @@ tags:
 url: 44.html
 id: 44
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 21397
 date: 2014-11-30 16:31:08
 ---

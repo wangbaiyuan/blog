@@ -3,7 +3,7 @@ title: 【转载】带宽、下载速度、网速 的关系
 url: 62.html
 id: 62
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 17781
 date: 2014-12-01 15:13:52
 tags: ''

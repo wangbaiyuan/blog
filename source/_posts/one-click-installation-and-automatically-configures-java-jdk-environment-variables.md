@@ -6,7 +6,7 @@ tags:
 url: 445.html
 id: 445
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 168
 date: 2014-12-28 14:16:32
 ---

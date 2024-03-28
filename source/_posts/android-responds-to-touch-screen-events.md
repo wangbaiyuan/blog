@@ -5,7 +5,7 @@ tags:
 url: 1086.html
 id: 1086
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 60425
 date: 2015-04-13 11:37:05
 ---

@@ -5,6 +5,7 @@ tags:
 url: 219.html
 id: 219
 categories:
+  - 技术
   - 百元百科
 abbrlink: 32869
 date: 2015-03-08 18:40:00

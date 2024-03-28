@@ -6,6 +6,7 @@ tags:
 url: 1507.html
 id: 1507
 categories:
+  - 技术
   - 百元百科
 abbrlink: 58006
 date: 2015-10-16 21:21:18

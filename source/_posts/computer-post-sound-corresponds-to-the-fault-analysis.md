@@ -6,7 +6,7 @@ tags:
 url: 622.html
 id: 622
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 10381
 date: 2015-01-12 08:54:00
 ---

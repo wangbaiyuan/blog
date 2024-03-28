@@ -6,7 +6,7 @@ tags:
 url: 918.html
 id: 918
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 14139
 date: 2015-03-06 14:31:54
 ---

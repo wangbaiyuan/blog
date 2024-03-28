@@ -3,7 +3,7 @@ title: 【转】最短路径Dijkstra和Floyd算法
 url: 1360.html
 id: 1360
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 715
 date: 2015-07-05 15:28:17
 tags: ''

@@ -8,7 +8,7 @@ tags:
 url: 538.html
 id: 538
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 52337
 date: 2015-01-06 21:30:33
 ---

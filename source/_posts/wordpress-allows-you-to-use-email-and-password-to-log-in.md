@@ -5,7 +5,7 @@ tags:
 url: 992.html
 id: 992
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 24352
 date: 2015-03-19 13:38:43
 ---

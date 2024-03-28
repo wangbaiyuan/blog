@@ -6,7 +6,7 @@ tags:
 url: 1759.html
 id: 1759
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 56846
 date: 2016-12-03 10:19:07
 ---

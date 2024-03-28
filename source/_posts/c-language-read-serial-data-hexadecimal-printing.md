@@ -6,7 +6,7 @@ tags:
 url: 1410.html
 id: 1410
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 24706
 date: 2015-08-05 23:21:49
 ---

@@ -6,7 +6,7 @@ tags:
 url: 1881.html
 id: 1881
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 53913
 date: 2017-02-23 13:38:34
 ---

@@ -5,7 +5,7 @@ tags:
 url: 1246.html
 id: 1246
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 32005
 date: 2015-05-29 12:55:44
 ---

@@ -7,7 +7,7 @@ tags:
 url: 648.html
 id: 648
 categories:
-  - 百元百科
+  - 技术
 abbrlink: 134
 date: 2015-01-15 17:11:54
 ---

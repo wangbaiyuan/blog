@@ -6,7 +6,7 @@ tags:
 url: 1089.html
 id: 1089
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 22662
 date: 2015-04-14 14:42:00
 ---

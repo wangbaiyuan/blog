@@ -7,7 +7,7 @@ tags:
 url: 1173.html
 id: 1173
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 57830
 date: 2015-05-06 15:28:37
 ---

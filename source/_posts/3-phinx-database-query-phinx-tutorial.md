@@ -8,7 +8,7 @@ tags:
 url: 1457.html
 id: 1457
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 10441
 date: 2015-08-28 16:20:41
 ---

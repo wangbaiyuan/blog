@@ -3,7 +3,7 @@ title: Android webview广告过滤的实现
 url: 1656.html
 id: 1656
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 7942
 date: 2016-05-02 11:46:38
 tags: ''

@@ -8,7 +8,7 @@ tags:
 url: 1601.html
 id: 1601
 categories:
-  - 技术应用
+  - 技术
   - 软件开发
 abbrlink: 11889
 date: 2016-01-09 11:53:32

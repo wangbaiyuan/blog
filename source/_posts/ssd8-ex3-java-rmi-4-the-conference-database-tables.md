@@ -10,7 +10,7 @@ tags:
 url: 1270.html
 id: 1270
 categories:
-  - 技术应用
+  - 技术
   - 算法语言
 abbrlink: 54179
 date: 2015-06-11 12:23:06

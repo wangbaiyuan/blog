@@ -7,7 +7,7 @@ tags:
 url: 1399.html
 id: 1399
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 36408
 date: 2015-07-27 21:56:20
 ---

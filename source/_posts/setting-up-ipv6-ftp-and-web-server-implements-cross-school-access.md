@@ -7,7 +7,7 @@ tags:
 url: 295.html
 id: 295
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 16363
 date: 2014-12-18 22:19:36
 ---

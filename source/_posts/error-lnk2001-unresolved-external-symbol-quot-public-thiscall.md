@@ -5,7 +5,7 @@ tags:
 url: 919.html
 id: 919
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 11984
 date: 2015-03-22 00:07:54
 ---

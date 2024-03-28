@@ -6,7 +6,7 @@ tags:
 url: 1139.html
 id: 1139
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 46892
 date: 2015-04-28 20:34:12
 ---

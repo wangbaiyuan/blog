@@ -5,7 +5,7 @@ tags:
 url: 1844.html
 id: 1844
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 56024
 date: 2016-12-30 15:20:45
 ---

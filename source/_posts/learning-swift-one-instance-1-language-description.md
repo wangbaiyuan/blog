@@ -7,7 +7,7 @@ tags:
 url: 1583.html
 id: 1583
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 38192
 date: 2015-12-30 23:14:20
 ---

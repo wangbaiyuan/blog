@@ -6,7 +6,7 @@ tags:
 url: 1066.html
 id: 1066
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 34006
 date: 2015-04-05 10:45:14
 ---

@@ -10,7 +10,7 @@ tags:
 url: 1268.html
 id: 1268
 categories:
-  - 算法语言
+  - 技术
   - 计算机技术
 abbrlink: 46753
 date: 2015-06-12 11:21:13

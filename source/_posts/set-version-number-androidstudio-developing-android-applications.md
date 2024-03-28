@@ -7,7 +7,7 @@ tags:
 url: 1434.html
 id: 1434
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 19615
 date: 2015-08-22 16:38:34
 ---

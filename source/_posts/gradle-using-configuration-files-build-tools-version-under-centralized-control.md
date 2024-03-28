@@ -3,7 +3,7 @@ title: Gradle下利用配置文件对构建工具版本集中控制
 url: 1723.html
 id: 1723
 categories:
-  - 技术应用
+  - 技术
   - 软件开发
 abbrlink: 2243
 date: 2016-08-12 10:17:00

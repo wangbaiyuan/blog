@@ -6,6 +6,7 @@ tags:
 url: 1337.html
 id: 1337
 categories:
+  - 技术
   - 百元百科
 abbrlink: 36818
 date: 2015-06-30 20:05:30

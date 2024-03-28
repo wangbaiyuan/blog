@@ -5,7 +5,7 @@ tags:
 url: 1123.html
 id: 1123
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 56613
 date: 2015-04-24 21:10:54
 ---

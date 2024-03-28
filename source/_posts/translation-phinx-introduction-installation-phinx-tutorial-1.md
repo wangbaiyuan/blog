@@ -9,7 +9,7 @@ tags:
 url: 1447.html
 id: 1447
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 60764
 date: 2015-08-24 10:38:17
 ---

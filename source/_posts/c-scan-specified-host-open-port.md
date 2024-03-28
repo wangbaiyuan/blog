@@ -7,7 +7,7 @@ tags:
 url: 1524.html
 id: 1524
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 18774
 date: 2015-11-19 20:55:41
 ---

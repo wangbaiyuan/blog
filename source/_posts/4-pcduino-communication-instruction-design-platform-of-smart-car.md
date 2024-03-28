@@ -5,7 +5,7 @@ tags:
 url: 2090.html
 id: 2090
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 21520
 date: 2018-03-27 20:12:37
 ---

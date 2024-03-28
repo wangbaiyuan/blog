@@ -5,7 +5,7 @@ tags:
 url: 1514.html
 id: 1514
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 24877
 date: 2015-11-01 22:36:58
 ---

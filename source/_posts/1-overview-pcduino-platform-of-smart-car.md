@@ -5,7 +5,7 @@ tags:
 url: 2042.html
 id: 2042
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 58790
 date: 2018-03-19 21:36:50
 ---

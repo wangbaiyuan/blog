@@ -6,7 +6,7 @@ tags:
 url: 1415.html
 id: 1415
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 53966
 date: 2015-08-08 10:02:10
 ---

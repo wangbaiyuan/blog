@@ -6,7 +6,7 @@ tags:
 url: 1076.html
 id: 1076
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 50850
 date: 2015-04-08 11:45:07
 ---

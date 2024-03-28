@@ -7,7 +7,7 @@ tags:
 url: 1122.html
 id: 1122
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 58641
 date: 2015-04-22 15:11:08
 ---

@@ -6,7 +6,7 @@ tags:
 url: 1520.html
 id: 1520
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 37565
 date: 2015-11-15 13:11:20
 ---

@@ -9,7 +9,7 @@ tags:
 url: 1262.html
 id: 1262
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 17720
 date: 2015-06-07 21:26:00
 ---

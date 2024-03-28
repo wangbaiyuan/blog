@@ -8,7 +8,7 @@ tags:
 url: 1175.html
 id: 1175
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 12977
 date: 2015-05-09 23:01:36
 ---

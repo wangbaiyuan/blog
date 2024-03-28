@@ -6,7 +6,7 @@ tags:
 url: 1452.html
 id: 1452
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 55996
 date: 2015-08-25 20:47:56
 ---

@@ -5,7 +5,7 @@ tags:
 url: 260.html
 id: 260
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 15444
 date: 2014-12-15 09:47:40
 ---

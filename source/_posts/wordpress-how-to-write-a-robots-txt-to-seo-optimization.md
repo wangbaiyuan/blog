@@ -7,7 +7,7 @@ tags:
 url: 1107.html
 id: 1107
 categories:
-  - 技术应用
+  - 技术
   - 计算机技术
 abbrlink: 29829
 date: 2015-04-19 11:26:05

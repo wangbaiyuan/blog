@@ -5,7 +5,7 @@ tags:
 url: 1279.html
 id: 1279
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 2930
 date: 2015-06-14 09:40:35
 ---

@@ -6,7 +6,7 @@ tags:
 url: 1249.html
 id: 1249
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 26434
 date: 2015-05-31 12:20:33
 ---

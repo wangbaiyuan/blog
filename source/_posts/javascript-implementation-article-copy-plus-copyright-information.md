@@ -7,7 +7,7 @@ tags:
 url: 965.html
 id: 965
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 39543
 date: 2015-03-14 17:27:03
 ---

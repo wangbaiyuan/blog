@@ -7,7 +7,7 @@ tags:
 url: 1595.html
 id: 1595
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 26692
 date: 2016-01-15 13:56:51
 ---

@@ -10,7 +10,7 @@ tags:
 url: 1611.html
 id: 1611
 categories:
-  - 算法语言
+  - 技术
   - 软件开发
 abbrlink: 48033
 date: 2016-02-17 12:17:28

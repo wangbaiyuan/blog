@@ -7,7 +7,7 @@ tags:
 url: 1523.html
 id: 1523
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 21303
 date: 2015-11-20 10:50:27
 ---

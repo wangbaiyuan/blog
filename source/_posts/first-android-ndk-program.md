@@ -7,7 +7,7 @@ tags:
 url: 1598.html
 id: 1598
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 20753
 date: 2016-01-08 22:26:20
 ---

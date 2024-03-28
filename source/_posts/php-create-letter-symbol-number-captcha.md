@@ -5,7 +5,7 @@ tags:
 url: 1334.html
 id: 1334
 categories:
-  - 百元百科
+  - 技术
 abbrlink: 32339
 date: 2015-06-29 11:27:42
 ---

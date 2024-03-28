@@ -5,7 +5,7 @@ tags:
 url: 486.html
 id: 486
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 63898
 date: 2014-12-30 22:34:39
 ---

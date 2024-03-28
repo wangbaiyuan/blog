@@ -5,7 +5,7 @@ tags:
 url: 1833.html
 id: 1833
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 16972
 date: 2016-12-30 14:37:26
 ---

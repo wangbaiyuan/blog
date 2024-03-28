@@ -5,7 +5,7 @@ tags:
 url: 2085.html
 id: 2085
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 42355
 date: 2018-03-27 20:07:06
 ---

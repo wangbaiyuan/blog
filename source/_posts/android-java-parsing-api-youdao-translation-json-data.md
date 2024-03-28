@@ -11,7 +11,7 @@ tags:
 url: 1435.html
 id: 1435
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 51595
 date: 2015-08-24 08:14:18
 ---

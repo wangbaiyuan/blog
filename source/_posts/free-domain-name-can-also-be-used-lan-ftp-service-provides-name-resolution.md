@@ -6,7 +6,7 @@ tags:
 url: 337.html
 id: 337
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 18548
 date: 2014-12-22 16:51:31
 ---

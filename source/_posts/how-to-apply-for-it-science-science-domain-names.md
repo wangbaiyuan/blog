@@ -7,7 +7,7 @@ tags:
 url: 858.html
 id: 858
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 44174
 date: 2015-03-02 09:09:32
 ---

@@ -5,6 +5,7 @@ tags:
 url: 3435.html
 id: 3435
 categories:
+  - 技术
   - 业界
 abbrlink: 63538
 date: 2019-08-31 23:28:49

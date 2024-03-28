@@ -6,7 +6,7 @@ tags:
 url: 1320.html
 id: 1320
 categories:
-  - 算法语言
+  - 技术
   - 计算机技术
   - 软件开发
 abbrlink: 7967

@@ -5,7 +5,7 @@ tags:
 url: 2096.html
 id: 2096
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 22200
 date: 2018-03-27 20:27:16
 ---

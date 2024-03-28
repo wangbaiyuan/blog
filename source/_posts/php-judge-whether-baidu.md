@@ -3,7 +3,7 @@ title: PHP实现判断文章是否被百度收录
 url: 989.html
 id: 989
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 48174
 date: 2015-03-18 23:23:10
 tags: ''

@@ -7,7 +7,7 @@ tags:
 url: 123.html
 id: 123
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 10818
 date: 2014-12-08 21:49:13
 ---

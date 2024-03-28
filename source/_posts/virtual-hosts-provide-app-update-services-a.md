@@ -7,7 +7,7 @@ tags:
 url: 1121.html
 id: 1121
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 10577
 date: 2015-04-21 23:09:47
 ---

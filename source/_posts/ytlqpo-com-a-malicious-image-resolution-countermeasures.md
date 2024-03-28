@@ -9,8 +9,7 @@ tags:
 url: 1205.html
 id: 1205
 categories:
-  - 技术应用
-  - 计算机技术
+  - 技术
 abbrlink: 51022
 date: 2015-05-19 13:22:16
 ---

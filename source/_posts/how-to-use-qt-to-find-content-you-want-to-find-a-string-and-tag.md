@@ -6,7 +6,7 @@ tags:
 url: 421.html
 id: 421
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 63153
 date: 2014-12-26 21:09:51
 ---

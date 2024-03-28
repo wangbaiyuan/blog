@@ -3,7 +3,7 @@ title: 使用内存做虚拟磁盘
 url: 1405.html
 id: 1405
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 28672
 date: 2015-08-14 11:51:35
 tags: ''

@@ -3,7 +3,7 @@ title: Html5，你为什么要语义化标签？
 url: 1807.html
 id: 1807
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 63913
 date: 2016-12-08 00:05:29
 tags: ''

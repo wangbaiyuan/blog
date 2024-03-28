@@ -5,7 +5,7 @@ tags:
 url: 1136.html
 id: 1136
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 18090
 date: 2015-04-27 11:43:44
 ---

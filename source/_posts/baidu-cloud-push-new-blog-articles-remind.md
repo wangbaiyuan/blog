@@ -6,7 +6,7 @@ tags:
 url: 1593.html
 id: 1593
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 52458
 date: 2016-01-08 00:04:32
 ---

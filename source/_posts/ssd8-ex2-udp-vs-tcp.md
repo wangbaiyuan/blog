@@ -5,7 +5,7 @@ tags:
 url: 1216.html
 id: 1216
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 61801
 date: 2015-05-22 19:59:03
 ---

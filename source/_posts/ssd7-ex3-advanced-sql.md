@@ -5,7 +5,7 @@ tags:
 url: 1178.html
 id: 1178
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 22725
 date: 2015-05-11 19:31:05
 ---

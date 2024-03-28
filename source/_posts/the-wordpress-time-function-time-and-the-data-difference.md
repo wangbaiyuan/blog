@@ -3,7 +3,7 @@ title: wordpress时间函数the_time()和data()的区别
 url: 1035.html
 id: 1035
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 37010
 date: 2015-03-25 08:30:54
 tags: ''

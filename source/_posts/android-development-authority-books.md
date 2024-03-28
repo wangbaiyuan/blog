@@ -7,7 +7,7 @@ tags:
 url: 1442.html
 id: 1442
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 31112
 date: 2015-08-23 20:27:18
 ---

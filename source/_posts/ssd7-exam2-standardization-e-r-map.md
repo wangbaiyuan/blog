@@ -6,7 +6,7 @@ tags:
 url: 1272.html
 id: 1272
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 28904
 date: 2015-06-10 20:00:00
 ---

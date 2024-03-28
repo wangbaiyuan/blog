@@ -5,8 +5,7 @@ tags:
 url: 1223.html
 id: 1223
 categories:
-  - 前端
-  - 软件开发
+  - 技术
 abbrlink: 17679
 date: 2015-05-27 11:39:55
 ---

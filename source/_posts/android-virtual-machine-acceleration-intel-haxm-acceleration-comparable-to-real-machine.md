@@ -6,7 +6,7 @@ tags:
 url: 1168.html
 id: 1168
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 38688
 date: 2015-05-04 11:08:43
 ---

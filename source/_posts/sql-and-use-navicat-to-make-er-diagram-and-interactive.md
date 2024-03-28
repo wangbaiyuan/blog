@@ -9,7 +9,7 @@ tags:
 url: 1213.html
 id: 1213
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 53334
 date: 2015-05-21 11:45:09
 ---

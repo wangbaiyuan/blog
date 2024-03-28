@@ -3,7 +3,7 @@ title: 《2018年中国互联网公司加班报告非专业版》
 url: 2066.html
 id: 2066
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 20773
 date: 2018-03-22 21:33:33
 tags: ''

@@ -6,7 +6,7 @@ tags:
 url: 1276.html
 id: 1276
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 38485
 date: 2015-06-13 07:06:12
 ---

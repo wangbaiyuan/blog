@@ -5,7 +5,7 @@ tags:
 url: 804.html
 id: 804
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 51153
 date: 2015-02-10 20:42:49
 ---

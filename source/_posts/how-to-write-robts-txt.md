@@ -5,7 +5,7 @@ tags:
 url: 964.html
 id: 964
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 53729
 date: 2015-03-14 15:48:06
 ---

@@ -6,7 +6,7 @@ tags:
 url: 1030.html
 id: 1030
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 2360
 date: 2015-03-23 15:07:54
 ---

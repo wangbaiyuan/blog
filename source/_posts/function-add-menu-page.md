@@ -6,7 +6,7 @@ tags:
 url: 998.html
 id: 998
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 21998
 date: 2015-03-20 11:01:56
 ---

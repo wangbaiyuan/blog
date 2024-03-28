@@ -7,7 +7,7 @@ tags:
 url: 1773.html
 id: 1773
 categories:
-  - 技术应用
+  - 技术
   - 算法语言
   - 软件开发
 abbrlink: 59987

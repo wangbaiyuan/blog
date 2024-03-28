@@ -6,7 +6,7 @@ tags:
 url: 1055.html
 id: 1055
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 10807
 date: 2015-03-29 11:15:45
 ---

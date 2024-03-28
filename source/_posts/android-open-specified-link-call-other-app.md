@@ -6,8 +6,7 @@ tags:
 url: 1586.html
 id: 1586
 categories:
-  - 技术应用
-  - 软件开发
+  - 技术
 abbrlink: 51941
 date: 2016-01-01 11:23:23
 ---

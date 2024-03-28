@@ -8,6 +8,7 @@ tags:
 url: 1576.html
 id: 1576
 categories:
+  - 技术
   - 前端
 abbrlink: 40108
 date: 2015-12-29 13:42:55

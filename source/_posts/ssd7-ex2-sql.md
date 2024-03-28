@@ -6,7 +6,7 @@ tags:
 url: 1143.html
 id: 1143
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 10338
 date: 2015-04-30 12:01:41
 ---

@@ -6,8 +6,7 @@ tags:
 url: 1284.html
 id: 1284
 categories:
-  - 百元百科
-  - 软件开发
+  - 技术
 abbrlink: 32964
 date: 2015-06-15 21:55:57
 ---

@@ -5,7 +5,7 @@ tags:
 url: 1858.html
 id: 1858
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 44740
 date: 2017-01-16 12:05:07
 ---

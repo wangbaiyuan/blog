@@ -6,7 +6,7 @@ tags:
 url: 605.html
 id: 605
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 40424
 date: 2015-01-11 19:09:24
 ---

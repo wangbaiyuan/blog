@@ -7,7 +7,7 @@ tags:
 url: 1291.html
 id: 1291
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 30663
 date: 2015-06-19 13:21:12
 ---

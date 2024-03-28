@@ -6,7 +6,7 @@ tags:
 url: 1077.html
 id: 1077
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 17826
 date: 2015-04-08 11:49:13
 ---

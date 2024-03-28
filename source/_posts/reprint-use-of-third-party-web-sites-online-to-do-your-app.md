@@ -5,7 +5,7 @@ tags:
 url: 107.html
 id: 107
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 30314
 date: 2014-11-30 11:14:02
 ---

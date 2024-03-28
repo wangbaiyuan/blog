@@ -5,7 +5,7 @@ tags:
 url: 1159.html
 id: 1159
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 3806
 date: 2015-05-03 17:50:20
 ---

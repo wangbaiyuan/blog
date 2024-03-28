@@ -3,7 +3,7 @@ title: 阿里巴巴助微软打击盗版
 url: 616.html
 id: 616
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 46319
 date: 2015-01-12 11:22:33
 tags: ''

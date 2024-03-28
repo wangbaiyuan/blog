@@ -7,7 +7,7 @@ tags:
 url: 1219.html
 id: 1219
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 23732
 date: 2015-05-25 21:44:12
 ---

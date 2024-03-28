@@ -6,7 +6,7 @@ tags:
 url: 1522.html
 id: 1522
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 20215
 date: 2015-11-17 15:47:29
 ---

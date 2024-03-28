@@ -7,7 +7,7 @@ tags:
 url: 1736.html
 id: 1736
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 52954
 date: 2016-11-07 23:40:10
 ---

@@ -3,7 +3,7 @@ title: 局域网内远程桌面：让你的电脑如影随形
 url: 222.html
 id: 222
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 36823
 date: 2014-12-12 23:14:56
 tags: ''

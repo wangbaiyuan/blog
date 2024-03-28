@@ -2,7 +2,7 @@ title: Windows10正式版一键激活
 url: 1404.html
 id: 1404
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 883
 tags: ''
 date: 2015-07-30 00:49:00

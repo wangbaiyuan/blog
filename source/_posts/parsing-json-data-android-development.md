@@ -7,7 +7,7 @@ tags:
 url: 1070.html
 id: 1070
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 1346
 date: 2015-04-07 13:30:17
 ---

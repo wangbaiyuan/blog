@@ -6,7 +6,7 @@ tags:
 url: 1892.html
 id: 1892
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 21354
 date: 2017-03-06 20:08:25
 ---

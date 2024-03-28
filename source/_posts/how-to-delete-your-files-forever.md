@@ -5,7 +5,7 @@ tags:
 url: 508.html
 id: 508
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 15441
 date: 2015-01-03 12:05:57
 ---

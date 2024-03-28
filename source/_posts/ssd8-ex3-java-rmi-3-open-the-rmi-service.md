@@ -8,7 +8,7 @@ tags:
 url: 1269.html
 id: 1269
 categories:
-  - 算法语言
+  - 技术
   - 计算机技术
 abbrlink: 22965
 date: 2015-06-10 11:31:58

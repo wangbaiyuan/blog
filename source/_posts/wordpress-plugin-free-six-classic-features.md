@@ -6,7 +6,7 @@ tags:
 url: 790.html
 id: 790
 categories:
-  - 技术应用
+  - 技术
   - 软件开发
 abbrlink: 40201
 date: 2015-01-29 09:14:29

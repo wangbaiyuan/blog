@@ -6,7 +6,7 @@ tags:
 url: 1556.html
 id: 1556
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 50544
 date: 2015-12-20 14:39:56
 ---

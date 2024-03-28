@@ -6,7 +6,7 @@ tags:
 url: 1104.html
 id: 1104
 categories:
-  - 技术应用
+  - 技术
   - 计算机技术
 abbrlink: 5699
 date: 2015-04-17 21:24:25

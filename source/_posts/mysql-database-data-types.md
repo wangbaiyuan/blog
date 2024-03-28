@@ -6,7 +6,7 @@ tags:
 url: 1137.html
 id: 1137
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 20961
 date: 2015-04-28 12:54:40
 ---

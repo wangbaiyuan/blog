@@ -6,7 +6,7 @@ tags:
 url: 813.html
 id: 813
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 58989
 date: 2015-02-26 09:56:34
 ---

@@ -7,6 +7,7 @@ tags:
 url: 1430.html
 id: 1430
 categories:
+  - 技术
   - wordpress作品
 abbrlink: 18729
 date: 2015-08-20 11:40:15

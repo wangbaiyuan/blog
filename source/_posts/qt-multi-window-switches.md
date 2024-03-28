@@ -5,7 +5,7 @@ tags:
 url: 415.html
 id: 415
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 26383
 date: 2014-12-25 17:07:47
 ---

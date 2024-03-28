@@ -6,7 +6,7 @@ tags:
 url: 795.html
 id: 795
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 53490
 date: 2015-01-31 15:51:17
 ---

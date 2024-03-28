@@ -7,7 +7,7 @@ tags:
 url: 1194.html
 id: 1194
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 62248
 date: 2015-05-17 10:39:42
 ---

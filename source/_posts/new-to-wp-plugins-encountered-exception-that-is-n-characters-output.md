@@ -3,7 +3,7 @@ title: 插件在启用的过程中产生了594个字符的异常输出
 url: 997.html
 id: 997
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 31234
 date: 2015-03-19 23:14:36
 tags: ''

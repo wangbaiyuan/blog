@@ -5,7 +5,7 @@ tags:
 url: 1170.html
 id: 1170
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 29579
 date: 2015-05-04 13:17:16
 ---

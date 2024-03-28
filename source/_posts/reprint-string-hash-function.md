@@ -6,7 +6,7 @@ tags:
 url: 201.html
 id: 201
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 8311
 date: 2014-12-11 17:08:18
 ---

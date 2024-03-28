@@ -3,7 +3,7 @@ title: 上网只要点盏灯，可见光通信颠覆wifi？
 url: 803.html
 id: 803
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 64151
 date: 2015-02-06 21:19:48
 tags: ''

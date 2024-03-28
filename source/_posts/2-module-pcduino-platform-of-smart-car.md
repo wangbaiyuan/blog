@@ -5,7 +5,7 @@ tags:
 url: 2052.html
 id: 2052
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 17030
 date: 2018-03-19 22:04:10
 ---

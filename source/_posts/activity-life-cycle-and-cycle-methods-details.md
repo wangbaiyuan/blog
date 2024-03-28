@@ -5,7 +5,7 @@ tags:
 url: 1090.html
 id: 1090
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 46149
 date: 2015-04-13 15:27:20
 ---

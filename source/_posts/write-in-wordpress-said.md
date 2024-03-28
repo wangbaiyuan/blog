@@ -5,7 +5,7 @@ tags:
 url: 945.html
 id: 945
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 13758
 date: 2015-03-10 16:59:01
 ---

@@ -3,7 +3,7 @@ title: SSD7_EX9【事务编程】
 url: 1310.html
 id: 1310
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 41013
 date: 2015-06-18 11:22:54
 tags: ''

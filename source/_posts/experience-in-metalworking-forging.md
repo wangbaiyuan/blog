@@ -3,7 +3,7 @@ title: '金工实习心得:锻造'
 url: 305.html
 id: 305
 categories:
-  - 技术应用
+  - 技术
 abbrlink: 58857
 date: 2014-12-19 09:43:33
 tags: ''

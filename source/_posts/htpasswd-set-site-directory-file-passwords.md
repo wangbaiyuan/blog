@@ -6,7 +6,7 @@ tags:
 url: 1288.html
 id: 1288
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 47824
 date: 2015-06-16 23:05:14
 ---

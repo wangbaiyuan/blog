@@ -3,7 +3,7 @@ title: Android监听底部导航栏展开与隐藏
 url: 1721.html
 id: 1721
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 36424
 date: 2016-08-12 21:49:12
 tags: ''

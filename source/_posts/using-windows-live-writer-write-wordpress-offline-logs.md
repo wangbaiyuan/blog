@@ -3,7 +3,7 @@ title: 用Windows Live Writer离线写WordPress日志
 url: 814.html
 id: 814
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 34932
 date: 2015-02-27 18:55:07
 tags: ''

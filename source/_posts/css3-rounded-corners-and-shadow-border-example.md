@@ -5,7 +5,7 @@ tags:
 url: 238.html
 id: 238
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 6574
 date: 2014-12-06 21:30:50
 ---

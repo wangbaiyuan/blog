@@ -6,7 +6,7 @@ tags:
 url: 1359.html
 id: 1359
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 26472
 date: 2015-07-04 16:21:53
 ---

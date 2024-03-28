@@ -5,7 +5,7 @@ tags:
 url: 1901.html
 id: 1901
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 23715
 date: 2017-03-08 16:43:49
 ---

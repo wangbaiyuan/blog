@@ -7,7 +7,7 @@ tags:
 url: 1536.html
 id: 1536
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 22889
 date: 2015-12-06 19:34:51
 ---

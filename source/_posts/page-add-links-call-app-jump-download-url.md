@@ -6,7 +6,7 @@ tags:
 url: 1602.html
 id: 1602
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 2813
 date: 2016-01-09 23:22:02
 ---

@@ -3,7 +3,7 @@ title: 使用内存做虚拟磁盘与磁盘做虚拟内存
 url: 1412.html
 id: 1412
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 12329
 date: 2015-08-06 21:49:12
 tags: ''

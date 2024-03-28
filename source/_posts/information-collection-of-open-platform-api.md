@@ -7,7 +7,7 @@ url: 900.html
 id: 900
 comments: false
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 5560
 date: 2015-03-04 13:33:20
 ---

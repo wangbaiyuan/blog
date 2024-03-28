@@ -3,7 +3,7 @@ title: 怎样使用office word向你的博客发布文章
 url: 811.html
 id: 811
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 24084
 date: 2015-02-25 10:53:32
 tags: ''

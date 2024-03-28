@@ -6,7 +6,7 @@ tags:
 url: 582.html
 id: 582
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 33598
 date: 2015-01-09 14:21:25
 ---

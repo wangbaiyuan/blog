@@ -6,7 +6,7 @@ tags:
 url: 1641.html
 id: 1641
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 36206
 date: 2016-04-12 16:50:02
 ---

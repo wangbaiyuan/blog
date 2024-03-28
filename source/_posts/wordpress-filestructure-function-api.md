@@ -7,6 +7,7 @@ tags:
 url: 613.html
 id: 613
 categories:
+  - 技术
   - 百元百科
 abbrlink: 23246
 date: 2015-01-13 08:08:00

@@ -5,7 +5,7 @@ tags:
 url: 470.html
 id: 470
 categories:
-  - 计算机技术
+  - 技术
 abbrlink: 12880
 date: 2014-12-29 16:45:40
 ---

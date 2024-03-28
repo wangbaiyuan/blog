@@ -7,7 +7,7 @@ tags:
 url: 1195.html
 id: 1195
 categories:
-  - 技术应用
+  - 技术
   - 算法语言
   - 软件开发
 abbrlink: 39208

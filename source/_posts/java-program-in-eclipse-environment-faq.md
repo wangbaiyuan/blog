@@ -6,7 +6,7 @@ tags:
 url: 1063.html
 id: 1063
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 57330
 date: 2015-04-02 18:29:54
 ---

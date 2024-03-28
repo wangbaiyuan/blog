@@ -6,7 +6,7 @@ tags:
 url: 1545.html
 id: 1545
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 12849
 date: 2015-12-14 22:12:12
 ---

@@ -6,7 +6,7 @@ tags:
 url: 247.html
 id: 247
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 30134
 date: 2014-12-14 15:08:00
 ---

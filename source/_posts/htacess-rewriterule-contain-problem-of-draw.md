@@ -3,7 +3,7 @@ title: 解决htacess RewriteRule中含有？的问题
 url: 1735.html
 id: 1735
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 27686
 date: 2016-11-07 22:23:46
 tags: ''

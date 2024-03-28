@@ -3,7 +3,7 @@ title: 微信封杀支付宝红包与网易云音乐违法吗？
 url: 801.html
 id: 801
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 26683
 date: 2015-02-05 19:39:38
 tags: ''

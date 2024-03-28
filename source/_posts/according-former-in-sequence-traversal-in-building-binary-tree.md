@@ -7,7 +7,7 @@ tags:
 url: 1513.html
 id: 1513
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 2812
 date: 2015-11-01 16:16:01
 ---

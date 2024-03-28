@@ -6,7 +6,7 @@ tags:
 url: 1492.html
 id: 1492
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 14443
 date: 2015-10-04 22:57:26
 ---

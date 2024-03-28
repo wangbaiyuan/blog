@@ -7,7 +7,7 @@ tags:
 url: 1490.html
 id: 1490
 categories:
-  - 算法语言
+  - 技术
   - 软件开发
 abbrlink: 40046
 date: 2015-10-02 14:57:23

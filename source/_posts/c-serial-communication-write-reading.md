@@ -3,7 +3,7 @@ title: C/C++串口通信原理及读写与操作
 url: 1414.html
 id: 1414
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 50099
 date: 2015-08-06 22:11:51
 tags: ''

@@ -5,7 +5,7 @@ tags:
 url: 1197.html
 id: 1197
 categories:
-  - 算法语言
+  - 技术
   - 计算机技术
   - 软件开发
 abbrlink: 25587

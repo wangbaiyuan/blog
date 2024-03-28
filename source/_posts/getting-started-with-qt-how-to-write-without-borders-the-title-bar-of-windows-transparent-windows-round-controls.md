@@ -5,7 +5,7 @@ tags:
 url: 432.html
 id: 432
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 17871
 date: 2014-12-27 00:01:45
 ---

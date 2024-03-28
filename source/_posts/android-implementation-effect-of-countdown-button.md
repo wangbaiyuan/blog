@@ -6,9 +6,7 @@ tags:
 url: 1424.html
 id: 1424
 categories:
-  - 前端
-  - 算法语言
-  - 软件开发
+  - 技术
 abbrlink: 33546
 date: 2015-08-20 11:10:57
 ---

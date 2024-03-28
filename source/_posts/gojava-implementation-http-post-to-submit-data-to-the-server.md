@@ -7,7 +7,7 @@ tags:
 url: 1263.html
 id: 1263
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 58767
 date: 2015-06-08 21:27:43
 ---

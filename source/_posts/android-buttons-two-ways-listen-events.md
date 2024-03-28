@@ -3,7 +3,7 @@ title: 安卓按钮的监听事件的两种方式
 url: 1085.html
 id: 1085
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 11610
 date: 2015-04-13 11:35:25
 tags: ''

@@ -6,7 +6,7 @@ tags:
 url: 1061.html
 id: 1061
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 43663
 date: 2015-04-01 20:20:34
 ---

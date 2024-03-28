@@ -3,7 +3,7 @@ title: 用Ruby简书爬虫统计用户文章信息
 url: 1825.html
 id: 1825
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 19117
 date: 2016-12-16 12:59:15
 tags: ''

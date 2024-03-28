@@ -6,7 +6,7 @@ tags:
 url: 340.html
 id: 340
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 56152
 date: 2014-12-22 17:17:40
 ---

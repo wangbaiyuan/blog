@@ -7,7 +7,7 @@ tags:
 url: 1428.html
 id: 1428
 categories:
-  - 算法语言
+  - 技术
   - 软件开发
 abbrlink: 55166
 date: 2015-08-18 16:42:40

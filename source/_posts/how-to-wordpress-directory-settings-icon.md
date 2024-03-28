@@ -6,7 +6,7 @@ tags:
 url: 768.html
 id: 768
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 14072
 date: 2015-01-28 16:48:55
 ---

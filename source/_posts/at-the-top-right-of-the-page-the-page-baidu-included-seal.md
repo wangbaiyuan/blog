@@ -6,7 +6,7 @@ tags:
 url: 1017.html
 id: 1017
 categories:
-  - 算法语言
+  - 技术
 abbrlink: 41641
 date: 2015-03-22 14:04:50
 ---

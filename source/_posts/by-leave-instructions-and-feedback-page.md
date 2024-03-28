@@ -6,7 +6,7 @@ tags:
 url: 1293.html
 id: 1293
 categories:
-  - android作品
+  - 技术
 abbrlink: 25528
 date: 2015-06-21 15:13:00
 ---

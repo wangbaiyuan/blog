@@ -5,7 +5,7 @@ tags:
 url: 1062.html
 id: 1062
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 54479
 date: 2015-04-01 20:50:57
 ---

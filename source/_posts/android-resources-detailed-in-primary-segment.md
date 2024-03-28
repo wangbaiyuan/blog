@@ -5,7 +5,7 @@ tags:
 url: 1148.html
 id: 1148
 categories:
-  - 软件开发
+  - 技术
 abbrlink: 11360
 date: 2015-05-01 18:20:08
 ---
