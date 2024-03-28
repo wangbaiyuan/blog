@@ -1,0 +1,497 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="软件工程,闲言碎语,生活哲学" />
+
+
+<meta name="description" content="万古长江水，千年儒释道。历史的长流中，芸芸众生，参差不齐，但总是能够总结出一个“生旦净末丑”来。儒、释、道，五千年的中华文化，却总是围绕着这三种主流思想交相演绎。千年间，豪士俊杰，文人墨客，辈出..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    哲学到编程：思想的实例化 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="哲学到编程：思想的实例化">
+            
+            哲学到编程：思想的实例化
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9E%81%E5%AE%A2%E8%A7%86%E7%82%B9/">极客视点</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E7%94%9F%E6%B4%BB%E5%93%B2%E5%AD%A6/" rel="tag">生活哲学</a> <a class="tag-none-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a> <a class="tag-none-link" href="/tags/%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD/" rel="tag">闲言碎语</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/18</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>万古长江水，千年儒释道。历史的长流中，芸芸众生，参差不齐，但总是能够总结出一个“生旦净末丑”来。儒、释、道，五千年的中华文化，却总是围绕着这三种主流思想交相演绎。千年间，豪士俊杰，文人墨客，辈出的栋梁不可谓不多。但是细细想来，人们的思想中总能找到前辈哲人的思想。<a href="http://baiyuan.wang/wp-content/uploads/2015/05/rushidao.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/rushidao.jpg" alt="rushidao"></a> 我们从小就学习前人的思想，读书看报、遍历典籍，每一个人总是从读书的过程中汲取前人思想，然后以汲取的思想来指导如何为人处世。哲人常常天马行空，虚无缥缈，所以哲人的思想具有跨时代性也不必大惊小怪：“可持续发展”是今天的政策口号，但是千年前孟子与梁惠王论政时就说：“不违农时，谷不可胜食也；数罟不入洿池，鱼鳖不可胜食也；斧斤以时入山林，木材不可胜用也。谷与鱼鳖不可胜食，木材不可胜用，是使民养生丧死无撼也。王道之始也。”；现在医保提出“老有所依”，但是《礼记》早就说“老有所终,壮有所用,幼有所长,鳏寡孤独废疾者,皆有所养”。如此看来，我们发现我们似乎很不堪，看似新鲜的一些词其实深深植根于前人的智慧。 以编程的角度看，我们在应用程序里引用的类、方法函数、服务协议，都是前人写好的，写在windows操作系统里，写在安卓SDK里，不管你的程序写的多么牛逼，你都是在调用前人的智慧。难道我们程序猿也是那么的不堪？编程里，调用类及其方法，新建一个实实在在的对象，称为类的“实例化”过程。 同理，学习前人哲思，身体力行人家的思想，何尝不是“实例化”的过程。前人把基础的哲学思想总结出来，后人能自己体悟出来便是自己的，进而组合各种前人智慧并运用就能超越前人了 。创建出一个基于底层代码中基本“类”的一些“对象”为自己所用，组合各种“控件”、事件，于是就创造出多姿多彩的应用程序。操作系统是伟大的，但是操作系统的伟大里，有多少是应用程序强大的功劳？我们说一个哲人伟大，不就是因为他的思想影响了后人、培养出一群伟大的人吗？我们每一个人都是前人思想的实例化对象，我们的实例化成就了自己，同时也成就了先人，践行思想的过程并非一无是处。思想因实例化而伟大。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/philosophy-of-programming-materialized.html" target="_blank">王柏元的博客 >> 哲学到编程：思想的实例化</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ytlqpo-com-a-malicious-image-resolution-countermeasures.html" class="pre-post btn btn-default" title='被.ytlqpo.com恶意镜像的解决、反制措施'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            被.ytlqpo.com恶意镜像的解决、反制措施</span>
+    </a>
+    
+    
+    <a href="/java-android-access-turing-robot.html" class="next-post btn btn-default" title='JAVA（安卓）接入图灵机器人'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            JAVA（安卓）接入图灵机器人</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "42232",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/34fa03ad17010035da428402e7a8742e.png"
+                                 alt="@任盈盈">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                任盈盈
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-11-03
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这都行，牛
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/55f3599e1ae15ce36499634db1950397.png"
+                                 alt="@⌒雪莲⌒">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                ⌒雪莲⌒
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我也正打算搬入新家。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                谢谢夸赞，欢迎莅临投稿指导工作
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/55f3599e1ae15ce36499634db1950397.png"
+                                 alt="@⌒雪莲⌒">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                ⌒雪莲⌒
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                “我们每一个人都是前人思想的实例化对象，我们的实例化成就了自己，同时也成就了先人，践行思想的过程并非一无是处。思想因实例化而伟大。”受教！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="API,json,PHP" />
+
+
+<meta name="description" content="项目复述：PROBLEM : HOTEL RESERVATION A hotel chain operating in Miami wishes to offer room reservatio..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    PHP实现酒店查询:WEB+SQL数据库+JSON-API |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="PHP实现酒店查询:WEB+SQL数据库+JSON-API">
+            
+            PHP实现酒店查询:WEB+SQL数据库+JSON-API
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a> <a class="tag-none-link" href="/tags/json/" rel="tag">json</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/07/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="项目复述："><a href="#项目复述：" class="headerlink" title="项目复述："></a>项目复述：</h2><p><strong>PROBLEM : HOTEL RESERVATION</strong> A hotel chain operating in Miami wishes to offer room reservation services over the internet. They have three hotels in Miami: Lakewood, Bridgewood and Ridgewood. Each hotel has separate weekday and weekend (Saturday and Sunday) rates. There are special rates for rewards customer as a part of loyalty program. Each hotel has a rating assigned to it.</p>
+<ol>
+<li>Lakewood with a rating of 3 has weekday rates as 110$ for regular customer and 80$ for rewards customer. The weekend rates are 90$ for regular customer and 80$ for a rewards customer.</li>
+<li>Bridgewood with a rating of 4 has weekday rates as 160$ for regular customer and 110$ for rewards customer. The weekend rates are 60$ for regular customer and 50$ for a rewards customer.</li>
+<li>Ridgewood with a rating of 5 has weekday rates as 220$ for regular customer and 100$ for rewards customer. The weekend rates are 150$ for regular customer and 40$ for a rewards customer.</li>
+</ol>
+<p>Write a program to help an online customer find the cheapest hotel. The input to the program will be a range of dates for a regular or rewards customer. The output should be the cheapest available hotel. In case of a tie, the hotel with highest rating should be returned.</p>
+<h2 id="项目思路和特点"><a href="#项目思路和特点" class="headerlink" title="项目思路和特点"></a>项目思路和特点</h2><h3 id="数据利于维护"><a href="#数据利于维护" class="headerlink" title="数据利于维护"></a>数据利于维护</h3><p>对于一个实际生活中的项目，一个酒店的星级、价格不可能是一成不变的，为了更好地维护酒店和价格信息，利于系统后期的修改，极客人决定采用数据库管理数据。鉴于本题的要求，本项目在实现时只写了客户查询酒店信息的WEB界面，对于管理人员可能后续修改酒店的星级、名称、价格可以在数据库进行操作，本项目未予实现利于管理员操作的管理界面。</p>
+<h3 id="平台易拓展"><a href="#平台易拓展" class="headerlink" title="平台易拓展"></a>平台易拓展</h3><p>本项目虽然采用PHP实现功能，客户的查询操作在WEB平台上实现，但是极客人特地在服务器上部署了生成JSON数据包的代码，利于将相关功能拓展到JAVA&#x2F;C&#x2F;C++等平台上。注：由于不涉及隐私信息，HTTP传值方式暂定为GET，当然post方式原理大致相同。</p>
+<h2 id="使用Bootstrap前端库构建界面"><a href="#使用Bootstrap前端库构建界面" class="headerlink" title="使用Bootstrap前端库构建界面"></a>使用Bootstrap前端库构建界面</h2><p>为了尽快实现界面和界面的美观，本项目采用开源WEB前端库：Bootstrap</p>
+<h2 id="项目文件结构"><a href="#项目文件结构" class="headerlink" title="项目文件结构"></a>项目文件结构</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/07/hotel.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/07/hotel.jpg" alt="hotel"></a>    </p>
+<h2 id="公用代码"><a href="#公用代码" class="headerlink" title="公用代码"></a>公用代码</h2><p>类hotelOrder：酒店订购安排类，构造函数传入开始时间，结束时间，顾客类型代号</p>
+<?php
+/\*\*
+ \* 酒店订购安排类，构造函数传入开始时间，结束时间，顾客类型代号
+ \* 通过getCheapest()返回订购最佳选择，通过CountOfWeekend_WeekDay()等私有方法遍历指定日期间周末和工作日的天数
+ */
+class hotelOrder {
+    private $startDate;
+    private $endDate;
+    private $customertype;
+    function hotelOrder($istartDate, $iendDate, $icustomertype)//构造函数
+    {
+
+        $this -> startDate = $istartDate;//开始时间
+        $this -> endDate = $iendDate;//结束时间
+        $this -> customertype = $icustomertype;//顾客类型代号，0：普通顾客；1：rewards顾客
+
+    }
+
+    function getChoices() {
+    //	$CheapestHotelName = "null";
+        require ('../db_connect.php');
+        $string = "select * from HOTEL_RESERVATION ";
+        $str = @mysqli\_query($software\_db, $string);
+
+        while ($row = mysqli\_fetch\_array($str, MYSQLI_ASSOC)) {
+            $countsOfDay=$this->CountOfWeekend_WeekDay();
+            
+                    if($this->customertype==0){//普通顾客
+    $totalPrice\['name'\]=$row\['name'\];
+        $totalPrice\['price'\]=$countsOfDay\['Weekend'\]*$row\['rates\_for\_regular\_In\_weekend'\]
+        +$countsOfDay\['WeekDay'\]*$row\['rates\_for\_regular\_In\_weekday'\];
+        
+    $totalPrice\['rating'\]=$row\['rating'\];
+        
+        $choice\[\]=$totalPrice;
+            }elseif($this->customertype==1){//rewards顾客
+            $totalPrice\['name'\]=$row\['name'\];
+        $totalPrice\['price'\]=$countsOfDay\['Weekend'\]*$row\['rates\_for\_rewards\_In\_weekend'\]
+        +$countsOfDay\['WeekDay'\]*$row\['rates\_for\_rewards\_In\_weekday'\];
+        $totalPrice\['rating'\]=$row\['rating'\];		
+        
+        $choice\[\]=$totalPrice;
+            }
+            
+        }
+//echo $countsOfDay\['Weekend'\]." ".$countsOfDay\['WeekDay'\];
+//		$json = json_encode($choice);
+//		return $json;
+        return $choice;
+    }
+
+    function getCheapest() {
+        $choices=$this->getChoices();
+        $prices = array();
+        $ratings = array();
+        foreach ($choices as $choice){
+            $prices\[\]=$choice\['price'\];
+            $ratings\[\]=$choice\['rating'\];
+        }
+        
+        array\_multisort($prices, SORT\_ASC, $ratings, SORT_ASC, $choices);
+        return $choices;
+    }
+
+    /\*\*
+     \* 判断日期是不是周末
+     */
+    private function isWeekend($date) {
+        date\_default\_timezone_set('PRC');
+        $w = intval(date('w', strtotime($date)));
+        if ($w === 0 || $w === 6) {
+            return true;
+        } else
+            return false;
+    }
+
+    /\*\*
+     \* 获取指定时间段内周末和工作日天数
+     */
+    private function CountOfWeekend_WeekDay() {
+        $count\['Weekend'\]=0;
+        $count\['WeekDay'\]=0;
+        date\_default\_timezone_set('PRC');
+        for ($start = strtotime($this ->startDate); $start <strtotime($this ->endDate)+86400; $start += 86400)
+        //这里遍历日期，所以每次增加86400秒
+        {
+            //echo $start.'  ';
+        $w = intval(date('w', $start));
+        if ($w === 0 || $w === 6) {
+            $count\['Weekend'\]++;
+        } 
+        else
+            $count\['WeekDay'\]++;
+    }
+        return $count;
+        }
+
+    
+
+}
+?>
+
+<h2 id="web界面代码："><a href="#web界面代码：" class="headerlink" title="web界面代码："></a>web界面代码：</h2><p>查询首页index.php:</p>
+<html>
+<head>
+<meta name='viewport' content='width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;' />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+<title>酒店预订-powered by 王柏元</title>				
+</head>
+<body>
+<div class="container">
+<div class="jumbotron">
+<h1>酒店预订查询系统</h1> 
+</div>
+        <h2 class="form-signin-heading">输入你下榻的起始-结束日期</h2>
+       <form class="form-signin" action="result.php" method="get">
+       	<div class="panel panel-default">
+       	<div class="panel-body">
+    <div class="checkbox">
+             <label for="startDate">开始日期：</label>
+          <input id="startDate" type="date" name="startDate" value="2015-07-26"/>
+          <label for="endDate">结束日期：</label>
+          <input id="endDate" type="date" name="endDate" value="2015-08-01"/>
+        </div>
+  </div>
+   <div class="input-group">
+    
+<pre><code>    &lt;span class=&quot;input-group-addon&quot;&gt;
+    &lt;input type=&quot;radio&quot;  value=&quot;0&quot; checked=&quot;true&quot; name=&quot;type&quot; aria-label=&quot;...&quot;/&gt;regular customer
+  &lt;/span&gt;
+    &lt;span class=&quot;input-group-addon&quot;&gt;
+    &lt;input type=&quot;radio&quot; value=&quot;1&quot; name=&quot;type&quot; aria-label=&quot;...&quot;/&gt;rewards customer
+ &lt;/span&gt; 
+  &lt;/span&gt;
+&lt;/div&gt;&lt;!-- /input-group --&gt;
+    &lt;button class=&quot;btn btn-lg btn-primary btn-block&quot; type=&quot;submit&quot;&gt;查询&lt;/button&gt;
+</code></pre>
+</div>
+         </form>
+    </div>
+</body>
+
+</html>
+
+<p> </p>
+<h2 id="查询结果页："><a href="#查询结果页：" class="headerlink" title="查询结果页："></a>查询结果页：</h2><p>result.php:</p>
+<?php
+header("Content-Type:text/html;charset=utf-8");
+//require\_once('../db\_connect.php');
+include_once ("hotelOrder.php");
+//$str = file\_get\_contents("php://input");
+//$arr=array();
+//parse_str($str,$arr);
+$startDate = $_GET\['startDate'\];
+$endDate = $_GET\['endDate'\];
+$customertype = $_GET\['type'\];
+$hotelorder = new hotelOrder($startDate, $endDate, $customertype);
+//echo json_encode($hotelorder->getChoices());
+//echo json_encode($hotelorder->getCheapest());
+$choices = $hotelorder -> getCheapest();
+?>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;' />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/common.css"/>
+        <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+        <title>
+            酒店预订查询结果-powered by 王柏元
+        </title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>酒店预订查询结果</h1>
+                <p><a href="./" role="button">返回</a></p>
+            </div>
+            <div class="panel panel-default">
+                <!\-\- Default panel contents -->
+                <div class="panel-heading">优先级从高到低</div>
+                <!\-\- Table -->
+                <table class="table">
+                    <thead><tr><th>酒店名称</th>
+                            <th>总价格</th>
+                            <th>酒店等级</th></tr>
+                    </thead>
+<?php
+foreach ($choices as $choice){
+echo "<tr><td>".$choice\['name'\]."</td><td>".$choice\['price'\]."</td><td>".$choice\['rating'\]."</td></tr>";
+}
+?>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+
+<ul>
+<li><strong>演示网址：<a href="http://baiyuan.wang/others/hotel_reservation/index.php">http://baiyuan.wang/others/hotel_reservation&#x2F;index.php</a></strong></li>
+<li><strong>演示截图：</strong></li>
+</ul>
+<p><a href="http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-44.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-44.jpg" alt="360截图-27702189"></a> <a href="http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-46.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/07/baiyuan.wang_2015-07-27_21-52-46.jpg" alt="360截图-27714919"></a></p>
+<h2 id="可扩展到其他平台的JSON输出代码"><a href="#可扩展到其他平台的JSON输出代码" class="headerlink" title="可扩展到其他平台的JSON输出代码"></a>可扩展到其他平台的JSON输出代码</h2><p>JsonCheapestHotel.php:</p>
+<?php
+header("Content-Type:text/html;charset=utf-8");
+include_once ("hotelOrder.php");
+$startDate=$_GET\['startDate'\];
+$endDate=$_GET\['endDate'\];
+$customertype=$_GET\['type'\];
+$hotelorder=new hotelOrder($startDate,$endDate,$customertype);
+echo json_encode($hotelorder->getCheapest());
+?>
+
+<ul>
+<li><strong>输出实例：[{“name”:”Lakewood”,”price”:720,”rating”:”3”},{“name”:”Ridgewood”,”price”:780,”rating”:”5”},{“name”:”Bridgewood”,”price”:870,”rating”:”4”}]</strong></li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/php-hotel-query-web-sql-json-api.html" target="_blank">王柏元的博客 >> PHP实现酒店查询:WEB+SQL数据库+JSON-API</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/c-language-read-serial-data-hexadecimal-printing.html" class="pre-post btn btn-default" title='C语言读取串口数据并16进制打印'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            C语言读取串口数据并16进制打印</span>
+    </a>
+    
+    
+    <a href="/dream-hangzhou-line-visit-alibaba.html" class="next-post btn btn-default" title='梦“杭”行-参访阿里巴巴'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            梦“杭”行-参访阿里巴巴</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "36408",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-07-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                杨帆老师给的试水题，根据你的答案为你安排适合的工作
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/de30f03b6683e62aff82ff43eb1e5a68.png"
+                                 alt="@小白">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小白
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-07-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                哪儿找的题目呢
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%A4%8D%E8%BF%B0%EF%BC%9A"><span class="toc-text">项目复述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%80%9D%E8%B7%AF%E5%92%8C%E7%89%B9%E7%82%B9"><span class="toc-text">项目思路和特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%A9%E4%BA%8E%E7%BB%B4%E6%8A%A4"><span class="toc-text">数据利于维护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B3%E5%8F%B0%E6%98%93%E6%8B%93%E5%B1%95"><span class="toc-text">平台易拓展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Bootstrap%E5%89%8D%E7%AB%AF%E5%BA%93%E6%9E%84%E5%BB%BA%E7%95%8C%E9%9D%A2"><span class="toc-text">使用Bootstrap前端库构建界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-text">项目文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E7%94%A8%E4%BB%A3%E7%A0%81"><span class="toc-text">公用代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web%E7%95%8C%E9%9D%A2%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">web界面代码：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">酒店预订查询系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text">输入你下榻的起始-结束日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E9%A1%B5%EF%BC%9A"><span class="toc-text">查询结果页：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">酒店预订查询结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E5%88%B0%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0%E7%9A%84JSON%E8%BE%93%E5%87%BA%E4%BB%A3%E7%A0%81"><span class="toc-text">可扩展到其他平台的JSON输出代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

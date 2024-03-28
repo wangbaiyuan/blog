@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="现在大家都有自己的电脑，由于使用时间较长都自己的电脑都有亲和感。但是在学校实验室，由于学校电脑的配置或老旧问题，让我们用的很不爽。所以我们不妨用学校的电脑连接自己的电脑进行远程登录，让自己的电脑..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    局域网内远程桌面：让你的电脑如影随形 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="局域网内远程桌面：让你的电脑如影随形">
+            
+            局域网内远程桌面：让你的电脑如影随形
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>现在大家都有自己的电脑，由于使用时间较长都自己的电脑都有亲和感。但是在学校实验室，由于学校电脑的配置或老旧问题，让我们用的很不爽。所以我们不妨用学校的电脑连接自己的电脑进行远程登录，让自己的电脑如影随行。</p>
+<h3 id="1-打开自己电脑的远程登录权限"><a href="#1-打开自己电脑的远程登录权限" class="headerlink" title="1.打开自己电脑的远程登录权限"></a>1.打开自己电脑的远程登录权限</h3><p>a.右键“计算机”，以此打开 属性-远程设置： <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141212150833_10035.png"> 在右侧的远程桌面我们看到有三个选项：不允许连接，允许任意版本连接，仅允许运行使用网络级别身份认证……。 在这里我建议勾选第二项即允许任意版本，这意味着不管你自己的电脑是不是win XP还是WIN 7，别人的win XP或者win7都能远程登录。如果大家在远程桌面出现无法连接的问题时不妨看看是不是这里出了问题。  </p>
+<h3 id="2-获取本机IP地址"><a href="#2-获取本机IP地址" class="headerlink" title="2.获取本机IP地址"></a>2.获取本机IP地址</h3><p>获取IP地址可以点击电脑右下角网络图标，进入网络与共享中心-查看活动网络-本地连接（即你当前联网的网络连接），在常规选项卡中点击详细信息，便可获取自己的IPV4地址，即用作远程登录的IP地址； 你也可以在命令指示符中输入“ipconfig”获取当前的IP地址</p>
+<h3 id="3-打开他人电脑的远程桌面连接，键入IP地址连接"><a href="#3-打开他人电脑的远程桌面连接，键入IP地址连接" class="headerlink" title="3.打开他人电脑的远程桌面连接，键入IP地址连接"></a>3.打开他人电脑的远程桌面连接，键入IP地址连接</h3><p>依次点击“开始”-所有程序-附件-远程桌面连接， <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141213113234_70826.png"> 键入第二步获取的IP地址，然后点击“连接”，之后就会进入用户登录界面。然后你就能享受远程登录的快感了。    </p>
+<hr>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>a.以上配置均无问题还是“无法连接”？  </p>
+<blockquote>
+<p>请看看防火墙有没有屏蔽远程桌面连接联网</p>
+</blockquote>
+<p>b.远程桌面网速要求高，会不会也会消耗大量流量    </p>
+<blockquote>
+<p>远程桌面如果在局域网内进行，一般不会消耗你的计费流量</p>
+</blockquote>
+<p> </p>
+<hr>
+<h2 id="便捷小贴士"><a href="#便捷小贴士" class="headerlink" title="便捷小贴士"></a>便捷小贴士</h2><p>你可以把远程桌面连接配置保存，以便以便之后直接打开远程桌面文件直接连接，不用输入IP地址 方法：在上图点击“选项”下拉三角，连接设置-保存</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/remote-desktop-in-lan-let-your-computer-in-hand.html" target="_blank">王柏元的博客 >> 局域网内远程桌面：让你的电脑如影随形</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/how-to-join-page-website-has-been-running-for-many-days.html" class="pre-post btn btn-default" title='怎样在网页中加入“网站已运行多少天”'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            怎样在网页中加入“网站已运行多少天”</span>
+    </a>
+    
+    
+    <a href="/reprint-string-hash-function.html" class="next-post btn btn-default" title='[转载]各种字符串Hash函数'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            [转载]各种字符串Hash函数</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "36823",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%93%E5%BC%80%E8%87%AA%E5%B7%B1%E7%94%B5%E8%84%91%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E6%9D%83%E9%99%90"><span class="toc-text">1.打开自己电脑的远程登录权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BAIP%E5%9C%B0%E5%9D%80"><span class="toc-text">2.获取本机IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%93%E5%BC%80%E4%BB%96%E4%BA%BA%E7%94%B5%E8%84%91%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E8%BF%9E%E6%8E%A5%EF%BC%8C%E9%94%AE%E5%85%A5IP%E5%9C%B0%E5%9D%80%E8%BF%9E%E6%8E%A5"><span class="toc-text">3.打开他人电脑的远程桌面连接，键入IP地址连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">常见问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%BF%E6%8D%B7%E5%B0%8F%E8%B4%B4%E5%A3%AB"><span class="toc-text">便捷小贴士</span></a>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

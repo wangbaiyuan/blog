@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="FTP,域名解析" />
+
+
+<meta name="description" content="我们都知道域名的作用是简化访问地址，让你访问一个网站或者FTP时输入的一段有意义的英文字母甚至汉字而不是一段无规律的IP地址。在局域网网内建立共享资源的FTP是一件很普遍的事，但是大家会发现每次..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    免费域名还可以这样用:为局域网FTP服务提供域名解析 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="免费域名还可以这样用:为局域网FTP服务提供域名解析">
+            
+            免费域名还可以这样用:为局域网FTP服务提供域名解析
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/FTP/" rel="tag">FTP</a> <a class="tag-none-link" href="/tags/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" rel="tag">域名解析</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/22</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>我们都知道域名的作用是简化访问地址，让你访问一个网站或者FTP时输入的一段有意义的英文字母甚至汉字而不是一段无规律的IP地址。在局域网网内建立共享资源的FTP是一件很普遍的事，但是大家会发现每次告诉别人一段IP来告诉别人你的FTP地址是一件很“鸡肋”的事情。所以解决IP地址记忆难的方法就是解析域名到你的IP。我们在浏览器中输入域名的时候，计算机通常会向本地DNS服务器请求域名对应的IP地址。如果大家向本地DNS（比如学校）请求在它的DNS数据库记录里为你添加你的IP和域名，这几乎是不太可能的事情。 某一天，笔者突发奇想：  </p>
+<blockquote>
+<p>能不能申请一个免费顶级域名来解析到你的IP呢</p>
+</blockquote>
+<p>之所以说是“奇想”，是因为我觉得不太会有哪个人会把域名解析到<strong>局域网</strong>，也许域名解析商也不会支持吧。   但是结果出我意料，笔者成功在我的“DNSpod”域名管理中，成功添加了一个“ftp”A记录并解析到我的局域网IP：10.22.56.*；之后在资源管理器中成功访问了我的FTP服务器：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141222084521_37027.png"></p>
+<p>之所以使用免费域名，是因为局域网里的FTP服务没有必要发布在整个互联网，使用免费域名恰得其所。百度对TK域名收录很不友好（其实就是不收录TK域名网站），用免费域名来解析局域网IP也不失为一个绝好的方法。当然使用收费域名就太浪费了。</p>
+<p>为局域网FTP服务提供域名解析的缺点在于：在你的局域网以外访问这个域名就肯定不是你的计算机了，还有你需要联入互联网向DNS服务器获取域名对应的IP</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/free-domain-name-can-also-be-used-lan-ftp-service-provides-name-resolution.html" target="_blank">王柏元的博客 >> 免费域名还可以这样用:为局域网FTP服务提供域名解析</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/reprint-qt5-1-the-android-development-environment-configuration-under-windows.html" class="pre-post btn btn-default" title='[转载]QT5.1_Windows 下的 安卓开发环境配置'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            [转载]QT5.1_Windows 下的 安卓开发环境配置</span>
+    </a>
+    
+    
+    <a href="/experience-in-metalworking-forging.html" class="next-post btn btn-default" title='金工实习心得:锻造'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            金工实习心得:锻造</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "18548",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

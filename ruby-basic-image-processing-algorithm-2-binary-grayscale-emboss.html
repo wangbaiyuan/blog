@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="ruby" />
+
+
+<meta name="description" content="一、灰度算法彩色照片每一个像素的颜色值由红、绿、蓝三种值混合而成，红绿蓝的取值分别由很多种，于是像素的颜色值也可以有很多种颜色值，这就是彩色图片的原理，而灰度照片则只有256种颜色，一般的处理方..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Ruby图片处理基本算法（二）二值、灰度、浮雕... |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Ruby图片处理基本算法（二）二值、灰度、浮雕...">
+            
+            Ruby图片处理基本算法（二）二值、灰度、浮雕...
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/ruby/" rel="tag">ruby</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/12/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、灰度算法"><a href="#一、灰度算法" class="headerlink" title="一、灰度算法"></a>一、灰度算法</h2><p>彩色照片每一个像素的颜色值由红、绿、蓝三种值混合而成，红绿蓝的取值分别由很多种，于是像素的颜色值也可以有很多种颜色值，这就是彩色图片的原理，而灰度照片则只有256种颜色，一般的处理方法是将图片颜色值的RGB三个通道值设为一样，这样图片的显示效果就会是灰色。 灰度处理一般有三种算法：</p>
+<ul>
+<li>1 最大值法：即新的颜色值R＝G＝B＝Max(R，G，B)，这种方法处理后的图片看起来亮度值偏高。</li>
+<li>2 平均值法：即新的颜色值R＝G＝B＝(R＋G＋B)／3，这样处理的图片十分柔和</li>
+<li>3 加权平均值法：即新的颜色值R＝G＝B＝(R ＊ Wr＋G＊Wg＋B＊Wb)，一般由于人眼对不同颜色的敏感度不一样，所以三种颜色值的权重不一样，一般来说绿色最高，红色其次，蓝色最低，最合理的取值分别为Wr ＝ 30％，Wg ＝ 59％，Wb ＝ 11％</li>
+</ul>
+<p>下面是加权平均值法的Ruby实现：</p>
+<p>  #灰度化图片<br>  #取RGB三色平均值<br>  def self.grey(bmp)<br>    for i in 0 .. bmp.height - 1<br>      for j in 0 .. bmp.width - 1<br>        rgb &#x3D; bmp.getRGB(i, j)<br>        grey &#x3D; rgb.r.to_f * 0.3+rgb.g.to_f *0.59 +rgb.b.to_f * 0.11.to_i<br>        bmp.setRGB(i, j, RGB.new(grey, grey, grey))<br>      end<br>    end<br>  end</p>
+<p> </p>
+<h3 id="灰度效果："><a href="#灰度效果：" class="headerlink" title="灰度效果："></a>灰度效果：</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230151843110.jpg"></p>
+<p>out_grey.jpg</p>
+<h2 id="二、二值化"><a href="#二、二值化" class="headerlink" title="二、二值化"></a>二、二值化</h2><p>图像二值化就是将图像上的像素点的灰度值设置为0或255，也就是将整个图像呈现出明显的黑白效果。所有灰度大于或等于阈值的像素被判定为属于特定物体，其灰度值为255表示，否则这些像素点被排除在物体区域以外，灰度值为0，表示背景或者例外的物体区域。 图像二值化常常用于破解验证码等图片识别应用上</p>
+<p>#二值化图片<br> #小于一定阈值设为0 0 0，大于设置为255 255 255<br>  def self.binarization(bmp)<br>    imageGreyLevel &#x3D; bmp.getGreyLevel<br>    for i in 0 .. bmp.height - 1<br>      for j in 0 .. bmp.width - 1<br>        rgb &#x3D; bmp.getRGB(i, j)<br>        if rgb.getGreyLevel&lt;imageGreyLevel<br>          bmp.setRGB(i, j, RGB.new(0, 0, 0))<br>        else<br>          bmp.setRGB(i, j, RGB.new(255, 255, 255))<br>        end<br>      end</p>
+<pre><code>end
+</code></pre>
+<p>  end</p>
+<p>   </p>
+<h3 id="二值化效果"><a href="#二值化效果" class="headerlink" title="二值化效果"></a>二值化效果</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230151844218.jpg"></p>
+<p>out_binary.jpg</p>
+<h2 id="三、底片"><a href="#三、底片" class="headerlink" title="三、底片"></a>三、底片</h2><p>底片效果的实现很简单，就是将RGB的每一个通道值取反，就是用255去减</p>
+<p>#底片化图片<br>  #RGB取反色255-<br>  def self.contraryColor(bmp)<br>    for i in 0 .. bmp.height - 1<br>      for j in 0 .. bmp.width - 1<br>        rgb &#x3D; bmp.getRGB(i, j)<br>        bmp.setRGB(i, j, rgb.getContrary)<br>      end<br>    end<br>  end</p>
+<p> </p>
+<h3 id="底片效果"><a href="#底片效果" class="headerlink" title="底片效果"></a>底片效果</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230151844320.jpg"></p>
+<p>out_contrary.jpg</p>
+<h2 id="四、浮雕效果"><a href="#四、浮雕效果" class="headerlink" title="四、浮雕效果"></a>四、浮雕效果</h2><p>浮雕的算法相对复杂一些，用当前点的RGB值减去相邻点的RGB值并加上128作为新的RGB值。由于图片中相邻点的颜色值是比较接近的，因此这样的算法处理之后，只有颜色的边沿区域，也就是相邻颜色差异较大的部分的结果才会比较明显，而其他平滑区域则值都接近128左右，也就是灰色，这样 就具有了浮雕效果。 在实际的效果中，这样处理后，有些区域可能还是会有”彩色”的一些点或者条状痕迹，所以最好再对新的RGB值做一个灰度处理。</p>
+<p>#浮雕效果<br>  #浮雕的算法相对复杂一些，用当前点的RGB值减去相邻点的RGB值并加上128作为新的RGB值。由于图片中相邻点的颜色值是比较接近的，<br>  #因此这样的算法 处理之后，只有颜色的边沿区域，也就是相邻颜色差异较大的部分的结果才会比较明显，而其他平滑区域则值都接近128左右，<br>  #也就是灰色，这样就具有了浮雕效果。<br>  #在实际的效果中，这样处理后，有些区域可能还是会有”彩色”的一些点或者条状痕迹，所以最好再对新的RGB值做一个灰度处理。<br>  def self.emboss(bmp)</p>
+<pre><code>preRGB=RGB.new(128, 128, 128)
+
+for i in 0 .. bmp.height - 1
+  for j in 0 .. bmp.width - 1
+    currentRGB=bmp.getRGB(i, j)
+    r=(currentRGB.r-preRGB.r)*1+128
+    g=(currentRGB.g - preRGB.g)*1+128
+    b=(currentRGB.b-preRGB.b)*1+128
+
+    bmp.setRGB(i, j, RGB.new(r,g,b).getGreyRGB)
+    preRGB = currentRGB
+  end
+end
+</code></pre>
+<p>  end</p>
+<p> </p>
+<h3 id="浮雕效果"><a href="#浮雕效果" class="headerlink" title="浮雕效果"></a>浮雕效果</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230151844418.jpg"></p>
+<p>out_emboss.jpg</p>
+<h2 id="项目主页"><a href="#项目主页" class="headerlink" title="项目主页"></a>项目主页</h2><p><a target="_blank" rel="noopener" href="https://github.com/geekeren">geekeren</a>&#x2F;<strong><a target="_blank" rel="noopener" href="https://github.com/geekeren/RubyImageProcess">RubyImageProcess</a></strong></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ruby-basic-image-processing-algorithm-2-binary-grayscale-emboss.html" target="_blank">王柏元的博客 >> Ruby图片处理基本算法（二）二值、灰度、浮雕...</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/thinking-behind-wechat-small-programs.html" class="pre-post btn btn-default" title='微信小程序背后的思考'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            微信小程序背后的思考</span>
+    </a>
+    
+    
+    <a href="/ruby-parser-bmp-file-image-processing-algorithm-on.html" class="next-post btn btn-default" title='Ruby解析bmp文件及图片处理算法（一）'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Ruby解析bmp文件及图片处理算法（一）</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "56024",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%81%B0%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-text">一、灰度算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="toc-text">灰度效果：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8C%E5%80%BC%E5%8C%96"><span class="toc-text">二、二值化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%80%BC%E5%8C%96%E6%95%88%E6%9E%9C"><span class="toc-text">二值化效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BA%95%E7%89%87"><span class="toc-text">三、底片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E7%89%87%E6%95%88%E6%9E%9C"><span class="toc-text">底片效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B5%AE%E9%9B%95%E6%95%88%E6%9E%9C"><span class="toc-text">四、浮雕效果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E9%9B%95%E6%95%88%E6%9E%9C"><span class="toc-text">浮雕效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%BB%E9%A1%B5"><span class="toc-text">项目主页</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

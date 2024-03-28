@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,wordpress插件制作" />
+
+
+<meta name="description" content="add_menu_page()函数是在wordpress的管理后台添加一个管理菜单页面。用法：
+
+参数说明：1.$page_title (string) (required) 文本是网页的标题标..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    wordpress插件开发add_menu_page()函数详解 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="wordpress插件开发add_menu_page()函数详解">
+            
+            wordpress插件开发add_menu_page()函数详解
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/wordpress%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C/" rel="tag">wordpress插件制作</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/20</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="add-menu-page-函数是在wordpress的管理后台添加一个管理菜单页面。"><a href="#add-menu-page-函数是在wordpress的管理后台添加一个管理菜单页面。" class="headerlink" title="add_menu_page()函数是在wordpress的管理后台添加一个管理菜单页面。"></a>add_menu_page()函数是在wordpress的管理后台添加一个管理菜单页面。</h2><h2 id="用法："><a href="#用法：" class="headerlink" title="用法："></a>用法：</h2><?php add\_menu\_page( $page\_title, $menu\_title, $capability, $menu\_slug, $function, $icon\_url, $position ); ?>
+
+<h2 id="参数说明："><a href="#参数说明：" class="headerlink" title="参数说明："></a>参数说明：</h2><h3 id="1-page-title-string-required-文本是网页的标题标签显示在菜单中选择"><a href="#1-page-title-string-required-文本是网页的标题标签显示在菜单中选择" class="headerlink" title="1.$page_title (string) (required) 文本是网页的标题标签显示在菜单中选择"></a>1.$page_title (string) (required) 文本是网页的标题标签显示在菜单中选择</h3><p>Default: None</p>
+<h3 id="2-menu-title-string-required-该菜单屏幕名称的文本"><a href="#2-menu-title-string-required-该菜单屏幕名称的文本" class="headerlink" title="2.$menu_title (string) (required) 该菜单屏幕名称的文本"></a>2.$menu_title (string) (required) 该菜单屏幕名称的文本</h3><p>Default: None</p>
+<h3 id="3-capability-string-required-这个菜单被显示到用户所需的能力。用户级别是过时的和不应该被用在这里！"><a href="#3-capability-string-required-这个菜单被显示到用户所需的能力。用户级别是过时的和不应该被用在这里！" class="headerlink" title="3.$capability (string) (required) 这个菜单被显示到用户所需的能力。用户级别是过时的和不应该被用在这里！"></a>3.$capability (string) (required) 这个菜单被显示到用户所需的能力。用户级别是过时的和不应该被用在这里！</h3><p>Default: None</p>
+<h3 id="4-menu-slug-string-required-段塞流的名字来引用这个菜单（应为该菜单独特）。"><a href="#4-menu-slug-string-required-段塞流的名字来引用这个菜单（应为该菜单独特）。" class="headerlink" title="4.$menu_slug (string) (required) 段塞流的名字来引用这个菜单（应为该菜单独特）。"></a>4.$menu_slug (string) (required) 段塞流的名字来引用这个菜单（应为该菜单独特）。</h3><p>在3版本之前这被称为文件（或处理）参数。如果函数的参数被省略，这menu_slug应该是PHP文件处理菜单页面内容显示。</p>
+<p>Default: None</p>
+<h3 id="5-function-string-optional-显示菜单页面的页面内容的功能。"><a href="#5-function-string-optional-显示菜单页面的页面内容的功能。" class="headerlink" title="5.$function (string) (optional) 显示菜单页面的页面内容的功能。"></a>5.$function (string) (optional) 显示菜单页面的页面内容的功能。</h3><p>Default: None. 从技术上讲，函数的参数是可选的，但是如果它没有提供，那么WordPress将假设包括PHP文件将生成管理屏幕，而不调用一个函数。大多数插件作者选择将页面生成代码在函数内主要的插件文件。如果函数的参数是指定的，可以用于文件参数的任何字符串。这允许使用的页面等 ?page&#x3D;my_super_plugin_page instead of ?page&#x3D;my-super-plugin&#x2F;admin-options.php.</p>
+<p>该函数必须在两种方式中的一种参考:</p>
+<p>如果函数是一个类成员内部的插件应该参考阵列（$this, ‘function_name’ ）在所有其他情况下，使用函数的名字本身就足够了</p>
+<h3 id="6-icon-url-string-optional-URL图标可用于此菜单。"><a href="#6-icon-url-string-optional-URL图标可用于此菜单。" class="headerlink" title="6.$icon_url (string) (optional)URL图标可用于此菜单。"></a>6.$icon_url (string) (optional)URL图标可用于此菜单。</h3><p>此参数是可选的。图标应该是相当小的，约16×16像素的最好的结果。你可以使用plugin_dir_url（__file__）功能得到你的插件目录的URL然后添加图像文件给它。你可以设置$icon_url to “div” to have wordpress generate <br> tag instead of <img>.这可以用于更先进的形成通过CSS，如改变图标悬停。</p>
+<p>Default:</p>
+<h3 id="7-position-integer-optional-位置在菜单命令菜单应该出现。"><a href="#7-position-integer-optional-位置在菜单命令菜单应该出现。" class="headerlink" title="7.$position (integer) (optional) 位置在菜单命令菜单应该出现。"></a>7.$position (integer) (optional) 位置在菜单命令菜单应该出现。</h3><p>默认情况下，如果这个参数被省略，菜单将出现在菜单的底部结构。数值越高，较低的位置，在菜单。警告：如果两个菜单项使用相同的位置属性，一个项目可能被覆盖，所以只有一项显示！冲突的风险，可以通过使用十进制而不是整数的值减少，例如63.3而不是63（注：使用引号中的代码，即“63.3′）。</p>
+<p>Default: 底部的菜单结构</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><?php
+add\_action('admin\_menu', 'register\_custom\_menu_page');
+function register\_custom\_menu_page() {
+add\_menu\_page('custom menu title', 'custom menu', 'add\_users', 'myplugin/myplugin-index.php', '', plugins\_url('myplugin/images/icon.png'), 6);
+}
+?>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/function-add-menu-page.html" target="_blank">王柏元的博客 >> wordpress插件开发add_menu_page()函数详解</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/error-lnk2001-unresolved-external-symbol-quot-public-thiscall.html" class="pre-post btn btn-default" title='error LNK2001:unresolved external symbol ;public: __thiscall 类名::函数'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            error LNK2001:unresolved external symbol ;public: __thiscall 类名::函数</span>
+    </a>
+    
+    
+    <a href="/new-to-wp-plugins-encountered-exception-that-is-n-characters-output.html" class="next-post btn btn-default" title='插件在启用的过程中产生了594个字符的异常输出'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            插件在启用的过程中产生了594个字符的异常输出</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "21998",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#add-menu-page-%E5%87%BD%E6%95%B0%E6%98%AF%E5%9C%A8wordpress%E7%9A%84%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%AE%A1%E7%90%86%E8%8F%9C%E5%8D%95%E9%A1%B5%E9%9D%A2%E3%80%82"><span class="toc-text">add_menu_page()函数是在wordpress的管理后台添加一个管理菜单页面。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95%EF%BC%9A"><span class="toc-text">用法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-text">参数说明：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-page-title-string-required-%E6%96%87%E6%9C%AC%E6%98%AF%E7%BD%91%E9%A1%B5%E7%9A%84%E6%A0%87%E9%A2%98%E6%A0%87%E7%AD%BE%E6%98%BE%E7%A4%BA%E5%9C%A8%E8%8F%9C%E5%8D%95%E4%B8%AD%E9%80%89%E6%8B%A9"><span class="toc-text">1.$page_title (string) (required) 文本是网页的标题标签显示在菜单中选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-menu-title-string-required-%E8%AF%A5%E8%8F%9C%E5%8D%95%E5%B1%8F%E5%B9%95%E5%90%8D%E7%A7%B0%E7%9A%84%E6%96%87%E6%9C%AC"><span class="toc-text">2.$menu_title (string) (required) 该菜单屏幕名称的文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-capability-string-required-%E8%BF%99%E4%B8%AA%E8%8F%9C%E5%8D%95%E8%A2%AB%E6%98%BE%E7%A4%BA%E5%88%B0%E7%94%A8%E6%88%B7%E6%89%80%E9%9C%80%E7%9A%84%E8%83%BD%E5%8A%9B%E3%80%82%E7%94%A8%E6%88%B7%E7%BA%A7%E5%88%AB%E6%98%AF%E8%BF%87%E6%97%B6%E7%9A%84%E5%92%8C%E4%B8%8D%E5%BA%94%E8%AF%A5%E8%A2%AB%E7%94%A8%E5%9C%A8%E8%BF%99%E9%87%8C%EF%BC%81"><span class="toc-text">3.$capability (string) (required) 这个菜单被显示到用户所需的能力。用户级别是过时的和不应该被用在这里！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-menu-slug-string-required-%E6%AE%B5%E5%A1%9E%E6%B5%81%E7%9A%84%E5%90%8D%E5%AD%97%E6%9D%A5%E5%BC%95%E7%94%A8%E8%BF%99%E4%B8%AA%E8%8F%9C%E5%8D%95%EF%BC%88%E5%BA%94%E4%B8%BA%E8%AF%A5%E8%8F%9C%E5%8D%95%E7%8B%AC%E7%89%B9%EF%BC%89%E3%80%82"><span class="toc-text">4.$menu_slug (string) (required) 段塞流的名字来引用这个菜单（应为该菜单独特）。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-function-string-optional-%E6%98%BE%E7%A4%BA%E8%8F%9C%E5%8D%95%E9%A1%B5%E9%9D%A2%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9%E7%9A%84%E5%8A%9F%E8%83%BD%E3%80%82"><span class="toc-text">5.$function (string) (optional) 显示菜单页面的页面内容的功能。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-icon-url-string-optional-URL%E5%9B%BE%E6%A0%87%E5%8F%AF%E7%94%A8%E4%BA%8E%E6%AD%A4%E8%8F%9C%E5%8D%95%E3%80%82"><span class="toc-text">6.$icon_url (string) (optional)URL图标可用于此菜单。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-position-integer-optional-%E4%BD%8D%E7%BD%AE%E5%9C%A8%E8%8F%9C%E5%8D%95%E5%91%BD%E4%BB%A4%E8%8F%9C%E5%8D%95%E5%BA%94%E8%AF%A5%E5%87%BA%E7%8E%B0%E3%80%82"><span class="toc-text">7.$position (integer) (optional) 位置在菜单命令菜单应该出现。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-text">例子</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

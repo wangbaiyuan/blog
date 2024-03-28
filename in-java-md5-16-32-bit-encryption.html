@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="个人程序库,JAVA" />
+
+
+<meta name="description" content="java中MD5 16和32位加密，下面的Md5类中，通过构造函数Md5(String sourceStr)传入加密字符串，而get16和get32顾名思义是分别获取字符串的16位和32位MD5..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    java中MD5 16和32位加密 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="java中MD5 16和32位加密">
+            
+            java中MD5 16和32位加密
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/%E4%B8%AA%E4%BA%BA%E7%A8%8B%E5%BA%8F%E5%BA%93/" rel="tag">个人程序库</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/10/04</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>java中MD5 16和32位加密，下面的Md5类中，通过构造函数Md5(String sourceStr)传入加密字符串，而get16和get32顾名思义是分别获取字符串的16位和32位MD5哈希值。Md5加密方式不能反向解密，任何一个字符串乃至一个超大文件都可以获得MD5值，并且是独一无二的。一个4G大的文件加密为一段32位字符串后，即使对文件改了哪怕一个字节，算出来的Md5和原文件的Md5都会有天壤之别，所以Md5算法常作为大文件完整性的校验。</p>
+<h2 id="在线Md5加密、“解密”网站"><a href="#在线Md5加密、“解密”网站" class="headerlink" title="在线Md5加密、“解密”网站"></a>在线Md5加密、“解密”网站</h2><p>网址：<a target="_blank" rel="noopener" href="http://www.cmd5.com/">http://www.cmd5.com/</a> 需要指出的是，虽然Md5是难以解密的，但是由于同一字符串只能得到唯一的字符串，如果我们维护一个数据库记录下一些常用字符串的原值和Md5值，当输入的Md5能在数据库中找到记录的话，就能很快找到Md5值对应的原值。即所谓“解密”。</p>
+<h2 id="java中MD5-16和32位加密代码"><a href="#java中MD5-16和32位加密代码" class="headerlink" title="java中MD5 16和32位加密代码"></a>java中MD5 16和32位加密代码</h2><p>package cn.wangbaiyuan.toolsl;<br>import java.security.MessageDigest;<br>import java.security.NoSuchAlgorithmException;</p>
+<p>&#x2F;**<br> * Created by WBY on 2015&#x2F;10&#x2F;4.<br> *&#x2F;<br>public class Md5 {<br>    private String md5_32;<br>    private String md5_16;<br>public Md5(String sourceStr){<br>    String result &#x3D; “”;<br>    try {<br>        MessageDigest md &#x3D; MessageDigest.getInstance(“MD5”);<br>        md.update(sourceStr.getBytes());<br>        byte b[] &#x3D; md.digest();<br>        int i;<br>        StringBuffer buf &#x3D; new StringBuffer(“”);<br>        for (int offset &#x3D; 0; offset &lt; b.length; offset++) {<br>            i &#x3D; b[offset];<br>            if (i &lt; 0)<br>                i +&#x3D; 256;<br>            if (i &lt; 16)<br>                buf.append(“0”);<br>            buf.append(Integer.toHexString(i));<br>        }<br>        result &#x3D; buf.toString();<br>        md5_32&#x3D;result;<br>        md5_16&#x3D; buf.toString().substring(8, 24);<br>    } catch (NoSuchAlgorithmException e) {<br>        System.out.println(e);<br>    }<br>}<br>    public String get16(){<br>        return md5_16;<br>    }<br>    public String get32(){<br>        return md5_32;<br>    }</p>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/in-java-md5-16-32-bit-encryption.html" target="_blank">王柏元的博客 >> java中MD5 16和32位加密</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/let-dream-hanghang-video-works.html" class="pre-post btn btn-default" title='《让梦想去杭行》——视频作品'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            《让梦想去杭行》——视频作品</span>
+    </a>
+    
+    
+    <a href="/click-on-button-android-simulation.html" class="next-post btn btn-default" title='Android模拟点击按钮'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Android模拟点击按钮</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "14443",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1cb39b06441f8cf4f6a73795f68b44f1.png"
+                                 alt="@Ｃ語言 md5加密 不同位元 不同結果 | Pearltrees">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                Ｃ語言 md5加密 不同位元 不同結果 | Pearltrees
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-09-22
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] - 闲人轩. Java中MD5 16和32位加密 | 王柏元的博客. Java中MD5 16和32位加密，下面的Md5类中，通过构造函数Md5(String [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/9c9237f38c2bf2be0371115ed9d471fb.png"
+                                 alt="@麦谦生博客">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                麦谦生博客
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-10-10
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                好像看不懂哦....
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BA%BFMd5%E5%8A%A0%E5%AF%86%E3%80%81%E2%80%9C%E8%A7%A3%E5%AF%86%E2%80%9D%E7%BD%91%E7%AB%99"><span class="toc-text">在线Md5加密、“解密”网站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E4%B8%ADMD5-16%E5%92%8C32%E4%BD%8D%E5%8A%A0%E5%AF%86%E4%BB%A3%E7%A0%81"><span class="toc-text">java中MD5 16和32位加密代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,API,虚拟主机" />
+
+
+<meta name="description" content="学了一个月的安卓，写了几个小程序，总是觉得缺少点什么。看到一般市场上的软件都提供软件更新服务，极客人想自己也有个虚拟主机，是不是可以自己搭建一个软件更新服务器呢？百度了一下“依托虚拟主机为自制A..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    依托虚拟主机为自制APP提供软件更新服务（一） |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="依托虚拟主机为自制APP提供软件更新服务（一）">
+            
+            依托虚拟主机为自制APP提供软件更新服务（一）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/" rel="tag">虚拟主机</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/21</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>学了一个月的安卓，写了几个小程序，总是觉得缺少点什么。看到一般市场上的软件都提供软件更新服务，极客人想自己也有个虚拟主机，是不是可以自己搭建一个软件更新服务器呢？百度了一下“依托虚拟主机为自制APP提供软件更新服务”，可惜找遍整个百度也没找到解决方案，所以一穷二白，自己干。 要想实现软件更新，肯定有个服务器端发布的最新软件版本号与用户端当前使用的版本进行比对。如果版本号相同，则提示用户“当前为最新版本”；如果服务器上发布的最新版本高于用户使用的，则提示“版本更新”，并提供下载功能，下载完毕之后自动执行安装。要想获取最新版本号，必须读取数据库，如果直接用用户加密码的方式直接连接数据库的话，这无疑不安全，因为如果反编译或者破解了你的软件，你的数据库将会任人宰割。所以，我想到的解决方案是，自己在服务器端利用PHP做一个API，使用API请求的方法获取最新版本号和版本描述及下载地址。在奋斗几个星期后，下面是我的具体实现步骤：</p>
+<h1 id="依托虚拟主机为自制APP提供软件更新服务（一）——使用PHP制作API"><a href="#依托虚拟主机为自制APP提供软件更新服务（一）——使用PHP制作API" class="headerlink" title="依托虚拟主机为自制APP提供软件更新服务（一）——使用PHP制作API"></a>依托虚拟主机为自制APP提供软件更新服务（一）——使用PHP制作API</h1><h2 id="1-新建软件数据库表，添加软件ID、版本号、下载地址、版本描述等列；"><a href="#1-新建软件数据库表，添加软件ID、版本号、下载地址、版本描述等列；" class="headerlink" title="1.新建软件数据库表，添加软件ID、版本号、下载地址、版本描述等列；"></a>1.新建软件数据库表，添加软件ID、版本号、下载地址、版本描述等列；</h2><p>SQL语句如下：</p>
+<p>CREATE TABLE `my_software` (<br>  `sw_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,<br>  `sw_name` varchar(255) CHARACTER SET gbk NOT NULL DEFAULT ‘’,<br>  `sw_version` varchar(20) CHARACTER SET gbk NOT NULL DEFAULT ‘’,<br>  `sw_url` varchar(255) CHARACTER SET gbk NOT NULL DEFAULT ‘’,<br>  `sw_description` varchar(255) CHARACTER SET gbk NOT NULL DEFAULT ‘’,<br>  PRIMARY KEY (`sw_id`),<br>  KEY `sw_version` (`sw_version`)<br>) ENGINE&#x3D;MyISAM AUTO_INCREMENT&#x3D;2 DEFAULT CHARSET&#x3D;utf8;</p>
+<p>  建立的数据库表名为：mysoftware,结构如图： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/image8.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/image_thumb8.png" alt="image" title="image"></a></p>
+<h2 id="2-PHP调用数据库返回JSON格式字符串"><a href="#2-PHP调用数据库返回JSON格式字符串" class="headerlink" title="2.PHP调用数据库返回JSON格式字符串"></a>2.PHP调用数据库返回JSON格式字符串</h2><p>我在自己的虚拟主机根目录新建了命名为“api”文件夹，在“api”文件夹下建立两个php文件：update.php和db_connect.php。 其中db_connect.php是连接数据库的PHP文件，里面记录了连接数据库的数据库名、用户名、主机、密码、编码格式，代码如下：</p>
+<?php
+define('DB_NAME', 'wangbaiyuan');
+
+/\*\* MySQL数据库用户名 */
+define('DB_USER', 'wangbaiyuan');
+
+/\*\* MySQL数据库密码 */
+define('DB_PASSWORD', 'wangbaiyuan');
+
+/\*\* MySQL主机 */
+define('DB_HOST', 'wangbaiyuan');
+
+/\*\* 创建数据表时默认的文字编码 */
+define('DB_CHARSET', 'utf8');
+$software\_db=@mysqli\_connect(DB\_HOST,DB\_USER,DB\_PASSWORD,DB\_NAME) OR die('无法连接到软件数据库'.mysqli\_connect\_error());
+mysqli\_set\_charset($software\_db,DB\_CHARSET);
+?>
+
+<p>  你可以访问该PHP的URL测试改文件是否正确。 update.php是返回JSON字符串的PHP文件。它的作用是调取软件数据库表内的内容，并通过GET方法返回数据。 其代码如下：</p>
+<?php
+header("Content-Type:text/html;charset=utf-8");
+//get接受传值
+$id = $_GET\['id'\];
+//执行函数
+update($id);
+
+function update($id){
+    require('db_connect.php');
+    //函数体
+   $string = "select * from my\_software where sw\_id=".$id;
+   //echo $string;
+   $str = @mysqli\_query($software\_db,$string);
+   $array=mysqli\_fetch\_array($str,MYSQLI_ASSOC);
+   //$array =jsonify($array);
+$json=jsons_encode($array);
+echo $json;
+    mysqli\_close($software\_db);
+}
+//定义函数
+function  jsons_encode($array){
+
+      //遍历已有数组，将每个值 urlencode 一下
+      foreach($array as $key=>$value){
+           $array\[$key\]=urlencode($value);
+      }
+      //用urldecode将值反解
+      return urldecode(json_encode($array));
+}
+?>
+
+<p>  在这个文件里，通过”<a href="http://baiyuan.wang/api/update.php?id=1" title="http://baiyuan.wang/api/update.php?id=1">http://baiyuan.wang/api/update.php?id=1</a>”GET方式接受传值，然后调用了db_connect.php文件连接的数据库，执行$string &#x3D; “select * from my_software where sw_id&#x3D;”.$id;语句，然后对结果进行解析返回标准的JSON格式字符串。其中jsons_encode函数你可以参考我之前的一篇文章：<a href="http://baiyuan.wang/php-using-json-encode-an-array-of-chinese-characters.html" title="PHP用json_encode转换数组中文乱码">PHP用json_encode转换数组中文乱码进行理解</a>； 下面我制作成功后访问<a href="http://baiyuan.wang/api/update.php?id=1">http://baiyuan.wang/api/update.php?id=1</a>的网页内容： [callout class&#x3D;”info” title&#x3D;”使用PHP制作的API”]{“sw_id”:”1”,”sw_name”:”BY通讯录”,”sw_version”:”1.2”,”sw_url”:”<a href="http://baiyuan.wang/api/software/Contactss/_1/_2.apk%22,%22sw_description">http://baiyuan.wang/api/software/Contactss\_1\_2.apk&quot;,&quot;sw_description</a>“:” 1.BY通讯录，是王柏元自主开发的APP，作安卓开发入门试验之用；\n 2.调用在自己虚拟主机上的数据库搭建的API，实现了版本更新功能；\n 3.使用一些新的安卓技术。”}[&#x2F;callout] 看到这段字符串你可能大脑就会兴奋了，你可能能想到下面就是根据不同平台对JSON数据进行解析的工作了</p>
+<h1 id="依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析API数据"><a href="#依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析API数据" class="headerlink" title="依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析API数据"></a>依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析API数据</h1><p>在下一节我将通过安卓示例，向大家讲解对JSON数据进行解析为自制APP提供软件更新服务，<a href="http://baiyuan.wang/relying-on-virtual-hosts-to-provide-homemade-app-software-update-services-b.html" title="依托虚拟主机为自制APP提供软件更新服务（二）">查看下一节</a>。</p>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/virtual-hosts-provide-app-update-services-a.html" target="_blank">王柏元的博客 >> 依托虚拟主机为自制APP提供软件更新服务（一）</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/virtual-hosts-provide-app-update-services-b.html" class="pre-post btn btn-default" title='依托虚拟主机为APP提供软件更新服务（二）'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            依托虚拟主机为APP提供软件更新服务（二）</span>
+    </a>
+    
+    
+    <a href="/0-5m-install-package-the-smallest-browser-to-change-your-view-of-it.html" class="next-post btn btn-default" title='0.5M安装包，最小浏览器颠覆你的IT观'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            0.5M安装包，最小浏览器颠覆你的IT观</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "10577",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-07-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                没用过，这个不是可以自己写一个么，反正代码比较简单，就没必要用第三方平台了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/ea956b8adc63e98bad7d0d1118c0c9dc.png"
+                                 alt="@zph224">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                zph224
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-07-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                为什么不用 友盟
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%9D%E6%89%98%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%B8%BA%E8%87%AA%E5%88%B6APP%E6%8F%90%E4%BE%9B%E8%BD%AF%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8PHP%E5%88%B6%E4%BD%9CAPI"><span class="toc-text">依托虚拟主机为自制APP提供软件更新服务（一）——使用PHP制作API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%96%B0%E5%BB%BA%E8%BD%AF%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%EF%BC%8C%E6%B7%BB%E5%8A%A0%E8%BD%AF%E4%BB%B6ID%E3%80%81%E7%89%88%E6%9C%AC%E5%8F%B7%E3%80%81%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%E3%80%81%E7%89%88%E6%9C%AC%E6%8F%8F%E8%BF%B0%E7%AD%89%E5%88%97%EF%BC%9B"><span class="toc-text">1.新建软件数据库表，添加软件ID、版本号、下载地址、版本描述等列；</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-PHP%E8%B0%83%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%94%E5%9B%9EJSON%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">2.PHP调用数据库返回JSON格式字符串</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%9D%E6%89%98%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%B8%BA%E8%87%AA%E5%88%B6APP%E6%8F%90%E4%BE%9B%E8%BD%AF%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%AE%89%E5%8D%93%E8%A7%A3%E6%9E%90API%E6%95%B0%E6%8D%AE"><span class="toc-text">依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析API数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-text">代码下载</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

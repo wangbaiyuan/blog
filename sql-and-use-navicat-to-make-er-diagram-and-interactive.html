@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="软件工程,MySql,数据库,软件推荐,Navicat" />
+
+
+<meta name="description" content="Navicat极客人在数据库学习过程中用过的个人认为最优秀的一款数据库连接、设计、编辑查询软件。它不仅是极客人用过的数据库软件中界面最美观的一款，也是功能最强大、操作最简单的一款，Navicat..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    用Navicat制作ER图及与SQL互相转化 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="用Navicat制作ER图及与SQL互相转化">
+            
+            用Navicat制作ER图及与SQL互相转化
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/MySql/" rel="tag">MySql</a> <a class="tag-none-link" href="/tags/Navicat/" rel="tag">Navicat</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a> <a class="tag-none-link" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" rel="tag">软件工程</a> <a class="tag-none-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/21</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>Navicat极客人在数据库学习过程中用过的个人认为最优秀的一款数据库连接、设计、编辑查询软件。它不仅是极客人用过的数据库软件中<strong>界面最美观</strong>的一款，也是功能最强大、操作最简单的一款，Navicat分别有for MySQL、for MariaDB、for SQL Server、for SQLite、for Oracle 和 for PostgreSQL等多个单一数据库版本，同时也有Navicat Premium这个综合版本，Navicat Premium 是一个可多重连接的数据库管理工具，它可让你以单一程序同时连接到 MySQL、MariaDB、SQL Server、SQLite、Oracle 和 PostgreSQL 数据库，支持大部分在现今数据库管理系统中使用的功能，包括存储过程、事件、触发器、函数、视图等，同时可以在这款软件中为数据库添加用户、设置权限。 极客人使用Navicat除了以上常见功能外，还会使用navicat进行数据库<strong>数据备份、同步</strong>，将王柏元的博客上虚拟机数据库的数据备份、同步到本地，或者用navicat进行网站搬家。本人主要介绍怎样用Navicat制作ER图及与SQL互相转化：将数据库表导出成ER图和将ER图导出为SQL语句（这个功能也是极客人无意发现的，刚刚学习，欢迎共同交流！）。</p>
+<h2 id="一、用Navicat制作ER图"><a href="#一、用Navicat制作ER图" class="headerlink" title="一、用Navicat制作ER图"></a>一、用Navicat制作ER图</h2><p>  分别打开navicat的“模型”——“新建模型” <a href="http://baiyuan.wang/wp-content/uploads/2015/05/navicatForER_compressed.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/navicatForER_compressed.jpg" alt="navicat制作ER图"></a> navicat制作ER图  </p>
+<h2 id="二、将ER图导出为SQL语句"><a href="#二、将ER图导出为SQL语句" class="headerlink" title="二、将ER图导出为SQL语句"></a>二、将ER图导出为SQL语句</h2><p>如图 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg" alt="Navicat根据ER图导出为SQL"></a> Navicat根据ER图导出为SQL 打开工具——导出SQL 这样只要设计出ER图，所有的建表语句，包括主键、外键关系，Navicat将自动为我们生成。</p>
+<h2 id="三、将现成的数据库转换为ER图"><a href="#三、将现成的数据库转换为ER图" class="headerlink" title="三、将现成的数据库转换为ER图"></a>三、将现成的数据库转换为ER图</h2><p>选中已连接的数据库中 数据表——右键，选择“逆向数据库到模型”，即可根据现成的数据库生成ER图模型。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/sql-and-use-navicat-to-make-er-diagram-and-interactive.html" target="_blank">王柏元的博客 >> 用Navicat制作ER图及与SQL互相转化</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd8-ex2-udp-vs-tcp.html" class="pre-post btn btn-default" title='SSD8_EX2【UDP vs TCP】'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD8_EX2【UDP vs TCP】</span>
+    </a>
+    
+    
+    <a href="/ytlqpo-com-a-malicious-image-resolution-countermeasures.html" class="next-post btn btn-default" title='被.ytlqpo.com恶意镜像的解决、反制措施'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            被.ytlqpo.com恶意镜像的解决、反制措施</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "53334",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/e56b30a5d68d370b1f0d9955cb3bcb3b.png"
+                                 alt="@习惯沉淀">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                习惯沉淀
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-06-15
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                涨姿势了~
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%94%A8Navicat%E5%88%B6%E4%BD%9CER%E5%9B%BE"><span class="toc-text">一、用Navicat制作ER图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B0%86ER%E5%9B%BE%E5%AF%BC%E5%87%BA%E4%B8%BASQL%E8%AF%AD%E5%8F%A5"><span class="toc-text">二、将ER图导出为SQL语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B0%86%E7%8E%B0%E6%88%90%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BD%AC%E6%8D%A2%E4%B8%BAER%E5%9B%BE"><span class="toc-text">三、将现成的数据库转换为ER图</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

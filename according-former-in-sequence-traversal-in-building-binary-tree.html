@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,个人程序库,递归" />
+
+
+<meta name="description" content="根据前序遍历和中序遍历构建二叉树的基本思想是使用递归算法；首先构建根节点的左子树和右子树，而在构建根节点的左右子树的时候又要构建左右子树根节点的左右子树， 所以很容易想到递归算法；本项目构建二叉..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    根据前中序遍历构建二叉树 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="根据前中序遍历构建二叉树">
+            
+            根据前中序遍历构建二叉树
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E4%B8%AA%E4%BA%BA%E7%A8%8B%E5%BA%8F%E5%BA%93/" rel="tag">个人程序库</a> <a class="tag-none-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/11/01</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>根据前序遍历和中序遍历构建二叉树的基本思想是使用递归算法；首先构建根节点的左子树和右子树，而在构建根节点的左右子树的时候又要构建左右子树根节点的左右子树， 所以很容易想到递归算法；本项目构建二叉树的主要函数是CreateBinaryTree，其参数有char *preorder, char *inorder, int n，分别是当前构建二叉树的前序排列和中序排列和结点个数；直到构建的子二叉树中节点个数为零，即完成了递归。</p>
+<h2 id="根据前中序遍历构建二叉树"><a href="#根据前中序遍历构建二叉树" class="headerlink" title="根据前中序遍历构建二叉树"></a>根据前中序遍历构建二叉树</h2><p>&#x2F;&#x2F; BinaryTree.cpp : 定义控制台应用程序的入口点。<br>&#x2F;&#x2F;</p>
+<p>#include “stdafx.h”<br>#include&lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#include &lt;string.h&gt;<br>#include<iostream><br>using namespace std;</p>
+<p>template<class T><br>&#x2F;<em>构建结构体二叉树结点，采用模板类T</em>&#x2F;<br>struct BinaryNode<br>{<br>    T data;<br>    BinaryNode<T> *Lchild &#x3D; NULL, *Rchild &#x3D; NULL;<br>};</p>
+<p>int get_root_index(char *preorder, char *inorder, int n)&#x2F;&#x2F;返回根节点的序号<br>{<br>    int i;<br>    char ch;<br>    for (i &#x3D; 0, ch &#x3D; preorder[0]; i&lt;n; i++)<br>    if (inorder[i] &#x3D;&#x3D; ch)<br>        return i;<br>    return -1;<br>}<br>&#x2F;*递归产生前序序列和中序序列的二叉树*&#x2F;<br>BinaryNode<char> *CreateBinaryTree(char *preorder, char *inorder, int n)<br>{<br>    if (n &#x3D;&#x3D; 0)<br>        return NULL;<br>    int root_val &#x3D; preorder[0];<br>    int i &#x3D; get_root_index(preorder, inorder, n);&#x2F;&#x2F;获取根节点在中序遍历中的位置<br>    BinaryNode<char>*root &#x3D; (BinaryNode<char>*)malloc(sizeof(BinaryNode<char>));<br>    root-&gt;data &#x3D; root_val;<br>    &#x2F;&#x2F;递归得到当前子树的左子树Lchild，Lchild的前序遍历起始位置为父树的preorder + 1<br>    root-&gt;Lchild &#x3D; CreateBinaryTree(preorder + 1, inorder, i);<br>    root-&gt;Rchild &#x3D; CreateBinaryTree(preorder + i + 1, inorder + i + 1, n - i - 1);&#x2F;&#x2F;递归得到当前子输的右子树<br>    return root;<br>}</p>
+<p>&#x2F;<em>使用递归前序遍历</em>&#x2F;<br>void postorder(BinaryNode<char> *root)<br>{<br>    if (root)<br>    {<br>        cout &lt;&lt; root-&gt;data ;<br>        postorder(root-&gt;Lchild);<br>        postorder(root-&gt;Rchild);</p>
+<pre><code>&#125;
+</code></pre>
+<p>}<br>int main()<br>{<br>    char *preorder &#x3D; “ABCDEF”;<br>    char *inorder &#x3D; “BCAEDF”;<br>    int n &#x3D; strlen(preorder);<br>    BinaryNode<char> *root &#x3D; CreateBinaryTree(preorder, inorder, n);<br>    postorder(root);<br>    printf(“\n”);<br>    return 0;<br>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/according-former-in-sequence-traversal-in-building-binary-tree.html" target="_blank">王柏元的博客 >> 根据前中序遍历构建二叉树</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/bottle-of-beer-very-hot-hot-hot.html" class="pre-post btn btn-default" title='一瓶啤酒烫烫烫'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            一瓶啤酒烫烫烫</span>
+    </a>
+    
+    
+    <a href="/assembly-instruction-corresponding-english-words.html" class="next-post btn btn-default" title='汇编指令对应的英文单词'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            汇编指令对应的英文单词</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "2812",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f58e36eeafeba83f7eae9bdd9fdde3f2.png"
+                                 alt="@张阳">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                张阳
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-11-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                现在真看不下去这些东西了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%89%8D%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">根据前中序遍历构建二叉树</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

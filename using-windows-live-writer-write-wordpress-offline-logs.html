@@ -1,0 +1,441 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="在前一篇博客向大家介绍了用word写wordpress博客的方法，可能使用的朋友发现，word并不能为文章设置标签，设置发布日期，预览和查看源代码，如果你对Word写wordpress博客不满意..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    用Windows Live Writer离线写WordPress日志 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="用Windows Live Writer离线写WordPress日志">
+            
+            用Windows Live Writer离线写WordPress日志
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/02/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在前一篇博客向大家介绍了用word写wordpress博客的方法，可能使用的朋友发现，word并不能为文章设置标签，设置发布日期，预览和查看源代码，如果你对Word写wordpress博客不满意，那么推荐你一款非常友好的软件：Windows Live Writer（简称WLW）。这里向大家介绍一下如何用Windows Live Writer 离线写WordPress日志</p>
+<p>WLW可以自动侦测并保存您的网络日志的视觉主题。所以，您可以在博客发布之前，在写日志的过程中真切地看到日志的外观和排版，再也不必浪费时间来联机预览了。需要指出的是，它几乎可以完成你所有在线能做到的一切！</p>
+<p><strong>现针对WordPress博客的设置详解，如下：</strong></p>
+<h2 id="步骤一：准备工作"><a href="#步骤一：准备工作" class="headerlink" title="步骤一：准备工作"></a>步骤一：准备工作</h2><p>1、官方网站下载 Windows Live Writer 软件，地址：<a target="_blank" rel="noopener" href="http://explore.live.com/windows-live-writer?os=other">Windows Live Writer 2011（简体中文版）</a></p>
+<p>2、登录你的WordPress管理员后台，在【设置-撰写】的“远程发布”项内，激活启动“XML-RPC”（启用 WordPress，Movable Type，MetaWeblog和Blogger 的 XML-RPC发布协议）。</p>
+<h2 id="步骤二：安装软件"><a href="#步骤二：安装软件" class="headerlink" title="步骤二：安装软件"></a>步骤二：安装软件</h2><p>运行安装程序，勾选Writer进行安装。</p>
+<p>此外，你可以安装根据所需选择要安装其他应用软件（因为下载的是微软Windows Live软件包，所以里面涵盖了微软很多其他软件工具，请根据所需勾选下载）</p>
+<h2 id="步骤三：设置Windows-Live-Writer"><a href="#步骤三：设置Windows-Live-Writer" class="headerlink" title="步骤三：设置Windows Live Writer"></a>步骤三：设置Windows Live Writer</h2><p>1. 安装完Writer后，会自动弹出如下图提示，点击下一步。</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps1.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125801wXV.png" alt="steps1" title="steps1"></a></p>
+<p>2. 选择”WordPress”，点击下一步。（如果您现在使用的日志服务没有在列表中，请选择“其他服务”，下面我将按“其他服务”的选项进行详解）</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps2_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/1258026xY.png" alt="steps2" title="steps2"></a></p>
+<p>3. 点击下一步后，会提示您填写日志帐户信息。日志网址处请填写您的博客主页地址。用户名和密码为您博客后台的登录用户名和密码（不是您设置的日志显示昵称）。如果您的电脑非公用，可勾选“记住我的密码”。</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps3_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125804r6p.png" alt="steps3" title="steps3"></a></p>
+<p>4. 填写完帐户内容后，点击下一步，开始检测连接您的帐户，如下图。</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps4_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/1258052en.png" alt="steps4" title="steps4"></a></p>
+<p>注：如果在连接日志服务器时，出现如下错误提示，需要手动修改相关文件：</p>
+<p>提示出错信息：“<strong>无法连接到您的日志服务:服务器响应无效 – 从日志服务器接收的对 blogger.getUsersBlogs 方法的响应无效:Invalid response document returned from XmlRpc server 请尝试解决问题，然后重试</strong>。”</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/windowslivewriter.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125806sY2.png" alt="windowslivewriter" title="windowslivewriter"></a></p>
+<p>问题出现的根本原因是因为WordPress本身的一个bug，在utf-8编码下，xml-rpc返回的格式不正确，缺少了三个字节，要修正这个问题，操作如下：</p>
+<p>a) 找到class-IXR.php文件（注意：wordpress 2.9之前的版本，文件名可能是chass.ixr.php），该文件位于博客根目录wp-includes文件夹下，然后用一个文本编辑工具打开它（推荐使用editplus）；</p>
+<p>b) 查找到以下语句：</p>
+<blockquote>
+<p><strong>$length &#x3D; strlen($xml);</strong></p>
+</blockquote>
+<p>将其替换为：</p>
+<blockquote>
+<p><strong>$length &#x3D; strlen($xml)+3;</strong></p>
+</blockquote>
+<p><strong>大家注意：以上方法针对2.9之后的版本，</strong>在wordpress 2.9之前的版本中没有class.ixr.php 文件，而是叫chass.ixr.php文件，它其实是WordPress升级后将<strong>chass.ixr.php</strong> 文件变成了<strong>class-IXR.php</strong>。不论哪种版本，按照上面的解决办法修改class-IXR.php&#x2F;或chass.ixr.php文件，问题很容易就解决了！</p>
+<p>5. 检测过程中会出现“是否要发布临时日志”的提示窗口，如下图。建议直接选择“否（N）”。</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps5_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125808fXn.png" alt="steps5" title="steps5"></a></p>
+<p>6. 检测完毕之后，会出现下面的窗口，默认情况下会直接提取您的博客Title。当然，您也可以自行输入昵称。点击“完成”，设置成功。</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps6_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125809wTc.png" alt="steps6" title="steps6"></a></p>
+<p>当您想重新修改日志设置信息时，可以在WLW的“管理日志帐户”中重新编辑修改。如图：</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps7_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125810R0L.png" alt="steps7" title="steps7"></a></p>
+<p>设置完以后就可以用Windows Live Writer写博客了，相比Wordpress自带的编辑器有很多优势，尤其对于多图日志，离线编写减少了上传图片的繁琐性。Writer的插入表格和地 图功能也是Wordpress自带编辑器所没有的，由于Windows Live Writer是微软的产品，所以插入的地图是Bing地图。</p>
+<h2 id="用Windows-Live-Writer离线写WordPress日志"><a href="#用Windows-Live-Writer离线写WordPress日志" class="headerlink" title="用Windows Live Writer离线写WordPress日志"></a>用Windows Live Writer离线写WordPress日志</h2><p>Windows Live Writer还可以设置日志类别、Ping设置、作者、摘要、发布日期、标签、数据域（永久链接）等几乎所有Wordpress编辑器自带的功能（如下 图），但我用习惯的Simple Tags的一键标签（Click tags）功能，如果一定要用到的话可以使用Windows Live Writer发布完了再去Wordpress编辑器上再编辑一下。</p>
+<p><a target="_blank" rel="noopener" href="http://xuhehuan.com/wp-content/uploads/2011/09/steps8_thumb.png"><img src="http://baiyuan.wang/wp-content/uploads/auto_save_image2015/02/125812H4s.png" alt="steps8" title="steps8"></a></p>
+<p>Windows Live Writer的预览功能比Wordpress要更加完善，点击预览按钮，可以直接预览发布后的效果（如果没有显示效果，请尝试联机更新主题）。</p>
+<p><strong>Windows Live Writer</strong> <strong>最近发表和草稿存放目录</strong></p>
+<p>虽然Windows Live Write没有提供备份草稿的功能，但是我们可以通过复制Windows Live Write的安装目录中的文件，从而达到备份Windows Live Write的草稿。（由于默认安装在C盘下，所以如果你重装系统时，务必要将相关的Windows Live Write草稿文件夹进行备份）</p>
+<p><strong>最近发表和草稿存放目录的路径：</strong>C:Documents and SettingsUserNameMy DocumentsMy Weblog Posts（这里的“C”指的是系统所在硬盘分区的盘符。如果“我的文档”目录另有指定位置，则应该进入之前指定的位置），进入该文件夹中会看到“Drafts”、“Recent Posts”两个目录。</p>
+<p><strong>Drafts****：</strong>草稿的存放目录，保存的日志以wpost文件格式存在，可以用WLW直接打开。</p>
+<p><strong>Recent Posts****：</strong>最近发表的存放目录，保存的日志以wpost文件格式存在，可以用WLW直接打开。</p>
+<p>由于备份草稿默认放在系统盘，为了避免系统重装或出现其他问题，尽量定期备份将该目录到其他分区或U盘中。在系统重装完成并安装Windows Live Writer之后，再把“Drafts”恢复到原来的目录文件夹，便可恢复Windows Live Writer草稿，非常方便。</p>
+<h2 id="Windows-Live-Writer下载"><a href="#Windows-Live-Writer下载" class="headerlink" title="Windows Live Writer下载"></a>Windows Live Writer下载</h2><p>[button class&#x3D;”default” size&#x3D;”lg” href&#x3D;”<a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a>“ title&#x3D;”下载”] 下载 [&#x2F;button]</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/using-windows-live-writer-write-wordpress-offline-logs.html" target="_blank">王柏元的博客 >> 用Windows Live Writer离线写WordPress日志</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/how-to-apply-for-it-science-science-domain-names.html" class="pre-post btn btn-default" title='怎样免费申请.Science（科学）域名'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            怎样免费申请.Science（科学）域名</span>
+    </a>
+    
+    
+    <a href="/why-didnt-an-zhuoji-iphone-smoothly.html" class="next-post btn btn-default" title='为什么安卓机没iPhone流畅？'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            为什么安卓机没iPhone流畅？</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "34932",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/921a8305b03a10b3f9006a989a184314.png"
+                                 alt="@试试windows live write发布博客 - 远行&amp;#039;s life">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                试试windows live write发布博客 - 远行&amp;#039;s life
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-11-25
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 再试试超链接吧，我是参照这篇文章设置的windows live write，其实过程很简单，用Windows Live Writer离线写WordPress日志。 [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%EF%BC%9A%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">步骤一：准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%EF%BC%9A%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-text">步骤二：安装软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%EF%BC%9A%E8%AE%BE%E7%BD%AEWindows-Live-Writer"><span class="toc-text">步骤三：设置Windows Live Writer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8Windows-Live-Writer%E7%A6%BB%E7%BA%BF%E5%86%99WordPress%E6%97%A5%E5%BF%97"><span class="toc-text">用Windows Live Writer离线写WordPress日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-Live-Writer%E4%B8%8B%E8%BD%BD"><span class="toc-text">Windows Live Writer下载</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="UA,微信" />
+
+
+<meta name="description" content="今天，笔者打开学校的“小瓜工大助手”查跑操的页面，对它的网页源代码非常感兴趣。无奈网页的设计者只让用户在微信的自带浏览器中打开网页，而手机微信自带浏览器是没有审查元素、查看源代码之类的功能。我的..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    模拟UA实现访问只能在微信上打开的网页 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="模拟UA实现访问只能在微信上打开的网页">
+            
+            模拟UA实现访问只能在微信上打开的网页
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/UA/" rel="tag">UA</a> <a class="tag-none-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/29</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>今天，笔者打开学校的“小瓜工大助手”查跑操的页面，对它的网页源代码非常感兴趣。无奈网页的设计者只让用户在微信的自带浏览器中打开网页，而手机微信自带浏览器是没有审查元素、查看源代码之类的功能。我的第一感觉就是写代码的人肯定是采取UA匹配以限制其它终端访问的机制。所以，解决办法很简单，在电脑模拟一个微信浏览器，实现方法就是修改浏览器的UA（userAgent）。 试验结果很顺利： 通过微信右上角的菜单“复制链接”获取当前页面的链接：<a target="_blank" rel="noopener" href="http://npuxiaogua.mgschool.cn/wx/apps/paocao">http://npuxiaogua.mgschool.cn/wx/apps/paocao</a></p>
+<h2 id="在电脑浏览器上打开时："><a href="#在电脑浏览器上打开时：" class="headerlink" title="在电脑浏览器上打开时："></a>在电脑浏览器上打开时：</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/03/image10.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb10.png" alt="请用微信自带浏览器打开" title="请用微信自带浏览器打开"></a></p>
+<h2 id="通过修改浏览器UA后的结果："><a href="#通过修改浏览器UA后的结果：" class="headerlink" title="通过修改浏览器UA后的结果："></a>通过修改浏览器UA后的结果：</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/03/image11.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb11.png" alt="image" title="image"></a></p>
+<h2 id="下面讲讲操作方法："><a href="#下面讲讲操作方法：" class="headerlink" title="下面讲讲操作方法："></a>下面讲讲操作方法：</h2><p> </p>
+<h2 id="一-“谷歌浏览器”审查元素"><a href="#一-“谷歌浏览器”审查元素" class="headerlink" title="一.“谷歌浏览器”审查元素"></a>一.“谷歌浏览器”审查元素</h2><p>使用右键—“审查元素” <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image12.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb12.png" alt="谷歌浏览器”审查元素" title="谷歌浏览器”审查元素"></a> 点击审查元素手机小图标的按钮（element选项卡左边），进入模拟手机、平板电脑等其他终端的视图，下面在截图上做详解： <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image13.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb13.png" alt="谷歌浏览器模拟手机、平板电脑等其他终端" title="谷歌浏览器模拟手机、平板电脑等其他终端"></a> 现在只需要在上图的UA里填写一下微信的UA就行了。那么微信的UA是什么呢？</p>
+<h2 id="二、怎样获取访问者的UA信息"><a href="#二、怎样获取访问者的UA信息" class="headerlink" title="二、怎样获取访问者的UA信息"></a>二、怎样获取访问者的UA信息</h2><p>其实获取设备的UA很简单，任何一个网站的网站日志里面都会显示访问设备的UA信息：</p>
+<h3 id="下面是一段标准的网站日志："><a href="#下面是一段标准的网站日志：" class="headerlink" title="下面是一段标准的网站日志："></a>下面是一段标准的网站日志：</h3><p>61.*.43.34 - - [25&#x2F;Mar&#x2F;2015:23:38:15 +0800] “GET &#x2F;how_to_write_robts-txt.html HTTP&#x2F;1.1” 200 15071 “<a href="http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html">http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html</a>“ “Mozilla&#x2F;5.0 (Linux; U; Android 4.4.2; zh-CN; Lenovo A808t Build&#x2F;KOT49H) AppleWebKit&#x2F;534.30 (KHTML, like Gecko) Version&#x2F;4.0 UCBrowser&#x2F;10.2.1.550 U3&#x2F;0.8.0 Mobile Safari&#x2F;534.30” qxu1098410053.my3w.com text&#x2F;html “&#x2F;usr&#x2F;home&#x2F;qxu1098410053&#x2F;htdocs&#x2F;index.php” 858930</p>
+<p> </p>
+<ul>
+<li>其中“61.*.43.34 ”是访问者的IP，</li>
+<li>[25&#x2F;Mar&#x2F;2015:23:38:15 +0800]——访问日期</li>
+<li><a href="http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html">http://baiyuan.wang/javascript-implementation-article-copy-plus-copyright-information.html</a>—访问网址</li>
+</ul>
+<h3 id="网址后面的就是UA信息了："><a href="#网址后面的就是UA信息了：" class="headerlink" title="网址后面的就是UA信息了："></a>网址后面的就是UA信息了：</h3><p>Mozilla&#x2F;5.0 (Linux; U; Android 4.4.2; zh-CN; Lenovo A808t Build&#x2F;KOT49H) AppleWebKit&#x2F;534.30 (KHTML, like Gecko) Version&#x2F;4.0 UCBrowser&#x2F;10.2.1.550 U3&#x2F;0.8.0 Mobile Safari&#x2F;534.30 通过上面的方法，笔者获取了微信自带浏览器的UA字段如下： Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12A365 MicroMessenger&#x2F;5.4.1 NetType&#x2F;WIFI</p>
+<h2 id="三、在谷歌浏览器终端模拟界面填写UA"><a href="#三、在谷歌浏览器终端模拟界面填写UA" class="headerlink" title="三、在谷歌浏览器终端模拟界面填写UA"></a>三、在谷歌浏览器终端模拟界面填写UA</h2><p>Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12A365 MicroMessenger&#x2F;5.4.1 NetType&#x2F;WIFI 刷新你要访问的微信网页，就再也不会出现“本网页只能在微信自带浏览器中打开”了。</p>
+<h2 id="四、拓展与总结："><a href="#四、拓展与总结：" class="headerlink" title="四、拓展与总结："></a>四、拓展与总结：</h2><p>1.可以通过上述方法模拟iPhone、ipad、安卓手机，从而在网页开发时用一台电脑即可知晓自己的网页在不同设备终端上的界面状况； 2.微信的UA为：Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12A365 MicroMessenger&#x2F;5.4.1 NetType&#x2F;WIFI</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/analog-ua-implementation-access-to-open-only-on-the-app-page.html" target="_blank">王柏元的博客 >> 模拟UA实现访问只能在微信上打开的网页</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/tabhost-tab-component-usage.html" class="pre-post btn btn-default" title='Tabhost选项卡组件的使用方法'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Tabhost选项卡组件的使用方法</span>
+    </a>
+    
+    
+    <a href="/web-hosting-how-to-block-specified-ip-or-network-segments.html" class="next-post btn btn-default" title='虚拟主机怎样屏蔽指定IP或网段'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            虚拟主机怎样屏蔽指定IP或网段</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "10807",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/0120c8f3ebed1d60d60ae60d3dd035de.png"
+                                 alt="@环保">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                环保
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-04-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                此方法现在已经不灵了，腾讯添加了客户端验证功能，除了微信客户端，其他方法都打不开了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-03-27
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                新版的chrome内核的浏览器，选择设备下拉菜单里有一个 “edit”选项，可以自定义UA信息
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/429839fad7558985a775015963778aeb.png"
+                                 alt="@李龙">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                李龙
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-03-26
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我找不到那个UA地址没法黏贴怎么办
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/3d373b25179e2845eacfe32b4a2eb5ee.png"
+                                 alt="@素材火">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                素材火
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-03-25
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                非常有用，谢谢
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f212eec2162ce18bbea7bb96b7f71f56.png"
+                                 alt="@ゞ 　淡然 。">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                ゞ 　淡然 。
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-13
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                能具体怎么操作么？怎么模拟设备
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/3257157f815b5e53d184e4b53242a1c0.png"
+                                 alt="@壁虎">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                壁虎
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-09
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我是因为想看一下微信网页的元素，发现了这。666，佩服！
+不过我发现了只用模拟设备，模拟出手机设备就能打开
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-05
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                一年前还没有这
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1490508b061b51acde48fc47f2de85df.png"
+                                 alt="@张金富">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                张金富
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-05
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你可以用微信web开发者工具测试啊！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%94%B5%E8%84%91%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E6%89%93%E5%BC%80%E6%97%B6%EF%BC%9A"><span class="toc-text">在电脑浏览器上打开时：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E6%B5%8F%E8%A7%88%E5%99%A8UA%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-text">通过修改浏览器UA后的结果：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E8%AE%B2%E8%AE%B2%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">下面讲讲操作方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E2%80%9C%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E2%80%9D%E5%AE%A1%E6%9F%A5%E5%85%83%E7%B4%A0"><span class="toc-text">一.“谷歌浏览器”审查元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%80%8E%E6%A0%B7%E8%8E%B7%E5%8F%96%E8%AE%BF%E9%97%AE%E8%80%85%E7%9A%84UA%E4%BF%A1%E6%81%AF"><span class="toc-text">二、怎样获取访问者的UA信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E4%B8%80%E6%AE%B5%E6%A0%87%E5%87%86%E7%9A%84%E7%BD%91%E7%AB%99%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="toc-text">下面是一段标准的网站日志：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E5%9D%80%E5%90%8E%E9%9D%A2%E7%9A%84%E5%B0%B1%E6%98%AFUA%E4%BF%A1%E6%81%AF%E4%BA%86%EF%BC%9A"><span class="toc-text">网址后面的就是UA信息了：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%88%E7%AB%AF%E6%A8%A1%E6%8B%9F%E7%95%8C%E9%9D%A2%E5%A1%AB%E5%86%99UA"><span class="toc-text">三、在谷歌浏览器终端模拟界面填写UA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%8B%93%E5%B1%95%E4%B8%8E%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">四、拓展与总结：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

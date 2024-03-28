@@ -1,0 +1,467 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="Docker,CI/CD" />
+
+
+<meta name="description" content="Docker run Docker？Docker技术目前在DevOps中被广泛使用，我们需要将测试或者构建的代码和自动化脚本打包成Docker镜像，然后部署在各运行环境中。而在CI&#x2F;C..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Docker in Docker |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Docker in Docker">
+            
+            Docker in Docker
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/CI-CD/" rel="tag">CI/CD</a> <a class="tag-none-link" href="/tags/Docker/" rel="tag">Docker</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/04/24</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Docker-run-Docker？"><a href="#Docker-run-Docker？" class="headerlink" title="Docker run Docker？"></a>Docker run Docker？</h2><p>Docker技术目前在DevOps中被广泛使用，我们需要将测试或者构建的代码和自动化脚本打包成Docker镜像，然后部署在各运行环境中。而在CI&#x2F;CD中，我们常用一些CI&#x2F;CD服务器，比如Jenkins和GoCD来构建与部署我们的应用，从而实现CI&#x2F;CD的自动化。现在一些CI&#x2F;CD服务器也被Docker化运行在真实的物理机上。于是我们需要在CI&#x2F;CD服务器的Docker container里面来构建（build）与运行（run）我们的Docker镜像，这就涉及到”Docker run Docker”的问题。 一个很自然的想法是，我们是不是需要在CI&#x2F;CD服务器镜像中安装一个Docker Daemon和Docker命令呢？但是Docker里面跑Docker总感觉有些蹩脚，额外安装与运行Docker无疑增加了CI&#x2F;CD服务器镜像的大小，同时还增加Docker的深度。 实际上，我们并不需要在CI&#x2F;CD服务器上安装Docker。通过如下的命令在CI&#x2F;CD服务器上运行我们的镜像：</p>
+<p>  docker run … <br>    -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock \</p>
+<h2 id="原理：移花接木"><a href="#原理：移花接木" class="headerlink" title="原理：移花接木"></a>原理：移花接木</h2><p>Docker采取的是C&#x2F;S架构，Docker的成功运行需要Docker Daemon和Docker Client(客户端)的支持，当我们运行一些docker build等命令时，实际是需要Docker Client连接Docker Daemon发送命令，Docker Daemon会在宿主机操作系统分配文件、网络等资源。 <a href="http://baiyuan.wang/wp-content/uploads/2018/04/architecture.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2018/04/architecture.jpg"></a> 默认情况下，Docker守护进程会生成一个socket（&#x2F;var&#x2F;run&#x2F;docker.sock）文件来进行本地进程通信，而不会监听任何端口，因此只能在本地使用docker客户端或者使用Docker API进行操作。一般情况下，我们访问本机的服务往往通过 <em>127.0.0.1:8080</em> 这种IP：端口的网络地址方式进行通信，而sock文件是 <strong>UNIX 域套接字</strong>（UNIX domain socket），它可以通过文件系统（而非网络地址）进行寻址和访问的套接字。 从表象上看，上面的命令似乎依然是在“Docker里面run docker”，其实这是个误区。docker run提供了 <em><strong>-v</strong></em> 参数让我们将宿主的文件映射到docker里面。比如通过 _**-v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock **_，我们将宿主的Docker Daemon的socket映射到Docker Container里面；当Container里面的docker 客户端通过 &#x2F;var&#x2F;run&#x2F;docker.sock 去操作Docker Daemon时，这些操作已移花接木地转移到宿主的Docker Daemon上。  </p>
+<h2 id="延伸：操作远程主机"><a href="#延伸：操作远程主机" class="headerlink" title="延伸：操作远程主机"></a>延伸：操作远程主机</h2><p>既然docker client通过socket方式与本地的Docker Daemon进行通信，那么我们可以很自然地想到，如果想在其他主机上通过socket连接到远程DockerDaemon，是不是可以远程操作Docker主机进行镜像的构建与运行呢？答案是可以的，就需要让Docker守护进程监听一个端口，这样才能实现远程通信，同时需要修改docker客户端连接的主机是远程地址而并非本地sock文件。由于Docker C&#x2F;S 之间采取Rest API作为通信协议，这为我们使用第三方客户端（如postman）操作docker乃至自己开发client提供了扩展。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/docker-in-docker.html" target="_blank">王柏元的博客 >> Docker in Docker</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/know-more-about-the-world.html" class="pre-post btn btn-default" title='多看看这世界'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            多看看这世界</span>
+    </a>
+    
+    
+    <a href="/5-of-binocular-camera-pcduino-real-time-image-transmission-platform-of-smart-car.html" class="next-post btn btn-default" title='【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "23731",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/454d09f1c3c69c96f38932e5f9df6f9a.png"
+                                 alt="@忘乎所以-|-。">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                忘乎所以-|-。
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-05-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                不好意思，是我理解错了， 我以为是需要在 docker 容器中通过 docker run … -v … 命令来启动一个新的容器。 现在我直接用 docker run … -v … 来启动容器，并在其中完成build是OK的； 多谢你的分享～
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-05-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这个错是因为docker demon 没有运行，你的docker client 连接的server是哪里的？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/8d26e899f8e1c625aed065ea3bd49eed.png"
+                                 alt="@忘乎所以">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                忘乎所以
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-05-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                docker build 应该怎么做？ 我在docker容器中装了docker client， 但是执行 docker run ... -v ... 的时候报错：docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-run-Docker%EF%BC%9F"><span class="toc-text">Docker run Docker？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9A%E7%A7%BB%E8%8A%B1%E6%8E%A5%E6%9C%A8"><span class="toc-text">原理：移花接木</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E4%BC%B8%EF%BC%9A%E6%93%8D%E4%BD%9C%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA"><span class="toc-text">延伸：操作远程主机</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

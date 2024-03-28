@@ -1,0 +1,682 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,API,json" />
+
+
+<meta name="description" content="对于服务器端来说，返回给客户端的数据格式一般分为html、xml和json这三种格式，那么本篇随笔将讲解一下json这个知识点，包括如何通过json-lib和gson这两个json解析库来对解析..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Android开发解析JSON数据 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android开发解析JSON数据">
+            
+            Android开发解析JSON数据
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/json/" rel="tag">json</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/07</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>对于服务器端来说，返回给客户端的数据格式一般分为html、xml和json这三种格式，那么本篇随笔将讲解一下json这个知识点，包括如何通过json-lib和gson这两个json解析库来对解析我们的json数据，以及如何在我们的Android客户端解析来自服务器端的json数据，并更新到UI当中。</p>
+<h2 id="一、什么是json"><a href="#一、什么是json" class="headerlink" title="一、什么是json"></a>一、什么是json</h2><p>json(Javascript Object Notation)是一种轻量级的数据交换格式，相比于xml这种数据交换格式来说，因为解析xml比较的复杂，而且需要编写大段的代码，所以客户端和服务器的数据交换格式往往通过json来进行交换。尤其是对于web开发来说，json数据格式在客户端直接可以通过javascript来进行解析。 json一共有两种数据结构，一种是以 (key&#x2F;value)对形式存在的无序的jsonObject对象，一个对象以“{”（左花括号）开始，“}”（右花括号）结束。每个“名称”后跟一个“:”（冒号）；“‘名称&#x2F;值’ 对”之间使用“,”（逗号）分隔。 <img src="http://images.cnitblog.com/blog/432441/201311/27202314-f6689071fd2444f18e2db818071ad990.gif"> 例如：{“name”: “xiaoluo”}， 这就是一个最简单的json对象，对于这种数据格式，key值必须要是string类型，而对于value，则可以是string、number、object、array等数据类型： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/27202406-3f9f3a202a1046009a10c90891d7ecf6.gif"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/27202406-3f9f3a202a1046009a10c90891d7ecf6.gif" alt="27202406-3f9f3a202a1046009a10c90891d7ecf6"></a> 另一种数据格式就是有序的value的集合，这种形式被称为是jsonArray，数组是值（value）的有序集合。一个数组以“[”（左中括号）开始，“]”（右中括号）结束。值之间使用“,”（逗号）分隔。 <img src="http://images.cnitblog.com/blog/432441/201311/27202539-5ecbee4dffaa4388998dd3118948ec48.gif"> 更多的有关json数据格式可以参加json的官网，<a target="_blank" rel="noopener" href="http://www.json.org/json-zh.html">http://www.json.org/json-zh.html</a></p>
+<h2 id="二、解析json数据格式"><a href="#二、解析json数据格式" class="headerlink" title="二、解析json数据格式"></a>二、解析json数据格式</h2><p>这里将使用两种json的解析库来对我们的json数据格式进行解析以及生成我们的json数据格式。 1.json-lib(<a target="_blank" rel="noopener" href="http://json-lib.sourceforge.net/">http://json-lib.sourceforge.net/</a>) 使用json-lib来进行解析，我们需要引入第三方的包，因为json-lib分为了两个版本，一个版本是针对于jdk1.3的，一个版本是针对于jdk1.5的，这里我们下载jdk1.5的这个json-lib包，其中还需要引入其他的几个jar包： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/27203549-51a3bc4d1b604714aeef0562142e4fe9.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/27203549-51a3bc4d1b604714aeef0562142e4fe9.jpg" alt="27203549-51a3bc4d1b604714aeef0562142e4fe9"></a> 下载好这几个jar包后，加入到classpath中即可。我们来看看json-lib给我们提供的API。 我们最常用的两个类就是  JSONObject和JSONArray这两个类，分别代表了json对象和json数组，这两个类都实现了 JSON 这个接口，下面我们通过几个小例子来看看如何将我们常见的几种数据格式转换成我们的json对象(我们一般称之为JSON数据的序列化)以及再将json对象在转换成我们的数据格式(称之为反序列化)。 ①简单的javabean的序列化和反序列化  </p>
+<p>public class Person<br>{<br>    private int id;<br>    private String name;<br>    private String address;</p>
+<pre><code>public Person()
+&#123;
+&#125;
+
+public int getId()
+&#123;
+    return id;
+&#125;
+
+public void setId(int id)
+&#123;
+    this.id = id;
+&#125;
+
+public String getName()
+&#123;
+    return name;
+&#125;
+
+public void setName(String name)
+&#123;
+    this.name = name;
+&#125;
+
+public String getAddress()
+&#123;
+    return address;
+&#125;
+
+public void setAddress(String address)
+&#123;
+    this.address = address;
+&#125;
+
+public Person(int id, String name, String address)
+&#123;
+    super();
+    this.id = id;
+    this.name = name;
+    this.address = address;
+&#125;
+
+@Override
+public String toString()
+&#123;
+    return &quot;Person \[id=&quot; + id + &quot;, name=&quot; + name + &quot;, address=&quot; + address
+            \+ &quot;\]&quot;;
+&#125;
+</code></pre>
+<p>}</p>
+<p>  首先我们定义一个简单的javabean对象，然后将一个Person对象转换成json对象，然后再将这个json对象反序列化成我们的Person对象。 我们先定义一个JsonTools类，这个类有两个静态方法，我们可以通过这两个方法来得到一个JSON类型的字符串对象，以及一个JSON对象  </p>
+<p>public class JsonTools<br>{<br>    &#x2F;**<br>     * 得到一个json类型的字符串对象<br>     * @param key<br>     * @param value<br>     * @return<br>     *&#x2F;<br>    public static String getJsonString(String key, Object value)<br>    {<br>        JSONObject jsonObject &#x3D; new JSONObject();<br>        &#x2F;&#x2F;put和element都是往JSONObject对象中放入 key&#x2F;value 对<br>&#x2F;&#x2F;        jsonObject.put(key, value);<br>        jsonObject.element(key, value);<br>        return jsonObject.toString();<br>    }</p>
+<pre><code>/\*\*
+ \* 得到一个json对象
+ \* @param key
+ \* @param value
+ \* @return
+ */
+public static JSONObject getJsonObject(String key, Object value)
+&#123;
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put(key, value);
+    return jsonObject;
+&#125;
+</code></pre>
+<p>}</p>
+<p>  我们可以直接通过 JSONObject jsonObject &#x3D; new JSONObject(); 这个方法就可以得到一个json对象，然后通过element()或者是put()方法来给我们的json对象添加key&#x2F;value对。我们先来看看第一个例子，实现一个简单的Person对象和json对象的转换</p>
+<p>　　　　 Person person &#x3D; new Person(1, “xiaoluo”, “广州”);<br>        &#x2F;&#x2F;    将Person对象转换成一个json类型的字符串对象<br>        String personString &#x3D; JsonTools.getJsonString(“person”, person);<br>        System.out.println(personString.toString());</p>
+<p>我们看看控制台的输出：</p>
+<p>{“person”:{“address”:”广州”,”id”:1,”name”:”xiaoluo”}}</p>
+<p>整个外面的大括号是一个json对象，里面有一对key&#x2F;value，其中里面的{“address”:”广州”,”id”:1,”name”:”xiaoluo”}就是我们转换成的json字符串对象 再来看看如何将json对象转换成我们的bean对象</p>
+<p>　　　　 JSONObject jsonObject &#x3D; JsonTools.getJsonObject(“person”, person);<br>        &#x2F;&#x2F;    通过JSONObject的toBean方法可以将json对象转换成一个javabean<br>        JSONObject personObject &#x3D; jsonObject.getJSONObject(“person”);<br>        Person person2 &#x3D; (Person) JSONObject.toBean(personObject, Person.class);<br>        System.out.println(person2);</p>
+<p>Person [id&#x3D;1, name&#x3D;xiaoluo, address&#x3D;广州]</p>
+<p>②转换List<Person>类型的对象  </p>
+<p>　　@Test<br>    public void testPersonsJson()<br>    {<br>        List<Person> persons &#x3D; new ArrayList<Person>();<br>        Person person &#x3D; new Person(1, “xiaoluo”, “广州”);<br>        Person person2 &#x3D; new Person(2, “android”, “上海”);<br>        persons.add(person);<br>        persons.add(person2);<br>        String personsString &#x3D; JsonTools.getJsonString(“persons”, persons);<br>        System.out.println(personsString);</p>
+<pre><code>    JSONObject jsonObject = JsonTools.getJsonObject(&quot;persons&quot;, persons);
+    //    List&lt;Person&gt;相当于一个JSONArray对象
+    JSONArray personsArray = (JSONArray)jsonObject.getJSONArray(&quot;persons&quot;);
+    List&lt;Person&gt; persons2 = (List&lt;Person&gt;) personsArray.toCollection(personsArray, Person.class);
+    System.out.println(persons2);
+&#125;
+</code></pre>
+<p> </p>
+<p>{“persons”:[{“address”:”广州”,”id”:1,”name”:”xiaoluo”},{“address”:”上海”,”id”:2,”name”:”android”}]}<br>[Person [id&#x3D;1, name&#x3D;xiaoluo, address&#x3D;广州], Person [id&#x3D;2, name&#x3D;android, address&#x3D;上海]]</p>
+<p>③List&lt;Map&lt;String, String&gt;&gt;类型的json对象转换  </p>
+<p>　　 @Test<br>    public void testMapJson()<br>    {<br>        List&lt;Map&lt;String, String&gt;&gt; list &#x3D; new ArrayList&lt;Map&lt;String, String&gt;&gt;();<br>        Map&lt;String, String&gt; map1 &#x3D; new HashMap&lt;String, String&gt;();<br>        map1.put(“id”, “001”);<br>        map1.put(“name”, “xiaoluo”);<br>        map1.put(“age”, “20”);<br>        Map&lt;String, String&gt; map2 &#x3D; new HashMap&lt;String, String&gt;();<br>        map2.put(“id”, “002”);<br>        map2.put(“name”, “android”);<br>        map2.put(“age”, “33”);<br>        list.add(map1);<br>        list.add(map2);<br>        String listString &#x3D; JsonTools.getJsonString(“list”, list);<br>        System.out.println(listString);</p>
+<pre><code>    JSONObject jsonObject = JsonTools.getJsonObject(&quot;list&quot;, list);
+    JSONArray listArray = jsonObject.getJSONArray(&quot;list&quot;);
+    List&lt;Map&lt;String, String&gt;&gt; list2 = (List&lt;Map&lt;String, String&gt;&gt;) listArray.toCollection(listArray, Map.class);
+    System.out.println(list2);
+&#125;
+</code></pre>
+<p> </p>
+<p>{“list”:[{“id”:”001”,”age”:”20”,”name”:”xiaoluo”},{“id”:”002”,”age”:”33”,”name”:”android”}]}<br>[{id&#x3D;001, name&#x3D;xiaoluo, age&#x3D;20}, {id&#x3D;002, name&#x3D;android, age&#x3D;33}]</p>
+<p>通过上面的例子，我们可以了解了如何通过json-lib这个解析库来实现javabean、List、Map等数据和json数据的互相转换 2.gson(<a target="_blank" rel="noopener" href="http://code.google.com/p/google-gson/">http://code.google.com/p/google-gson/</a>) 下面我们来看看Google提供的gson这个json解析库，同样我们需要去下载gson这个jar包，导入到我们的项目中 使用gson，我们可以非常轻松的实现数据对象和json对象的相互转化，其中我们最常用的就是两个方法，一个是fromJSON()，将json对象转换成我们需要的数据对象，另一个是toJSON()，这个就是将我们的数据对象转换成json对象。下面我们也通过一个综合的例子来看看gson的使用方法：  </p>
+<p>public class JsonService<br>{<br>    public Person getPerson()<br>    {<br>        Person person &#x3D; new Person(1, “xiaoluo”, “广州”);<br>        return person;<br>    }</p>
+<pre><code>public List&lt;Person&gt; getPersons()
+&#123;
+    List&lt;Person&gt; persons = new ArrayList&lt;Person&gt;();
+    Person person = new Person(1, &quot;xiaoluo&quot;, &quot;广州&quot;);
+    Person person2 = new Person(2, &quot;android&quot;, &quot;上海&quot;);
+    persons.add(person);
+    persons.add(person2);
+    return persons;
+&#125;
+
+public List&lt;String&gt; getString()
+&#123;
+    List&lt;String&gt; list = new ArrayList&lt;String&gt;();
+    list.add(&quot;广州&quot;);
+    list.add(&quot;上海&quot;);
+    list.add(&quot;北京&quot;);
+    return list;
+&#125;
+
+public List&lt;Map&lt;String, String&gt;&gt; getMapList()
+&#123;
+    List&lt;Map&lt;String, String&gt;&gt; list = new ArrayList&lt;Map&lt;String, String&gt;&gt;();
+    Map&lt;String, String&gt; map1 = new HashMap&lt;String, String&gt;();
+    map1.put(&quot;id&quot;, &quot;001&quot;);
+    map1.put(&quot;name&quot;, &quot;xiaoluo&quot;);
+    map1.put(&quot;age&quot;, &quot;20&quot;);
+    Map&lt;String, String&gt; map2 = new HashMap&lt;String, String&gt;();
+    map2.put(&quot;id&quot;, &quot;002&quot;);
+    map2.put(&quot;name&quot;, &quot;android&quot;);
+    map2.put(&quot;age&quot;, &quot;33&quot;);
+    list.add(map1);
+    list.add(map2);
+    return list;
+&#125;
+</code></pre>
+<p>}</p>
+<p>   </p>
+<p>public static void main(String[] args)<br>    {<br>        Gson gson &#x3D; new Gson();<br>        JsonService jsonService &#x3D; new JsonService();<br>        Person person &#x3D; jsonService.getPerson();<br>        System.out.println(“person: “ + gson.toJson(person));<br>        &#x2F;&#x2F;    对于Object类型，使用 fromJson(String, Class)方法来将Json对象转换成Java对象<br>        Person person2 &#x3D; gson.fromJson(gson.toJson(person), Person.class);<br>        System.out.println(person2);<br>        System.out.println(“————————————————“);</p>
+<pre><code>    List&lt;Person&gt; persons = jsonService.getPersons();
+    System.out.println(&quot;persons: &quot; + gson.toJson(persons));
+    /\*
+     \* 对于泛型对象，使用fromJson(String, Type)方法来将Json对象转换成对应的泛型对象
+     \* new TypeToken&lt;&gt;()&#123;&#125;.getType()方法
+     */
+    List&lt;Person&gt; persons2 = gson.fromJson(gson.toJson(persons), new TypeToken&lt;List&lt;Person&gt;&gt;()&#123;&#125;.getType());
+    System.out.println(persons2);
+    System.out.println(&quot;------------------------------------------------&quot;);
+    
+    List&lt;String&gt; list = jsonService.getString();
+    System.out.println(&quot;String----&gt;&quot; + gson.toJson(list));
+    List&lt;String&gt; list2 = gson.fromJson(gson.toJson(list), new TypeToken&lt;List&lt;String&gt;&gt;()&#123;&#125;.getType());
+    System.out.println(&quot;list2----&gt;&quot; + list2);
+    System.out.println(&quot;------------------------------------------------&quot;);
+    
+    List&lt;Map&lt;String, String&gt;&gt; listMap = jsonService.getMapList();
+    System.out.println(&quot;Map----&gt;&quot; + gson.toJson(listMap));
+    List&lt;Map&lt;String, String&gt;&gt; listMap2 = gson.fromJson(gson.toJson(listMap), new TypeToken&lt;List&lt;Map&lt;String, String&gt;&gt;&gt;()&#123;&#125;.getType());
+    System.out.println(&quot;listMap2----&gt;&quot; + listMap2);
+    System.out.println(&quot;------------------------------------------------&quot;);
+&#125;
+</code></pre>
+<p>  看看控制台的输出：  </p>
+<p>person: {“id”:1,”name”:”xiaoluo”,”address”:”广州”}<br>Person [id&#x3D;1, name&#x3D;xiaoluo, address&#x3D;广州]<br>------------------------------------------------<br>persons: [{“id”:1,”name”:”xiaoluo”,”address”:”广州”},{“id”:2,”name”:”android”,”address”:”上海”}]<br>[Person [id&#x3D;1, name&#x3D;xiaoluo, address&#x3D;广州], Person [id&#x3D;2, name&#x3D;android, address&#x3D;上海]]<br>------------------------------------------------<br>String—-&gt;[“广州”,”上海”,”北京”]<br>list2—-&gt;[广州, 上海, 北京]<br>------------------------------------------------<br>Map—-&gt;[{“id”:”001”,”age”:”20”,”name”:”xiaoluo”},{“id”:”002”,”age”:”33”,”name”:”android”}]<br>listMap2—-&gt;[{id&#x3D;001, age&#x3D;20, name&#x3D;xiaoluo}, {id&#x3D;002, age&#x3D;33, name&#x3D;android}]<br>------------------------------------------------</p>
+<h2 id="三、在Android客户端解析服务器端的json数据"><a href="#三、在Android客户端解析服务器端的json数据" class="headerlink" title="三、在Android客户端解析服务器端的json数据"></a>三、在Android客户端解析服务器端的json数据</h2><p>下面我们来完成一个综合的例子，Android客户端通过一个AsyncTask异步任务请求服务器端的某些数据，然后在解析完这些数据后，将得到的数据内容更新到我们的Spinner这个UI控件当中。 我们首先来看下服务器端的代码：  </p>
+<p>@WebServlet(“&#x2F;CityServlet”)<br>public class CityServlet extends HttpServlet<br>{<br>    private static final long serialVersionUID &#x3D; 1L;</p>
+<pre><code>public CityServlet()
+&#123;
+    super();
+&#125;
+
+protected void doGet(HttpServletRequest request,
+        HttpServletResponse response) throws ServletException, IOException
+&#123;
+    this.doPost(request, response);
+&#125;
+
+protected void doPost(HttpServletRequest request,
+        HttpServletResponse response) throws ServletException, IOException
+&#123;
+    response.setContentType(&quot;text/html;charset=utf-8&quot;);
+    request.setCharacterEncoding(&quot;utf-8&quot;);
+    response.setCharacterEncoding(&quot;utf-8&quot;);
+    PrintWriter writer = response.getWriter();
+    
+    String type = request.getParameter(&quot;type&quot;);
+    if(&quot;json&quot;.equals(type))
+    &#123;
+        List&lt;String&gt; cities = new ArrayList&lt;String&gt;();
+        cities.add(&quot;广州&quot;);
+        cities.add(&quot;上海&quot;);
+        cities.add(&quot;北京&quot;);
+        cities.add(&quot;湖南&quot;);
+        Map&lt;String, List&lt;String&gt;&gt; map = new HashMap&lt;String, List&lt;String&gt;&gt;();
+        map.put(&quot;cities&quot;, cities);
+        String citiesString = JSON.toJSONString(map);
+        writer.println(citiesString);
+    &#125;
+    
+    writer.flush();
+    writer.close();
+&#125;
+</code></pre>
+<p>}</p>
+<p>  如果客户端请求的参数是type&#x3D;json，则响应给客户端一个json数据格式 接着来看看客户端的代码，首先看看客户端的布局文件，其实就是一个按钮和一个Spinner控件，当点击按钮后，通过http协议请求服务器端的数据，然后在接收到后再更新我们的Spinner控件的数据  </p>
+<p>&lt;RelativeLayout xmlns:android&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.android.com/apk/res/android">http://schemas.android.com/apk/res/android</a>“<br>    xmlns:tools&#x3D;”<a target="_blank" rel="noopener" href="http://schemas.android.com/tools">http://schemas.android.com/tools</a>“<br>    android:layout_width&#x3D;”match_parent”<br>    android:layout_height&#x3D;”match_parent” &gt;</p>
+<pre><code>&lt;TextView
+    android:id=&quot;@+id/textView1&quot;
+    android:layout\_width=&quot;wrap\_content&quot;
+    android:layout\_height=&quot;wrap\_content&quot;
+    android:layout_alignParentLeft=&quot;true&quot;
+    android:layout_alignParentTop=&quot;true&quot;
+    android:layout_marginLeft=&quot;64dp&quot;
+    android:layout_marginTop=&quot;64dp&quot;
+    android:textSize=&quot;20sp&quot;
+    android:text=&quot;城市&quot; /&gt;
+
+&lt;Spinner 
+    android:id=&quot;@+id/spinner&quot;
+    android:layout\_width=&quot;wrap\_content&quot;
+    android:layout\_height=&quot;wrap\_content&quot;
+    android:layout_alignTop=&quot;@id/textView1&quot;
+    android:layout_toRightOf=&quot;@id/textView1&quot;/&gt;
+
+&lt;Button
+    android:id=&quot;@+id/button&quot;
+    android:layout\_width=&quot;wrap\_content&quot;
+    android:layout\_height=&quot;wrap\_content&quot;
+    android:layout_alignLeft=&quot;@+id/textView1&quot;
+    android:layout_below=&quot;@+id/spinner&quot;
+    android:layout_marginLeft=&quot;22dp&quot;
+    android:layout_marginTop=&quot;130dp&quot;
+    android:text=&quot;加载数据&quot; /&gt;
+</code></pre>
+</RelativeLayout>
+
+<p>  在Android客户端写一个解析json数据格式的类：  </p>
+<p>public class JsonUtils<br>{<br>    &#x2F;**<br>     * @param citiesString    从服务器端得到的JSON字符串数据<br>     * @return    解析JSON字符串数据，放入List当中<br>     *&#x2F;<br>    public static List<String> parseCities(String citiesString)<br>    {<br>        List<String> cities &#x3D; new ArrayList<String>();</p>
+<pre><code>    try
+    &#123;
+        JSONObject jsonObject = new JSONObject(citiesString);
+        JSONArray jsonArray = jsonObject.getJSONArray(&quot;cities&quot;);
+        for(int i = 0; i &lt; jsonArray.length(); i++)
+        &#123;
+            cities.add(jsonArray.getString(i));
+        &#125;
+    &#125;
+    catch (Exception e)
+    &#123;
+        e.printStackTrace();
+    &#125;
+    
+    return cities;
+&#125;
+</code></pre>
+<p>}</p>
+<p>  当然我们的HttpUtils类也不可少：  </p>
+<p>public class HttpUtils<br>{<br>    &#x2F;**<br>     * @param path    请求的服务器URL地址<br>     * @param encode    编码格式<br>     * @return    将服务器端返回的数据转换成String<br>     *&#x2F;<br>    public static String sendPostMessage(String path, String encode)<br>    {<br>        String result &#x3D; “”;<br>        HttpClient httpClient &#x3D; new DefaultHttpClient();<br>        try<br>        {<br>            HttpPost httpPost &#x3D; new HttpPost(path);<br>            HttpResponse httpResponse &#x3D; httpClient.execute(httpPost);<br>            if(httpResponse.getStatusLine().getStatusCode() &#x3D;&#x3D; HttpStatus.SC_OK)<br>            {<br>                HttpEntity httpEntity &#x3D; httpResponse.getEntity();<br>                if(httpEntity !&#x3D; null)<br>                {<br>                    result &#x3D; EntityUtils.toString(httpEntity, encode);<br>                }<br>            }<br>        }<br>        catch (Exception e)<br>        {<br>            e.printStackTrace();<br>        }<br>        finally<br>        {<br>            httpClient.getConnectionManager().shutdown();<br>        }</p>
+<pre><code>    return result;
+&#125;
+</code></pre>
+<p>}</p>
+<p>  最后来看看我们的MainActivity类：  </p>
+<p>public class MainActivity extends Activity<br>{<br>    private Spinner spinner;<br>    private Button button;<br>    private ArrayAdapter<String> adapter;<br>    private ProgressDialog dialog;<br>    private final String CITY_PATH_JSON &#x3D; “<a target="_blank" rel="noopener" href="http://172.25.152.34:8080/httptest/CityServlet?type=json">http://172.25.152.34:8080/httptest/CityServlet?type=json</a>“;<br>    @Override<br>    protected void onCreate(Bundle savedInstanceState)<br>    {<br>        super.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);</p>
+<pre><code>    spinner = (Spinner)findViewById(R.id.spinner);
+    button = (Button)findViewById(R.id.button);
+    dialog = new ProgressDialog(MainActivity.this);
+    button.setOnClickListener(new OnClickListener()
+    &#123;
+        @Override
+        public void onClick(View v)
+        &#123;
+            dialog.setTitle(&quot;提示信息&quot;);
+            dialog.setMessage(&quot;loading......&quot;);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setCancelable(false);
+            
+            new MyAsyncTask().execute(CITY\_PATH\_JSON);
+        &#125;
+    &#125;);
+&#125;
+
+public class MyAsyncTask extends AsyncTask&lt;String, Void, List&lt;String&gt;&gt;
+&#123;
+    @Override
+    protected void onPreExecute()
+    &#123;
+        dialog.show();
+    &#125;
+    @Override
+    protected List&lt;String&gt; doInBackground(String... params)
+    &#123;
+        List&lt;String&gt; cities = new ArrayList&lt;String&gt;();
+        String citiesString = HttpUtils.sendPostMessage(params\[0\], &quot;utf-8&quot;);
+        //    解析服务器端的json数据
+        cities = JsonUtils.parseCities(citiesString);return cities;
+    &#125;
+    @Override
+    protected void onPostExecute(List&lt;String&gt; result)
+    &#123;
+        adapter = new ArrayAdapter&lt;String&gt;(MainActivity.this, android.R.layout.simple\_spinner\_item, result);
+        adapter.setDropDownViewResource(android.R.layout.simple\_spinner\_dropdown_item);
+        spinner.setAdapter(adapter);
+        dialog.dismiss();
+    &#125;
+&#125;
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu)
+&#123;
+    getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+&#125;
+</code></pre>
+<p>}</p>
+<p>  当然别往了开启我们的网络授权</p>
+<uses-permission android:name="android.permission.INTERNET"/>
+
+<p>最后我们来看看效果图： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/27213759-1bac990703384d64975cbb3b677ef1581.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/27213759-1bac990703384d64975cbb3b677ef1581.jpg" alt="27213759-1bac990703384d64975cbb3b677ef158"></a><a href="http://baiyuan.wang/wp-content/uploads/2015/04/27213921-51d04301cf714adfb2fc48963be47500.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/27213921-51d04301cf714adfb2fc48963be47500.jpg" alt="27213921-51d04301cf714adfb2fc48963be47500"></a> 这样我们就完成了客户端与服务器端通过json来进行数据的交换 总结：本篇随笔主要讲解了JSON这种轻量级的数据交换格式的概念，以及讲解了两种解析json数据的解析类(json-lib以及gson)，最后通过一个小例子实现了在Android客户端和服务器端使用json这种数据格式来进行数据的交换。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/parsing-json-data-android-development.html" target="_blank">王柏元的博客 >> Android开发解析JSON数据</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/mysql-database-connections-change-password-create-a-new-user-command.html" class="pre-post btn btn-default" title='mySQL数据库连接、修改密码、新建用户操作命令'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            mySQL数据库连接、修改密码、新建用户操作命令</span>
+    </a>
+    
+    
+    <a href="/php-using-json-encode-an-array-of-chinese-characters.html" class="next-post btn btn-default" title='PHP用json_encode转换数组中文乱码'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            PHP用json_encode转换数组中文乱码</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "1346",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFjson"><span class="toc-text">一、什么是json</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%A7%A3%E6%9E%90json%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-text">二、解析json数据格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8Android%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%A7%A3%E6%9E%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84json%E6%95%B0%E6%8D%AE"><span class="toc-text">三、在Android客户端解析服务器端的json数据</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,计算机网络,SSD8,分布式系统" />
+
+
+<meta name="description" content="这一步骤完成的是创建本地主机上的远程对象注册表Registry的实例，并指定端口为8888，这一步必不可少（Java默认端口是1099），必不可缺的一步，缺少注册表创建，则无法绑定对象到远程注册..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD8_Ex3【JAVA_RMI】(3)开启RMI服务 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD8_Ex3【JAVA_RMI】(3)开启RMI服务">
+            
+            SSD8_Ex3【JAVA_RMI】(3)开启RMI服务
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/">计算机技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a> <a class="tag-none-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="tag">分布式系统</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>这一步骤完成的是创建本地主机上的远程对象注册表Registry的实例，并指定端口为8888，这一步必不可少（Java默认端口是1099），必不可缺的一步，缺少注册表创建，则无法绑定对象到远程注册表上。运行后开启RMI服务，客户端要与服务地址保持一致.</p>
+<h2 id="系列文章链接："><a href="#系列文章链接：" class="headerlink" title="系列文章链接："></a>系列文章链接：</h2><p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html">SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html">SSD8_Ex3【JAVA_RMI】(2)远程接口声明</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html">SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html">SSD8_Ex3【JAVA_RMI】(4)会议数据库建表</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html">SSD8_Ex3【JAVA_RMI】(5)数据库连接和会议方法定义</a></p>
+<p><a href="http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html">SSD8_Ex3【JAVA_RMI】(6)制作命令行导航菜单</a></p>
+<h2 id="MeetingServer-java"><a href="#MeetingServer-java" class="headerlink" title="MeetingServer.java"></a>MeetingServer.java</h2><p>package cn.wangbaiyuan;<br>import java.net.MalformedURLException;<br>import java.rmi.AlreadyBoundException;<br>import java.rmi.Naming;<br>import java.rmi.NotBoundException;<br>import java.rmi.RemoteException;<br>import java.rmi.registry.LocateRegistry;<br>import java.sql.SQLException;</p>
+<p>public class MeetingServer {<br>    private static String Url;<br>     public static boolean start(String port ) {<br>boolean result&#x3D;false;<br>            try {<br>                &#x2F;&#x2F;创建一个远程对象<br>                MeetingInterface RemoteMeeting &#x3D; new RmiDataBase(“localhost”, 3306, “rmimeeting”,<br>                        “xxxxxxx”, “xxxxxxx”);<br>                &#x2F;&#x2F;本地主机上的远程对象注册表Registry的实例，并指定端口为8888，这一步必不可少（Java默认端口是1099），必不可缺的一步，缺少注册表创建，则无法绑定对象到远程注册表上<br>                LocateRegistry.createRegistry(Integer.parseInt(port));<br>                &#x2F;&#x2F;把远程对象注册到RMI注册服务器上<br>                &#x2F;&#x2F;绑定的URL标准格式为：rmi:&#x2F;&#x2F;host:port&#x2F;name(其中协议名可以省略，下面两种写法都是正确的）<br>                Url&#x3D;”rmi:&#x2F;&#x2F;localhost:”+port+”&#x2F;RMeeting”;<br>                Naming.bind(Url,RemoteMeeting); </p>
+<p>&#x2F;&#x2F;	            Naming.bind(“&#x2F;&#x2F;localhost:8888&#x2F;RHello”,rhello);<br>                result&#x3D;true;<br>                System.err.println(“&gt;&gt;&gt;&gt;&gt;INFO:远程MeetingInterface对象绑定成功！”);<br>            } catch (RemoteException e) {<br>                System.err.println(“创建远程对象发生异常！”);<br>                e.printStackTrace();<br>            } catch (AlreadyBoundException e) {<br>                System.err.println(“发生重复绑定对象异常！”);<br>                e.printStackTrace();<br>            } catch (MalformedURLException e) {<br>                System.err.println(“发生URL畸形异常！”);<br>                e.printStackTrace();<br>            } catch (SQLException e) {<br>                System.err.println(“服务器连接数据库出错！”);<br>                e.printStackTrace();<br>            }<br>            return result;<br>        }<br>     public static boolean exit(){<br>         boolean result&#x3D;false;<br>         try {<br>            Naming.unbind(“Rmeeting”);<br>            result&#x3D;true;<br>        } catch (RemoteException e) {<br>            &#x2F;&#x2F; TODO Auto-generated catch block<br>            e.printStackTrace();<br>        } catch (MalformedURLException e) {<br>            &#x2F;&#x2F; TODO Auto-generated catch block<br>            e.printStackTrace();<br>        } catch (NotBoundException e) {<br>            &#x2F;&#x2F; TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>        return false;<br>     }<br>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html" target="_blank">王柏元的博客 >> SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd7-exam2-standardization-e-r-map.html" class="pre-post btn btn-default" title='SSD7_Exam2【规范化、E-R映射】'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD7_Exam2【规范化、E-R映射】</span>
+    </a>
+    
+    
+    <a href="/self-made-based-on-http-post-utility-class-byhttpclient.html" class="next-post btn btn-default" title='基于http post的自制工具类BYhttpClient'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            基于http post的自制工具类BYhttpClient</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "22965",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5%EF%BC%9A"><span class="toc-text">系列文章链接：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MeetingServer-java"><span class="toc-text">MeetingServer.java</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

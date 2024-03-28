@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android开发" />
+
+
+<meta name="description" content="最近看到了一篇关于图片“去霾算法”的文章，一下子就有了兴趣，所以想着能不能实现。由于数学能力捉急，无法理解文章的思想和相关论文。于是在Github上找到了相关的Java代码，算法的效果十分明显：..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    【图片去霾算法实践】NDK下二维数组的传递 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【图片去霾算法实践】NDK下二维数组的传递">
+            
+            【图片去霾算法实践】NDK下二维数组的传递
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2017/01/16</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>最近看到了一篇关于图片“去霾算法”的文章，一下子就有了兴趣，所以想着能不能实现。由于数学能力捉急，无法理解文章的思想和相关论文。于是在Github上找到了相关的Java代码，算法的效果十分明显：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2017/02/20170215135427111.jpg"></p>
+<p>去霾前的图片</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2017/02/20170215135428211.jpg"></p>
+<p>去霾算法处理后的图片</p>
+<p>不知道是不是算法太复杂，还是Java效率相对较低的缘故，一个3M的JPG图片处理下来需要近20秒的时间。 效果明显的算法让我萌生了开发一款去霾相机的想法，为了获得更快的处理速度，在研究Java去霾算法代码后，我决定将其写成C++代码，然后通过NDK（Android原生开发）移植到Android平台。 项目的基本思想是在Android&#x2F;Java下获得图片的Bitmap将其像素点转成二维的int二维数组，然后将int二维数组传入JNI层，交给NDK层C++代码处理，NDK层处理完毕后返回去霾后的int二维数组，由Java层转成Bitmap重新显示或保存。 经过一天的奋斗，我终于实现了用C++代码实现“去霾”算法并顺利移植到Android原生开发中。效果已实现，目前还有很多BUG，图片大小稍大时算法耗费的时间和内存过大.</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2017/02/20170215135429317.jpg"></p>
+<p>Android 图片去霾</p>
+<blockquote>
+<p>本文预计会写一个系列，后续根据情况可能会开源。如果你对去霾算法实践感兴趣，可以关注我的简书和博客：<a href="http://baiyuan.wang/">http://baiyuan.wang</a> ,后续将持续更新</p>
+</blockquote>
+<p>本篇文章介绍NDK和Java层<strong>怎样互传二维数组</strong></p>
+<h2 id="NDK-C"><a href="#NDK-C" class="headerlink" title="NDK-&gt;C++"></a>NDK-&gt;C++</h2><h4 id="ndkArray-mHeight-mWidth-cppArray-mHeight-mWidth"><a href="#ndkArray-mHeight-mWidth-cppArray-mHeight-mWidth" class="headerlink" title="ndkArray[mHeight][mWidth]-&gt;cppArray[mHeight][mWidth]"></a>ndkArray[mHeight][mWidth]-&gt;cppArray[mHeight][mWidth]</h4><pre><code>int \*\*cppArray= new int \*\[mHeight\];
+
+for (int i = 0; i &lt; mImageHeight; i++) &#123;
+    cppArray\[i\] = new int\[mWidth\];
+    jintArray intdata = (jintArray) env-&gt;GetObjectArrayElement(ndkArray, i);
+    cppArray\[i\] = env-&gt;GetIntArrayElements(intdata, 0);
+    env-&gt;DeleteLocalRef(intdata);//释放内存，防止内存泄漏
+    &#125;
+&#125;
+</code></pre>
+<p> </p>
+<h2 id="C-NDK"><a href="#C-NDK" class="headerlink" title="C++-&gt;NDK"></a>C++-&gt;NDK</h2><h4 id="cppArray-mHeight-mWidth-ndkArray-mHeight-mWidth"><a href="#cppArray-mHeight-mWidth-ndkArray-mHeight-mWidth" class="headerlink" title="cppArray[mHeight][mWidth]-&gt;ndkArray[mHeight][mWidth]"></a>cppArray[mHeight][mWidth]-&gt;ndkArray[mHeight][mWidth]</h4><p>  jobjectArray ndkArray&#x3D; env-&gt;NewObjectArray(mHeight,env-&gt;FindClass(“[I”),NULL);<br>    for (int i &#x3D; 0; i &lt; mHeight; i++) {<br>        jintArray jintArray&#x3D; env-&gt;NewIntArray(mWidth);<br>        env-&gt;SetIntArrayRegion(jintArray, 0, mWidth, out[i]);<br>        env-&gt;SetObjectArrayElement(ndkArray, i, jintArray);<br>        env-&gt;DeleteLocalRef(jintArray);<br>    }</p>
+<pre><code>return ndkArray;
+</code></pre>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/practice-photo-haze-algorithm-under-ndk-two-dimensional-array.html" target="_blank">王柏元的博客 >> 【图片去霾算法实践】NDK下二维数组的传递</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/how-release-android-mobile-phone-storage-space.html" class="pre-post btn btn-default" title='怎样释放Android手机存储空间'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            怎样释放Android手机存储空间</span>
+    </a>
+    
+    
+    <a href="/thinking-behind-wechat-small-programs.html" class="next-post btn btn-default" title='微信小程序背后的思考'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            微信小程序背后的思考</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "44740",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/ec2381c125e99f5915718f7858120033.png"
+                                 alt="@企业咨询">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                企业咨询
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-02-17
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                厉害，佩服
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NDK-C"><span class="toc-text">NDK-&gt;C++</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ndkArray-mHeight-mWidth-cppArray-mHeight-mWidth"><span class="toc-text">ndkArray[mHeight][mWidth]-&gt;cppArray[mHeight][mWidth]</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-NDK"><span class="toc-text">C++-&gt;NDK</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cppArray-mHeight-mWidth-ndkArray-mHeight-mWidth"><span class="toc-text">cppArray[mHeight][mWidth]-&gt;ndkArray[mHeight][mWidth]</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

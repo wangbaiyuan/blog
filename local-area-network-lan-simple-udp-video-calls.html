@@ -1,0 +1,536 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,android开发" />
+
+
+<meta name="description" content="之前一直有打算做一个局域网上基于UDP通信的视频通话软件，一直不知道视频流在网络上以怎样的形式传输，虽然知道几个视频流的编码格式，但是其实一直没有进行付诸实践； 最近在学习安卓手表开发时，在gi..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    一个简单的局域网UDP实时视频 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="一个简单的局域网UDP实时视频">
+            
+            一个简单的局域网UDP实时视频
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/04/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>之前一直有打算做一个局域网上基于UDP通信的视频通话软件，一直不知道视频流在网络上以怎样的形式传输，虽然知道几个视频流的编码格式，但是其实一直没有进行付诸实践； 最近在学习安卓手表开发时，在github上看到一个将手机的实时视频传输到手表的项目，发现一个似乎低级但是在局域网应该还是比较实用的局域网视频传输方法：直接将从摄像头获取的图像压缩以后进行发送。本项目GitHub主页：<a target="_blank" rel="noopener" href="https://github.com/retravel/AndroidRealTimeVideo">https://github.com/retravel/AndroidRealTimeVideo</a></p>
+<h2 id="获取摄像头实时图片、UDP发送图片"><a href="#获取摄像头实时图片、UDP发送图片" class="headerlink" title="获取摄像头实时图片、UDP发送图片"></a>获取摄像头实时图片、UDP发送图片</h2><p>private void initCanmera() {<br>        int cameras &#x3D; Camera.getNumberOfCameras();<br>        Camera.CameraInfo info &#x3D; new Camera.CameraInfo();<br>        for (int i &#x3D; 0; i &lt; cameras; i++) {<br>            Camera.getCameraInfo(i, info);<br>            if (info.facing &#x3D;&#x3D; Camera.CameraInfo.CAMERA_FACING_FRONT) {<br>                camera &#x3D; Camera.open(i);<br>                break;<br>            }<br>        }<br>        &#x2F;&#x2F;没有前置摄像头<br>        if (camera &#x3D;&#x3D; null) camera &#x3D; Camera.open();<br>        try {<br>            camera.setPreviewDisplay(surfaceHolder);<br>            camera.setPreviewCallback(this);<br>        } catch (Exception e) {<br>            camera.release();&#x2F;&#x2F;释放资源<br>            camera &#x3D; null;<br>        }<br>    }</p>
+<pre><code>@Override
+public void onPreviewFrame(byte\[\] data, Camera camera) &#123;
+
+    Camera.Size previewSize = camera.getParameters().getPreviewSize();
+
+    int\[\] rgb = decodeYUV420SP(data, previewSize.width, previewSize.height);
+    Bitmap bmp = Bitmap.createBitmap(rgb, previewSize.width, previewSize.height, Bitmap.Config.ARGB_8888);
+    int smallWidth, smallHeight;
+    int dimension = 200;
+
+    if (previewSize.width &gt; previewSize.height) &#123;
+        smallWidth = dimension;
+        smallHeight = dimension * previewSize.height / previewSize.width;
+    &#125; else &#123;
+        smallHeight = dimension;
+        smallWidth = dimension * previewSize.width / previewSize.height;
+    &#125;
+
+    Matrix matrix = new Matrix();
+    matrix.postRotate(mCameraOrientation);
+
+    Bitmap bmpSmall = Bitmap.createScaledBitmap(bmp, smallWidth, smallHeight, false);
+    Bitmap bmpSmallRotated = Bitmap.createBitmap(bmpSmall, 0, 0, smallWidth, smallHeight, matrix, false);
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    bmpSmallRotated.compress(Bitmap.CompressFormat.WEBP, 80, baos);
+
+    up.sendMsg(baos.toByteArray());
+
+
+&#125;
+
+@Override
+public void surfaceCreated(SurfaceHolder holder) &#123;
+    initCanmera();
+&#125;
+
+@Override
+public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) &#123;
+    int currentCamera = Camera.CameraInfo.CAMERA\_FACING\_FRONT;
+    Camera.Parameters parameters = camera.getParameters();//得到相机设置参数
+    Camera.Size size = camera.getParameters().getPreviewSize(); //获取预览大小
+
+    parameters.setPictureFormat(PixelFormat.JPEG);//设置图片格式
+    Camera.CameraInfo info = new Camera.CameraInfo();
+    camera.getCameraInfo(currentCamera, info);
+    int rotation = this.getWindowManager().getDefaultDisplay().getRotation();
+    int degrees = 0;
+    switch (rotation) &#123;
+        case Surface.ROTATION_0:
+            degrees = 0;
+            break;
+        case Surface.ROTATION_90:
+            degrees = 90;
+            break;
+        case Surface.ROTATION_180:
+            degrees = 180;
+            break;
+        case Surface.ROTATION_270:
+            degrees = 270;
+            break;
+    &#125;
+    int resultA = 0, resultB = 0;
+    if (currentCamera == Camera.CameraInfo.CAMERA\_FACING\_BACK) &#123;
+        resultA = (info.orientation - degrees + 360) % 360;
+        resultB = (info.orientation - degrees + 360) % 360;
+        camera.setDisplayOrientation(resultA);
+    &#125; else &#123;
+        resultA = (360 + 360 - info.orientation - degrees) % 360;
+        resultB = (info.orientation + degrees) % 360;
+        camera.setDisplayOrientation(resultA);
+    &#125;
+    camera.setPreviewCallback(this);
+    parameters.setRotation(resultB);
+    mCameraOrientation = resultB;
+    camera.setParameters(parameters);
+    camera.startPreview();//开始预览
+&#125;
+
+@Override
+public void surfaceDestroyed(SurfaceHolder holder) &#123;
+    if (camera != null) &#123;
+        camera.setPreviewCallback(null);
+        camera.stopPreview();
+        camera.release();
+        camera = null;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="UDP-server"><a href="#UDP-server" class="headerlink" title=" UDP server"></a> UDP server</h2><p>package cn.wangbaiyuan.androidsocketav;</p>
+<p>&#x2F;**<br> * Created by BrainWang on 2016&#x2F;3&#x2F;21.<br> *&#x2F;</p>
+<p>import java.io.IOException;<br>import java.net.DatagramPacket;<br>import java.net.DatagramSocket;<br>import java.net.InetSocketAddress;<br>import java.net.SocketAddress;<br>import java.net.SocketException;</p>
+<p>&#x2F;**<br> * 基于UDP协议的服务器端，对来自客户端的数据包进行应答<br> *<br> * @author <a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a><br> *&#x2F;<br>public class UDPServer {<br>    &#x2F;**<br>     * 端口<br>     *&#x2F;<br>    &#x2F;&#x2F;int port&#x3D;1888;<br>    DatagramSocket socket;<br>    String lastString &#x3D; (-1 + “”);<br>    int sameTime &#x3D; 0;<br>    public handleReceiveData callback;</p>
+<pre><code>public UDPServer(int port) throws SocketException &#123;
+
+    socket = new DatagramSocket(port);  //服务端DatagramSocket
+    System.out.println(&quot;服务器启动。&quot;);
+&#125;
+
+public void setReceiveCallback(handleReceiveData call) &#123;
+    callback = call;
+&#125;
+
+public void service() throws IOException &#123;
+    while (true) &#123;
+        DatagramPacket dp = new DatagramPacket(new byte\[102400\], 102400);
+        socket.receive(dp); //接收客户端信息
+
+        byte\[\] data = dp.getData();
+        callback.handleReceive(data);
+    &#125;
+&#125;
+
+public void start() throws SocketException, IOException &#123;
+    service();
+&#125;
+
+public void sendMsg(final byte\[\] data) &#123;
+
+    Thread send = new Thread(new Runnable() &#123;
+        @Override
+        public void run() &#123;
+            try &#123;
+                if (socket != null) &#123;
+
+                    SocketAddress socketAddres = new InetSocketAddress(&quot;192.168.1.110&quot;, 8804);
+                    socket.send(new DatagramPacket(data, data.length, socketAddres));
+                &#125;
+
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;);
+    send.start();
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/local-area-network-lan-simple-udp-video-calls.html" target="_blank">王柏元的博客 >> 一个简单的局域网UDP实时视频</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/realization-of-android-webview-advertising-filtering.html" class="pre-post btn btn-default" title='Android webview广告过滤的实现'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Android webview广告过滤的实现</span>
+    </a>
+    
+    
+    <a href="/train-local-service-system.html" class="next-post btn btn-default" title='火车局域服务系统'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            火车局域服务系统</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "36206",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/b3c40ee7fb4b6cd9f6039f2cc7d1e129.png"
+                                 alt="@奇草导航">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                奇草导航
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                网站不错。还是家门。已被奇草导航收录。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4%E5%AE%9E%E6%97%B6%E5%9B%BE%E7%89%87%E3%80%81UDP%E5%8F%91%E9%80%81%E5%9B%BE%E7%89%87"><span class="toc-text">获取摄像头实时图片、UDP发送图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP-server"><span class="toc-text"> UDP server</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

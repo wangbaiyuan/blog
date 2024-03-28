@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="QT" />
+
+
+<meta name="description" content=" Qt多窗口切换程序1.ui文件中布局
+2.主要程序main.cpp#include &lt;QtGui&#x2F;QApplication&gt;#include “mainwindow.h”..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Qt多窗口切换程序 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Qt多窗口切换程序">
+            
+            Qt多窗口切换程序
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/QT/" rel="tag">QT</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/25</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Qt多窗口切换程序"><a href="#Qt多窗口切换程序" class="headerlink" title=" Qt多窗口切换程序"></a> Qt多窗口切换程序</h1><h2 id="1-ui文件中布局"><a href="#1-ui文件中布局" class="headerlink" title="1.ui文件中布局"></a>1.ui文件中布局</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102431765.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102431765.jpg" alt="20120323102431765"></a></p>
+<h2 id="2-主要程序"><a href="#2-主要程序" class="headerlink" title="2.主要程序"></a>2.主要程序</h2><h3 id="main-cpp"><a href="#main-cpp" class="headerlink" title="main.cpp"></a>main.cpp</h3><p>#include &lt;QtGui&#x2F;QApplication&gt;<br>#include “mainwindow.h”<br>int main(int argc, char *argv[]) {<br>     QApplication a(argc, argv);<br>     MainWindow w;<br>     w.show();<br>     return a.exec();<br> }</p>
+<p> </p>
+<h3 id="主界面程序：mainwindow-h"><a href="#主界面程序：mainwindow-h" class="headerlink" title="主界面程序：mainwindow.h"></a>主界面程序：mainwindow.h</h3><p>ifndef MAINWINDOW_H<br>#define MAINWINDOW_H<br>#include <QMainWindow><br>#include “dialog1.h”<br>#include “dialog2.h”<br>namespace Ui {<br>class MainWindow;<br>}<br>class MainWindow : public QMainWindow<br>{<br>    Q_OBJECT<br>public:<br>    explicit MainWindow(QWidget *parent &#x3D; 0);<br>    ~MainWindow();<br>private slots:<br>    void on_pushButton_clicked();<br>    void on_pushButton_2_clicked();<br>    void on_pushButton_3_clicked();<br>private:<br>    Ui::MainWindow *ui;<br>    Dialog1 dialog1;<br>    Dialog2 dialog2;<br>};<br>#endif &#x2F;&#x2F; MAINWINDOW_H</p>
+<h3 id="mainwindow-cpp"><a href="#mainwindow-cpp" class="headerlink" title="mainwindow.cpp"></a>mainwindow.cpp</h3><p>#include “mainwindow.h”<br>#include “ui_mainwindow.h”<br>MainWindow::MainWindow(QWidget *parent) :<br>    QMainWindow(parent),<br>    ui(new Ui::MainWindow)<br>{<br>    ui-&gt;setupUi(this);<br>}<br>MainWindow::~MainWindow()<br>{<br>    delete ui;<br>}<br>void MainWindow::on_pushButton_clicked()<br>{<br>    this-&gt;hide();<br>    dialog1.show();<br>    dialog1.exec();<br>    this-&gt;show();<br>}<br>void MainWindow::on_pushButton_2_clicked()<br>{<br>    this-&gt;close();<br>}<br>void MainWindow::on_pushButton_3_clicked()<br>{<br>    this-&gt;close();<br>    dialog2.show();<br>    dialog2.exec();<br>    this-&gt;show();<br>}</p>
+<p>   </p>
+<h3 id="dialog1-cpp"><a href="#dialog1-cpp" class="headerlink" title="dialog1.cpp"></a>dialog1.cpp</h3><ol>
+<li><a href="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102433789.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102433789.jpg" alt="20120323102433789"></a>#include “dialog1.h”<br>#include “ui_dialog1.h”<br>Dialog1::Dialog1(QWidget *parent) :<br>    QDialog(parent),<br>    ui(new Ui::Dialog1)<br>{<br>    ui-&gt;setupUi(this);<br>}<br>Dialog1::~Dialog1()<br>{<br>    delete ui;<br>}<br>void Dialog1::on_pushButton_clicked()<br>{<br>    this-&gt;close();<br>}</li>
+</ol>
+<pre><code> 
+</code></pre>
+<p>dialog2.cpp与Dialog1相似 关键点： this-&gt;close(); dialog2.show(); dialog2.exec(); this-&gt;show();  </p>
+<h3 id="通过等待dialog-exec-消息，判断主界面是否回显。"><a href="#通过等待dialog-exec-消息，判断主界面是否回显。" class="headerlink" title="通过等待dialog.exec()消息，判断主界面是否回显。"></a>通过等待dialog.exec()消息，判断主界面是否回显。</h3><h3 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h3><p><a href="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102434387.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102434387.jpg" alt="20120323102434387"></a><a href="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102435896.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20120323102435896.jpg" alt="20120323102435896"></a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/qt-multi-window-switches.html" target="_blank">王柏元的博客 >> Qt多窗口切换程序</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/how-to-use-qt-to-find-content-you-want-to-find-a-string-and-tag.html" class="pre-post btn btn-default" title='怎样用QT查找字符串并标记要查找的内容'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            怎样用QT查找字符串并标记要查找的内容</span>
+    </a>
+    
+    
+    <a href="/reprint-qt5-1-the-android-development-environment-configuration-under-windows.html" class="next-post btn btn-default" title='[转载]QT5.1_Windows 下的 安卓开发环境配置'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            [转载]QT5.1_Windows 下的 安卓开发环境配置</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "26383",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Qt%E5%A4%9A%E7%AA%97%E5%8F%A3%E5%88%87%E6%8D%A2%E7%A8%8B%E5%BA%8F"><span class="toc-text"> Qt多窗口切换程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ui%E6%96%87%E4%BB%B6%E4%B8%AD%E5%B8%83%E5%B1%80"><span class="toc-text">1.ui文件中布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%BB%E8%A6%81%E7%A8%8B%E5%BA%8F"><span class="toc-text">2.主要程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#main-cpp"><span class="toc-text">main.cpp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E7%95%8C%E9%9D%A2%E7%A8%8B%E5%BA%8F%EF%BC%9Amainwindow-h"><span class="toc-text">主界面程序：mainwindow.h</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mainwindow-cpp"><span class="toc-text">mainwindow.cpp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dialog1-cpp"><span class="toc-text">dialog1.cpp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%AD%89%E5%BE%85dialog-exec-%E6%B6%88%E6%81%AF%EF%BC%8C%E5%88%A4%E6%96%AD%E4%B8%BB%E7%95%8C%E9%9D%A2%E6%98%AF%E5%90%A6%E5%9B%9E%E6%98%BE%E3%80%82"><span class="toc-text">通过等待dialog.exec()消息，判断主界面是否回显。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-text">运行结果：</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

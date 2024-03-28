@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="数据结构" />
+
+
+<meta name="description" content="1.插入排序：每次将一个待排的记录插入到前面的已经排好的队列中的适当位置。①.直接插入排序直接排序法在最好情况下（待排序列已按关键码有序），每趟排序只需作1次比较而不需要移动元素。所以n个元素比..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    数据结构几种排序算法的时间和空间复杂度总结 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构几种排序算法的时间和空间复杂度总结">
+            
+            数据结构几种排序算法的时间和空间复杂度总结
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="1-插入排序：每次将一个待排的记录插入到前面的已经排好的队列中的适当位置。"><a href="#1-插入排序：每次将一个待排的记录插入到前面的已经排好的队列中的适当位置。" class="headerlink" title="1.插入排序：每次将一个待排的记录插入到前面的已经排好的队列中的适当位置。"></a>1.插入排序：每次将一个待排的记录插入到前面的已经排好的队列中的适当位置。</h2><h3 id="①-直接插入排序"><a href="#①-直接插入排序" class="headerlink" title="①.直接插入排序"></a>①.直接插入排序</h3><p>直接排序法在最好情况下（待排序列已按关键码有序），每趟排序只需作1次比较而不需要移动元素。所以n个元素比较次数为n-1，移动次数0。 最差的情况下（逆序），其中第i个元素必须和前面的元素进行比较i次，移动个数i+1，所以总共的比较次数 比较多，就不写出来了 总结：是一种稳定的排序方法，时间复杂度O(n^2)，排序过程中只要一个辅助空间，所以空间复杂度O(1)</p>
+<h3 id="②-希尔排序"><a href="#②-希尔排序" class="headerlink" title="②.希尔排序"></a>②.希尔排序</h3><p>缩小增量排序，对直接插入排序的一种改进 分组插入方法。 总结：是一种不稳定的排序方法，时间复杂度O(n^1.25)，空间复杂度O(1)</p>
+<h2 id="2-交换排序"><a href="#2-交换排序" class="headerlink" title="2.交换排序"></a>2.交换排序</h2><h3 id="①-冒泡排序"><a href="#①-冒泡排序" class="headerlink" title="①.冒泡排序"></a>①.冒泡排序</h3><p>最好的情况下，就是正序，所以只要比较一次就行了，复杂度O(n) 最坏的情况下，就是逆序，要比较n^2次才行，复杂度O(n^2) 总结：稳定的排序方法，时间复杂度O(n^2)，空间复杂度O(1)，当待排序列有序时，效果比较好。</p>
+<h3 id="②-快速排序"><a href="#②-快速排序" class="headerlink" title="②.快速排序"></a>②.快速排序</h3><p>通过一趟排序将待排的记录分割成独立的两部分，其中一部分记录的关键字均比另一个部分的关键字小，然后再分别对这两个部分记录继续进行排序，以达到整个序列有效。 总结：在所有同数量级O(nlogn)的排序方法中，快速排序是性能最好的一种方法，在待排序列无序时最好。算法的时间复杂度是O(nlogn)，最坏的时间复杂度O(n^2)，空间复杂度O(nlogn)</p>
+<h2 id="3-选择排序"><a href="#3-选择排序" class="headerlink" title="3.选择排序"></a>3.选择排序</h2><h3 id="①-直接选择排序"><a href="#①-直接选择排序" class="headerlink" title="①.直接选择排序"></a>①.直接选择排序</h3><p>和序列的初始状态无关 总结：时间复杂度O(n^2)，无论最好还是最坏</p>
+<h3 id="②-堆排序"><a href="#②-堆排序" class="headerlink" title="②.堆排序"></a>②.堆排序</h3><p>直接选择排序的改进 总结：时间复杂度O(nlogn)，无论在最好还是最坏情况下都是O(nlogn)</p>
+<h2 id="4-归并排序"><a href="#4-归并排序" class="headerlink" title="4.归并排序"></a>4.归并排序</h2><p>总结：时间复杂度O(nlogn)，空间复杂度O(n)</p>
+<h2 id="5-基数排序"><a href="#5-基数排序" class="headerlink" title="5.基数排序"></a>5.基数排序</h2><p>按组成关键字的各个数位的值进行排序，是分配排序的一种。不需要进行排码值间的比较就能够进行排序。 总结：时间复杂度O(d(n+rd))</p>
+<h2 id="总总结："><a href="#总总结：" class="headerlink" title="总总结："></a>总总结：</h2><p>n比较小的时候，适合 插入排序和选择排序 基本有序的时候，适合 直接插入排序和冒泡排序 n很大但是关键字的位数较少时，适合 链式基数排序 n很大的时候，适合 快速排序 堆排序 归并排序 无序的时候，适合 快速排序 稳定的排序：冒泡排序 插入排序 归并排序 基数排序 复杂度是O(nlogn)：快速排序 堆排序 归并排序 辅助空间（大 次大）：归并排序 快速排序 好坏情况一样：简单选择（n^2），堆排序（nlogn），归并排序（nlogn） 最好是O(n)的：插入排序 冒泡排序</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/data-summary-several-time-and-space-complexity-of-sorting-algorithms.html" target="_blank">王柏元的博客 >> 数据结构几种排序算法的时间和空间复杂度总结</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/shi-san-jing-completion-appreciation-of-the-reeds-of-the-book-of-songs.html" class="pre-post btn btn-default" title='十三经结业:《诗经》之《蒹葭》赏析'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            十三经结业:《诗经》之《蒹葭》赏析</span>
+    </a>
+    
+    
+    <a href="/gossip-20141229-views-on-internet-and-projects.html" class="next-post btn btn-default" title='闲言碎语20141229:对互联网和项目的一点看法'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            闲言碎语20141229:对互联网和项目的一点看法</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "63898",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/cff5497121104c2b8e0cb41ed2083a9b.png"
+                                 alt="@flow">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                flow
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-12-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                各种算法总结得很详细
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/a1057790e316b6ae3260dbcbd6764e21.png"
+                                 alt="@始相知">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                始相知
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-12-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                不错哦，数据结构考试前可以看一发
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/0dc93964e207cc73e8625ee543a1fb0e.png"
+                                 alt="@6艘恶露肚饿">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                6艘恶露肚饿
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-01-03
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                终于有一篇我可以看懂的博客了 :?:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/326168c9bbab1c6e135adfe4318f6ed6.png"
+                                 alt="@周家新">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                周家新
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-30
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                不明觉厉
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%EF%BC%9A%E6%AF%8F%E6%AC%A1%E5%B0%86%E4%B8%80%E4%B8%AA%E5%BE%85%E6%8E%92%E7%9A%84%E8%AE%B0%E5%BD%95%E6%8F%92%E5%85%A5%E5%88%B0%E5%89%8D%E9%9D%A2%E7%9A%84%E5%B7%B2%E7%BB%8F%E6%8E%92%E5%A5%BD%E7%9A%84%E9%98%9F%E5%88%97%E4%B8%AD%E7%9A%84%E9%80%82%E5%BD%93%E4%BD%8D%E7%BD%AE%E3%80%82"><span class="toc-text">1.插入排序：每次将一个待排的记录插入到前面的已经排好的队列中的适当位置。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E7%9B%B4%E6%8E%A5%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-text">①.直接插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F"><span class="toc-text">②.希尔排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F"><span class="toc-text">2.交换排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-text">①.冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-text">②.快速排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-text">3.选择排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E7%9B%B4%E6%8E%A5%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-text">①.直接选择排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-text">②.堆排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="toc-text">4.归并排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-text">5.基数排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总总结：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

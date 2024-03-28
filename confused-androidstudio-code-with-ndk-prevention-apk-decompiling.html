@@ -1,0 +1,370 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,android,汇编,Android Studio" />
+
+
+<meta name="description" content="代码混淆什么是代码混淆Java 是一种跨平台的、解释型语言，Java 源代码编译成中间”字节码”存储于 class 文件中。由于跨平台的需要，Java 字节码中包括了很多源代码信息，如变量名、方..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    AndroidStudio代码混淆和NDK预防apk反编译 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="AndroidStudio代码混淆和NDK预防apk反编译">
+            
+            AndroidStudio代码混淆和NDK预防apk反编译
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a> <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/%E6%B1%87%E7%BC%96/" rel="tag">汇编</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/01/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h2><h3 id="什么是代码混淆"><a href="#什么是代码混淆" class="headerlink" title="什么是代码混淆"></a>什么是代码混淆</h3><p>Java 是一种跨平台的、解释型语言，Java 源代码编译成中间”字节码”存储于 class 文件中。由于跨平台的需要，Java 字节码中包括了很多源代码信息，如变量名、方法名，并且通过这些名称来访问变量和方法，这些符号带有许多语义信息，很容易被反编译成 Java 源代码。为了防止这种现象，我们可以使用 Java 混淆器对 Java 字节码进行混淆。 混淆就是对发布出去的程序进行重新组织和处理，使得处理后的代码与处理前代码完成相同的功能，而混淆后的代码很难被反编译，即使反编译成功也很难得出程序的真正语义。被混淆过的程序代码，仍然遵照原来的档案格式和指令集，执行结果也与混淆前一样，只是混淆器将代码中的所有变量、函数、类的名称变为简短的英文字母代号，在缺乏相应的函数名和程序注释的况下，即使被反编译，也将难以阅读。同时混淆是不可逆的，在混淆的过程中一些不影响正常运行的信息将永久丢失，这些信息的丢失使程序变得更加难以理解。 混淆器的作用不仅仅是保护代码，它也有精简编译后程序大小的作用。由于以上介绍的缩短变量和函数名以及丢失部分信息的原因， 编译后 jar 文件体积大约能减少25% ，这对当前费用较贵的无线网络传输是有一定意义的。</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs livescript">-optimizationpasses <span class="hljs-number">5</span>          <span class="hljs-comment"># 指定代码的压缩级别</span><br>-dontusemixedcaseclassnames   <span class="hljs-comment"># 是否使用大小写混合</span><br>-dontpreverify           <span class="hljs-comment"># 混淆时是否做预校验</span><br>-verbose                <span class="hljs-comment"># 混淆时是否记录日志</span><br><br>-optimizations !code<span class="hljs-regexp">/simplification/arithmetic,!field/</span>*,!<span class="hljs-keyword">class</span><span class="hljs-regexp">/merging/</span>*  <span class="hljs-comment"># 混淆时所采用的算法</span><br><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.app.Activity      <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.app.Application   <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.app.Service       <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.content.BroadcastReceiver  <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.content.ContentProvider    <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.app.backup.BackupAgentHelper <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.preference.Preference        <span class="hljs-comment"># 保持哪些类不被混淆</span><br>-keep public <span class="hljs-keyword">class</span> <span class="hljs-title class_">com</span>.android.vending.licensing.ILicensingService    <span class="hljs-comment"># 保持哪些类不被混淆</span><br><br>-keepclasseswithmembernames <span class="hljs-keyword">class</span> * &#123;  <span class="hljs-comment"># 保持 native 方法不被混淆</span><br>    <span class="hljs-keyword">native</span> &lt;methods&gt;;<br>&#125;<br>-keepclasseswithmembers <span class="hljs-keyword">class</span> * &#123;   <span class="hljs-comment"># 保持自定义控件类不被混淆</span><br>    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);<br>&#125;<br>-keepclasseswithmembers <span class="hljs-keyword">class</span> * &#123;<span class="hljs-comment"># 保持自定义控件类不被混淆</span><br>    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);<br>&#125;<br>-keepclassmembers <span class="hljs-keyword">class</span> * <span class="hljs-keyword">extends</span> android.app.Activity &#123; <span class="hljs-comment"># 保持自定义控件类不被混淆</span><br>    public <span class="hljs-literal">void</span> *(android.view.View);<br>&#125;<br>-keepclassmembers <span class="hljs-keyword">enum</span> * &#123;     <span class="hljs-comment"># 保持枚举 enum 类不被混淆</span><br>    public <span class="hljs-keyword">static</span> **<span class="hljs-string">\[\]</span> values();<br>    public <span class="hljs-keyword">static</span> ** valueOf(java.lang.<span class="hljs-built_in">String</span>);<br>&#125;<br>-keep <span class="hljs-keyword">class</span> * implements android.os.Parcelable &#123; <span class="hljs-comment"># 保持 Parcelable 不被混淆</span><br>    public <span class="hljs-keyword">static</span> final android.os.Parcelable$Creator *;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="NDK将应用的核心代码或通讯协议打包成so文件"><a href="#NDK将应用的核心代码或通讯协议打包成so文件" class="headerlink" title="NDK将应用的核心代码或通讯协议打包成so文件"></a>NDK将应用的核心代码或通讯协议打包成so文件</h2><p>NDK可以实现代码的保护，由于apk的java层代码很容易被反编译，而C&#x2F;C++库反汇难度较大。</p>
+<p>因为java是半解释半编译性语言，，先将java的代码解释成CLASS文件，然后编译给计算机中的JVM虚拟机，然后由虚拟机调用相应的计算机部件进行运算，而安卓的SO文件是linux下的文件，用c或者c++写的，c++你可以看做是C的扩充版，C有良好的机器兼容性，就是因为它可以直接编译为机器指令，执行效率相对java高，而java是跨平台移可植性强大。</p>
+<p>C&#x2F;C++更接近底层系统实现和依赖于编译器，不同编译器生成的二进制代码会相对不同平台有所区别，甚至同一操作系统不同系列的编译器都会有一点差异，比如在linux下编译C&#x2F;C++得到的二进制代码就很难或无法运行在windows平台上，反之亦然，所以反编译很困难，现在大多数反编译软件都只能反编译成汇编。有一些号称可以反编译成C或者C++的工具，但反编译出来的结果大多看不明白，还不如用汇编。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/confused-androidstudio-code-with-ndk-prevention-apk-decompiling.html" target="_blank">王柏元的博客 >> AndroidStudio代码混淆和NDK预防apk反编译</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/page-add-links-call-app-jump-download-url.html" class="pre-post btn btn-default" title='网页添加链接调用APP与跳转下载网址'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            网页添加链接调用APP与跳转下载网址</span>
+    </a>
+    
+    
+    <a href="/first-android-ndk-program.html" class="next-post btn btn-default" title='第一个android studio+NDK程序'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            第一个android studio+NDK程序</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "11889",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86"><span class="toc-text">代码混淆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86"><span class="toc-text">什么是代码混淆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NDK%E5%B0%86%E5%BA%94%E7%94%A8%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81%E6%88%96%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE%E6%89%93%E5%8C%85%E6%88%90so%E6%96%87%E4%BB%B6"><span class="toc-text">NDK将应用的核心代码或通讯协议打包成so文件</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

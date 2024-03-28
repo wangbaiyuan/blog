@@ -1,0 +1,598 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="个人程序库" />
+
+
+<meta name="description" content="类 BYupdate简述：实现软件信息的展示和软件更新功能
+
+java.lang.Object
+
+cn.wangbaiyuan.tools.BYupdate
+
+
+
+
+public class B..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    自制软件更新、下载、安装类BYupdate |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="自制软件更新、下载、安装类BYupdate">
+            
+            自制软件更新、下载、安装类BYupdate
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E4%B8%AA%E4%BA%BA%E7%A8%8B%E5%BA%8F%E5%BA%93/" rel="tag">个人程序库</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/22</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="类-BYupdate"><a href="#类-BYupdate" class="headerlink" title="类 BYupdate"></a>类 BYupdate</h2><p>简述：实现软件信息的展示和软件更新功能</p>
+<ul>
+<li>java.lang.Object</li>
+<li><ul>
+<li>cn.wangbaiyuan.tools.BYupdate</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>public class BYupdate
+extends java.lang.Object
+
+实现软件信息的展示和软件更新功能
+
+作者:
+
+王柏元
+</code></pre>
+<ul>
+<li><ul>
+<li><h3 id="字段概要"><a href="#字段概要" class="headerlink" title="字段概要"></a>字段概要</h3><p>字段</p>
+<p>限定符和类型</p>
+<p>字段和说明</p>
+<p><code>OnClickListener</code></p>
+<p><code>download_listener</code></p>
+</li>
+<li><h3 id="构造器概要"><a href="#构造器概要" class="headerlink" title="构造器概要"></a>构造器概要</h3><p>构造器</p>
+<p>构造器和说明</p>
+<p><code>BYupdate(Context icontext, java.lang.String url, java.lang.String version)</code></p>
+</li>
+<li><h3 id="方法概要"><a href="#方法概要" class="headerlink" title="方法概要"></a>方法概要</h3><p>All MethodsInstance MethodsConcrete Methods</p>
+<p>限定符和类型</p>
+<p>方法和说明</p>
+<p><code>void</code></p>
+<p><code>checkupdate()</code></p>
+<p>检查更新</p>
+<p><code>void</code></p>
+<p><code>setDownload_url(java.lang.String url)</code></p>
+<p>设置软件更新服务处理地址</p>
+<ul>
+<li><h3 id="从类继承的方法-java-lang-Object"><a href="#从类继承的方法-java-lang-Object" class="headerlink" title="从类继承的方法 java.lang.Object"></a>从类继承的方法 java.lang.Object</h3><code>equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><h3 id="字段详细资料"><a href="#字段详细资料" class="headerlink" title="字段详细资料"></a>字段详细资料</h3><ul>
+<li><h4 id="download-listener"><a href="#download-listener" class="headerlink" title="download_listener"></a>download_listener</h4>public OnClickListener download_listener</li>
+</ul>
+</li>
+<li><h3 id="构造器详细资料"><a href="#构造器详细资料" class="headerlink" title="构造器详细资料"></a>构造器详细资料</h3><ul>
+<li><h4 id="BYupdate"><a href="#BYupdate" class="headerlink" title="BYupdate"></a>BYupdate</h4><p>public BYupdate(Context icontext,<br>            java.lang.String url,<br>            java.lang.String version)<br>参数:</p>
+<p><code>icontext</code> - context一般是引用此类的activity</p>
+<p><code>url</code> - 软件更新服务处理地址</p>
+<p><code>version</code> - 软件当前版本号</p>
+</li>
+</ul>
+</li>
+<li><h3 id="方法详细资料"><a href="#方法详细资料" class="headerlink" title="方法详细资料"></a>方法详细资料</h3><ul>
+<li><h4 id="setDownload-url"><a href="#setDownload-url" class="headerlink" title="setDownload_url"></a>setDownload_url</h4><p>public void setDownload_url(java.lang.String url)</p>
+<p>设置软件更新服务处理地址</p>
+<p>参数:</p>
+<p><code>url</code> -</p>
+</li>
+<li><h4 id="checkupdate"><a href="#checkupdate" class="headerlink" title="checkupdate"></a>checkupdate</h4><p>public void checkupdate()</p>
+<p>检查更新</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><p>package cn.wangbaiyuan.tools;</p>
+<p>import java.io.File;<br>import java.io.FileOutputStream;<br>import java.io.InputStream;<br>import java.io.OutputStream;<br>import java.net.HttpURLConnection;<br>import java.net.URL;</p>
+<p>import org.json.JSONException;<br>import org.json.JSONObject;</p>
+<p>import android.app.AlertDialog;<br>import android.content.Context;<br>import android.content.DialogInterface;<br>import android.content.DialogInterface.OnClickListener;<br>import android.content.Intent;<br>import android.net.Uri;<br>import android.os.Environment;<br>import android.os.Handler;<br>import android.os.Message;<br>import android.util.Log;<br>import android.widget.Toast;<br>&#x2F;**<br> * 实现软件信息的展示和软件更新功能<br> * @author 王柏元<br> *<br> *&#x2F;<br>public class BYupdate  {</p>
+<pre><code>String sw_version;
+String current_version;
+String version_des;
+String url_path;
+Context context;
+String download_url;
+/\*\*
+ \* 
+ \* @param icontext context一般是引用此类的activity
+ \* @param url 软件更新服务处理地址
+ \* @param version 软件当前版本号
+ */
+public BYupdate(Context icontext,String url, String version)&#123;
+    context=icontext;
+    url_path=url;
+    current_version=version;
+&#125;
+/\*\*
+ \* 设置软件更新服务处理地址
+ \* @param url
+ */
+public void setDownload_url(String url)&#123;
+    url_path=url;
+&#125;
+
+
+Handler hander=new Handler()&#123;
+    @Override
+    public void handleMessage(Message msg)&#123;
+        if(msg.what==0x123)&#123;
+            //version\_label.setText(&quot;最新版本：&quot;+sw\_version);
+            Double latest\_Version=Double.parseDouble(sw\_version);
+            if(Double.parseDouble(current\_version)&lt;latest\_Version)
+            &#123;
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(context)
+            .setTitle(&quot;当前版本:&quot;+current\_version+&quot;,最新版本:&quot;+latest\_Version)
+            .setMessage(version_des);
+            builder.setPositiveButton(&quot;下载更新&quot;, download_listener);
+            builder.setNegativeButton(&quot;以后再说&quot;, null);
+            builder.create();
+            builder.show();
+            &#125;
+            else
+                Toast.makeText(context, &quot;当前是最新版本&quot;, 5).show();
+        &#125;
+        else if(msg.what==012)
+        Toast.makeText(context, &quot;安装包下载完成，进入安装……&quot;, Toast.LENGTH_LONG).show();
+        else if(msg.what==01244)
+            Toast.makeText(context, &quot;下载错误……&quot;, Toast.LENGTH_LONG).show();
+            //最后toast出文件名，因为这个程序是单线程的，所以要下载完文件以后才会执行这一句，中间的时间类似于死机，不过多线程还没有学到
+        
+    &#125;
+&#125;;
+/\*\*
+ \* 检查更新
+ */
+public void checkupdate()&#123;
+new Thread(checkupdate).start();
+Toast.makeText(context, &quot;正在检查更新……&quot;, 2).show();
+&#125;
+public OnClickListener download_listener =new OnClickListener() &#123;
+    
+    @Override
+    public void onClick(DialogInterface dialog, int which) &#123; 
+        new Thread(download).start();
+
+        Toast.makeText(context, &quot;开始下载……&quot;, Toast.LENGTH_LONG).show();
+    &#125;
+&#125;;
+/\*\*
+ \* 下载线程
+ */
+Runnable download = new Runnable()&#123; 
+      
+        @Override  
+        public void run() &#123;  
+            String sdcard=Environment.getExternalStorageDirectory()+&quot;/&quot;;
+            String filepath=sdcard+&quot;BYLeavePaper/&quot;;
+            
+            download\_url=(download\_url.startsWith(&quot;http://&quot;))?download\_url:&quot;http://&quot;+download\_url;
+            try &#123;
+              URL url = new URL(download_url);
+               //打开到url的连接
+             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+              //以下为java IO部分，大体来说就是先检查文件夹是否存在，不存在则创建,然后的文件名重复问题，没有考虑
+             InputStream istream=connection.getInputStream();
+               String filename=download\_url.substring(download\_url.lastIndexOf(&quot;/&quot;)+1);
+         
+               File dir=new File(filepath);
+                if (!dir.exists()) &#123;
+                    dir.mkdir();
+               &#125;
+                File file=new File(filepath+filename);
+               file.createNewFile();	
+               
+               OutputStream output=new FileOutputStream(file);
+           	byte\[\] buff = new byte\[1024\];
+            int hasRead = 0;
+            // 将URL对应的资源下载到本地
+            while((hasRead = istream.read(buff)) &gt; 0)
+            &#123;
+                output.write(buff, 0 , hasRead);
+            &#125;
+                output.flush();
+                output.close();
+                istream.close();
+                hander.sendEmptyMessage(012);
+                Log.e(&quot;log_tag&quot;,file.toString());
+
+                openFile(file);
+            &#125; catch (Exception e) &#123;
+           	 Log.e(&quot;log_tag&quot;,&quot;下载错误:&quot;+e.toString());
+           	hander.sendEmptyMessage(01244);
+           &#125;
+
+            
+            
+            
+   &#125; 
+&#125;;
+/\*\*
+ \* 检查更新线程
+ */
+Runnable checkupdate = new Runnable()&#123;  
+      
+    @Override  
+    public void run() &#123;  
+        String jsonString = BYHttpGet.getJsonContent(url_path);
+        Log.e(&quot;bypaperup&quot;,jsonString);
+        
+        try &#123;
+            JSONObject Json=new JSONObject(jsonString);
+            sw\_version=Json.getString(&quot;sw\_version&quot;);
+             version\_des=Json.getString(&quot;sw\_description&quot;);
+             download\_url=Json.getString(&quot;sw\_url&quot;);
+            
+
+        &#125; catch (JSONException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+             Log.e(&quot;log_tag&quot;,e.toString());
+        &#125;
+        hander.sendEmptyMessage(0x123);	
+    &#125;  
+    
+      &#125;; 
+</code></pre>
+<p>&#x2F;**<br> * 打开指定APK<br> * @param file APK路径<br> *&#x2F;<br>private void openFile(File file) {<br>                Log.e(“OpenFile”, file.getName());<br>                Intent intent &#x3D; new Intent();<br>                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);<br>                intent.setAction(android.content.Intent.ACTION_VIEW);<br>                intent.setDataAndType(Uri.fromFile(file),<br>                        “application&#x2F;vnd.android.package-archive”);<br>                context.startActivity(intent);<br>  }<br>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/homemade-software-updates-downloads-installation-byupdate.html" target="_blank">王柏元的博客 >> 自制软件更新、下载、安装类BYupdate</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/method-of-absolute-time-java-timetostring.html" class="pre-post btn btn-default" title='自制绝对时间相对化java方法TimeToString'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            自制绝对时间相对化java方法TimeToString</span>
+    </a>
+    
+    
+    <a href="/by-leave-instructions-and-feedback-page.html" class="next-post btn btn-default" title='BY请假条软件说明与意见反馈页'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            BY请假条软件说明与意见反馈页</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "8476",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB-BYupdate"><span class="toc-text">类 BYupdate</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E6%A6%82%E8%A6%81"><span class="toc-text">字段概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%A6%82%E8%A6%81"><span class="toc-text">构造器概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A6%81"><span class="toc-text">方法概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%B1%BB%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95-java-lang-Object"><span class="toc-text">从类继承的方法 java.lang.Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E8%AF%A6%E7%BB%86%E8%B5%84%E6%96%99"><span class="toc-text">字段详细资料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#download-listener"><span class="toc-text">download_listener</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E8%AF%A6%E7%BB%86%E8%B5%84%E6%96%99"><span class="toc-text">构造器详细资料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BYupdate"><span class="toc-text">BYupdate</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AF%A6%E7%BB%86%E8%B5%84%E6%96%99"><span class="toc-text">方法详细资料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#setDownload-url"><span class="toc-text">setDownload_url</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#checkupdate"><span class="toc-text">checkupdate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">代码：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

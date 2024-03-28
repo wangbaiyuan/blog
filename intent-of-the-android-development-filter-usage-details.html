@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android" />
+
+
+<meta name="description" content="一、Intent是什么,作用是什么?Android的应用程序包括三大组件：Activity、Service、BroadcastReceiver,为了方便不同组件之间的交流通信，应用程序就采用了一..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    安卓开发之Intent(Filter)用法详解 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="安卓开发之Intent(Filter)用法详解">
+            
+            安卓开发之Intent(Filter)用法详解
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、Intent是什么-作用是什么"><a href="#一、Intent是什么-作用是什么" class="headerlink" title="一、Intent是什么,作用是什么?"></a>一、Intent是什么,作用是什么?</h2><p>Android的应用程序包括三大组件：Activity、Service、BroadcastReceiver,为了方便不同组件之间的交流通信，应用程序就采用了一种统一的方式启动组件及传递数据，即使用Intent。 Intent封装了Android应用程序需要启动某个组件的”意图”，Intent类的对象是组件间的通信载体，一个Intent对象就是一组信息，其包含接收Intent组件所关心的信息（如action 和 Data）和Android 系统关心的信息(如Category等)。也就是说，发送”意图”的组件通过Intent对象所包含的内容，来启动指定的(即Component属性)或通过筛选(即Action&amp;Category属性)的某(些)组件，然后实施相应的动作（即Action属性）并传递相应的数据(即Data属性)以便完成相应的动作。</p>
+<h2 id="二、Intent的Component属性"><a href="#二、Intent的Component属性" class="headerlink" title="二、Intent的Component属性"></a>二、Intent的Component属性</h2><p>Component需要指定包名和类名唯一确定一个组件类，代码如下：</p>
+<p>intent&#x3D;new Intent();<br>ComponentName com_name&#x3D;new ComponentName(MainActivity.this,Component.class);<br>intent.setComponent(com_name);</p>
+<p>  展示结果的代码：</p>
+<p>super.onCreate(savedInstanceState);<br>setContentView(R.layout.activity_component);<br>ComponentName com_name&#x3D;getIntent().getComponent();<br>TextView text&#x3D;(TextView)findViewById(R.id.textView1);<br>text.setText(“组件包名：”+com_name.getPackageName()+”\n组件类名：”+com_name.getClassName());</p>
+<p>  运行截图： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image001.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image001_thumb.png" alt="clip_image001" title="clip_image001"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image002_thumb.png" alt="clip_image002" title="clip_image002"></a> 点击第一个按钮显示运行结果：  </p>
+<h2 id="三、Intent的Action、category属性"><a href="#三、Intent的Action、category属性" class="headerlink" title="三、Intent的Action、category属性"></a>三、Intent的Action、category属性</h2><p>使用Action和Category需要在程序清单文件androidMinifest.xml文件中进行配置，代码如下:</p>
+<p><activity
+android:name=".Action"><br><intent-filter><br><action android:name="cn.wangbaiyuan.task5.action" /><br><category android:name="android.intent.category.DEFAULT" /></p>
+<category android:name="cn.wangbaiyuan.category_action" />
+</intent-filter>
+</activity>
+
+<p>  使用Action、category启动这个Activity的代码为：</p>
+<p>intent&#x3D;new Intent();<br>intent.setAction(“cn.wangbaiyuan.task5.action”);<br>intent.addCategory(“cn.wangbaiyuan.category_action”);</p>
+<p>  展示结果的代码：</p>
+<p>setContentView(R.layout.activity_component);<br>TextView text&#x3D;(TextView)findViewById(R.id.textView1);<br>text.setText(“此activity由含有action和category的intent启动\nAction：”+getIntent().getAction()+”\ncategory：”+getIntent().getCategories());</p>
+<p>  截图： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image003.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image003_thumb.png" alt="Intent的Action、category属性" title="Intent的Action、category属性"></a></p>
+<h2 id="四、Intent的Data、Type属性"><a href="#四、Intent的Data、Type属性" class="headerlink" title="四、Intent的Data、Type属性"></a>四、Intent的Data、Type属性</h2><p>Data属性通常用于向Action属性提供操作的数据，Data属性接受一个Uri对象，一个Uri对象通过如下形式的字符串来表示： content:&#x2F;&#x2F;cn.wangbaiyuan.contacts&#x2F;contacts&#x2F;1 tel:1880000000 冒号前面指定了数据的类型，后面的是数据部分。 Type属性则用于明确指定Data属性的数据类型或MIME类型，但是通常来说，当Intent不指定Data属性时Type属性才会起作用，否则Android系统将会根据Data属性值来分析数据的类型，所以无需指定Type属性。 一旦为Intent同时指定了Action和Data属性，那么Android将可根据指定的数据类型来启动特定的应用程序，并对指定的数据执行相应的操作。 在我的代码文件中我分别测试了5个用Activity和Data组合的情况，为五个按钮分别设置一下监听器：</p>
+<p>public OnClickListener scheme&#x3D;new OnClickListener() {<br>@Override<br>public void onClick(View v) {<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>Intent intent &#x3D; new Intent();<br>&#x2F;&#x2F; 只设置Intent的Data属性<br>intent.setData(Uri.parse(“lee:&#x2F;&#x2F;<a target="_blank" rel="noopener" href="http://www.baidu.com:1234/test">www.baidu.com:1234/test</a>“));<br>startActivity(intent);<br>}<br>};<br>public OnClickListener schemeHostPort&#x3D;new OnClickListener() {<br>@Override<br>public void onClick(View v) {<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>Intent intent &#x3D; new Intent();<br>&#x2F;&#x2F; 只设置Intent的Data属性<br>intent.setData(Uri.parse(“lee:&#x2F;&#x2F;baiyuan.wang:8888&#x2F;test”));<br>startActivity(intent);<br>}};<br>public OnClickListener schemeHostPath&#x3D;new OnClickListener() {<br>@Override<br>public void onClick(View v) {<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>Intent intent &#x3D; new Intent();<br>&#x2F;&#x2F; 只设置Intent的Data属性<br>intent.setData(Uri.parse(“lee:&#x2F;&#x2F;baiyuan.wang:1234&#x2F;android”));<br>startActivity(intent);<br>}};<br>public OnClickListener schemeHostPortPath&#x3D;new OnClickListener() {<br>@Override<br>public void onClick(View v) {<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>Intent intent &#x3D; new Intent();<br>&#x2F;&#x2F; 只设置Intent的Data属性<br>intent.setData(Uri.parse(“lee:&#x2F;&#x2F;baiyuan.wang:8888&#x2F;android”));<br>startActivity(intent);<br>}};<br>public OnClickListener schemeHostPortPathType&#x3D;new OnClickListener() {<br>@Override<br>public void onClick(View v) {<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>Intent intent &#x3D; new Intent();<br>&#x2F;&#x2F; 同时设置Intent的Data、Type属性<br>intent.setDataAndType(Uri.parse(“lee:&#x2F;&#x2F;baiyuan.wang:8888&#x2F;android”)<br>, “abc&#x2F;xyz”);<br>startActivity(intent);<br>}};<br>public OnClickListener systemActivity&#x3D;new OnClickListener() {<br>@Override<br>public void onClick(View v) {<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>Intent intent &#x3D; new Intent();<br>&#x2F;&#x2F; 同时设置Intent的Data、Type属性<br>intent.setData(Uri.parse(“<a href="http://baiyuan.wang/">http://baiyuan.wang</a>“));<br>startActivity(intent);<br>}};</p>
+<p>  运行截图： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image005.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image005_thumb.jpg" alt="Intent的Data、Type属性" title="Intent的Data、Type属性"></a><a href="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image007.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/clip_image007_thumb.jpg" alt="Intent的Data、Type属性" title="Intent的Data、Type属性"></a>  </p>
+<h2 id="五、Intent创建tab页面："><a href="#五、Intent创建tab页面：" class="headerlink" title="五、Intent创建tab页面："></a>五、Intent创建tab页面：</h2><p>代码：</p>
+<p>@Override<br>protected void onCreate(Bundle savedInstanceState) {<br>super.onCreate(savedInstanceState);<br>setContentView(R.layout.tab);<br>TabHost tabhost&#x3D;getTabHost();<br>tabhost.addTab(tabhost.newTabSpec(“tab1”)<br>.setIndicator(“IT业界”,getResources().getDrawable(R.drawable.ic_launcher))<br>.setContent(new Intent(this,webview.class)<br>.putExtra(“url”, “<a href="http://baiyuan.wang/itindustry">http://baiyuan.wang/itindustry</a>“))<br>);</p>
+<p>tabhost.addTab(tabhost.newTabSpec(“tab2”)<br>.setIndicator(“程序算法”)<br>.setContent(new Intent(this,webview.class)<br>.putExtra(“url”, “<a href="http://baiyuan.wang/code">http://baiyuan.wang/code</a>“))<br>);</p>
+<p>tabhost.addTab(tabhost.newTabSpec(“tab3”)<br>.setIndicator(“电脑技巧”)<br>.setContent(new Intent(this,webview.class)<br>.putExtra(“url”, “<a href="http://baiyuan.wang/computer-experience">http://baiyuan.wang/computer-experience</a>“))<br>);<br>tabhost.addTab(tabhost.newTabSpec(“tab3”)<br>.setIndicator(“关于我”)<br>.setContent(new Intent(this,webview.class)<br>.putExtra(“url”, “<a href="http://baiyuan.wang/leave-message/about">http://baiyuan.wang/leave-message/about</a>“))<br>);<br>}</p>
+<p>  运行结果： <a href="http://baiyuan.wang/wp-content/uploads/2015/04/image9.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/04/image_thumb9.png" alt="Intent创建tab页面" title="Intent创建tab页面"></a>  </p>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/intent-of-the-android-development-filter-usage-details.html" target="_blank">王柏元的博客 >> 安卓开发之Intent(Filter)用法详解</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/mysql-database-data-types.html" class="pre-post btn btn-default" title='MySQL数据库的数据类型'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            MySQL数据库的数据类型</span>
+    </a>
+    
+    
+    <a href="/prezi-that-youll-know-how-much-ppt-weak.html" class="next-post btn btn-default" title='看了prezi你才会知道PPT有多弱'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            看了prezi你才会知道PPT有多弱</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "18090",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Intent%E6%98%AF%E4%BB%80%E4%B9%88-%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">一、Intent是什么,作用是什么?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Intent%E7%9A%84Component%E5%B1%9E%E6%80%A7"><span class="toc-text">二、Intent的Component属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Intent%E7%9A%84Action%E3%80%81category%E5%B1%9E%E6%80%A7"><span class="toc-text">三、Intent的Action、category属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Intent%E7%9A%84Data%E3%80%81Type%E5%B1%9E%E6%80%A7"><span class="toc-text">四、Intent的Data、Type属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Intent%E5%88%9B%E5%BB%BAtab%E9%A1%B5%E9%9D%A2%EF%BC%9A"><span class="toc-text">五、Intent创建tab页面：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-text">代码下载</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

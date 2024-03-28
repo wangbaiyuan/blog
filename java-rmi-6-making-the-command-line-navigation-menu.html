@@ -1,0 +1,612 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,SSD8" />
+
+
+<meta name="description" content="由于在eclipse运行配置里添加运行参数并不方便，建议将调试好的java工程导出为可以运行的jar包，然后在命令行打开jar所在文件夹，使用”java -jar &lt;包名&gt; &lt;..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    【JAVA_RMI】(6)制作命令行导航菜单 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【JAVA_RMI】(6)制作命令行导航菜单">
+            
+            【JAVA_RMI】(6)制作命令行导航菜单
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/13</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>由于在eclipse运行配置里添加运行参数并不方便，建议将调试好的java工程导出为可以运行的jar包，然后在命令行打开jar所在文件夹，使用”java -jar &lt;包名&gt; &lt;main函数参数1 参数2 ……&gt;“,下图的help命令就是main函数执行时的参数数组arg[]的第一个元素arg[0]。参数以空格为分隔符，后面分别是arg[1]、arg[2]。 知道这点，制作java命令行的导航菜单就很简单。为了方便操作，极客人为这次试验还制作了GUI，支持GUI、命令行双界面模式运行应用。命令行的好处可能只有程序员才知道，它最大的好处、个人认为是可以批处理，这是习惯GUI的用户无法理解的。</p>
+<h2 id="效果预览："><a href="#效果预览：" class="headerlink" title="效果预览："></a>效果预览：</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-15-44.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-15-44.jpg" alt="java命令行导航菜单"></a> java命令行导航菜单</p>
+<h2 id="MeetingClient-java"><a href="#MeetingClient-java" class="headerlink" title="MeetingClient.java"></a>MeetingClient.java</h2><p>下述代码通过匹配用户输入的main函数参数，分别执行在上一篇文章中定义的方法。其中输入GUI和不输入参数将启动GUI模式。 <a href="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-33-21.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-12_19-33-21.jpg" alt="java命令行导航菜单2"></a> java命令行导航菜单2  </p>
+<p>package cn.wangbaiyuan;</p>
+<p>import java.io.BufferedReader;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.rmi.Naming;<br>import java.rmi.NotBoundException;<br>import java.sql.SQLException;</p>
+<p>&#x2F;**<br> * RMI会议客户端<br> * @author 王柏元<br> *<br> *{@linkplain <a target="_blank" rel="noopener" href="http://baiyuan.wang}/">http://baiyuan.wang}</a><br> *&#x2F;<br>public class MeetingClient {<br>    public static void main(String args[]) throws IOException{<br>    int cmdLength&#x3D;args.length;<br>    MeetingInterface meeting;<br>        if(cmdLength&#x3D;&#x3D;0){<br>            LoginGUI.show(null);<br>        }else {<br>            String note&#x3D;”RMI会议客户端©王柏元—命令行版:\n”<br>                    + “1.帮助信息：\n\thelp\n”<br>                    + “2.用户注册：\n\tregister [用户名] [密码]\n”<br>                    + “ 3.添加会议：\n\tadd [你的用户名] [你的密码] [邀请谁？他的用户名] [开始时间] [结束时间] [会议标题]\n”<br>                    + “\t 时间格式：2015-06-05 22:29:19\n”<br>                    + “4. 查询会议：\n\tquery [你的用户名] [你的密码][开始时间] [结束时间]\n”<br>                    + “5.删除会议：\n\tdelete [你的用户名] [你的密码] [会议ID]\n”<br>                    + “6.清除会议：\n\tclear [username] [password]\n”<br>                    + “7.关于本程序：\n\tabout\n”<br>                    + “8.退出:\n quit\n\t”<br>                    + “9.GUI模式:\n GUI\n\t”<br>                    + “请输入命令：”;<br>            String about&#x3D;”RMI会议客户端©王柏元—命令行行版:\n”<br>                    + “作者:王柏元\n”<br>                    + “个人网站：<a href="http://baiyuan.wang//n">http://baiyuan.wang\\n</a>“<br>                    + “运行模式：GUI和命令行双环境\n”<br>                    + “程序介绍：使用Java RMI创建一个分布式议程共享服务。”<br>                    + “不同的用户可以使用这个共享议程服务执行查询、添加和删除”<br>                    + “会议的操作。服务器支持会议的登记和清除等功能；”;<br>            try {<br>                meeting&#x3D;(MeetingInterface) Naming.lookup(LoginGUI.getRmiURL());<br>                switch(args[0]){</p>
+<pre><code>            case &quot;register&quot;:
+                if(cmdLength==3)&#123;
+                    meeting.addMeetingUsers(args\[1\], args\[2\]);
+                &#125;else&#123;
+                    System.out.println(&quot;命令参数错误\\n&quot;
+                            \+ &quot;用户注册：\\n\\tregister \[用户名\] \[密码\]\\n&quot;);
+                &#125;
+                break;
+            case &quot;add&quot;:
+                if(cmdLength==9)&#123;
+                    meeting.addMeetings(args\[1\], args\[2\],args\[3\] ,args\[4\],args\[5\]+&quot; &quot;
+                +args\[6\], args\[7\]+&quot; &quot;+args\[8\]);
+                &#125;else&#123;
+                    System.out.println(&quot;命令参数错误\\n&quot;
+                            \+ &quot;添加会议：\\n\\tadd \[你的用户名\] \[你的密码\] \[邀请谁？他的用户名\]\[会议标题\] \[开始时间\] \[结束时间\] \\n&quot;);
+                &#125;
+                break;
+            case &quot;query&quot;:
+
+                if(cmdLength==7)&#123;
+                    if(meeting.LoginMeetings(args\[1\], args\[2\]))
+                    meeting.searchrMeetings(args\[3\]+&quot; &quot;+ args\[4\],args\[5\]+&quot; &quot;+ args\[6\]);
+                &#125;else&#123;
+                    System.out.println(&quot;命令参数错误\\n&quot;
+                            \+ &quot;查询会议：\\n\\tquery \[用户名\] \[密码\]\[开始时间\] \[结束时间\]\\n&quot;);
+                &#125;
+                break;
+            case &quot;delete&quot;:
+                if(cmdLength==4)&#123;
+                    if(meeting.LoginMeetings(args\[1\], args\[2\]))
+                    meeting.deleteMeetings(args\[1\], args\[3\]);
+                &#125;else&#123;
+                    System.out.println(&quot;命令参数错误\\n&quot;
+                            \+ &quot;删除会议：\\n\\tdelete \[你的用户名\] \[你的密码\] \[会议ID\]\\n&quot;);
+                &#125;
+                break;
+            case &quot;clear&quot;:
+                if(cmdLength==3)&#123;
+                    if(meeting.LoginMeetings(args\[1\], args\[2\]))
+                        meeting.clearMeetings(args\[1\]);
+                &#125;else&#123;
+                    System.out.println(&quot;命令参数错误\\n&quot;
+                            \+ &quot;清除会议：\\n\\tclear \[username\] \[password\]\\n&quot;);
+                &#125;
+                break;
+            case &quot;about&quot;:
+                System.out.println(about);break;
+            case &quot;GUI&quot;:
+                LoginGUI.show(null);break;
+            case &quot;help&quot;:
+            System.out.println(note);break;
+            case &quot;quit&quot;:
+                LoginGUI.show(null);break;
+                
+                &#125;
+        &#125; catch (NotBoundException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        &#125; catch (BYException e) &#123;
+            // TODO Auto-generated catch block
+            System.out.println(e.getMessage());
+        &#125; catch (SQLException e) &#123;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        &#125;
+    
+    &#125;
+    &#125;
+
+&#125; 
+</code></pre>
+<h2 id="系列文章链接："><a href="#系列文章链接：" class="headerlink" title="系列文章链接："></a>系列文章链接：</h2><p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html">SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html">SSD8_Ex3【JAVA_RMI】(2)远程接口声明</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html">SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html">SSD8_Ex3【JAVA_RMI】(4)会议数据库建表</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html">SSD8_Ex3【JAVA_RMI】(5)数据库连接和会议方法定义</a></p>
+<p><a href="http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html">SSD8_Ex3【JAVA_RMI】(6)制作命令行导航菜单</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html" target="_blank">王柏元的博客 >> 【JAVA_RMI】(6)制作命令行导航菜单</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/php-with-smtp-email-support-ssl.html" class="pre-post btn btn-default" title='PHP用SMTP发邮件(支持SSL)'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            PHP用SMTP发邮件(支持SSL)</span>
+    </a>
+    
+    
+    <a href="/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html" class="next-post btn btn-default" title='SSD8_Ex3【JAVA_RMI】(5)数据库连接和会议方法定义'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI】(5)数据库连接和会议方法定义</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "38485",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                学姐啊？XJ原来是这个意思！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/fcd99748cb6720b002105b4410279c93.png"
+                                 alt="@xj">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                xj
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                哈哈，看到你的作业了。。不错不错 :wink:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-14
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                说了是GUI和命令行双模式呢
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/94619db814af29b9a697aa18deb01db0.png"
+                                 alt="@王柏元超级无敌粉丝">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元超级无敌粉丝
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-14
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                GUI不是图形效果吗？你这个不还是dos命令行吧！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/94619db814af29b9a697aa18deb01db0.png"
+                                 alt="@王柏元超级无敌粉丝">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元超级无敌粉丝
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-13
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                还没有学到这里，以后学到这里，希望博主多多指导。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E9%A2%84%E8%A7%88%EF%BC%9A"><span class="toc-text">效果预览：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MeetingClient-java"><span class="toc-text">MeetingClient.java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5%EF%BC%9A"><span class="toc-text">系列文章链接：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

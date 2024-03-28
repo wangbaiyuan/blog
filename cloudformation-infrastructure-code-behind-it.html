@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="熟悉AWS的肯定不会对Cloudformation感到陌生，AWS官方对Cloudformation的定义如下：
+
+AWS CloudFormation 云资源服务可使开发人员和系统管理员轻松有..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Cloudformation与其背后的“基础设施即代码” |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Cloudformation与其背后的“基础设施即代码”">
+            
+            Cloudformation与其背后的“基础设施即代码”
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/11/16</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>熟悉AWS的肯定不会对Cloudformation感到陌生，AWS官方对Cloudformation的定义如下：</p>
+<blockquote>
+<p>AWS CloudFormation 云资源服务可使开发人员和系统管理员轻松有序地创建、管理和更新相关 AWS 云资源模板。使用 AWS 模板或创建您自己的云资源。</p>
+</blockquote>
+<p>为了最快地对Cloudformation在心中稍微有一个概念，我为大家提炼出下面的关键词：</p>
+<ul>
+<li>利益相关者：运维或DevOps领域</li>
+<li>一种管理云资源的服务</li>
+<li>由AWS提供</li>
+<li>通过模板文件（或者说配置文件、代码）管理云资源</li>
+</ul>
+<h2 id="代码-vs可视化操作"><a href="#代码-vs可视化操作" class="headerlink" title="代码 vs可视化操作"></a>代码 vs可视化操作</h2><p>联想起自己以前使用云服务的体验，初学者首先应该能想到，我是不是可以通过Cloudformation来申请主机、创建Loadbalance呢，而不是手动在AWS的控制台（Console）上“点点点”呢？</p>
+<p>是的。如果说Cloudformation仅仅使可视化的界面操作代码化，这或许只能激起代码爱好者的兴趣，我们知道代码化的许多好处，比如效率更高、可被机器自动执行。</p>
+<p>然而因为不是所有人都喜欢代码。对于患“代码恐惧症”的人，或者习惯在界面上配置的专业运维人员来说，界面操作显然比代码更直观、拥有更友好的操作引导。</p>
+<p>对于追求高效的工程实践来说，代码化还是界面操作并非“萝卜青菜，各有所爱”的兴趣爱好问题，而是生产力问题。</p>
+<h2 id="基础设施即代码"><a href="#基础设施即代码" class="headerlink" title="基础设施即代码"></a>基础设施即代码</h2><p>这年头流行一个词语，叫DevOps，维基百科的定义如下：</p>
+<blockquote>
+<p>DevOps（Development和Operations的组合词）是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例。透过自动化“软件交付”和“架构变更”的流程，来使得构建、测试、发布软件能够更加地快捷、频繁和可靠。</p>
+</blockquote>
+<p>而我个人的理解就是，DevOps要求能把运维纳入软件开发体系，比如运用敏捷等软件开发方法、实现自动化持续集成、测试、交付、可被代码管理等等；其次，要求开发具备运维意识，将交付基础设施作为交付软件的一部分，借助云计算给开发人员赋能从而达到端到端交付的全栈能力，从而极大地提高研发效能。</p>
+<p>在这个意义上，Cloudformation就是这样一个工具，可以将基础设施作为代码纳入到软件开发的一部分，并运用软件工程方法管理基础架构。</p>
+<h2 id="“基础设施即代码”给我们带来什么"><a href="#“基础设施即代码”给我们带来什么" class="headerlink" title="“基础设施即代码”给我们带来什么"></a>“基础设施即代码”给我们带来什么</h2><p>在笔者所在的团队里，能写DevOps的代码已经作为开发的标配技能。在新起一个Codebase的时候，我们往往需要考虑一下内容：  </p>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234113.jpg" alt="一个项目的文件结构截图"></p>
+<p>一个项目的文件结构截图</p>
+<ul>
+<li>基础设施代码 （&#x2F;infra目录）</li>
+<li>持续集成流水线代码（&#x2F;pipeline目录, 这年头还有个词叫“<a target="_blank" rel="noopener" href="http://insights.thoughtworkers.org/pipeline-as-code/">流水线即代码</a>”）</li>
+<li>业务代码（包括前后端代码、测试代码，&#x2F;api, &#x2F;test 目录）</li>
+</ul>
+<p>在一些大型的互联网公司来说，运维和开发的职权是完全分离的，开发可能仅仅只用关注业务代码部分。</p>
+<p>实际上在一个项目启动后的前期，首先介入的可能是运维人员搭建出一套线上的开发环境（Dev）、测试环境（QA）、生产环境（Prod）用于开发的日常调试、测试人员测试以及发布项目；如果使用持续集成的方式的话，还要搭建持续集成（CI&#x2F;CD）流水线。</p>
+<h3 id="一键自动构建云环境"><a href="#一键自动构建云环境" class="headerlink" title="一键自动构建云环境"></a>一键自动构建云环境</h3><p>借助AWS平台及其提供的Cloudformation（或者第三方工具如<a target="_blank" rel="noopener" href="https://www.terraform.io/">terraform</a>），使用基础设施代码，我们就可以快速地构建一套完整的云环境。同时使用同样一套基础设施代码，再配置不同的环境变量，就可以快速地复制出不同的线上环境。</p>
+<p>以Cloudformation为例：</p>
+<p>编写Cloudformation代码，比如编写通过以下的代码，通过AWS提供的aws cloudformation命令，就可以实现在AWS创建一台可以弹性伸缩的实例。</p>
+<p>ECSAutoScalingGroup:<br>    Type: ‘AWS::AutoScaling::AutoScalingGroup’<br>    Properties:<br>      VPCZoneIdentifier: !Ref InstanceSubnetIds<br>      LaunchConfigurationName: !Ref ContainerInstances<br>      MinSize: ‘1’<br>      MaxSize: !Ref MaxSize<br>      DesiredCapacity: !Ref DesiredCapacity<br>  ContainerInstances:<br>    Type: ‘AWS::AutoScaling::LaunchConfiguration’<br>    Properties:<br>      ImageId: !FindInMap<br>        - AWSRegionToAMI<br>        - !Ref ‘AWS::Region’<br>        - AMIID<br>      InstanceType: !Ref InstanceType<br>      IamInstanceProfile: !Ref EC2InstanceProfile<br>      KeyName: !Ref KeyName</p>
+<p>同时我们可以使用AWS Cloudformation designer可视化地设计我们的基础架构及其之前的拓扑结构和关联关系，并导出代码。</p>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234212.jpg" alt="AWS Cloudformation designer"></p>
+<p>AWS Cloudformation designer</p>
+<h3 id="借助git等实现代码的版本管理"><a href="#借助git等实现代码的版本管理" class="headerlink" title="借助git等实现代码的版本管理"></a>借助git等实现代码的版本管理</h3><p>代码化后的基础设施，意味着可被git等版本控制工具进行管理，这意味着对基础设施的任何改动，比如更改服务器内存、更换可用区、修改域名、安全组等等，都可以通过review代码的方式进行跟踪。</p>
+<p>而在过去，在控制台界面上进行的误操作导致线上环境出问题很难被记录下来，同时如果因为修改服务器环境配置导致的问题，可以很快通过git回滚代码的方式进行快速回滚服务器环境。</p>
+<h3 id="基础设施版本间无缝切换"><a href="#基础设施版本间无缝切换" class="headerlink" title="基础设施版本间无缝切换"></a>基础设施版本间无缝切换</h3><ul>
+<li>声明式操作</li>
+</ul>
+<p>在Cloudformation之前，AWS已经推出了命令行工具或者SDK来管理AWS的资源，与它们“命令式”操作不同的是，Cloudformation提供一种“声明式”的特性。</p>
+<p>“命令式”操作希望你去一步步编写程序以达到最终所期望的状态，而声明式只关心你想要的资源与资源的状态，Cloudformation会自动分析达到想要的状态需要进行怎样的操作。（理解声明式和命令式的不同，可参考<a target="_blank" rel="noopener" href="http://www.aqee.net/post/imperative-vs-declarative.html">《声明式编程和命令式编程的比较》</a>）</p>
+<ul>
+<li>幂等性</li>
+</ul>
+<p>Cloudformation的声明式操作为其提供了幂等性的特性，以为我们在任何时刻、任何版本的基础架构运行新的Cloudformation代码，AWS每次都会帮助你生成相同的基础架构。</p>
+<ul>
+<li>原子性</li>
+</ul>
+<p>大部分人在数据库事务中了解到“原子性”。Cloudformation同样支持一种原子操作，要么成功，要么失败。失败的话可以自动回滚，而在一次失败操作中产生的资源会在回滚时被自动删除掉。</p>
+<h3 id="纳入持续集成-部署流水线（CI-CD）"><a href="#纳入持续集成-部署流水线（CI-CD）" class="headerlink" title="纳入持续集成&#x2F;部署流水线（CI&#x2F;CD）"></a>纳入持续集成&#x2F;部署流水线（CI&#x2F;CD）</h3><p>“基础设施即代码”的代码化、自动化，为CI&#x2F;CD流水线管理基础设施提供了可能。</p>
+<p>一种理想的方式是，和修改业务代码一样，当我们要对基础设施进行变更时，通过修改基础设施的代码，提交到git仓库，触发CI&#x2F;CD流水线运行基础设施代码，然后达到更新基础设施的目的。  </p>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234318.jpg" alt="持续集成"> 持续集成</p>
+<p>同时根据云计算服务商提供的反馈，更新CI&#x2F;CD流水线的部署状态：红则失败绿则失败。</p>
+<p>QA或者团队可以根据测试结果和发布计划通过流水线，将基础设施和业务代码一起推向下一阶段。</p>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2018/11/20181116134236418.jpg" alt="GoCD持续集成流水线"></p>
+<p>GoCD持续集成流水线</p>
+<h2 id="扩展思考："><a href="#扩展思考：" class="headerlink" title="扩展思考："></a>扩展思考：</h2><p>2018年 <a target="_blank" rel="noopener" href="https://assets.thoughtworks.com/assets/technology-radar-vol-19-cn.pdf">ThoughtWorks 技术雷达19期</a>为我们介绍了一款名为LocalStack的云服务的Mock框架，这意味着我们可以在本地调试基础设施代码，或者为基础架构代码做单元或集成测试。原文如下：</p>
+<blockquote>
+<p>使用云服务时面对的一个挑战是如何在本地进行开发和测试。 LOCALSTACK 为 AWS 解决了这个问题。它提供了各种 AWS 服务的本地 测试替身 实现，包括 S3 、 Kinesis 、Dynamodb 和 Lambda 等。它基于现有的最佳工具如Kinesalite 、 Dynalite 、Moto 等构建，并增加了进程隔离与错误注入的功能。 LocalStack 的使用很简单，并附带了一个简单的 JUnit 运行器以及 JUnit 5扩展。我们在一些项目中使用过 LocalStack ，并对它印象深刻。</p>
+</blockquote>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/cloudformation-infrastructure-code-behind-it.html" target="_blank">王柏元的博客 >> Cloudformation与其背后的“基础设施即代码”</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/trip-san-francisco.html" class="pre-post btn btn-default" title='旧金山之行'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            旧金山之行</span>
+    </a>
+    
+    
+    <a href="/communication-no-spray.html" class="next-post btn btn-default" title='沟通从远离喷子开始'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            沟通从远离喷子开始</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "10087",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/e1759c81c0cfe4ebc59fe13b5737f3bf.png"
+                                 alt="@华子春xys">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                华子春xys
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-01-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                能坚持发帖，也是一种美德。博主，加油。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d817a750aefb33fdbd7ce846d6d64197.png"
+                                 alt="@Banixc">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                Banixc
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-11-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                另外报一个BUG：
+
+2k/4k屏幕下评论CSS异常
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d817a750aefb33fdbd7ce846d6d64197.png"
+                                 alt="@Banixc">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                Banixc
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-11-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                真的勤奋，我能半年写一篇
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-vs%E5%8F%AF%E8%A7%86%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="toc-text">代码 vs可视化操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%8D%B3%E4%BB%A3%E7%A0%81"><span class="toc-text">基础设施即代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E5%8D%B3%E4%BB%A3%E7%A0%81%E2%80%9D%E7%BB%99%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5%E4%BB%80%E4%B9%88"><span class="toc-text">“基础设施即代码”给我们带来什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E4%BA%91%E7%8E%AF%E5%A2%83"><span class="toc-text">一键自动构建云环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%9F%E5%8A%A9git%E7%AD%89%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E7%9A%84%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="toc-text">借助git等实现代码的版本管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%89%88%E6%9C%AC%E9%97%B4%E6%97%A0%E7%BC%9D%E5%88%87%E6%8D%A2"><span class="toc-text">基础设施版本间无缝切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%B3%E5%85%A5%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90-%E9%83%A8%E7%BD%B2%E6%B5%81%E6%B0%B4%E7%BA%BF%EF%BC%88CI-CD%EF%BC%89"><span class="toc-text">纳入持续集成&#x2F;部署流水线（CI&#x2F;CD）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%80%9D%E8%80%83%EF%BC%9A"><span class="toc-text">扩展思考：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

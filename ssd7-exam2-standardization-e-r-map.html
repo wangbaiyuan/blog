@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="数据库,SSD7" />
+
+
+<meta name="description" content="
+1.下表表示了那些零件供应商可以提供哪些零件。可以通过零件的ID查找到供应商的ID和名称。值得注意的是，一个零件可以由多个供应商提供，同时一个供应商可以提供多种零件
+
+PartID
+PartN..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD7_Exam2【规范化、E-R映射】 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD7_Exam2【规范化、E-R映射】">
+            
+            SSD7_Exam2【规范化、E-R映射】
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD7/" rel="tag">SSD7</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <ul>
+<li>1.下表表示了那些零件供应商可以提供哪些零件。可以通过零件的ID查找到供应商的ID和名称。值得注意的是，一个零件可以由多个供应商提供，同时一个供应商可以提供多种零件</li>
+</ul>
+<p><strong>PartID</strong></p>
+<p><strong>PartName</strong></p>
+<p><strong>SupplierID</strong></p>
+<p><strong>SupplierName</strong></p>
+<p>1234</p>
+<p>Nut</p>
+<p>223</p>
+<p>ProMetal</p>
+<p>1234</p>
+<p>Nut</p>
+<p>224</p>
+<p>Biscayne</p>
+<p>2134</p>
+<p>Bolt</p>
+<p>223</p>
+<p>ProMetal</p>
+<ul>
+<li>2.把下列E-R关系模型进行E-R映射算法转换。按照练习七的九个步骤进行映射，明确标示出每一步骤，没有此步骤这标志“无”</li>
+</ul>
+<p><a href="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-10_20-11-26.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-10_20-11-26.jpg" alt="SSD7_ER_规范化"></a> SSD7_ER_规范化  </p>
+<h2 id="一）规范化"><a href="#一）规范化" class="headerlink" title="一）规范化"></a>一）规范化</h2><p>1.PK(PartID,SupplierID) 2.FD(PartID-&gt;PartName,SupplierID-&gt;SupplierName) 3.这个表属于第一范式（1NF）, 因为上述关系中，PartID、PartName、SupplierID、SupplierName等几个分量都是不可分的数据项。 同时它又不满足第二范式的非主属性完全依赖于码。 4.第一步：从1NF到2NF（对码完全依赖）： 在上述关系模式中，因为PartID-&gt;PartName（F）,SupplierID-&gt;SupplierName(F),所以应该将上述关系模式拆分为三个关系模式 ①Part(PartID,PartName) PK(PartID); FD(PartID-&gt;PartName)(F:完全函数依赖) ②Supplier(SupplierID,SupplierName) PK（SupplierID） FD(SupplierID-&gt;SupplierName)(F:完全函数依赖) ③SP(SupplierID,PartID) PK（SupplierID,PartID） 第二步：从2NF到3NF，（不部分依赖，也不传递依赖） 上述关系模式已满足要求</p>
+<h2 id="二）E-R映射"><a href="#二）E-R映射" class="headerlink" title="二）E-R映射"></a>二）E-R映射</h2><p>Step 1 : 新建表 Coach(Name, Age)  PK(Name) 新建表 Player(Name, Age)  PK(Name) 新建表 Team(Name,Color) PK(Name) 新建表 Game(Number,Score,Time,Date) 新建表 Stadium(Name,Size,Location) Step 2:无 Step 3:无 Step4: Team添加属性CoachName、TeamplayWith Team(Name,CoachName,TeamplayWith) FK(CoachName)-&gt;Coach(Name), FK(TeamplayWith)-&gt;Team(Name) Step 5: Game新建属性HostName、VisitorName Game: Game(Number,HostName,VisitorName,Score,Time,Date) FK(HostName)-&gt;Team(Name) FK(VisitorName)-&gt;Team(Name) Player新建属性TeamName FK(TeamName)-&gt;Team(Name) Step 6: 新建表 TeamStadiumRecord(TeamName,StadiumName) PK(TeamName,StadiumName) FK(TeamName)-&gt;Team(Name) FK(StadiumName)-&gt;Stadium(Name) Step 7: 新建表：TeamColor(TeamName,TeamColor) PK(TeamName,TeamColor) FK(TeamName)-&gt;Team(Name) FK(TeamColor)-&gt;Team(Color) Step 8:无 Step 9:无 总结： 新建表 Coach(Name, Age,CoachName,TeamplayWith)  PK(Name) 新建表 Team(Name,Color) PK(Name) FK(CoachName)-&gt;Coach(Name) FK(TeamplayWith)-&gt;Team(Name) 新建表 Player(Name, Age,TeamName)  PK(Name) FK(TeamName)-&gt;Team(Name) 新建表 Game(Number,HostName,VisitorNameScore,Time,Date) FK(HostName)-&gt;Team(Name) FK(VisitorName)-&gt;Team(Name) 新建表 Stadium(Name,Size,Location) 新建表 TeamStadiumRecord(TeamName,StadiumName) PK(TeamName,StadiumName) FK(TeamName)-&gt;Team(Name) FK(StadiumName)-&gt;Stadium(Name) 新建表：TeamColor(TeamName,TeamColor) PK(TeamName,TeamColor) FK(TeamName)-&gt;Team(Name) FK(TeamColor)-&gt;Team(Color)</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd7-exam2-standardization-e-r-map.html" target="_blank">王柏元的博客 >> SSD7_Exam2【规范化、E-R映射】</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/fontawesome-icon-font-used-android-development.html" class="pre-post btn btn-default" title='Android开发使用FontAwesome图标字体'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Android开发使用FontAwesome图标字体</span>
+    </a>
+    
+    
+    <a href="/ssd8-ex3-java-rmi-3-open-the-rmi-service.html" class="next-post btn btn-default" title='SSD8_Ex3【JAVA_RMI】(3)开启RMI服务'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "28904",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%89%E8%A7%84%E8%8C%83%E5%8C%96"><span class="toc-text">一）规范化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%89E-R%E6%98%A0%E5%B0%84"><span class="toc-text">二）E-R映射</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

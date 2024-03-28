@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="微信" />
+
+
+<meta name="description" content="1月9日，万众期待的微信小程序正式发布；朋友圈早早地被微信小程序的相关信息所刷屏，极客人也耐不住心里的好奇心，也关注了几个微信小程序尝了尝鲜儿。从技术的角度上，微信小程序个人认为谈不上有什么可圈..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    微信小程序背后的思考 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="微信小程序背后的思考">
+            
+            微信小程序背后的思考
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9E%81%E5%AE%A2%E8%A7%86%E7%82%B9/">极客视点</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2017/01/11</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>1月9日，万众期待的微信小程序正式发布；朋友圈早早地被微信小程序的相关信息所刷屏，极客人也耐不住心里的好奇心，也关注了几个微信小程序尝了尝鲜儿。从技术的角度上，微信小程序个人认为谈不上有什么可圈点的创新；但是在软件应用的生态上，可能会产生巨大的影响。</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2017/02/20170215135300110.jpg"></p>
+<p>微信公众号</p>
+<h2 id="大一统"><a href="#大一统" class="headerlink" title="大一统"></a>大一统</h2><p>早在一年多前，那时候还没有人任何微信小程序的风声，极客人在和同学的交流过程中，就曾“预言”了“小程序”的出现。那时候微信公众号只有 订阅号和服务号，我说，微信公众号应该可以加一个“应用号”，一年多以后，微信小程序横空出世，微信公众号也真的多了一个类型 “应用号”，名字和我当初起的都一模一样。当然，我在这里并不是想炫耀自己前瞻眼光，而是想表明，微信小程序的出现是软件开发中一个很正常的产物。 在软件开发繁荣的今天，编程语言越来越多，软件开发的平台不尽相同，软件开发商为了迎合不同使用平台的用户，不得不开发各个平台上的应用，IOS、Android作为移动操作系统的两大巨头，每个都有巨大的用户群，这意味着软件厂商要做一个同样的软件，都要编写两套代码：Android上的JAVA，IOS上的Object C&#x2F;Swift，这无疑提高了成本。从近几年的软件开发的趋势来看，虽然大家都以标榜自己“全栈开发工程师”为荣，但是我却认为这也只是无奈之举，如果有一套代码在所有平台都能跑的话而且都拥有绝佳的性能的话，没人吃饱着撑着，造出各种开发语言。 软件开发百花齐放的今天，无论是程序员，还是软件厂商，都希望能够有一个“大一统”来结束这个既繁荣又混乱的局面。前几年，HTML5开发移动APP企图基于各平台的浏览器实现跨平台；Web中的前端开发中的“响应式布局”实现一套代码在 PC、平板、手机上智能化显示最适合的界面；QT开发工具希望用一套C++代码开发出在Windows、Linux、Android、IOS的原生APP；最近，React 正在用JS统治Web、IOS、Android的路上越走越远…… 微信小程序要做的，就是开发一套代码，在IOS、Android拥有相同的用户体验，而它基于的是HTML。HTML无疑在各个平台拥有最好的兼容性，哪里有浏览器，哪里就可以解析HTML。</p>
+<h2 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h2><p>如果让我用一些关键词来概括软件开发的特点的话，在我的答案中一定有一个词就是“虚拟化”。操作系统完成了底层硬件的虚拟化，让上层应用不需要关心底层硬件的操作细节和差异。虽然运行着windows操作系统的计算机数以亿计，它们的CPU、网卡、磁盘等都各不相同，通过Windows系统的Win32 API，程序员和上层应用不必理会底层环境的差异性，程序员运用相同的代码就可以对不同型号的硬件进行操作。同理的还有Java虚拟机。 可以这么说，微信的小程序，就是以微信为平台，通过相同的代码，可以在IOS和Android上拥有相同的操作，比如布局、支付、定位等等，微信虚拟化了布局、支付、定位这一层在Android和IOS上的细节 。在这个意义上，可以说微信是个“操作系统”。当然这样就把操作系统说的太简单，更准确的是微信应该是一个虚拟机。</p>
+<h2 id="插件化带来的思考"><a href="#插件化带来的思考" class="headerlink" title="插件化带来的思考"></a>插件化带来的思考</h2><p>能预言到“微信小程序”的出现，是不足为奇的，现在许多软件在完成各自职能的同时，往往自身也作为平台出现。 平台是什么？牛顿说，“如果说我看得比别人更远些，那是因为我站在巨人的肩膀上。”。那么这个巨人就是牛顿的平台了。虚拟化带来的结果，就是为上层应用带来更坚实的平台。在平台之上，我们可以忽略平台下面的实现细节。 作为平台出现的软件，可以实现诸多的扩展。极客人的博客是使用wordpress CMS平台搭建的，在wordpress上面，我们可以利用安装插件的方式实现防垃圾评论等等功能；在Chrome浏览器上，我们通过安装插件实现了广告屏蔽；而QQ内置查看word文档的功能，也是通过插件实现的（极客人实习的时候看过QQ的源代码）。 插件是平台之外的扩展，基于平台的插件，忽略了底层细节，同时让平台的功能更加丰富，走得更远。同时，开放的平台，也让平台更加活跃，为自己的生存灌输了青春。 微信小程序在某种意义上也是微信的插件，在极客人尝试了用wordpress、Chrome装插件后，我想，预知“应用号”的出现不会是什么难事。</p>
+<h2 id="用完就想卸载"><a href="#用完就想卸载" class="headerlink" title="用完就想卸载"></a>用完就想卸载</h2><p>曾经看过一篇文章，每个软件厂商都希望让自己开发的软件在用户的PC、手机上不被卸载，而其中的关键就是占领用户的桌面和状态栏。然而现在的应用市场上的APP千千万，由于过多的APP会导致手机的速度变慢、可用ROM变小，许多用户都是装完一个APP就马上卸载。 由于微信小程序的即用即删性，符合了用户的“洁癖”心理，在一些不常用的应用上，微信小程序必定大受欢迎。</p>
+<h2 id="姗姗来迟的谷歌Instant-App"><a href="#姗姗来迟的谷歌Instant-App" class="headerlink" title="姗姗来迟的谷歌Instant App"></a>姗姗来迟的谷歌Instant App</h2><p>在微信小程序发布之前，谷歌在2016年谷歌大会上，曾计划推出一种类似的”小程序”—Android Instant APP;通过谷歌Deep link，用户点击一下链接即可以运行应用，目前仅支持比较简单而基础的应用，可以说它介于纯粹的Web应用和应用程序之间，“Instant Apps”将应用下载大小限制为最高4MB，并向下兼容到安卓4.1操作系统。</p>
+<blockquote>
+<p>我们如今手机安装的应用，占用内存动辄百兆起步，许多应用添加了我们根本不需要的功能，应用间的相互串联也是让我们苦不堪言。如今Instant Apps为我们开启了一扇新的大门，我们手机目前也有点击网页跳转应用的功能，与此不同的是，Instant Apps的跳转直接并非转往完整的应用，而是根据用户的需要，跳转至拥有某个特定功能的APP，比如说我们在网页观看视频，需要转往应用观看，然而该视频应用十分卡顿，经常推送一些无用信息，若该视频应用开发了Instant Apps，那么我们会跳转到该视频的Instant Apps界面，该界面仅包含视频播放的相关功能，十分简洁流畅。 这么一来，若许多购物应用和社交应用都开发了Instant Apps，那么我们的用户体验将会有很大提升，手机的负担也不会那么沉重。从开发者的角度讲，这类应用的推广难度降低，甚至不需提交至应用商店，仅需分享应用的相关连接即可，十分省心。用户点击即用，倒也快捷</p>
+</blockquote>
+<p>基本应用场景和微信小程序类似，个人认为的最大优点可能是原生开发性能会优于微信。但是由于微信小程序拥有微信这个大流量的入口，而且已经先发制人地发布了，我想，Instant APP至少在中国地区胎死腹中。</p>
+<h2 id="目测腾讯广告收入不久会出现一个高潮"><a href="#目测腾讯广告收入不久会出现一个高潮" class="headerlink" title="目测腾讯广告收入不久会出现一个高潮"></a>目测腾讯广告收入不久会出现一个高潮</h2><p>目前微信小程序里里面还没有广告，但是不久的将来，目测微信很快就会提供财付通的广告SDK方便开发者接入，这么应用转向微信小程序，腾讯的广告收入必定迎来一波大幅度增长。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/thinking-behind-wechat-small-programs.html" target="_blank">王柏元的博客 >> 微信小程序背后的思考</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/practice-photo-haze-algorithm-under-ndk-two-dimensional-array.html" class="pre-post btn btn-default" title='【图片去霾算法实践】NDK下二维数组的传递'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            【图片去霾算法实践】NDK下二维数组的传递</span>
+    </a>
+    
+    
+    <a href="/ruby-basic-image-processing-algorithm-2-binary-grayscale-emboss.html" class="next-post btn btn-default" title='Ruby图片处理基本算法（二）二值、灰度、浮雕...'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Ruby图片处理基本算法（二）二值、灰度、浮雕...</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "7186",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/19874f482137fa9d24f64ac09283ec75.png"
+                                 alt="@云稚">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                云稚
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-08-08
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                <blockquote>呀呀呀呀呀呀呀</blockquote>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E4%B8%80%E7%BB%9F"><span class="toc-text">大一统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%8C%96"><span class="toc-text">虚拟化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%8C%96%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%80%9D%E8%80%83"><span class="toc-text">插件化带来的思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%AE%8C%E5%B0%B1%E6%83%B3%E5%8D%B8%E8%BD%BD"><span class="toc-text">用完就想卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%97%E5%A7%97%E6%9D%A5%E8%BF%9F%E7%9A%84%E8%B0%B7%E6%AD%8CInstant-App"><span class="toc-text">姗姗来迟的谷歌Instant App</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%B5%8B%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A%E6%94%B6%E5%85%A5%E4%B8%8D%E4%B9%85%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%B8%80%E4%B8%AA%E9%AB%98%E6%BD%AE"><span class="toc-text">目测腾讯广告收入不久会出现一个高潮</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

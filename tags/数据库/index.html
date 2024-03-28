@@ -1,0 +1,1079 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="" />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    标签: 数据库 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content ">
+                
+    <ol class="breadcrumb">
+        
+            <li>
+                数据库
+            </li>
+        
+        
+    </ol>
+
+
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html">
+                        SSD8_Ex3【JAVA_RMI】(5)数据库连接和会议方法定义</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月12日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    下面的代码是本次实验使用数据库实现RMI会议管理的关键，里面的主要是实现数据库连接和实现相关的查询的方法，这些方法在之前文章的接口代码已经声明，不过没有实质内容。RmiDataBase类继承了meetinginterface接口。
+系...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/">计算机技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/ssd8-ex3-java-rmi-4-the-conference-database-tables.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-10_12-30-38.jpg"
+                         alt="SSD8_Ex3【JAVA_RMI】(4)会议数据库建表">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-ex3-java-rmi-4-the-conference-database-tables.html">
+                        SSD8_Ex3【JAVA_RMI】(4)会议数据库建表</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月11日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    为了更好管理会议和更好更有效率执行删除、添加、查询等操作，本次SSD8_Ex3【JAVA_RMI】，极客人结合数据库系统知识，决定采用数据库来管理会议。因为这次练习的各个题目都是典型的数据库题，虽然它被放在了网络与分布式计算课程上。
+...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E8%AF%AD%E8%A8%80/">算法语言</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-ex3-java-rmi-4-the-conference-database-tables.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/ssd7-exam2-standardization-e-r-map.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-10_20-11-26.jpg"
+                         alt="SSD7_Exam2【规范化、E-R映射】">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd7-exam2-standardization-e-r-map.html">
+                        SSD7_Exam2【规范化、E-R映射】</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月10日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    
+1.下表表示了那些零件供应商可以提供哪些零件。可以通过零件的ID查找到供应商的ID和名称。值得注意的是，一个零件可以由多个供应商提供，同时一个供应商可以提供多种零件
+
+PartID
+PartName
+SupplierID
+Suppl...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd7-exam2-standardization-e-r-map.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html">
+                        SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月07日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    RMI和网络API周末做了网络与分布式系统实验的EX3-java实现RMI分布式议程服务。RMI的全称是“远程方法调用 (Remote Method Invocation)”。下面是极客人的理解：使用RMI远程方法调用，可以实现一个j...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/sql-and-use-navicat-to-make-er-diagram-and-interactive.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/05/EXportToSQL_compressed.jpg"
+                         alt="用Navicat制作ER图及与SQL互相转化">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/sql-and-use-navicat-to-make-er-diagram-and-interactive.html">
+                        用Navicat制作ER图及与SQL互相转化</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年05月21日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    Navicat极客人在数据库学习过程中用过的个人认为最优秀的一款数据库连接、设计、编辑查询软件。它不仅是极客人用过的数据库软件中界面最美观的一款，也是功能最强大、操作最简单的一款，Navicat分别有for MySQL、for Mar...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/sql-and-use-navicat-to-make-er-diagram-and-interactive.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/mysql-database-data-types.html">
+                        MySQL数据库的数据类型</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年04月28日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    数据类型是定义列中可以存储什么数据以及该数据实际怎么存储的基本规则。Mysql的常用数据类型主要有：
+一、串数据类型最常用的数据类型，有两种基本的串类型：分别为定长串和不定长串。定长串结束长度固定的字符，其长度是创建表是指定的，不允许...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/mysql-database-data-types.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/creates-deletes-and-displays-the-mysql-database-version.html">
+                        MySql数据库创建、删除与显示版本</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年04月08日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    4.1 创建数据库注意：创建数据库之前要先连接Mysql服务器命令：create database &amp;lt;数据库名&amp;gt;  
+例1：建立一个名为xhkdb的数据库   mysql&amp;gt; create database xhkdb...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/creates-deletes-and-displays-the-mysql-database-version.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/mysql-database-connections-change-password-create-a-new-user-command.html">
+                        mySQL数据库连接、修改密码、新建用户操作命令</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年04月08日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    1、连接Mysql格式： mysql -h主机地址 -u用户名 －p用户密码  
+连接到本机上的MYSQL。首先打开DOS窗口，然后进入目录mysql\bin，再键入命令mysql -u root -p，回车后提示你输密码.注意用户名...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/mysql-database-connections-change-password-create-a-new-user-command.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+
+
+            </main>
+            
+                
+    <aside class="col-md-4 sidebar">
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        搜索
+    </h3>
+    <div id="search-form">
+        <div id="result-mask" class="hide"></div>
+        <div class="search-area">
+            
+            
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="https://baiyuan.wang"></form>
+            
+        </div>
+        <div id="result-wrap" class="hide">
+            <div id="search-result"></div>
+        </div>
+        <div class="hide">
+            <template id="search-tpl">
+                <div class="item">
+                    <a href="/{path}" title="{title}">
+                        <div class="title">{title}</div>
+                        <div class="content">{content}</div>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+
+            
+        
+            
+            
+            
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+            
+        
+            
+            <div class="widget">
+    <h3 class="title">
+        随便看看
+    </h3>
+    <div class="content random_posts">
+        <ul>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/dream-hangzhou-travel-set-out.html" target="_blank">让梦想去“杭”行—出发</a>
+                        <div class="date">2015-07-23</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/eclipse-android-using-the-activity-template-to-quickly-create-a-new-activity.html" target="_blank">eclipse安卓使用activity模板快速新建activity</a>
+                        <div class="date">2015-04-14</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/in-cyberspace-you-can-really-cover-your-mouth-right.html" target="_blank">网络空间，你真的可以口无遮掩吗？</a>
+                        <div class="date">2014-12-02</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/key-management-from-the-key-handed-down-from-generation-to-generation-to-password-as-a-service.html" target="_blank">密钥管理：从薪火相传的密钥到“密码即服务”</a>
+                        <div class="date">2019-10-10</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/malware-scan-download-zip-attack-journey.html" target="_blank">遭受恶意扫描下载zip攻击的惊险之旅</a>
+                        <div class="date">2015-09-20</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/mul-engine-auto-prompt-search-box.html" target="_blank">支持自动提示的多引擎的搜索框</a>
+                        <div class="date">2015-12-30</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/notepad-advanced-features-compile-java-c.html" target="_blank">notepad++的高级功能：编译java、C++</a>
+                        <div class="date">2015-05-17</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/reprint-use-of-third-party-web-sites-online-to-do-your-app.html" target="_blank">【转载】利用第三方网站在线做自己的APP</a>
+                        <div class="date">2014-11-30</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html" target="_blank">建立IPv6 FTP和web服务器实现跨校访问</a>
+                        <div class="date">2014-12-18</div>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+            
+        
+            
+            <link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css" rel="stylesheet">
+<div class="widget">
+    <h3 class="title">
+        最新评论
+    </h3>
+    <div class="content recent_comments">
+        
+        <div class="gt-container brief">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                sdad
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                评论反应比较慢这个怎么解决
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                calvin
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                放在iPhoneX的模拟器上在计算MaxHeight值会无法计算，先将containerHeight默认值设置为auto，计算完containerHeight后设置为0，刷新重新计算，再将containerHeight设置为auto计算minHeight可解决此问题，不知道有没有更好的方法？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                长江大学陈刚同学
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                湖北武漢東湖社區論壇有個直接取名叫“三峽大學”，長期噴
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小麦社区
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                站点名称：小麦社区
+站点描述：综合社区
+站点地址：http://www.axiaomai.cn
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                博客大全
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                博客大全特邀站长前来入住！！！！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                WordPress时间函数The_time()和Date()的区别|JOYtheme
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 转载注明原文出处：王柏元的博客&gt;&gt;http://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-01-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好，贵站的内容类型和本站类型不是很匹配，抱歉。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                所以保护知识产权不是一句假话，只有让创新的人能获得利益，才能鼓励人创新。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                如果随随便便就能买到，自己花大精力去做开发岂不是自找的辛苦啊，所以外国不封锁，反而什么也发展不起来。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                本站名称：天鸡部落
+本站链接：https://3838521.com/
+诚意友链，望审核回复留言
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+    </div>
+</div>
+
+            
+        
+            
+    </aside>
+    <aside class="col-md-4 sidebar scroll-fix">
+        
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+    </aside>
+    <aside class="col-md-4 sidebar">
+        
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        友链
+    </h3>
+    <div class="content friends-link">
+        
+        <a href="https://magpie.wangbaiyuan.cn/" class="fa" target="_blank">
+            Magpie抽奖系统</a>
+        
+        <a href="https://md.wangbaiyuan.cn/" class="fa" target="_blank">
+            极客MD编辑器</a>
+        
+        <a href="http://www.jurieo.com/" class="fa" target="_blank">
+            俊霖</a>
+        
+        <a href="https://webapproach.net/" class="fa" target="_blank">
+            知言的自留地</a>
+        
+        <a href="https://www.wangtianyi.top/" class="fa" target="_blank">
+            不要吵到这里的Bug - 王天一</a>
+        
+        <a href="http://www.deathearth.com/" class="fa" target="_blank">
+            一个程序猿的编码人生</a>
+        
+        <a href="https://www.enetn.com/" class="fa" target="_blank">
+            e网络</a>
+        
+        <a href="https://www.icheny.cn/" class="fa" target="_blank">
+            乘月网</a>
+        
+        <a href="https://ewind.us/" class="fa" target="_blank">
+            ewind the doodler</a>
+        
+    </div>
+</div>
+
+            
+        
+    </aside>
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

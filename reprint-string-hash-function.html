@@ -1,0 +1,458 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,数据结构" />
+
+
+<meta name="description" content="常用的字符串Hash函数还有ELFHash，APHash等等，都是十分简单有效的方法。这些函数使用位运算使得每一个字符都对最后的函数值产生影响。另外还有以MD5和SHA1为代表的杂凑函数，这些函..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    [转载]各种字符串Hash函数 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="[转载]各种字符串Hash函数">
+            
+            [转载]各种字符串Hash函数
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/11</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>常用的字符串Hash函数还有ELFHash，APHash等等，都是十分简单有效的方法。这些函数使用位运算使得每一个字符都对最后的函数值产生影响。另外还有以MD5和SHA1为代表的杂凑函数，这些函数几乎不可能找到碰撞。</p>
+<p>常用字符串哈希函数有BKDRHash，APHash，DJBHash，JSHash，RSHash，SDBMHash，PJWHash，ELFHash等等。</p>
+<blockquote>
+<h4 id="具体的代码分享"><a href="#具体的代码分享" class="headerlink" title="具体的代码分享"></a>具体的代码分享</h4></blockquote>
+<p>&#x2F;&#x2F;SDBMHash<br>unsigned int SDBMHash(char *str)<br>{<br>    unsigned int hash &#x3D; 0;</p>
+<pre><code>while (*str)
+&#123;
+    // equivalent to: hash = 65599\*hash + (\*str++);
+    hash = (*str++) + (hash &lt;&lt; 6) + (hash &lt;&lt; 16) - hash;
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; RS Hash Function<br>unsigned int RSHash(char *str)<br>{<br>    unsigned int b &#x3D; 378551;<br>    unsigned int a &#x3D; 63689;<br>    unsigned int hash &#x3D; 0;</p>
+<pre><code>while (*str)
+&#123;
+    hash = hash * a + (*str++);
+    a *= b;
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; JS Hash Function<br>unsigned int JSHash(char *str)<br>{<br>    unsigned int hash &#x3D; 1315423911;</p>
+<pre><code>while (*str)
+&#123;
+    hash ^= ((hash &lt;&lt; 5) + (*str++) + (hash &gt;&gt; 2));
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; P. J. Weinberger Hash Function<br>unsigned int PJWHash(char *str)<br>{<br>    unsigned int BitsInUnignedInt &#x3D; (unsigned int)(sizeof(unsigned int) * 8);<br>    unsigned int ThreeQuarters    &#x3D; (unsigned int)((BitsInUnignedInt  * 3) &#x2F; 4);<br>    unsigned int OneEighth        &#x3D; (unsigned int)(BitsInUnignedInt &#x2F; 8);<br>    unsigned int HighBits         &#x3D; (unsigned int)(0xFFFFFFFF) &lt;&lt; (BitsInUnignedInt - OneEighth);<br>    unsigned int hash             &#x3D; 0;<br>    unsigned int test             &#x3D; 0;</p>
+<pre><code>while (*str)
+&#123;
+    hash = (hash &lt;&lt; OneEighth) + (*str++);
+    if ((test = hash &amp; HighBits) != 0)
+    &#123;
+        hash = ((hash ^ (test &gt;&gt; ThreeQuarters)) &amp; (~HighBits));
+    &#125;
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; ELF Hash Function<br>unsigned int ELFHash(char *str)<br>{<br>    unsigned int hash &#x3D; 0;<br>    unsigned int x    &#x3D; 0;</p>
+<pre><code>while (*str)
+&#123;
+    hash = (hash &lt;&lt; 4) + (*str++);
+    if ((x = hash &amp; 0xF0000000L) != 0)
+    &#123;
+        hash ^= (x &gt;&gt; 24);
+        hash &amp;= ~x;
+    &#125;
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; BKDR Hash Function<br>unsigned int BKDRHash(char *str)<br>{<br>    unsigned int seed &#x3D; 131; &#x2F;&#x2F; 31 131 1313 13131 131313 etc..<br>    unsigned int hash &#x3D; 0;</p>
+<pre><code>while (*str)
+&#123;
+    hash = hash * seed + (*str++);
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; DJB Hash Function<br>unsigned int DJBHash(char *str)<br>{<br>    unsigned int hash &#x3D; 5381;</p>
+<pre><code>while (*str)
+&#123;
+    hash += (hash &lt;&lt; 5) + (*str++);
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F; AP Hash Function<br>unsigned int APHash(char *str)<br>{<br>    unsigned int hash &#x3D; 0;<br>    int i;</p>
+<pre><code>for (i=0; *str; i++)
+&#123;
+    if ((i &amp; 1) == 0)
+    &#123;
+        hash ^= ((hash &lt;&lt; 7) ^ (*str++) ^ (hash &gt;&gt; 3));
+    &#125;
+    else
+    &#123;
+        hash ^= (~((hash &lt;&lt; 11) ^ (*str++) ^ (hash &gt;&gt; 5)));
+    &#125;
+&#125;
+
+return (hash &amp; 0x7FFFFFFF);
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/reprint-string-hash-function.html" target="_blank">王柏元的博客 >> [转载]各种字符串Hash函数</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/remote-desktop-in-lan-let-your-computer-in-hand.html" class="pre-post btn btn-default" title='局域网内远程桌面：让你的电脑如影随形'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            局域网内远程桌面：让你的电脑如影随形</span>
+    </a>
+    
+    
+    <a href="/exam-2enhanced-parking-lot-of-data-structure-simulation.html" class="next-post btn btn-default" title='数据结构Exam 2:Enhanced Parking Lot Simulation'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            数据结构Exam 2:Enhanced Parking Lot Simulation</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "8311",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB"><span class="toc-text">具体的代码分享</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

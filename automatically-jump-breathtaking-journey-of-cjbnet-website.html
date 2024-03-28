@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="htaccess,网站安全,JS" />
+
+
+<meta name="description" content="极客人昨天在访问王柏元的博客时发现，网站时不时地“抽风”地跳转向www.cjb.net这个网址，几乎刚一打开baiyuan.wang就跳，访问其它的网址都没有遇到这等怪事。这种情况最开始只出现在..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    网站自动跳转到cjb.net的惊险之旅 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="网站自动跳转到cjb.net的惊险之旅">
+            
+            网站自动跳转到cjb.net的惊险之旅
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JS/" rel="tag">JS</a> <a class="tag-none-link" href="/tags/htaccess/" rel="tag">htaccess</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/11/07</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>极客人昨天在访问王柏元的博客时发现，网站时不时地“抽风”地跳转向<a target="_blank" rel="noopener" href="http://www.cjb.net这个网址,几乎刚一打开baiyuan.wang就跳,访问其它的网址都没有遇到这等怪事.这种情况最开始只出现在360极速浏览器上,即使我下意识地清除缓存、cookie,依然没有奏效.最后我换了其它的浏览器,才发现就360极速浏览器才遇到这种情况,而且还是偶然出现的;在尝试网上的方法卸载浏览器插件等的方法解决未果的情况下我只得作罢.兴许360极速浏览器中毒了吧,呵呵,360还号称安全呢!/">www.cjb.net这个网址，几乎刚一打开baiyuan.wang就跳，访问其它的网址都没有遇到这等怪事。这种情况最开始只出现在360极速浏览器上，即使我下意识地清除缓存、cookie，依然没有奏效。最后我换了其它的浏览器，才发现就360极速浏览器才遇到这种情况，而且还是偶然出现的；在尝试网上的方法卸载浏览器插件等的方法解决未果的情况下我只得作罢。兴许360极速浏览器中毒了吧，呵呵，360还号称安全呢！</a> <a href="http://baiyuan.wang/wp-content/uploads/2016/11/baiyuan.wang_2016-11-07_23-41-39.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/11/baiyuan.wang_2016-11-07_23-41-39.jpg" alt="www.cjb.net"></a> 今天晚上，我发现自动跳转到cjb.net的恼火现象再次出现，而且这次不管什么浏览器都是如此，包括Edge、IE。这才让我觉得是不是网站被“入侵”了，而且”入侵“的方式很明显，植入了含有跳转代码的js。因为当我审查元素”禁用js“时跳转情况就不会出现。然后我看了看，王柏元的博客一个文章页就引用30个js，只要其中一个js文件植入了恶意跳转代码就会出现自动跳转，如此盲目地找谈何容易。 由于网址跳转得极为迅速，我相信这个js文件是在html的head 部分，最后发现我的头部引用一个新浪CDN的jquery.min.js，网址为： <a target="_blank" rel="noopener" href="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js%EF%BC%9B%E8%BF%99%E6%98%AF%E6%88%91%E7%9A%84wordpress%E4%B8%BB%E9%A2%98%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%80%E4%B8%AAJquery">http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js；这是我的wordpress主题提供的一个Jquery</a> CDN源，当我把Jquery源由 CDN改成使用本地Jquery时，问题解决了，无疑是新浪的Jquery源被劫持了。打开这个js一看，难怪了： <a href="http://baiyuan.wang/wp-content/uploads/2016/11/baiyuan.wang_2016-11-07_23-49-01.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/11/baiyuan.wang_2016-11-07_23-49-01.jpg"></a> 而且lib.sinaapp.com域名下不管什么链接都是这个内容；最后发现网上推荐的Jquery CDN中，使用新浪的CDN还不少，估计这回中招的人应该不止我一个啊。最后我果断换成了百度的Jquery CDN：<a target="_blank" rel="noopener" href="http://libs.baidu.com/jquery/1.9.1/jquery.min.js%EF%BC%9B%E5%BD%93%E7%84%B6%EF%BC%8C%E5%87%BA%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%B7%B3%E8%BD%AC%E5%88%B0cjb.net%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8D%E4%B8%80%E5%AE%9A%E5%92%8C%E6%88%91%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%9B%A0%EF%BC%8C%E4%BD%86%E6%98%AF%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8C%89%E7%85%A7%E6%88%91%E8%BF%99%E4%B8%AA%E6%80%9D%E8%B7%AF%E5%8E%BB%E6%89%BE%E5%93%AA%E4%B8%AAjs%E6%96%87%E4%BB%B6%E8%A2%AB%E6%B1%A1%E6%9F%93%E4%BA%86%E3%80%82">http://libs.baidu.com/jquery/1.9.1/jquery.min.js；当然，出现自动跳转到cjb.net的情况不一定和我是同一个原因，但是你可以按照我这个思路去找哪个js文件被污染了。</a> <a href="http://baiyuan.wang/wp-content/uploads/2016/11/baiyuan.wang_2016-11-07_23-52-45.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/11/baiyuan.wang_2016-11-07_23-52-45.jpg" alt="Jquery CDN"></a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/automatically-jump-breathtaking-journey-of-cjbnet-website.html" target="_blank">王柏元的博客 >> 网站自动跳转到cjb.net的惊险之旅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/my-blog.html" class="pre-post btn btn-default" title='我的博客'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            我的博客</span>
+    </a>
+    
+    
+    <a href="/htacess-rewriterule-contain-problem-of-draw.html" class="next-post btn btn-default" title='解决htacess RewriteRule中含有？的问题'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            解决htacess RewriteRule中含有？的问题</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "52954",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/32d7f58f3d92f4cb27d8cb9e983317dc.png"
+                                 alt="@xgqfrms">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                xgqfrms
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-01-18
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                https://cdn.xgqfrms.xyz
+
+ ❄    ⛄ 
+
+```
+不能纯英文评论！You should type some Chinese word!
+```
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

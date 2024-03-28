@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,json,人工智能" />
+
+
+<meta name="description" content="图灵机器人是极客人在一个公众号使用过程中发现的，它是一款人工智能的免费开放的API，可以对用户输入的问题（天气、问候、查火车票、看新闻、讲笑话等等）进行人性化的回复，然后我将其引入到了自己的微信..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    JAVA（安卓）接入图灵机器人 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="JAVA（安卓）接入图灵机器人">
+            
+            JAVA（安卓）接入图灵机器人
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E8%AF%AD%E8%A8%80/">算法语言</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/json/" rel="tag">json</a> <a class="tag-none-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/18</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>图灵机器人是极客人在一个公众号使用过程中发现的，它是一款人工智能的免费开放的API，可以对用户输入的问题（天气、问候、查火车票、看新闻、讲笑话等等）进行人性化的回复，然后我将其引入到了自己的微信公众号。在学习安卓开发过程中，我就想到将其加到java中，下面是我实现的无界面控制台代码。如果你对图灵机器人感兴趣，不妨关注我的公众号。</p>
+<h2 id="JAVA（安卓）接入图灵机器人代码"><a href="#JAVA（安卓）接入图灵机器人代码" class="headerlink" title="JAVA（安卓）接入图灵机器人代码"></a>JAVA（安卓）接入图灵机器人代码</h2><p>import java.io.BufferedReader;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.net.HttpURLConnection;<br>import java.net.URL;<br>import java.net.URLEncoder;<br>import org.json.JSONException;&#x2F;&#x2F;引入json.jar<br>import org.json.JSONObject;<br>public class TulingRobots {<br>private static String ApiKey&#x3D;”yourApiKey”;<br>public static void main(String[] args) throws IOException {<br>    BufferedReader  reader&#x3D; new BufferedReader(new InputStreamReader(System.in));<br>    String yourQuestion;<br>    while((yourQuestion&#x3D;reader.readLine())!&#x3D;”退出”||(yourQuestion!&#x3D; null)){<br>         &#x2F;&#x2F;System.out.println(yourQuestion);<br>         String Info&#x3D;URLEncoder.encode(yourQuestion, “utf-8”);<br>        String url_path &#x3D; “<a target="_blank" rel="noopener" href="http://www.tuling123.com/openapi/api?key=%22+ApiKey+%22&info=%22+Info">http://www.tuling123.com/openapi/api?key=&quot;+ApiKey+&quot;&amp;info=&quot;+Info</a>;<br>        &#x2F;&#x2F;System.out.println(url_path);<br>        URL getUrl &#x3D; new URL(url_path);<br>        HttpURLConnection connection &#x3D; (HttpURLConnection) getUrl.openConnection();<br>        connection.connect();<br>        BufferedReader replyReader &#x3D; new BufferedReader(new InputStreamReader(connection.getInputStream(), “utf-8”));&#x2F;&#x2F;约定输入流的编码<br>        String reply&#x3D;replyReader.readLine();<br>        try {<br>            JSONObject Json&#x3D;new JSONObject(reply);<br>            reply&#x3D;Json.getString(“text”);&#x2F;&#x2F;获取“text”的键值<br>        } catch (JSONException e) {<br>            &#x2F;&#x2F; TODO Auto-generated catch block<br>            e.printStackTrace();<br>        }<br>        System.out.println(reply);&#x2F;&#x2F;打印图灵机器人的回复</p>
+<pre><code>&#125;
+</code></pre>
+<p>}<br>}</p>
+<p>上面的代码需要引入json.jar包，因为图灵机器人返回的是个json格式字符串，需要用户自己做json解析。对于json解析的方法，我的前面一片转载文章又详细介绍：<a href="http://baiyuan.wang/parsing-json-data-android-development.html">解析json数据</a>，你在申请图灵机器人的API后，将</p>
+<p>private static String ApiKey&#x3D;”yourApiKey”;</p>
+<p>这句代码中的”yourapikey”换成你自己的。</p>
+<h2 id="测试效果："><a href="#测试效果：" class="headerlink" title="测试效果："></a>测试效果：</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-17_03-27-22.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-17_03-27-22.jpg" alt="图灵机器人引入java"></a> 图灵机器人引入java</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/java-android-access-turing-robot.html" target="_blank">王柏元的博客 >> JAVA（安卓）接入图灵机器人</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/philosophy-of-programming-materialized.html" class="pre-post btn btn-default" title='哲学到编程：思想的实例化'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            哲学到编程：思想的实例化</span>
+    </a>
+    
+    
+    <a href="/ssd8-ex1-socket-communication-java-code.html" class="next-post btn btn-default" title='SSD8_EX1【socket通信的java实现代码】'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_EX1【socket通信的java实现代码】</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "39208",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA%EF%BC%88%E5%AE%89%E5%8D%93%EF%BC%89%E6%8E%A5%E5%85%A5%E5%9B%BE%E7%81%B5%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%BB%A3%E7%A0%81"><span class="toc-text">JAVA（安卓）接入图灵机器人代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="toc-text">测试效果：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

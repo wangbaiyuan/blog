@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="重装系统" />
+
+
+<meta name="description" content="所需工具 
+
+系统镜像
+u盘一枚（大于1G即可）
+新系统的网卡驱动安装包（事先准备！没有网卡驱动，你的新系统将无法联网）
+
+第一步：制作winPE系统启动盘对于u盘装系统，首先需要做一个叫win..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    u盘windowsPE重装windows系统 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="u盘windowsPE重装windows系统">
+            
+            u盘windowsPE重装windows系统
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F/" rel="tag">重装系统</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/08</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="所需工具"><a href="#所需工具" class="headerlink" title="所需工具"></a>所需工具</h2><p> </p>
+<ol>
+<li>系统镜像</li>
+<li>u盘一枚（大于1G即可）</li>
+<li>新系统的网卡驱动安装包（事先准备！没有网卡驱动，你的新系统将无法联网）</li>
+</ol>
+<h2 id="第一步：制作winPE系统启动盘"><a href="#第一步：制作winPE系统启动盘" class="headerlink" title="第一步：制作winPE系统启动盘"></a>第一步：制作winPE系统启动盘</h2><p>对于u盘装系统，首先需要做一个叫winPE的系统。那什么叫winPE的系统呢？在回答这个问题之前，我想大家都知道计算机的一个常识，计算机的运行是需要操作系统为基础的，操作系统为计算机提供了设备管理、存储管理等功能，可以说是一台电脑的灵魂，电脑的文件读写都需要操作系统做支撑。在硬盘上装系统就是把系统文件写进去，然后让计算机运行这些程序文件让计算机跑起来。装系统的过程就是把系统文件写进磁盘里。前面说到，计算机的存储管理是需要操作系统作支撑的。既然是要给电脑装个系统，原本的电脑上自然是没有操作系统的，那怎么实现将文件写入呢？ 所以我们需要用一个叫“winPE”的系统作铺垫，我们一般把PE系统放在u盘，然后让电脑从u盘里启动操作系统——winPE，在u盘里面的PE系统为硬盘装上真正要使用的操作系统。winPE的系统本质和我们常用的XP、win7本质上是没有区别的，只是这个系统比较小（磁盘空间占用和运行内存占用都比较小，有人也称它是”微型（mini）系统“）,由于我们往往只是把这个系统用来安装与维护操作系统，我们不需要它像win7和winXP那样强大的全部功能，winPE的界面和XP、7差不多，却往往无法联网，没有强大的显卡处理功能等，它本质上是WIN XP、WIN7等系统的精简版。它往往就提供磁盘管理的功能，然后你就可以为你的磁盘进行分区然后写入系统文件了。</p>
+<h3 id="1-下载大白菜等PE制作工具，软件下载及制作教程地址：http-www-winbaicai-com-down-130-html。"><a href="#1-下载大白菜等PE制作工具，软件下载及制作教程地址：http-www-winbaicai-com-down-130-html。" class="headerlink" title="1.下载大白菜等PE制作工具，软件下载及制作教程地址：http://www.winbaicai.com/down_130.html。"></a>1.下载大白菜等PE制作工具，软件下载及制作教程地址：<a target="_blank" rel="noopener" href="http://www.winbaicai.com/down_130.html%E3%80%82">http://www.winbaicai.com/down_130.html。</a></h3><p>目前笔者所知比较有名的PE系统有老毛桃和大白菜，笔者选用的大白菜，上面这个地址介绍的很详细，制作u盘启动盘的过程笔者就不一一赘述了；<strong>需要给大家提示的时，用这些PE做的系统有时会被强行捆绑一些广告和流氓软件</strong>，好在大白菜自己提供了一个除去广告的选项</p>
+<h4 id="2-大白菜PE去广告的具体方法"><a href="#2-大白菜PE去广告的具体方法" class="headerlink" title="2.大白菜PE去广告的具体方法"></a>2.大白菜PE去广告的具体方法</h4><p>进入大白菜u盘启动盘制作工具软件的”个性设置“菜单， <img src="http://baiyuan.wang/wp-content/uploads/2015/01/20150127125641_40467.jpg">  在右下方有个大白菜赞助商，把下面两个选项全部取消勾选，然后它会跳出一个取消密码。输入：”winbaicai.com“</p>
+<h2 id="第二步，开机进入BIOS-选择系统启动项"><a href="#第二步，开机进入BIOS-选择系统启动项" class="headerlink" title="第二步，开机进入BIOS,选择系统启动项"></a>第二步，开机进入BIOS,选择系统启动项</h2><p>做完u盘启动盘以后我们需要将电脑从u盘启动而不是硬盘，所以需要在bios里设置一下，由于各个厂商的bios设置不一样，具体进入bios和修改启动项的方法，你可以分别百度“ 【你的电脑品牌】怎样进入BIOS“和”【你的电脑品牌】怎样从u盘启动启动“。 笔者的电脑是戴尔的，它提供了一个F12热键选择启动项的快捷方法；而据我所知，华硕的则需要修改磁盘启动里硬盘启动顺序，你可用”+“或”-“改变启动顺序（对于新手，你这里真的要好好百度，具体品牌的方法都不太一样）。 在这里需要提醒的是，u盘启动选项里一般都带着”USB“字样.</p>
+<h2 id="第三步，进入windowsPE系统"><a href="#第三步，进入windowsPE系统" class="headerlink" title="第三步，进入windowsPE系统"></a>第三步，进入windowsPE系统</h2><p>在启动项选项中选择”u盘“启动按enter后，就进入了windows PE系统     <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image3.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb3.png" alt="image" title="image"></a> 用上下方向键——“↑”“↓”选择【02】“运行大白菜WinPEx64正式版”，然后就正式进入了大白菜装机系统  </p>
+<h2 id="第四步：格式化C盘（装双系统时可以保留c盘，格式化D盘，将新系统装在D盘）"><a href="#第四步：格式化C盘（装双系统时可以保留c盘，格式化D盘，将新系统装在D盘）" class="headerlink" title="第四步：格式化C盘（装双系统时可以保留c盘，格式化D盘，将新系统装在D盘）"></a>第四步：格式化C盘（装双系统时可以保留c盘，格式化D盘，将新系统装在D盘）</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/03/czxt-3_compressed1.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/czxt-3_compressed_thumb1.jpg" alt="czxt (3)_compressed" title="czxt (3)_compressed"></a></p>
+<h2 id="第五步-加载系统镜像为虚拟光盘"><a href="#第五步-加载系统镜像为虚拟光盘" class="headerlink" title="第五步:加载系统镜像为虚拟光盘"></a>第五步:加载系统镜像为虚拟光盘</h2><p>  一般的PE工具都提供虚拟光盘功能呢,你可以直接双击格式为.iso的虚拟光盘镜像文件,然后你可以在计算机的驱动器里看到系统的虚拟光盘</p>
+<h2 id="第六步-打开应用软件”Win系统安装器”安装系统"><a href="#第六步-打开应用软件”Win系统安装器”安装系统" class="headerlink" title="第六步:打开应用软件”Win系统安装器”安装系统"></a>第六步:打开应用软件”Win系统安装器”安装系统</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/03/image6.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb6.png" alt="image" title="image"></a>   选择install.wim文件： <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image7.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb7.png" alt="image" title="image"></a>   点击开始安装。系统安装过程就开始了，大概花费8分钟，系统安装完毕，重启电脑即可。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>系统安装后的第一步的工作就是安装系统，个人建议使用电脑厂商官网提供的硬件驱动。其中网卡驱动和显卡驱动可以首先安装，缺少网卡驱动无法联网；缺少显卡驱动，将无法获得流畅的视频、动画体验、窗口无法透明、亮度无法调节。 如果你怕安装驱动麻烦，可以百度“驱动精灵”、“驱动人生”等工具进行安装，个人还是建议使用官网驱动。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/windowspe-u-disk-to-reinstall-windows-system.html" target="_blank">王柏元的博客 >> u盘windowsPE重装windows系统</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/write-in-wordpress-said.html" class="pre-post btn btn-default" title='在wordpress上写说说/短微博'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            在wordpress上写说说/短微博</span>
+    </a>
+    
+    
+    <a href="/mobile-client-for-discuz-site-android-ios.html" class="next-post btn btn-default" title='为discuz站点做移动客户端（安卓+IOS）'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            为discuz站点做移动客户端（安卓+IOS）</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "32869",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%80%E9%9C%80%E5%B7%A5%E5%85%B7"><span class="toc-text">所需工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%88%B6%E4%BD%9CwinPE%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="toc-text">第一步：制作winPE系统启动盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%A4%A7%E7%99%BD%E8%8F%9C%E7%AD%89PE%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7%EF%BC%8C%E8%BD%AF%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%88%B6%E4%BD%9C%E6%95%99%E7%A8%8B%E5%9C%B0%E5%9D%80%EF%BC%9Ahttp-www-winbaicai-com-down-130-html%E3%80%82"><span class="toc-text">1.下载大白菜等PE制作工具，软件下载及制作教程地址：http:&#x2F;&#x2F;www.winbaicai.com&#x2F;down_130.html。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%A4%A7%E7%99%BD%E8%8F%9CPE%E5%8E%BB%E5%B9%BF%E5%91%8A%E7%9A%84%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95"><span class="toc-text">2.大白菜PE去广告的具体方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%BF%9B%E5%85%A5BIOS-%E9%80%89%E6%8B%A9%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-text">第二步，开机进入BIOS,选择系统启动项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E8%BF%9B%E5%85%A5windowsPE%E7%B3%BB%E7%BB%9F"><span class="toc-text">第三步，进入windowsPE系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%A0%BC%E5%BC%8F%E5%8C%96C%E7%9B%98%EF%BC%88%E8%A3%85%E5%8F%8C%E7%B3%BB%E7%BB%9F%E6%97%B6%E5%8F%AF%E4%BB%A5%E4%BF%9D%E7%95%99c%E7%9B%98%EF%BC%8C%E6%A0%BC%E5%BC%8F%E5%8C%96D%E7%9B%98%EF%BC%8C%E5%B0%86%E6%96%B0%E7%B3%BB%E7%BB%9F%E8%A3%85%E5%9C%A8D%E7%9B%98%EF%BC%89"><span class="toc-text">第四步：格式化C盘（装双系统时可以保留c盘，格式化D盘，将新系统装在D盘）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5-%E5%8A%A0%E8%BD%BD%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E4%B8%BA%E8%99%9A%E6%8B%9F%E5%85%89%E7%9B%98"><span class="toc-text">第五步:加载系统镜像为虚拟光盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5-%E6%89%93%E5%BC%80%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6%E2%80%9DWin%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E5%99%A8%E2%80%9D%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-text">第六步:打开应用软件”Win系统安装器”安装系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-text">最后</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

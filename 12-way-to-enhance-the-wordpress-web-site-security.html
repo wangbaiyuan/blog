@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="htaccess,wordpress,网站优化,网站安全" />
+
+
+<meta name="description" content="这篇文章主要是利用.htaccess去对网站做设定、限制目录读取，强化WordPress网站整体安全，不过你也别忘了要设定强一点的密码。 接下来极客人要介绍的主要是透过.htaccess对网站做..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    强化WordPress网站安全的 12 个方法 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="强化WordPress网站安全的 12 个方法">
+            
+            强化WordPress网站安全的 12 个方法
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/htaccess/" rel="tag">htaccess</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96/" rel="tag">网站优化</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>这篇文章主要是利用.htaccess去对网站做设定、限制目录读取，强化WordPress网站整体安全，不过你也别忘了要设定强一点的密码。 接下来极客人要介绍的主要是透过.htaccess对网站做一个基础的强化，保护wp-admin目录、限制wp-includes目录读取、防垃圾留言、禁止目录索引、限制wp-config.php访问权限等等，算是很基础的网站安全防护，不论你网站是否遭受攻击，其实这些都是必要性的安全防护。当然，进行了下面的网站安全防护不代表你被不会被黑客入侵，而是多一层保障、降低一些被攻击几率。 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/01300000165488123666522066630.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/01300000165488123666522066630.jpg" alt="01300000165488123666522066630"></a>  </p>
+<h2 id="一、限制wp-admin目录IP"><a href="#一、限制wp-admin目录IP" class="headerlink" title="一、限制wp-admin目录IP"></a>一、限制wp-admin目录IP</h2><p>如果你管理wordpress网站一般就只有那么几个IP，而且你对自己的网站安全十分看重，比如你运行一个关系重大的团队网站，同时常常受到黑客的光顾，而且团队运行的登陆者常常使用的几个固定IP，为了保证网站的安全，下面这个方法可以限制读取wp-admin目录的IP或者IP网段，不是指定的IP（或者IP网段）就无法访问后台，这个方法当然不仅仅针对wordpress网站。 用NotePad++新增一个.htaccess文件，在htaccess文件中添加下述代码，并将文件上传到“wp-admin”目录下。 其中的蓝色部分请换成你的IP，这段语法的判断流程简言之就是先封锁有所IP，然后开放允许的IP，所以将“allow from 12.34.56.78”的12.34.56.78改成你的IP。如果是一个网段，可以输入“ 12.34.56.”</p>
+<p>AuthUserFile &#x2F;dev&#x2F;null<br>AuthGroupFile &#x2F;dev&#x2F;null<br>AuthName “Wordpress Admin Access Control”<br>AuthType Basic<br><LIMIT GET><br>order deny,allow<br>deny from all<br>allow from 12.34.56.78<br></LIMIT></p>
+<p> </p>
+<h2 id="二、限制存取wp-includes目录"><a href="#二、限制存取wp-includes目录" class="headerlink" title="二、限制存取wp-includes目录"></a>二、限制存取wp-includes目录</h2><p>“wp-includes”这个目录是系统的一些核心目录，还有”&#x2F;wp-admin&#x2F;wp-includes”和，”&#x2F;wp-includes”在我们的网站页面上并没有哪个页面有URL会指向这些地方（通常这个目录里的文件只能被被管理者修改或者代码里调用的）。用以下这段语法可以限制存取的权限，请将下面的代码加入到根目录的.htaccess文件中。 此为官方建议设定。</p>
+<p># Block the include-only files.<br>RewriteEngine On<br>RewriteBase &#x2F;<br>RewriteRule ^wp-admin&#x2F;includes&#x2F; - [F,L]<br>RewriteRule !^wp-includes&#x2F; - [S&#x3D;3]<br>RewriteRule ^wp-includes&#x2F;[^&#x2F;]+\.php$ - [F,L]<br>RewriteRule ^wp-includes&#x2F;js&#x2F;tinymce&#x2F;langs&#x2F;.+\.php - [F,L]<br>RewriteRule ^wp-includes&#x2F;theme-compat&#x2F; - [F,L]<br># BEGIN WordPress</p>
+<p>  如果没有加入以上语法，会显示错误讯息；如果加了以上语法，会显示WordPress的默认404页面：告诉你目录不存在，这样是一个比较安全的防护措施。</p>
+<h2 id="三、限制wp-login-php登入IP"><a href="#三、限制wp-login-php登入IP" class="headerlink" title="三、限制wp-login.php登入IP"></a>三、限制wp-login.php登入IP</h2><p>如果你网站没有开放注册，那你可以执行这项的方法，限制允许访问wp-login.php只有网站的管理者，设定方法和前面的限制wp-admin存取IP方法类似，请将“12.34.56.78”改成你允许的IP或是网段。</p>
+<Files wp-login.php>
+Order deny,allow
+Deny from All
+Allow from 12.34.56.78
+</Files>
+
+<p> </p>
+<h2 id="四、限制上传大小"><a href="#四、限制上传大小" class="headerlink" title="四、限制上传大小"></a>四、限制上传大小</h2><p>避免黑客透过Dos攻击，利用传输大文件来冲爆你的流量，所以可以透过限制单档大小来阻绝这样的一个状况发生，将以下语法加入到根目录的.htaccess文件中即可，极客人的预设是10MB。</p>
+<p>LimitRequestBody 10240000</p>
+<p> </p>
+<h2 id="五、保护wp-config-php配置文件"><a href="#五、保护wp-config-php配置文件" class="headerlink" title="五、保护wp-config.php配置文件"></a>五、保护wp-config.php配置文件</h2><p>用过WordPress都知道”wp-config.php”这个文件攸关整个系统的运行，少了它或者配置错误连不上数据库，因为这个文件内保存了MySQL的账号与密码，为了保护这个文件，WordPress官方有个建议，就是先将此文件权限设定为”400”，也就是只允许拥有人权读取。不过设400可能会让一些插件例如wp super cache要写入设定值时发生错误，所以请大家斟酌裁定。 不过保护wp-config.php重头戏是设定.htaccess目录，修改根目录的.htaccess目录，加入以下语法，这语法意思是：禁止所有人浏览(主机内的程序是可以正常读取的)。 此为官方建议的设置方法：</p>
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
+
+<p> </p>
+<h2 id="六、防垃圾留言攻击"><a href="#六、防垃圾留言攻击" class="headerlink" title="六、防垃圾留言攻击"></a>六、防垃圾留言攻击</h2><p>以下这段语法是保护你的留言防止被机器人垃圾留言攻击，主要屏蔽没有referrer的请求，但极客人使用过后发现成效有限，建议再加装Akismet和quiz保护会更好。请将下述代码加入到根目录的.htaccess文件，其中的”baiyuan.wang”请换成你自己的网站网址。</p>
+<p>RewriteEngine On<br>RewriteCond %{REQUEST_METHOD} POST<br>RewriteCond %{REQUEST_URI} .wp-comments-post\.php*<br>RewriteCond %{HTTP_REFERER} !.*baiyuan.wang.* [OR]<br>RewriteCond %{HTTP_USER_AGENT} ^$<br>RewriteRule (.*) ^http:&#x2F;&#x2F;%{REMOTE_ADDR}&#x2F;$ [R&#x3D;301,L]</p>
+<p> </p>
+<h2 id="七、禁止目录索引"><a href="#七、禁止目录索引" class="headerlink" title="七、禁止目录索引"></a>七、禁止目录索引</h2><p>如果你的虚拟主机没有开启禁止目录索引功能，请您务必加上此语法以保护没有index目录的目录，避免被恶意人士将网站内容全部下载。</p>
+<p>Options -Indexes</p>
+<p> </p>
+<h2 id="八、变更数据表前缀"><a href="#八、变更数据表前缀" class="headerlink" title="八、变更数据表前缀"></a>八、变更数据表前缀</h2><p>数据表前缀词其实在一开始安装的时候就务必做一个修正的动作，避免使用预设wp的名称，修改请务必小心，否则可能造成网站错误，做任何调整前务必先行备份。</p>
+<h2 id="九、合理设置目录权限"><a href="#九、合理设置目录权限" class="headerlink" title="九、合理设置目录权限"></a>九、合理设置目录权限</h2><p>网站内该设定的权限务必根据需求调整好，例如wp-config.php就不建议设定为777。</p>
+<h2 id="十、账号安全"><a href="#十、账号安全" class="headerlink" title=" 十、账号安全"></a> 十、账号安全</h2><p>WordPress系统默认安装是采用admin账号，不过后来的版本允许使用者自行选择网站管理员账号，以避免恶意用户想要尝试admin登入网站。如果你本身已经使用admin，请赶快换账号吧！不然黑客轻易的就可以猜到你账号，接下来猜出密码应该很快了。另外建议使用Limit Login Attempts强化登入安全，当然您也要设一个不易猜出的密码。</p>
+<h2 id="十一、关闭后台主题编辑功能"><a href="#十一、关闭后台主题编辑功能" class="headerlink" title="十一、关闭后台主题编辑功能"></a>十一、关闭后台主题编辑功能</h2><p>WordPress后台的主题一旦权限开放就可以在后台直接编辑，如果没有开放则只可浏览。主机若有安装suPHP默认就是可以编辑。如果你觉得这项功能用不到，建议您可以关闭它，毕竟直接暴露在后台可以编辑是一件很危险的事情，除了可能因为黑客入侵乱改，也可能自己改错造成网站出错。请将以下语法加入倒wp-config.php适当位置，就可以关闭修改的权限了。</p>
+<p>define(‘DISALLOW_FILE_EDIT’, true);</p>
+<p> </p>
+<h2 id="十二、限制-htaccess-访问权限"><a href="#十二、限制-htaccess-访问权限" class="headerlink" title="十二、限制 .htaccess 访问权限"></a>十二、限制 .htaccess 访问权限</h2><p>当以上的东西调整完之后，别忘了强化你的.htaccess目录本身权限。将以下语法加入到.htaccess目录内已启用自我保护。语法是禁止所有人直接浏览该目录，但是系统使用读取是允许的。</p>
+<p>&lt;Files .htaccess&gt;<br>order allow,deny<br>deny from all<br></Files></p>
+<p>  最后各位还是要做好个人的账号密码保护，另外也别在不明的网络、计算机乱登入网站，这都可能造成帐密外泄，除此之外，再次提醒，使用以上方法只会加强WordPress安全，但无法保证百毒不侵，仍有机会遭受到黑客入侵，通常状况可能是您帐密外泄、网站插件、主题有漏洞、系统有不明的漏洞，还有目录权限设定不正确等等的状况，各位还是要多多注意。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/12-way-to-enhance-the-wordpress-web-site-security.html" target="_blank">王柏元的博客 >> 强化WordPress网站安全的 12 个方法</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd7-ex3-advanced-sql.html" class="pre-post btn btn-default" title='SSD7_EX3【高级SQL】'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD7_EX3【高级SQL】</span>
+    </a>
+    
+    
+    <a href="/website-block-comment-spam-and-malicious-access-collection.html" class="next-post btn btn-default" title='网站屏蔽垃圾评论和恶意访问、采集'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            网站屏蔽垃圾评论和恶意访问、采集</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "12977",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-08-22
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                限制wp-admin目录是尽量只让管理员可以访问，这是wordpress的后台地址
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d103ee23768e3d1de53620b16913878a.png"
+                                 alt="@凉城博客0x0">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                凉城博客0x0
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-08-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                限制wp-admin目录IP是限制访问WP网站吗？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%99%90%E5%88%B6wp-admin%E7%9B%AE%E5%BD%95IP"><span class="toc-text">一、限制wp-admin目录IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%99%90%E5%88%B6%E5%AD%98%E5%8F%96wp-includes%E7%9B%AE%E5%BD%95"><span class="toc-text">二、限制存取wp-includes目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%99%90%E5%88%B6wp-login-php%E7%99%BB%E5%85%A5IP"><span class="toc-text">三、限制wp-login.php登入IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%99%90%E5%88%B6%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F"><span class="toc-text">四、限制上传大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BF%9D%E6%8A%A4wp-config-php%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">五、保护wp-config.php配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E9%98%B2%E5%9E%83%E5%9C%BE%E7%95%99%E8%A8%80%E6%94%BB%E5%87%BB"><span class="toc-text">六、防垃圾留言攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%A6%81%E6%AD%A2%E7%9B%AE%E5%BD%95%E7%B4%A2%E5%BC%95"><span class="toc-text">七、禁止目录索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%8F%98%E6%9B%B4%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%89%8D%E7%BC%80"><span class="toc-text">八、变更数据表前缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%90%88%E7%90%86%E8%AE%BE%E7%BD%AE%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90"><span class="toc-text">九、合理设置目录权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E8%B4%A6%E5%8F%B7%E5%AE%89%E5%85%A8"><span class="toc-text"> 十、账号安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%85%B3%E9%97%AD%E5%90%8E%E5%8F%B0%E4%B8%BB%E9%A2%98%E7%BC%96%E8%BE%91%E5%8A%9F%E8%83%BD"><span class="toc-text">十一、关闭后台主题编辑功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E9%99%90%E5%88%B6-htaccess-%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="toc-text">十二、限制 .htaccess 访问权限</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="htaccess,网站安全,IP" />
+
+
+<meta name="description" content="自王柏元的博客开通以来，笔者就不止一次地受到恶意注册、机器人发广告评论的骚扰。昨天收到一个广告评论，发现评论用户填写的网站IP和用户IP相同的，无疑，这说明这是网络机器人刷的评论。于是我就有一个..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    虚拟主机怎样屏蔽指定IP或网段 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="虚拟主机怎样屏蔽指定IP或网段">
+            
+            虚拟主机怎样屏蔽指定IP或网段
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/IP/" rel="tag">IP</a> <a class="tag-none-link" href="/tags/htaccess/" rel="tag">htaccess</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/26</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>自王柏元的博客开通以来，笔者就不止一次地受到恶意注册、机器人发广告评论的骚扰。昨天收到一个广告评论，发现评论用户填写的网站IP和用户IP相同的，无疑，这说明这是网络机器人刷的评论。于是我就有一个想法，直接屏蔽掉这个IP访问我的博客。下面介绍我的解决方法。</p>
+<h2 id="虚拟主机怎样屏蔽指定IP或网段"><a href="#虚拟主机怎样屏蔽指定IP或网段" class="headerlink" title="虚拟主机怎样屏蔽指定IP或网段"></a>虚拟主机怎样屏蔽指定IP或网段</h2><p>一般，虚拟主机商都没有在主机管理里提供屏蔽IP访问的功能，当然，如果有你就方便很多。其实，即使虚拟主机商没有提供屏蔽指定IP访问的功能，我们也可以很简单地实现它。 方法很简单：在htaccess文件中加入屏蔽IP的字段。（htaccess文件的写法与作用在我前面的一篇文章有相当详细的讲解，如果你对防盗链、301重定向、自定义错误页面等有浓厚的研究兴趣，不妨看看这篇文章：<a href="http://baiyuan.wang/21_htaccess-_skills.html" title="21 个非常有用的 .htaccess 提示和技巧">21 个非常有用的 .htaccess 提示和技巧</a>。</p>
+<h2 id="禁止指定用户IP访问"><a href="#禁止指定用户IP访问" class="headerlink" title="禁止指定用户IP访问"></a>禁止指定用户IP访问</h2><p>如果要屏蔽某一特定IP可以使用：</p>
+<p>order allow,deny<br>deny from 10.16.0.1<br>allow from all</p>
+<p>如果想要屏蔽多个IP地址，只需多加几个deny from 即可</p>
+<p>order allow,deny<br>deny from 10.16.0.2<br>deny from 10.16.0.3<br>deny from 10.16.0.4<br>allow from all</p>
+<p>如果需要屏蔽整个IP段，可以使用</p>
+<p>order allow,deny<br>deny from 10.16.0<br>allow from all</p>
+<p>如果只想屏蔽IP网段段中的一部分IP，则</p>
+<p>order allow,deny<br>deny from 10.16.0.100&#x2F;200<br>allow from all</p>
+<h2 id="仅允许指定IP访问"><a href="#仅允许指定IP访问" class="headerlink" title="仅允许指定IP访问"></a>仅允许指定IP访问</h2><p>方法很简单，把上面的 deny from 换成 allow from、deny from 换成 allow from 即可，比如：</p>
+<p>order allow,deny<br>allow from 10.16.0.100&#x2F;200<br>denyfrom all</p>
+<p>允许IP段10.16.0.100至10.16.0.200的用户访问，其他IP一律无法访问。</p>
+<h2 id="定制403错误页面"><a href="#定制403错误页面" class="headerlink" title="定制403错误页面"></a>定制403错误页面</h2><p>在限制访问的IP在访问网站的时候会响应403错误，但有时禁止的IP可能误判，你可以定制自己的403错误页面，提示访问者没有访问权限或者IP被屏蔽，并可以在网页中提供申诉途径。 如图： <a href="http://baiyuan.wang/wp-content/uploads/2015/03/baiyuan.wang_2015-03-26_08-54-10.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/baiyuan.wang_2015-03-26_08-54-10.jpg" alt="屏蔽ip"></a>  </p>
+<h3 id="实现方法："><a href="#实现方法：" class="headerlink" title="实现方法："></a>实现方法：</h3><p>在htaccess中添加下述代码：</p>
+<p>ErrorDocument 403 error&#x2F;403.html</p>
+<p>error&#x2F;403.html根据实际情况填写路径，地址指向自己写的403页面。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/web-hosting-how-to-block-specified-ip-or-network-segments.html" target="_blank">王柏元的博客 >> 虚拟主机怎样屏蔽指定IP或网段</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/analog-ua-implementation-access-to-open-only-on-the-app-page.html" class="pre-post btn btn-default" title='模拟UA实现访问只能在微信上打开的网页'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            模拟UA实现访问只能在微信上打开的网页</span>
+    </a>
+    
+    
+    <a href="/the-wordpress-time-function-time-and-the-data-difference.html" class="next-post btn btn-default" title='wordpress时间函数the_time()和data()的区别'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            wordpress时间函数the_time()和data()的区别</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "52155",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-01-17
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                可以参考这篇文章<a target="_blank" href="http://baiyuan.wang/21_htaccess-_skills.html" rel="external">21 个非常有用的 .Htaccess 提示和技巧</a>，根据 HTTP_REFERER 进行判断，将制定网址的请求重定向
+<code>
+RewriteCond %{HTTP_REFERER} !^http://baiyuan.wang.*$ [NC]
+RewriteRule (.*) http://127.0.0.1/$1 [R=301,L]
+</code>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/49a2a8a2f4c8eb4968fd734757e70f09.png"
+                                 alt="@百万链">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                百万链
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-01-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                屏蔽从某个网站来访呢？可行吗？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-03-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我会记住你的
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/b77cb2f39fe49f0d3a106069eeecda4f.png"
+                                 alt="@无名">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                无名
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-03-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                悲催的我成为了试验品
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/4d1e3cb110c094e4f7c704232956bc34.png"
+                                 alt="@企鹅">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                企鹅
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-03-26
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                虽然不懂你在说什么…但是感觉好牛逼的样子
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E6%80%8E%E6%A0%B7%E5%B1%8F%E8%94%BD%E6%8C%87%E5%AE%9AIP%E6%88%96%E7%BD%91%E6%AE%B5"><span class="toc-text">虚拟主机怎样屏蔽指定IP或网段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E6%8C%87%E5%AE%9A%E7%94%A8%E6%88%B7IP%E8%AE%BF%E9%97%AE"><span class="toc-text">禁止指定用户IP访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%85%E5%85%81%E8%AE%B8%E6%8C%87%E5%AE%9AIP%E8%AE%BF%E9%97%AE"><span class="toc-text">仅允许指定IP访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6403%E9%94%99%E8%AF%AF%E9%A1%B5%E9%9D%A2"><span class="toc-text">定制403错误页面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">实现方法：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

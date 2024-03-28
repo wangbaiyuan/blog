@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android开发" />
+
+
+<meta name="description" content="自android4.4出来以后，沉浸式状态栏莫名地就火了起来，而最近，极客人的安卓手机无意中更新完几个常用软件，比如天天动听、wps office，发现这些软件大体上没什么改动，不过都陆续实现了..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    安卓开发实现沉浸式状态栏 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="安卓开发实现沉浸式状态栏">
+            
+            安卓开发实现沉浸式状态栏
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>自android4.4出来以后，沉浸式状态栏莫名地就火了起来，而最近，极客人的安卓手机无意中更新完几个常用软件，比如天天动听、wps office，发现这些软件大体上没什么改动，不过都陆续实现了沉浸式状态栏效果。极客人当初第一次见到这个名词时，以为这是个很高大上的技术，不知道你也是否也觉得。不过真正知晓以后所谓的、传说中的沉浸式状态栏是什么东西时，才发现真是“见面不如闻名”。 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-27_12-02-34.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-27_12-02-34.jpg" alt="沉浸式状态栏"></a> 沉浸式状态栏 不管沉浸式是否高大上，但它就是很火，也成为刷机论坛各个刷机包炒作的看点。极客人在此还是向大家介绍怎么在安卓开发中实现安卓4.4及以上的手机应用实现沉浸式状态栏效果。 安卓开发实现沉浸式状态栏的代码相当简单。在activity代码中加入以下代码即可：</p>
+<h2 id="安卓开发实现沉浸式状态栏代码："><a href="#安卓开发实现沉浸式状态栏代码：" class="headerlink" title="安卓开发实现沉浸式状态栏代码："></a>安卓开发实现沉浸式状态栏代码：</h2><p>if (Build.VERSION.SDK_INT &gt;&#x3D; Build.VERSION_CODES.KITKAT) {<br>    Window window &#x3D; getWindow();<br>    window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,<br>    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);<br>}</p>
+<p> </p>
+<h2 id="代码解析："><a href="#代码解析：" class="headerlink" title="代码解析："></a>代码解析：</h2><p>Build.VERSION.SDK_INT &gt;&#x3D; Build.VERSION_CODES.KITKAT这句是获取当前手机SDK版本号大于或等于Build.VERSION_CODES.KITKAT（安卓4.4，详情请看附录）时及即执行如下代码：</p>
+<p>Window window &#x3D; getWindow();<br>    window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,<br>    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);</p>
+<p>Build.VERSION_CODES类：目前已知的SDK版本号的枚举类，这些值可以在SDK中找到，每次官方发布，这些值都是单调递增。</p>
+<h2 id="SDK版本号附录："><a href="#SDK版本号附录：" class="headerlink" title="SDK版本号附录："></a>SDK版本号附录：</h2><ul>
+<li>第一版： Build.VERSION_CODES.BASE</li>
+<li>1.1版： Build.VERSION_CODES.BASE_1_1</li>
+<li>1.5版： Build.VERSION_CODES.CUPCAKE</li>
+<li>此版官方未发布： Build.VERSION_CODES.CUR_DEVELOPMENT</li>
+<li>1.6版： Build.VERSION_CODES.DONUT</li>
+<li>2.0版： Build.VERSION_CODES.ECLAIR</li>
+<li>2.0.1版： Build.VERSION_CODES.ECLAIR_0_1</li>
+<li>2.1版： Build.VERSION_CODES.ECLAIR_MR1</li>
+<li>2.2版： Build.VERSION_CODES.FROYO</li>
+<li>2.3版： Build.VERSION_CODES.GINGERBREAD</li>
+<li>2.3.3版： Build.VERSION_CODES.GINGERBREAD_MR1</li>
+<li>3.0版： Build.VERSION_CODES.HONEYCOMB</li>
+<li>3.1版： Build.VERSION_CODES.HONEYCOMB_MR1</li>
+<li>3.2版： Build.VERSION_CODES.HONEYCOMB_MR2</li>
+<li>4.0版： Build.VERSION_CODES.ICE_CREAM_SANDWICH</li>
+<li>4.0.3版： Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1</li>
+<li>4.1版： Build.VERSION_CODES.JELLY_BEAN</li>
+<li>4.2版： Build.VERSION_CODES.JELLY_BEAN_MR1</li>
+<li>4.3版：Build.VERSION_CODES.JELLY_BEAN_MR2+NEWLINE);</li>
+<li>4.4版：Build.VERSION_CODES.KITKAT);</li>
+</ul>
+<h2 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h2><p>①加入如下代码的界面，所有控件都会向上移，但是标题栏“actionbar”除外，极客人鼓捣了好久代码也没解决怎么把actionbar放在手机界面的顶部，所以建议大家将activity的主题theme设置为：“noactionbar”。实现方法如下： 在清单文件中activity标签中添加：</p>
+<p>android:theme&#x3D;”@android:style&#x2F;Theme.Holo.Light.NoActionBar”</p>
+<p>&#x2F;&#x2F;没有actionbar的主题还有很多这里是个例子</p>
+<p>②你可能需要自己写个标题栏在布局的顶部</p>
+<h3 id="如果你有更好的方法，欢迎留言共同学习！"><a href="#如果你有更好的方法，欢迎留言共同学习！" class="headerlink" title="如果你有更好的方法，欢迎留言共同学习！"></a>如果你有更好的方法，欢迎留言共同学习！</h3>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/android-development-for-immersion-status-bar.html" target="_blank">王柏元的博客 >> 安卓开发实现沉浸式状态栏</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/wordpress-function-hook-hook-book-1.html" class="pre-post btn btn-default" title='wordpress函数钩子（hook）大全(1)'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            wordpress函数钩子（hook）大全(1)</span>
+    </a>
+    
+    
+    <a href="/initiative-to-push-plug-in-baidu-free-link-submit-real-time.html" class="next-post btn btn-default" title='免插件百度链接提交-实时主动推送'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            免插件百度链接提交-实时主动推送</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "17679",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/73717aafac1e7701dab0fa02b8936926.png"
+                                 alt="@alb">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                alb
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-12
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                :grin: 哈哈
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E5%AE%9E%E7%8E%B0%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">安卓开发实现沉浸式状态栏代码：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90%EF%BC%9A"><span class="toc-text">代码解析：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDK%E7%89%88%E6%9C%AC%E5%8F%B7%E9%99%84%E5%BD%95%EF%BC%9A"><span class="toc-text">SDK版本号附录：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-text">注意：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%9C%89%E6%9B%B4%E5%A5%BD%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E6%AC%A2%E8%BF%8E%E7%95%99%E8%A8%80%E5%85%B1%E5%90%8C%E5%AD%A6%E4%B9%A0%EF%BC%81"><span class="toc-text">如果你有更好的方法，欢迎留言共同学习！</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

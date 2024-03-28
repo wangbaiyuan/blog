@@ -1,0 +1,587 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="SSD8" />
+
+
+<meta name="description" content="这是SSD8练习的EX2，预计极客人将会写一个系列，此系列全为王柏元个人原创，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD8”即可获取已更新的SSD8答案..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD8_EX2【UDP vs TCP】 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD8_EX2【UDP vs TCP】">
+            
+            SSD8_EX2【UDP vs TCP】
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/22</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>这是SSD8练习的EX2，预计极客人将会写一个系列，此系列全为王柏元个人原创，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD8”即可获取已更新的SSD8答案。上一练习：<a href="http://baiyuan.wang/ssd8-ex1-socket-communication-java-code.html">SSD8_EX1【Socket通信的Java实现代码】</a>;如果你想继续跟踪SSD练习进展，建议<a href="http://baiyuan.wang/newsletter?action=subscribe">订阅本站</a>。</p>
+<h2 id="问题简述"><a href="#问题简述" class="headerlink" title="问题简述"></a>问题简述</h2><p>用Java写一个简单的基于C&#x2F;S（客户机&#x2F;服务器）模式的数据报（datagram）程序。客户端设置一个计时器，开始计时后，分别利用UDP和TCP协议向服务器发送一个字节的数据包，并等待服务器返回消息。计算平均往返时间,同时计算UDP传输过程中丢包数量并实现丢包重发。</p>
+<h2 id="一、用UDP实现丢包重发、丢包计数和传输计时"><a href="#一、用UDP实现丢包重发、丢包计数和传输计时" class="headerlink" title="一、用UDP实现丢包重发、丢包计数和传输计时"></a>一、用UDP实现丢包重发、丢包计数和传输计时</h2><h3 id="1-UDP服务端程序UDPServer-java"><a href="#1-UDP服务端程序UDPServer-java" class="headerlink" title="1.UDP服务端程序UDPServer.java"></a>1.UDP服务端程序UDPServer.java</h3><p>package cn.wangbaiyuan;</p>
+<p>import java.io.IOException;<br>import java.net.DatagramPacket;<br>import java.net.DatagramSocket;<br>import java.net.SocketException;<br>&#x2F;**<br>* 基于UDP协议的服务器端，对来自客户端的数据包进行应答<br>* @author  <a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a><br>*<br>*&#x2F;<br>public class UDPServer {<br>    &#x2F;**<br>     * 端口<br>     *&#x2F;<br>    int port&#x3D;1888;<br>    DatagramSocket socket;<br>    public UDPServer() throws SocketException{<br>    socket&#x3D;new DatagramSocket(port);  &#x2F;&#x2F;服务端DatagramSocket<br>    System.out.println(“服务器启动。”);<br>    }<br>    public void service() throws IOException{<br>    while(true){<br>    DatagramPacket dp&#x3D;new DatagramPacket(new byte[512],512);<br>    socket.receive(dp); &#x2F;&#x2F;接收客户端信息<br>    socket.send(dp);  &#x2F;&#x2F;回复数据<br>    }<br>    }<br>    public static void main(String[] args) throws SocketException, IOException {<br>    new UDPServer().service();<br>    }</p>
+<p>}</p>
+<p> </p>
+<h3 id="2-UDP客户端程序UDPClient-java"><a href="#2-UDP客户端程序UDPClient-java" class="headerlink" title="2.UDP客户端程序UDPClient.java"></a>2.UDP客户端程序UDPClient.java</h3><p>package cn.wangbaiyuan;<br>import java.io.IOException;<br>import java.net.DatagramPacket;<br>import java.net.DatagramSocket;<br>import java.net.InetSocketAddress;<br>import java.net.SocketAddress;<br>import java.net.SocketException;<br>import java.net.SocketTimeoutException;<br>&#x2F;**<br>* 基于UDP协议的客户端类,完成用UDP协议向服务器发送数据包<br>* @author 王柏元<br>*{@linkplain <a target="_blank" rel="noopener" href="http://baiyuan.wang}/">http://baiyuan.wang}</a><br>*&#x2F;<br>public class UDPClient {<br>    static int remotePort&#x3D;1888; &#x2F;&#x2F;服务器端口<br>    static String remoteIp&#x3D;”10.22.56.186”;  &#x2F;&#x2F;服务器IP<br>    static DatagramSocket socket;&#x2F;&#x2F;客户端DatagramSocket<br>    static int times&#x3D;1000;<br>   <br>    public UDPClient() throws SocketException{<br>    <br>    }<br>    public static void main(String[] args) throws InterruptedException, SocketException {<br>       <br>        SocketAddress socketAddres&#x3D;new InetSocketAddress(remoteIp,remotePort);<br>        DatagramPacket inputdp&#x3D;new DatagramPacket(new byte[512],512);<br>        String s&#x3D;”d”;<br>        int timeout&#x3D;1;<br>        long toalTime&#x3D;0;<br>        long startTime &#x3D; 0;<br>int failTimes&#x3D;0;</p>
+<p>        socket&#x3D;new DatagramSocket();<br>        socket.setSoTimeout(timeout);<br>        byte[] info&#x3D;s.getBytes();<br>        DatagramPacket dp&#x3D;new DatagramPacket(info,info.length,socketAddres);<br>       <br>        for(int i&#x3D;1;i&lt;&#x3D;times;i++){<br>            Boolean received&#x3D;false;<br>            while(received&#x3D;&#x3D;false){<br>            try {<br>                startTime&#x3D;System.currentTimeMillis();<br>                socket.send(dp);<br>                socket.receive(inputdp);</p>
+<p>                long endTime&#x3D;System.currentTimeMillis();<br>                toalTime+&#x3D;(endTime-startTime);<br>                received&#x3D;true;<br>                System.out.println(“第”+i+”次发送并接受回复成功!”);<br>               <br>            } catch (SocketTimeoutException e) {<br>                failTimes++;<br>                received&#x3D;false;<br>                System.out.println(“第”+i+”次接收成功应答超时，尝试重发”);&#x2F;&#x2F; TODO Auto-generated catch block<br>            } catch (IOException e) {<br>                &#x2F;&#x2F; TODO Auto-generated catch block<br>                System.out.println(“第”+i+”次接收成功应答失败，尝试重发”);<br>                failTimes++;<br>            }<br>            }<br>        }<br>        System.out.println(“失败次数：”+failTimes);<br>        float averTime&#x3D;(float)toalTime&#x2F;1000;<br>        System.out.println(“平均耗时：”+averTime+”豪秒”);<br>        }</p>
+<p>}</p>
+<p> </p>
+<h2 id="二、用TCP实现传输计时"><a href="#二、用TCP实现传输计时" class="headerlink" title="二、用TCP实现传输计时"></a>二、用TCP实现传输计时</h2><h3 id="1-TCP服务端程序TcpServer-java"><a href="#1-TCP服务端程序TcpServer-java" class="headerlink" title="1.TCP服务端程序TcpServer.java"></a>1.TCP服务端程序TcpServer.java</h3><p>package cn.wangbaiyuan;</p>
+<p>import java.io.BufferedReader;<br>import java.io.BufferedWriter;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.io.OutputStreamWriter;<br>import java.io.PrintWriter;<br>import java.net.ServerSocket;<br>import java.net.Socket;</p>
+<p>&#x2F;**<br>* 基于TCP协议的服务器端，对来自客户端的数据包进行应答<br>* @author  <a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a><br>*<br>*&#x2F;</p>
+<p>public class TcpServer {</p>
+<p>    ServerSocket serverSocket;<br>    private final int PORT &#x3D; 12340; &#x2F;&#x2F; 端口<br>&#x2F;**<br>* 新建EchoServer类时建立一个ServerSocket<br>* @throws IOException<br>*&#x2F;<br>    public TcpServer() throws IOException {<br>        serverSocket &#x3D; new ServerSocket(PORT); &#x2F;&#x2F; 创建服务器端套接字<br>        System.out.println(“服务器启动。”);<br>    }<br>&#x2F;**<br>* 启动服务器socket服务，监听客户端消息<br>*&#x2F;</p>
+<p>    public void servic() {<br>        Socket socket &#x3D; null;<br>        while (true) {<br>            try {<br>                socket &#x3D; serverSocket.accept(); &#x2F;&#x2F; 等待并取出用户连接，并创建套接字<br>                &#x2F;&#x2F; 输入流，读取客户端信息<br>                BufferedReader br &#x3D; new BufferedReader(new InputStreamReader(<br>                        socket.getInputStream(), “UTF-8”));&#x2F;&#x2F; 涉及到安卓客户端，为留设置编码<br>                &#x2F;&#x2F; 输出流，向客户端写信息<br>                BufferedWriter bw &#x3D; new BufferedWriter(new OutputStreamWriter(<br>                        socket.getOutputStream(), “UTF-8”));<br>                PrintWriter pw &#x3D; new PrintWriter(bw, true); &#x2F;&#x2F; 装饰输出流，true,每写一行就刷新输出缓冲区，不用flush<br>                String info &#x3D; null; &#x2F;&#x2F; 接收用户输入的信息<br>                while ((info &#x3D; br.readLine()) !&#x3D; null) {<br>                    pw.println( info); &#x2F;&#x2F; 向客户端返回用户发送的消息，println输出完后会自动刷新缓冲区<br>                }<br>            } &#x2F;&#x2F; 如果客户端断开连接，则应捕获该异常，但不应中断整个while循环，使得服务器能继续与其他客户端通信<br>            catch (IOException e) {<br>                e.printStackTrace();<br>            } finally {<br>                if (null !&#x3D; socket) {<br>                    try {<br>                        socket.close(); &#x2F;&#x2F; 断开连接<br>                    } catch (IOException e) {<br>                        e.printStackTrace();<br>                    }<br>                }<br>            }<br>        }<br>    }<br>&#x2F;**<br>* EchoServer main静态类，启动时开启服务器端服务<br>* @param args<br>* @throws IOException<br>*&#x2F;<br>    public static void main(String[] args) throws IOException {<br>        new TcpServer().servic(); &#x2F;&#x2F; 启动服务<br>    }<br>}</p>
+<p> </p>
+<h3 id="2-基于TCP协议的客户端类"><a href="#2-基于TCP协议的客户端类" class="headerlink" title="2.基于TCP协议的客户端类"></a>2.基于TCP协议的客户端类</h3><p>package cn.wangbaiyuan;</p>
+<p>import java.io.<em>;<br>import java.net.</em>;<br>import java.util.Scanner;</p>
+<p>&#x2F;**<br> * socket TCP通信客户端类<br> *<br> * @author 王柏元<br> *<br> *&#x2F;</p>
+<p>public class TcpClient {</p>
+<pre><code>/\*\*
+ \* PORT 一个初始化端口
+ */
+static int PORT = 12340; // 连接端口
+/\*\*
+ \* HOST一个初始化主机名
+ */
+static String HOST = &quot;10.22.56.186&quot;; // 连接地址
+/\*\*
+ \* socket 客户端socket
+ \* 
+ */
+static Socket socket;
+
+public TcpClient() throws UnknownHostException, IOException &#123;
+    
+&#125;
+/\*\*
+ \* 实现发送消息
+ */
+
+
+public static void main(String\[\] args) throws UnknownHostException,
+        IOException &#123;
+    BufferedReader strin = new BufferedReader(new InputStreamReader(
+            System.in));
+    System.out.println(&quot;请输入连接地址：&quot;);
+    HOST = strin.readLine();
+    System.out.println(&quot;请输入连接端口：&quot;);
+    PORT = Integer.parseInt(strin.readLine());
+    long toalTime=0;
+    long startTime = 0;
+    for(int i=1;i&lt;=1000;i++)&#123;
+        socket = new Socket(HOST, PORT); // 创建客户端套接字
+        System.out.print(&quot;第&quot;+i+&quot;次建立链接&quot;); 
+        try &#123;
+            // 客户端输出流，向服务器发消息
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    socket.getOutputStream()));
+            // 客户端输入流，接收服务器消息
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    socket.getInputStream()));
+            PrintWriter pw = new PrintWriter(bw, true); // 装饰输出流，及时刷新
+        String msg=&quot;a&quot;;
+        startTime=System.currentTimeMillis();
+        pw.println(msg); // 发送给服务器端
+        System.out.print(&quot;，第&quot;+i+&quot;次接收到&quot;+br.readLine()); // 输出服务器返回的消息
+        long endTime=System.currentTimeMillis();
+        toalTime+=(endTime-startTime);
+
+        
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            if (null != socket) &#123;
+                try &#123;
+                    socket.close();// 断开连接
+                    System.out.println(&quot;，链接成功断开&quot;);
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    float averTime=(float)toalTime/1000;
+    System.out.println(&quot;平均耗时：&quot;+averTime+&quot;豪秒&quot;);
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd8-ex2-udp-vs-tcp.html" target="_blank">王柏元的博客 >> SSD8_EX2【UDP vs TCP】</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/initiative-to-push-plug-in-baidu-free-link-submit-real-time.html" class="pre-post btn btn-default" title='免插件百度链接提交-实时主动推送'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            免插件百度链接提交-实时主动推送</span>
+    </a>
+    
+    
+    <a href="/sql-and-use-navicat-to-make-er-diagram-and-interactive.html" class="next-post btn btn-default" title='用Navicat制作ER图及与SQL互相转化'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            用Navicat制作ER图及与SQL互相转化</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "61801",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                谢谢反馈，上传手误。tcp客户端代码已上传更新
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d268f647cf56f6aa213b1b9df3d04c4a.png"
+                                 alt="@大力">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                大力
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                为何TCP客户端和服务端一样？？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/0989380a683cce8726978d26818b40b6.png"
+                                 alt="@知道91博客">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                知道91博客
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                又来看博主了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/c162ddc869c406494026f2e843337882.png"
+                                 alt="@song1992">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                song1992
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                第一次访问，支持一下哈。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E7%AE%80%E8%BF%B0"><span class="toc-text">问题简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%94%A8UDP%E5%AE%9E%E7%8E%B0%E4%B8%A2%E5%8C%85%E9%87%8D%E5%8F%91%E3%80%81%E4%B8%A2%E5%8C%85%E8%AE%A1%E6%95%B0%E5%92%8C%E4%BC%A0%E8%BE%93%E8%AE%A1%E6%97%B6"><span class="toc-text">一、用UDP实现丢包重发、丢包计数和传输计时</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-UDP%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8FUDPServer-java"><span class="toc-text">1.UDP服务端程序UDPServer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-UDP%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A8%8B%E5%BA%8FUDPClient-java"><span class="toc-text">2.UDP客户端程序UDPClient.java</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%94%A8TCP%E5%AE%9E%E7%8E%B0%E4%BC%A0%E8%BE%93%E8%AE%A1%E6%97%B6"><span class="toc-text">二、用TCP实现传输计时</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-TCP%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A8%8B%E5%BA%8FTcpServer-java"><span class="toc-text">1.TCP服务端程序TcpServer.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB"><span class="toc-text">2.基于TCP协议的客户端类</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

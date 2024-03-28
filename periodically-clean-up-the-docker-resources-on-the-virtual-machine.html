@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="在部署持续集成流水线项目的虚拟机上，随着构建次数的增加，机器上的docker镜像等资源会越来越多，最终将机器占满。本项目是帮助DevOps人员自动清理机器上的docker资源。
+
+开源项目：ht..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    定期清理虚拟机上的docker资源 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="定期清理虚拟机上的docker资源">
+            
+            定期清理虚拟机上的docker资源
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/12/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在部署持续集成流水线项目的虚拟机上，随着构建次数的增加，机器上的docker镜像等资源会越来越多，最终将机器占满。本项目是帮助DevOps人员自动清理机器上的docker资源。</p>
+<ul>
+<li>开源项目：<a target="_blank" rel="noopener" href="https://github.com/geekeren/docker-cleaner">https://github.com/geekeren/docker-cleaner</a></li>
+</ul>
+<h2 id="定期清理脚本"><a href="#定期清理脚本" class="headerlink" title="定期清理脚本"></a>定期清理脚本</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-built_in">set</span> -e<br><span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span><br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Starting an new job to clean Docker...&quot;</span><br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;CLEAN\_FILTER:<span class="hljs-variable">$&#123;CLEAN\_FILTER&#125;</span>, CLEAN\_INTERVAL: <span class="hljs-variable">$&#123;CLEAN\_INTERVAL&#125;</span>&quot;</span><br>  docker system prune -a -f --filter <span class="hljs-variable">$&#123;CLEAN_FILTER&#125;</span><br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;All docker images after cleaning are at below:&quot;</span><br>  docker images -a<br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Clean Docker job finised, next job will start after <span class="hljs-variable">$&#123;CLEAN_INTERVAL&#125;</span> seconds&quot;</span><br>  <span class="hljs-built_in">sleep</span> <span class="hljs-variable">$CLEAN_INTERVAL</span><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Dockerfile"><span class="hljs-keyword">FROM</span> docker<br><span class="hljs-keyword">ENV</span> CLEAN_INTERVAL=<span class="hljs-number">3600</span><br><span class="hljs-keyword">ENV</span> CLEAN_FILTER=<span class="hljs-string">&quot;until=48h&quot;</span><br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /app</span><br><span class="hljs-keyword">COPY</span><span class="language-bash"> . .</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> \[<span class="hljs-string">&quot;sh&quot;</span>, <span class="hljs-string">&quot;./clean_docker.sh&quot;</span>\]</span><br></code></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="K8S部署"><a href="#K8S部署" class="headerlink" title="K8S部署"></a>K8S部署</h2><p>为什么是K8S部署？理论上K8S部署的服务我们一般不会关心服务的docker镜像会不会把机器占满的问题，那么为什么我还要写K8S部署呢？ 这主要用于 CI Agent跑在K8S上的情况。以微软Azure DevOps K8S Agent为例，<a target="_blank" rel="noopener" href="https://github.com/Azure/helm-vsts-agent%EF%BC%8C%E5%85%B6agent%E4%BC%9A%E5%B0%86%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84docker.sock%E6%8C%82%E8%BD%BD%E5%9C%A8K8S">https://github.com/Azure/helm-vsts-agent，其agent会将宿主机的docker.sock挂载在K8S</a> node上，如果agent存在构建docker镜像的行为，就会导致agent构建出来的docker 镜像已经“脱离”了K8S的控制</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">extensions/v1beta1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">DaemonSet</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">docker-cleaner</span><br>  <span class="hljs-attr">namespace:</span> <span class="hljs-string">devops</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">matchLabels:</span><br>      <span class="hljs-attr">app:</span> <span class="hljs-string">docker-cleaner</span><br>  <span class="hljs-attr">updateStrategy:</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">RollingUpdate</span><br>    <span class="hljs-attr">rollingUpdate:</span><br>      <span class="hljs-attr">maxUnavailable:</span> <span class="hljs-number">10</span><span class="hljs-string">%</span><br>  <span class="hljs-attr">template:</span><br>    <span class="hljs-attr">metadata:</span><br>      <span class="hljs-attr">labels:</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">docker-cleaner</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">volumes:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">dockersocket</span><br>          <span class="hljs-attr">hostPath:</span><br>            <span class="hljs-attr">path:</span> <span class="hljs-string">/var/run/docker.sock</span><br>      <span class="hljs-attr">containers:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">docker-cleaner</span><br>        <span class="hljs-attr">image:</span> <span class="hljs-string">bywang/docker-cleaner</span><br>        <span class="hljs-attr">imagePullPolicy:</span> <span class="hljs-string">Always</span><br>        <span class="hljs-attr">env:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">CLEAN_INTERVAL</span><br>          <span class="hljs-attr">value:</span> <span class="hljs-number">14400</span><br>        <span class="hljs-attr">resources:</span><br>          <span class="hljs-attr">requests:</span><br>            <span class="hljs-attr">cpu:</span> <span class="hljs-string">10m</span><br>            <span class="hljs-attr">memory:</span> <span class="hljs-string">40Mi</span><br>        <span class="hljs-attr">volumeMounts:</span><br>          <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">dockersocket</span><br>            <span class="hljs-attr">mountPath:</span> <span class="hljs-string">/var/run/docker.sock</span><br></code></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/periodically-clean-up-the-docker-resources-on-the-virtual-machine.html" target="_blank">王柏元的博客 >> 定期清理虚拟机上的docker资源</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/nodejs-web%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90%E8%B0%83%E7%94%A8%E9%93%BE%E8%BF%BD%E8%B8%AA.html" class="pre-post btn btn-default" title='NodeJs web项目集成调用链追踪'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            NodeJs web项目集成调用链追踪</span>
+    </a>
+    
+    
+    <a href="/open-source-terraform-implementation-sharing-azure-subscription-in-team.html" class="next-post btn btn-default" title='【开源】Terraform实现在Team中分享Azure订阅'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【开源】Terraform实现在Team中分享Azure订阅</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "20866",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E6%9C%9F%E6%B8%85%E7%90%86%E8%84%9A%E6%9C%AC"><span class="toc-text">定期清理脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfile"><span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#K8S%E9%83%A8%E7%BD%B2"><span class="toc-text">K8S部署</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

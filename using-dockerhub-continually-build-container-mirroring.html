@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="Docker,CI/CD" />
+
+
+<meta name="description" content="ContextDocker作为一个轻量的的虚拟化容器技术，在现在的自动化运维上被广泛使用，同时伴随着各大云平台AWS、Aliyun，以及容器编排引擎kubernetes也都是基于Docker作为..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    使用Dockerhub持续构建容器镜像 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用Dockerhub持续构建容器镜像">
+            
+            使用Dockerhub持续构建容器镜像
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/CI-CD/" rel="tag">CI/CD</a> <a class="tag-none-link" href="/tags/Docker/" rel="tag">Docker</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/08/22</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p>Docker作为一个轻量的的虚拟化容器技术，在现在的自动化运维上被广泛使用，同时伴随着各大云平台AWS、Aliyun，以及容器编排引擎kubernetes也都是基于Docker作为服务的基本单元，所以部署应用的第一步往往就是制作应用镜像，也就是编写Dockerfile，比如</p>
+<p>From openjdk:8-jdk-alpine<br>COPY .&#x2F;build&#x2F;app.jar .&#x2F;<br>CMD “java -jar app.jar”</p>
+<p>  其基本过程是：</p>
+<ul>
+<li>基于一个基础镜像，比如Java:alpine</li>
+<li>构建项目，生成一个成果物，比如jre</li>
+<li>定义镜像的入口即ENTRYPOINT或者CMD，”java -jar xx.jre”</li>
+</ul>
+<p>在实际的项目中，编写的Dockerfile远非如此简单，比如openjdk提供的基础镜像里面可能没有我们需要的环境依赖，比如我们构建一个java项目时需要gradle支持；比如有一个依赖包它发布在github上，我们需要一个git命令；又比如我们在镜像的运行时，需要用gitcrypt解密一些敏感的环境变量；这就意味着我们需要基于基础镜像对一定的改造，比如加入：<code>RUN apk add git</code> 当随着项目环境依赖越来越多时，我们会发现越来越臃肿的Docker镜像会严重拖慢项目构建的时间，每一次我们的CI&#x2F;CD服务器部署一次都会下载大量依赖。一个Best Practice是为项目制作自己的基础镜像，意味着下一次构建直接使用之前构建的基础镜像。 那么我们构建的基础镜像放在哪呢？</p>
+<h2 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h2><blockquote>
+<p>如果你第一次听说Docker Hub的话，可以这么理解，软件界有两个最大的公有仓库，一个是放代码的，叫github；还有一个是放docker镜像的，叫Dockerhub。</p>
+</blockquote>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180822113513119.jpg" alt="Github &amp; Docker Hub"></p>
+<p>Github &amp; Docker Hub</p>
+<p>Docker Hub是世界上最大的Docker镜像公共存储库，全世界大量的Docker开发人员，开源项目和独立软件供应商（ISV）都会在这里构建和分发他们的镜像。Docker Hub也是Docker的官方仓库，当在运行命令<code>docker pull alpine</code>就是从Docker Hub上拉取的alpine镜像。 我们可以从Docker Hub上免费拉取与上传我们的镜像，如果经费充裕的话，我们也可以使用Docker Hub作为私服。 在极客人的实际项目开发中，我还没有用到Docker Hub的私服属性，一方面平时用到AWS镜像仓库ECR极其廉价也方便至极。</p>
+<h3 id="一般，我会使用Docker-Hub，"><a href="#一般，我会使用Docker-Hub，" class="headerlink" title="一般，我会使用Docker Hub，"></a>一般，我会使用Docker Hub，</h3><ul>
+<li><strong>Docker化自己的开源项目，方便演示</strong></li>
+</ul>
+<p>在Github开源自己的项目时，是否有演示关系到他人对项目的第一印象，使用docker可以方便快捷、无需考虑各种环境地在本地搭建出开源的项目，比如<a target="_blank" rel="noopener" href="https://hub.docker.com/r/bywang/magpie/">@geekeren&#x2F;magpie</a>，就是存放在Docker Hub，你只需 <code>docker run -p 80:80 bywang/magpie</code>即可轻松演示。</p>
+<ul>
+<li><strong>存放团队项目的基础镜像</strong></li>
+</ul>
+<p>**<em>基础镜像镜像并不是应用镜像，不包含我们的项目代码</em>**，可以方便自己或他人复用我们的Docker镜像，也可以为社区做贡献。</p>
+<ul>
+<li><strong>减轻CI压力并加快构建速度</strong> 环境依赖变更的低频性决定我们的基础镜像不需要频繁更新，也无需频繁构建，将基础镜像存放于Docker Hub上可以将构建基础镜像的过程从CI中剥离。</li>
+</ul>
+<h2 id="Docker-Hub的自动化构建"><a href="#Docker-Hub的自动化构建" class="headerlink" title="Docker Hub的自动化构建"></a>Docker Hub的自动化构建</h2><p>Docker Hub自动化构建允许我们关联GitHub 、 BitBucket 项目并根据指定Dockerfile自动构建镜像，同时webhook通知更新机制可以实现当github上的dockerfile有更新时触发Docker Hub构建，从而保证镜像为最新版本。</p>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>下面为大家介绍怎样使用Docker Hub自动化构建</p>
+<ul>
+<li>1.点击导航栏“create”选择“Automated Build”</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180822113514210.jpg" alt="Create automated build"></p>
+<p>Create automated build</p>
+<ul>
+<li>2.关联Github账号，中间可能要求登录Github账号</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180822113514313.jpg" alt="关联Github"></p>
+<p>关联Github</p>
+<ul>
+<li>3.选择一个Github的Dockerfile项目 这里我使用的是一个在gradle里面集成git-crypt的docker项目：<a target="_blank" rel="noopener" href="https://github.com/geekeren/docker-gradle-gitcrypt">https://github.com/geekeren/docker-gradle-gitcrypt</a></li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180822113515419.jpg" alt="选择Github项目"></p>
+<p>选择Github项目</p>
+<ul>
+<li>4.创建一个Dockerhub Repo</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180822113516517.jpg" alt=" 创建一个Dockerhub Repo"></p>
+<ul>
+<li>5. 创建一个Dockerhub Repo</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180822113517610.jpg" alt="正在构建的Docker Image"></p>
+<p>正在构建的Docker Image</p>
+<p>这时一个<a target="_blank" rel="noopener" href="https://hub.docker.com/r/bywang/gradle-gitcrypt/">Docker Hub repo</a>已经大工告成，我们就可以在项目的应用镜像中使用：</p>
+<p>FROM geekeren&#x2F;gradle-gitcrypt<br>COPY . .<br>CMD xxx</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/using-dockerhub-continually-build-container-mirroring.html" target="_blank">王柏元的博客 >> 使用Dockerhub持续构建容器镜像</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/an-intro-to-amazon-fargate-when-and-why-use-it.html" class="pre-post btn btn-default" title='容器即服务：AWS Fargate'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            容器即服务：AWS Fargate</span>
+    </a>
+    
+    
+    <a href="/magpie-an-luckey-draw-web-app-based-on-react.html" class="next-post btn btn-default" title='【开源】Magpie - 一个基于React的滚动抽奖Web APP'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【开源】Magpie - 一个基于React的滚动抽奖Web APP</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "60434",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Context"><span class="toc-text">Context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Hub"><span class="toc-text">Docker Hub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%EF%BC%8C%E6%88%91%E4%BC%9A%E4%BD%BF%E7%94%A8Docker-Hub%EF%BC%8C"><span class="toc-text">一般，我会使用Docker Hub，</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Hub%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA"><span class="toc-text">Docker Hub的自动化构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

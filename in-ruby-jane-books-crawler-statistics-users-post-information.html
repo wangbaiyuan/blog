@@ -1,0 +1,544 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="思沃大讲堂培训，要求我们把自己学习的心得感悟输出在简书上，公司还会统计大家的文章，包括文章数量、评论量、被喜欢量等等。这么多人，人工统计起来自然很麻烦，当然程序员会把这么艰巨光荣繁琐的工作交给代..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    用Ruby简书爬虫统计用户文章信息 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="用Ruby简书爬虫统计用户文章信息">
+            
+            用Ruby简书爬虫统计用户文章信息
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/12/16</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>思沃大讲堂培训，要求我们把自己学习的心得感悟输出在简书上，公司还会统计大家的文章，包括文章数量、评论量、被喜欢量等等。这么多人，人工统计起来自然很麻烦，当然程序员会把这么艰巨光荣繁琐的工作交给代码，于是他们就写了一个爬虫。适值极客人正在学习Ruby，所以就突发奇想写了一个Ruby爬虫统计简书用户的文章，带动自己的Ruby学习。 如果让我抓取一个网站的内容，我的第一想法可能会是抓取它的HTML，不过也会反过来问自己一句这个网站有没有Rss订阅源地址，RSS的订阅源的内容是xml，相比html更加简洁和高效，而且由于xml的结构稳定一点（html可能那天换一个css可能就会导致我的爬虫用不了啦），解析起来会更加方便一点。在考察完简书没有提供RSS后，我就决定选择html来暴力地抓取简书了。</p>
+<h2 id="分析简书网址"><a href="#分析简书网址" class="headerlink" title="分析简书网址"></a>分析简书网址</h2><ul>
+<li><p>首页：**<a target="_blank" rel="noopener" href="http://www.jianshu.com/">http://www.jianshu.com/</a>**</p>
+</li>
+<li><p>用户主页：**<a target="_blank" rel="noopener" href="http://www.jianshu.com/users/%E7%94%A8%E6%88%B7ID%EF%BC%88%E6%9A%82%E4%BC%B0%E8%AE%A1%E8%BF%99%E4%B9%88%E8%AF%B4%EF%BC%89">http://www.jianshu.com/users/用户ID（暂估计这么说）</a>**</p>
+<blockquote>
+<p>我们可以获取用户的关注、粉丝、文章、字数、收获喜欢等信息</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161216125613111.jpg"></p>
+<p>Paste_Image.png</p>
+<ul>
+<li><p>用户最新文章**<a target="_blank" rel="noopener" href="http://www.jianshu.com/users/%E7%94%A8%E6%88%B7ID%EF%BC%88%E6%9A%82%E4%BC%B0%E8%AE%A1%E8%BF%99%E4%B9%88%E8%AF%B4%EF%BC%89/latest_articles">http://www.jianshu.com/users/用户ID（暂估计这么说）/latest_articles</a>**</p>
+<blockquote>
+<p>我们可以获取用户文章列表，以此统计用户文章的评论量、阅读量等等，通过遍历文章列表将评论量、阅读量相加即可获取评论总量、阅读总量</p>
+</blockquote>
+</li>
+</ul>
+<p>需要指出的是，由于<strong>文章列表页不能把用户的文章全部列出来</strong>，而是列出10条，用户在浏览器中滚动到文章列表底部会自动加载，是用js向后台请求数据然后在前端多次拼接出来，所以想一次性地<strong>抓一次</strong>就把用户的评论总量、阅读总量是不行的，用户列表页分页的。所以我采取分页抓取的方式，那么怎么知道用户文章一共有多少页呢？<strong>我们从用户主页中获取了用户的文章总数，所以除以10加1可以获取页数</strong></p>
+<ul>
+<li>用户列表页分页的，10条&#x2F;页，其中第 m 页URL：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/users/%E7%94%A8%E6%88%B7ID%EF%BC%88%E6%9A%82%E4%BC%B0%E8%AE%A1%E8%BF%99%E4%B9%88%E8%AF%B4%EF%BC%89/latest_articles?page=m">http://www.jianshu.com/users/用户ID（暂估计这么说）/latest_articles?page&#x3D;m</a></p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161216125614220.jpg"></p>
+<p>Paste_Image.png</p>
+<h2 id="抓取网页，获取html"><a href="#抓取网页，获取html" class="headerlink" title="抓取网页，获取html"></a>抓取网页，获取html</h2><p>Ruby提供的HTTP访问方法十分简洁高效，当然方法不止一种，对其他方法感兴趣的同学我自行Google，在此我贴出自己的代码：</p>
+<p>h &#x3D; Net::HTTP.new(“<a target="_blank" rel="noopener" href="http://www.jianshu.com/">www.jianshu.com</a>“, 80)<br>resp &#x3D; h.get “&#x2F;users&#x2F;#{authorInfo.id}&#x2F;latest_articles”<br>latest_articles_html &#x3D; resp.body.to_s</p>
+<p>  顾问生义，我想不需要解释代码的意思了吧 根据上面介绍的简书网址规则，就可以通过上述代码抓取到相应网页的HTML</p>
+<h2 id="分析抓取内容的结构"><a href="#分析抓取内容的结构" class="headerlink" title="分析抓取内容的结构"></a>分析抓取内容的结构</h2><p>获取完相应网页的HTML内容后要做的就是分析HTML的内容和结构。我们用眼睛很容易看出网页上的内容，但是爬虫看到的只有html源代码。下面我从抓取的HTML中提取了下列有用的代码：</p>
+<ul>
+<li>用于提取用户的关注量、粉丝量、文章数、字数、收获喜欢数</li>
+<li><div class="user-stats">
+<ul class="clearfix">
+  <li>
+    <a href="/users/ef49e6b7ec1e/subscriptions"><b>38</b><span>关注</span></a>
+  </li>
+  <li>
+    <a href="/users/ef49e6b7ec1e/followers"><b>22</b><span>粉丝</span></a>
+  </li>
+  <br>
+  <li>
+    <a href="/users/ef49e6b7ec1e"><b>9</b><span>文章</span></a>
+  </li>
+  <li>
+    <a><b>9938</b><span>字数</span></a>
+  </li>
+  <li>
+    <a><b>41</b><span>收获喜欢</span></a>
+  </li>
+</ul>
+</div>
+
+  用于提取用户文章评论总量、阅读总量</li>
+</ul>
+<ul class="article-list latest-notes"><li>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/ef49e6b7ec1e">极客人</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-12-12T15:39:07+08:00">4天之前</span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/f11d1fca16c6">Hello,Ruby!</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/f11d1fca16c6">
+          阅读 23
+</a>        <a target="_blank" href="/p/f11d1fca16c6#comments">
+           · 评论 4
+</a>        <span> · 喜欢 1</span>
+
+<pre><code>  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </li>
+  <li class="have-img">
+      <a class="wrap-img" href="/p/3d43727e04a5"><img src="http://upload-images.jianshu.io/upload_images/2154287-86190de5fd3071f7.png?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300" alt="300"></a>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/ef49e6b7ec1e">极客人</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-12-08T00:02:08+08:00">9天之前</span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/3d43727e04a5">Html5语义化标签的启示</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/3d43727e04a5">
+          阅读 182
+</a>        <a target="_blank" href="/p/3d43727e04a5#comments">
+           · 评论 1
+</a>        <span> · 喜欢 10</span>
+
+<pre><code>  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </li>
+.....
+
+  <li>
+    <div>
+      <p class="list-top">
+        <a class="author-name blue-link" target="_blank" href="/users/ef49e6b7ec1e">极客人</a>
+        <em>·</em>
+        <span class="time" data-shared-at="2016-11-28T19:35:45+08:00">18天之前</span>
+      </p>
+      <h4 class="title"><a target="_blank" href="/p/114c27b6456c">网站自动跳转到Cjb.Net的惊险之旅</a></h4>
+      <div class="list-footer">
+        <a target="_blank" href="/p/114c27b6456c">
+          阅读 21
+</a>        <a target="_blank" href="/p/114c27b6456c#comments">
+           · 评论 3
+</a>        <span> · 喜欢 3</span>
+
+<pre><code>  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+  </li>
+
+</ul>
+正则匹配，
+
+<p> </p>
+<h2 id="抠出关键信息"><a href="#抠出关键信息" class="headerlink" title="抠出关键信息"></a>抠出关键信息</h2><p>上面我已经提取出有用的关键的HTML，现在要做的是让爬虫做同样的事情。所以我用到啦正则匹配。</p>
+<ul>
+<li>正则匹配出粉丝”, “关注”, “文章”, “字数”, “收获喜欢”</li>
+</ul>
+<p>#从html中加载基本用户信息<br>def loadAuthorBaseInfoFromHtml(authorInfo, latest_articles_html)<br>infoKeys&#x3D;[“粉丝”, “关注”, “文章”, “字数”, “收获喜欢”]<br>infoValues &#x3D; Array.new(infoKeys.length)<br> if &#x2F;&lt;ul class&#x3D;\“clearfix\“&gt;([\s\S]<em>?)&lt;\&#x2F;ul&gt;&#x2F; &#x3D;~ latest_articles_html  then            authorInfoHtml&#x3D; $1.force_encoding(“UTF-8”)<br> for i in 0 .. infoKeys.length-1<br> if &#x2F;#{“<b>([0-9]</em>)</b><span>#{infoKeys[i]}</span>“.force_encoding(“UTF-8”)}&#x2F;&#x3D;~ authorInfoHtml<br>infoValues[i]&#x3D; $1<br>     end<br>   end<br> end<br>authorInfo.setBaseInfo(infoValues[0], infoValues[1], infoValues[2], infoValues[3], infoValues[4])<br>end</p>
+<p>  其他匹配代码请参看源代码</p>
+<h2 id="整合信息，多样化地输出成果物"><a href="#整合信息，多样化地输出成果物" class="headerlink" title="整合信息，多样化地输出成果物"></a>整合信息，多样化地输出成果物</h2><p>当统计出用户的文章信息后，就是把统计信息输出来。为了让输出的产物更加丰富和自定义程度更高，所以我采取了渲染模板的方式，将数据和界面分离。 模板文件：</p>
+<body>
+<section>
+    <header>
+        <h1>@{title}</h1>
+        <section>统计时间：@{time}</section>
+    </header>
+    <section id="content">
+    <table>
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>文章数</th>
+            <th>字数</th>
+            <th>阅读量</th>
+            <th>收到评论</th>
+            <th>收到喜欢</th>
+            <th>小buddy姓名</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{content}
+        </tbody>
+    </table>
+    </section>
+    <footer>@{footer}</footer>
+</section>
+</body>
+
+<p>  然后在Ruby代码中加载模板文件，并将@{title}、@{time}、 @{content}、 @{content}替换真实的统计信息</p>
+<p>  def out2Html(title)<br>    tplFile &#x3D; open @tpl<br>    tplContent &#x3D; tplFile.read<br>    tplFile.close<br>    content &#x3D;””<br>    for i in 0 .. @authorList.length-1<br>      author &#x3D; @authorList[i]<br>      content+&#x3D;format(“ <tr><br>            <td>%s</td><br>            <td>&lt;a target&#x3D; \“_blank\“ href&#x3D;\“<a target="_blank" rel="noopener" href="http://jianshu.com/users/%s//%22%3E%s">http://jianshu.com/users/%s\\&quot;&gt;%s</a></a></td><br>            <td>%s</td><br>            <td>%s</td><br>            <td>%s</td><br>            <td>%s</td><br>            <td>%s</td><br>            <td>%s</td><br>        </tr>“, i, author.id, author.name, author.post_count, author.word_count, author.read_count, author.comment_count, author.liked_count, author.buddy)<br>    end</p>
+<pre><code>today = Time.new;
+timeStr= today.strftime(&quot;(%Y-%m-%d %H:%M:%S)&quot;);
+footer=&quot;Powered By &lt;a target=\\&quot;_blank\\&quot; href=\\&quot;http://baiyuan.wang\\&quot;&gt;BrainWang@ThoughtWorks&lt;/a&gt;&quot;
+out = tplContent.gsub(/@\\&#123;title\\&#125;/, title)
+out = out.gsub(/@\\&#123;content\\&#125;/, content)
+out = out.gsub(/@\\&#123;footer\\&#125;/, footer)
+out = out.gsub(/@\\&#123;time\\&#125;/, timeStr)
+timeStr= today.strftime(&quot;(%Y-%m-%d)&quot;);
+file=open(&quot;output/#&#123;title+timeStr&#125;.html&quot;,&quot;w&quot;)
+file.write out
+print &quot;\\n输出文件位于&quot;, Pathname.new(File.dirname(\_\_FILE\_\_)).realpath,&quot;/&quot;,file.path
+file.close
+</code></pre>
+<p>  end</p>
+<p>  当然，那天只要加一个out2json就可轻松做一个API，实现更高的定制化效果啦</p>
+<h2 id="项目主页"><a href="#项目主页" class="headerlink" title="项目主页"></a>项目主页</h2><p><a target="_blank" rel="noopener" href="https://github.com/geekeren/jianshu_spider">https://github.com/geekeren/jianshu_spider</a></p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ul>
+<li><p>下载项目代码并运行</p>
+<p>git clone <a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#x67;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>:geekeren&#x2F;jianshu_spider.git cd jianshu_spider&#x2F; ruby main.rb</p>
+<blockquote>
+<p>更详细的项目介绍请移步<a target="_blank" rel="noopener" href="https://github.com/geekeren/jianshu_spider">Github项目主页</a></p>
+</blockquote>
+</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/in-ruby-jane-books-crawler-statistics-users-post-information.html" target="_blank">王柏元的博客 >> 用Ruby简书爬虫统计用户文章信息</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ruby-parser-bmp-file-image-processing-algorithm-on.html" class="pre-post btn btn-default" title='Ruby解析bmp文件及图片处理算法（一）'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Ruby解析bmp文件及图片处理算法（一）</span>
+    </a>
+    
+    
+    <a href="/html-5-you-why-want-semantic-tags.html" class="next-post btn btn-default" title='Html5，你为什么要语义化标签？'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Html5，你为什么要语义化标签？</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "19117",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%AE%80%E4%B9%A6%E7%BD%91%E5%9D%80"><span class="toc-text">分析简书网址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8F%96%E7%BD%91%E9%A1%B5%EF%BC%8C%E8%8E%B7%E5%8F%96html"><span class="toc-text">抓取网页，获取html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%8A%93%E5%8F%96%E5%86%85%E5%AE%B9%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">分析抓取内容的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">Hello,Ruby!</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">Html5语义化标签的启示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">网站自动跳转到Cjb.Net的惊险之旅</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A0%E5%87%BA%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF"><span class="toc-text">抠出关键信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%90%88%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%A4%9A%E6%A0%B7%E5%8C%96%E5%9C%B0%E8%BE%93%E5%87%BA%E6%88%90%E6%9E%9C%E7%89%A9"><span class="toc-text">整合信息，多样化地输出成果物</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">@{title}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%BB%E9%A1%B5"><span class="toc-text">项目主页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">使用方法</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

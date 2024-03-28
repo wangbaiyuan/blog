@@ -1,0 +1,371 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="运维" />
+
+
+<meta name="description" content="在网站改版中我们希望选取部分用户进行金丝雀发布来给自己的新网站做“试点”，在确认新网站使用没有问题后，会慢慢加大新网站“试点”的比重，从而用到“金丝雀发布”。 “金丝雀发布”这一典故来源于采煤行..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Nginx在网站改版中实现金丝雀发布 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Nginx在网站改版中实现金丝雀发布">
+            
+            Nginx在网站改版中实现金丝雀发布
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/04/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在网站改版中我们希望选取部分用户进行金丝雀发布来给自己的新网站做“试点”，在确认新网站使用没有问题后，会慢慢加大新网站“试点”的比重，从而用到“金丝雀发布”。 “金丝雀发布”这一典故来源于采煤行业，据说以前矿工挖煤的时候，矿工下矿井前会先把金丝雀放进去，或者挖煤的时候一直带着金丝雀。金丝雀对甲烷和一氧化碳浓度比较敏感，会先报警。 矿工们用金丝雀对矿井进行空气测试的道理没沿用到软件行业。当我们要发布应用的新版本时，我们通常只会将部分流量切到新版本，当测试新版本应用没有问题时，再慢慢加大切向新版本流量的比例，这种发布方式被称为“金丝雀发布”。 那么，我们可以怎样实现金丝雀发布呢？ 在不涉及istio的情况下，我们一般会采用Nginx反向代理服务器来实现这种流量切分，通过编写nginx.conf规则来实现。 </p>
+<p><a href="https://baiyuan.wang/wp-content/uploads/2019/10/baiyuan.wang_2019-10-23_13-25-07.png"><img src="https://baiyuan.wang/wp-content/uploads/2019/10/baiyuan.wang_2019-10-23_13-25-07.png" alt="Nginx实现金丝雀发布"></a></p>
+<h2 id="方法一：没有“记忆”的随机流量切分"><a href="#方法一：没有“记忆”的随机流量切分" class="headerlink" title="方法一：没有“记忆”的随机流量切分"></a>方法一：没有“记忆”的随机流量切分</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs nginx.config">http &#123;<br>upstream service &#123;<br>    server &#123;new-website-url&#125; weight=10;<br>    server &#123;old-website-url&#125; weight=90;<br>&#125;<br>server &#123;<br>    listen       80;<br>    server_name  baiyuan.wang;<br>    location / &#123;<br>        proxy_pass http://service;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种方式常常用于配置nginx作为负载均衡时，可以控制流量导向不同应用服务器的比重，当然也可以通过用于新旧版本的流量切分。但这种方式的一个问题是用户在多次请求时，被导向的页面是随机的。比如反复刷新浏览器，有时被导向新版网站，有时被导向旧的，这显然不是我们希望发生的。</p>
+<h2 id="方法二：有“记忆”的流量切分"><a href="#方法二：有“记忆”的流量切分" class="headerlink" title="方法二：有“记忆”的流量切分"></a>方法二：有“记忆”的流量切分</h2><p>所以我们希望服务能“记住”每个用户第一次访问的版本，后续的请求依旧导向到改版本。而HTTP请求是无状态的，即每个HTTP请求实际上是独立的，而不是和用户建立一个长久的会话。我们只有设置里一个“特定的标记”，服务器才能知道你是不是同一个用户，所以我们需要使用cookie来标记用户。使用cookie而不是localstorage的原因是cookie是每次都会被浏览器发往服务器端。 这里，我们使用cookie来记录用户第一次访问的版本。后续访问时读取该cookie字段来控制nginx的转发行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs nginx.config">http &#123;<br><br>    split\_clients &quot;$&#123;http\_user\_agent&#125;$&#123;date\_gmt&#125;&quot; $app_version &#123;<br>        10%     new;<br>        90%     old;<br>    &#125;<br><br>    map $cookie\_split\_version $upstream_group &#123;<br>        default $app_version;<br>        &quot;old&quot; &quot;old&quot;;<br>        &quot;new&quot; &quot;new&quot;;<br>    &#125;<br><br>    location = / &#123;<br>        add\_header Set-Cookie &quot;split\_version=$upstream_group;Path=/;Max-Age=21600;&quot;;<br><br>        if ($upstream_group = &quot;old&quot;) &#123;<br>            proxy\_pass https://$old\_url;<br>            break;<br>        &#125;<br>        if ($upstream_group = &quot;new&quot;) &#123;<br>            proxy\_pass https://$new\_url;<br>            break;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/nginxs-implementation-of-canary-release-in-website-revision.html" target="_blank">王柏元的博客 >> Nginx在网站改版中实现金丝雀发布</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/verify-effectiveness-of-asynchronous-log-collection-under-spring-framework.html" class="pre-post btn btn-default" title='Spring框架下异步日志收集及验证是否生效'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Spring框架下异步日志收集及验证是否生效</span>
+    </a>
+    
+    
+    <a href="/protecting-user-privacy-data-in-logs.html" class="next-post btn btn-default" title='保护日志中的用户隐私数据'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            保护日志中的用户隐私数据</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "2623",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%B2%A1%E6%9C%89%E2%80%9C%E8%AE%B0%E5%BF%86%E2%80%9D%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%B5%81%E9%87%8F%E5%88%87%E5%88%86"><span class="toc-text">方法一：没有“记忆”的随机流量切分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%9C%89%E2%80%9C%E8%AE%B0%E5%BF%86%E2%80%9D%E7%9A%84%E6%B5%81%E9%87%8F%E5%88%87%E5%88%86"><span class="toc-text">方法二：有“记忆”的流量切分</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

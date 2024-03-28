@@ -1,0 +1,605 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="帮助文档,android,android开发" />
+
+
+<meta name="description" content="在安卓开发中，应用在访问手机硬件资源如SD读写、网络访问、定位、调用摄像头，或者联系人、打电话等系统服务时都要向android系统申请权限。权限机制有利于保护使用者的手机安全。曾经碰到许多木马软..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Android开发权限大全 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android开发权限大全">
+            
+            Android开发权限大全
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a> <a class="tag-none-link" href="/tags/%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" rel="tag">帮助文档</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/08/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在安卓开发中，应用在访问手机硬件资源如SD读写、网络访问、定位、调用摄像头，或者联系人、打电话等系统服务时都要向android系统申请权限。权限机制有利于保护使用者的手机安全。曾经碰到许多木马软件在后台给你发短信，神不知鬼不觉就扣了话费。这种木马软件能发送短信的前提就是向android系统申请了发送短信的权限。现在许多的安全软件都有禁止应用权限的功能，即使 手机应用在申请了访问一些手机资源的权限也可以强行禁止访问。 <a href="http://baiyuan.wang/wp-content/uploads/2015/08/permit.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/08/permit.jpg" alt="permit"></a> 对于开发者，为应用申请权限的方法就是在项目清单文件中<manifest />添加如： <uses-permission android:name="android.permission.CALL_PHONE（权限名）" /> 下面是安卓开发应用权限大全：</p>
+<h2 id="Android开发权限大全"><a href="#Android开发权限大全" class="headerlink" title="Android开发权限大全"></a>Android开发权限大全</h2><p>访问登记属性</p>
+<p>android.permission.ACCESS_CHECKIN_PROPERTIES ，读取或写入登记check-in数据库属性表的权限</p>
+<p>获取错略位置</p>
+<p>android.permission.ACCESS_COARSE_LOCATION，通过WiFi或移动基站的方式获取用户错略的经纬度信息，定位精度大概误差在30~1500米</p>
+<p>获取精确位置</p>
+<p>android.permission.ACCESS_FINE_LOCATION，通过GPS芯片接收卫星的定位信息，定位精度达10米以内</p>
+<p>访问定位额外命令</p>
+<p>android.permission.ACCESS_LOCATION_EXTRA_COMMANDS，允许程序访问额外的定位提供者指令</p>
+<p>获取模拟定位信息</p>
+<p>android.permission.ACCESS_MOCK_LOCATION，获取模拟定位信息，一般用于帮助开发者调试应用</p>
+<p>获取网络状态</p>
+<p>android.permission.ACCESS_NETWORK_STATE，获取网络信息状态，如当前的网络连接是否有效</p>
+<p>访问Surface Flinger</p>
+<p>android.permission.ACCESS_SURFACE_FLINGER，Android平台上底层的图形显示支持，一般用于游戏或照相机预览界面和底层模式的屏幕截图</p>
+<p>获取WiFi状态</p>
+<p>android.permission.ACCESS_WIFI_STATE，获取当前WiFi接入的状态以及WLAN热点的信息</p>
+<p>账户管理</p>
+<p>android.permission.ACCOUNT_MANAGER，获取账户验证信息，主要为GMail账户信息，只有系统级进程才能访问的权限</p>
+<p>验证账户</p>
+<p>android.permission.AUTHENTICATE_ACCOUNTS，允许一个程序通过账户验证方式访问账户管理ACCOUNT_MANAGER相关信息</p>
+<p>电量统计</p>
+<p>android.permission.BATTERY_STATS，获取电池电量统计信息</p>
+<p>绑定小插件</p>
+<p>android.permission.BIND_APPWIDGET，允许一个程序告诉appWidget服务需要访问小插件的数据库，只有非常少的应用才用到此权限</p>
+<p>绑定设备管理</p>
+<p>android.permission.BIND_DEVICE_ADMIN，请求系统管理员接收者receiver，只有系统才能使用</p>
+<p>绑定输入法</p>
+<p>android.permission.BIND_INPUT_METHOD ，请求InputMethodService服务，只有系统才能使用</p>
+<p>绑定RemoteView</p>
+<p>android.permission.BIND_REMOTEVIEWS，必须通过RemoteViewsService服务来请求，只有系统才能用</p>
+<p>绑定壁纸</p>
+<p>android.permission.BIND_WALLPAPER，必须通过WallpaperService服务来请求，只有系统才能用</p>
+<p>使用蓝牙</p>
+<p>android.permission.BLUETOOTH，允许程序连接配对过的蓝牙设备</p>
+<p>蓝牙管理</p>
+<p>android.permission.BLUETOOTH_ADMIN，允许程序进行发现和配对新的蓝牙设备</p>
+<p>变成砖头</p>
+<p>android.permission.BRICK，能够禁用手机，非常危险，顾名思义就是让手机变成砖头</p>
+<p>应用删除时广播</p>
+<p>android.permission.BROADCAST_PACKAGE_REMOVED，当一个应用在删除时触发一个广播</p>
+<p>收到短信时广播</p>
+<p>android.permission.BROADCAST_SMS，当收到短信时触发一个广播</p>
+<p>连续广播</p>
+<p>android.permission.BROADCAST_STICKY，允许一个程序收到广播后快速收到下一个广播</p>
+<p>WAP PUSH广播</p>
+<p>android.permission.BROADCAST_WAP_PUSH，WAP PUSH服务收到后触发一个广播</p>
+<p>拨打电话</p>
+<p>android.permission.CALL_PHONE，允许程序从非系统拨号器里输入电话号码</p>
+<p>通话权限</p>
+<p>android.permission.CALL_PRIVILEGED，允许程序拨打电话，替换系统的拨号器界面</p>
+<p>拍照权限</p>
+<p>android.permission.CAMERA，允许访问摄像头进行拍照</p>
+<p>改变组件状态</p>
+<p>android.permission.CHANGE_COMPONENT_ENABLED_STATE，改变组件是否启用状态</p>
+<p>改变配置</p>
+<p>android.permission.CHANGE_CONFIGURATION，允许当前应用改变配置，如定位</p>
+<p>改变网络状态</p>
+<p>android.permission.CHANGE_NETWORK_STATE，改变网络状态如是否能联网</p>
+<p>改变WiFi多播状态</p>
+<p>android.permission.CHANGE_WIFI_MULTICAST_STATE，改变WiFi多播状态</p>
+<p>改变WiFi状态</p>
+<p>android.permission.CHANGE_WIFI_STATE，改变WiFi状态</p>
+<p>清除应用缓存</p>
+<p>android.permission.CLEAR_APP_CACHE，清除应用缓存</p>
+<p>清除用户数据</p>
+<p>android.permission.CLEAR_APP_USER_DATA，清除应用的用户数据</p>
+<p>底层访问权限</p>
+<p>android.permission.CWJ_GROUP，允许CWJ账户组访问底层信息</p>
+<p>手机优化大师扩展权限</p>
+<p>android.permission.CELL_PHONE_MASTER_EX，手机优化大师扩展权限</p>
+<p>控制定位更新</p>
+<p>android.permission.CONTROL_LOCATION_UPDATES，允许获得移动网络定位信息改变</p>
+<p>删除缓存文件</p>
+<p>android.permission.DELETE_CACHE_FILES，允许应用删除缓存文件</p>
+<p>删除应用</p>
+<p>android.permission.DELETE_PACKAGES，允许程序删除应用</p>
+<p>电源管理</p>
+<p>android.permission.DEVICE_POWER，允许访问底层电源管理</p>
+<p>应用诊断</p>
+<p>android.permission.DIAGNOSTIC，允许程序到RW到诊断资源</p>
+<p>禁用键盘锁</p>
+<p>android.permission.DISABLE_KEYGUARD，允许程序禁用键盘锁</p>
+<p>转存系统信息</p>
+<p>android.permission.DUMP，允许程序获取系统dump信息从系统服务</p>
+<p>状态栏控制</p>
+<p>android.permission.EXPAND_STATUS_BAR，允许程序扩展或收缩状态栏</p>
+<p>工厂测试模式</p>
+<p>android.permission.FACTORY_TEST，允许程序运行工厂测试模式</p>
+<p>使用闪光灯</p>
+<p>android.permission.FLASHLIGHT，允许访问闪光灯</p>
+<p>强制后退</p>
+<p>android.permission.FORCE_BACK，允许程序强制使用back后退按键，无论Activity是否在顶层</p>
+<p>访问账户Gmail列表</p>
+<p>android.permission.GET_ACCOUNTS，访问GMail账户列表</p>
+<p>获取应用大小</p>
+<p>android.permission.GET_PACKAGE_SIZE，获取应用的文件大小</p>
+<p>获取任务信息</p>
+<p>android.permission.GET_TASKS，允许程序获取当前或最近运行的应用</p>
+<p>允许全局搜索</p>
+<p>android.permission.GLOBAL_SEARCH，允许程序使用全局搜索功能</p>
+<p>硬件测试</p>
+<p>android.permission.HARDWARE_TEST，访问硬件辅助设备，用于硬件测试</p>
+<p>注射事件</p>
+<p>android.permission.INJECT_EVENTS，允许访问本程序的底层事件，获取按键、轨迹球的事件流</p>
+<p>安装定位提供</p>
+<p>android.permission.INSTALL_LOCATION_PROVIDER，安装定位提供</p>
+<p>安装应用程序</p>
+<p>android.permission.INSTALL_PACKAGES，允许程序安装应用</p>
+<p>内部系统窗口</p>
+<p>android.permission.INTERNAL_SYSTEM_WINDOW，允许程序打开内部窗口，不对第三方应用程序开放此权限</p>
+<p>访问网络</p>
+<p>android.permission.INTERNET，访问网络连接，可能产生GPRS流量</p>
+<p>结束后台进程</p>
+<p>android.permission.KILL_BACKGROUND_PROCESSES，允许程序调用killBackgroundProcesses(String).方法结束后台进程</p>
+<p>管理账户</p>
+<p>android.permission.MANAGE_ACCOUNTS，允许程序管理AccountManager中的账户列表</p>
+<p>管理程序引用</p>
+<p>android.permission.MANAGE_APP_TOKENS，管理创建、摧毁、Z轴顺序，仅用于系统</p>
+<p>高级权限</p>
+<p>android.permission.MTWEAK_USER，允许mTweak用户访问高级系统权限</p>
+<p>社区权限</p>
+<p>android.permission.MTWEAK_FORUM，允许使用mTweak社区权限</p>
+<p>软格式化</p>
+<p>android.permission.MASTER_CLEAR，允许程序执行软格式化，删除系统配置信息</p>
+<p>修改声音设置</p>
+<p>android.permission.MODIFY_AUDIO_SETTINGS，修改声音设置信息</p>
+<p>修改电话状态</p>
+<p>android.permission.MODIFY_PHONE_STATE，修改电话状态，如飞行模式，但不包含替换系统拨号器界面</p>
+<p>格式化文件系统</p>
+<p>android.permission.MOUNT_FORMAT_FILESYSTEMS，格式化可移动文件系统，比如格式化清空SD卡</p>
+<p>挂载文件系统</p>
+<p>android.permission.MOUNT_UNMOUNT_FILESYSTEMS，挂载、反挂载外部文件系统</p>
+<p>允许NFC通讯</p>
+<p>android.permission.NFC，允许程序执行NFC近距离通讯操作，用于移动支持</p>
+<p>永久Activity</p>
+<p>android.permission.PERSISTENT_ACTIVITY，创建一个永久的Activity，该功能标记为将来将被移除</p>
+<p>处理拨出电话</p>
+<p>android.permission.PROCESS_OUTGOING_CALLS，允许程序监视，修改或放弃播出电话</p>
+<p>读取日程提醒</p>
+<p>android.permission.READ_CALENDAR，允许程序读取用户的日程信息</p>
+<p>读取联系人</p>
+<p>android.permission.READ_CONTACTS，允许应用访问联系人通讯录信息</p>
+<p>屏幕截图</p>
+<p>android.permission.READ_FRAME_BUFFER，读取帧缓存用于屏幕截图</p>
+<p>读取收藏夹和历史记录</p>
+<p>com.android.browser.permission.READ_HISTORY_BOOKMARKS，读取浏览器收藏夹和历史记录</p>
+<p>读取输入状态</p>
+<p>android.permission.READ_INPUT_STATE，读取当前键的输入状态，仅用于系统</p>
+<p>读取系统日志</p>
+<p>android.permission.READ_LOGS，读取系统底层日志</p>
+<p>读取电话状态</p>
+<p>android.permission.READ_PHONE_STATE，访问电话状态</p>
+<p>读取短信内容</p>
+<p>android.permission.READ_SMS，读取短信内容</p>
+<p>读取同步设置</p>
+<p>android.permission.READ_SYNC_SETTINGS，读取同步设置，读取Google在线同步设置</p>
+<p>读取同步状态</p>
+<p>android.permission.READ_SYNC_STATS，读取同步状态，获得Google在线同步状态</p>
+<p>重启设备</p>
+<p>android.permission.REBOOT，允许程序重新启动设备</p>
+<p>开机自动允许</p>
+<p>android.permission.RECEIVE_BOOT_COMPLETED，允许程序开机自动运行</p>
+<p>接收彩信</p>
+<p>android.permission.RECEIVE_MMS，接收彩信</p>
+<p>接收短信</p>
+<p>android.permission.RECEIVE_SMS，接收短信</p>
+<p>接收Wap Push</p>
+<p>android.permission.RECEIVE_WAP_PUSH，接收WAP PUSH信息</p>
+<p>录音</p>
+<p>android.permission.RECORD_AUDIO，录制声音通过手机或耳机的麦克</p>
+<p>排序系统任务</p>
+<p>android.permission.REORDER_TASKS，重新排序系统Z轴运行中的任务</p>
+<p>结束系统任务</p>
+<p>android.permission.RESTART_PACKAGES，结束任务通过restartPackage(String)方法，该方式将在外来放弃</p>
+<p>发送短信</p>
+<p>android.permission.SEND_SMS，发送短信</p>
+<p>设置Activity观察其</p>
+<p>android.permission.SET_ACTIVITY_WATCHER，设置Activity观察器一般用于monkey测试</p>
+<p>设置闹铃提醒</p>
+<p>com.android.alarm.permission.SET_ALARM，设置闹铃提醒</p>
+<p>设置总是退出</p>
+<p>android.permission.SET_ALWAYS_FINISH，设置程序在后台是否总是退出</p>
+<p>设置动画缩放</p>
+<p>android.permission.SET_ANIMATION_SCALE，设置全局动画缩放</p>
+<p>设置调试程序</p>
+<p>android.permission.SET_DEBUG_APP，设置调试程序，一般用于开发</p>
+<p>设置屏幕方向</p>
+<p>android.permission.SET_ORIENTATION，设置屏幕方向为横屏或标准方式显示，不用于普通应用</p>
+<p>设置应用参数</p>
+<p>android.permission.SET_PREFERRED_APPLICATIONS，设置应用的参数，已不再工作具体查看addPackageToPreferred(String) 介绍</p>
+<p>设置进程限制</p>
+<p>android.permission.SET_PROCESS_LIMIT，允许程序设置最大的进程数量的限制</p>
+<p>设置系统时间</p>
+<p>android.permission.SET_TIME，设置系统时间</p>
+<p>设置系统时区</p>
+<p>android.permission.SET_TIME_ZONE，设置系统时区</p>
+<p>设置桌面壁纸</p>
+<p>android.permission.SET_WALLPAPER，设置桌面壁纸</p>
+<p>设置壁纸建议</p>
+<p>android.permission.SET_WALLPAPER_HINTS，设置壁纸建议</p>
+<p>发送永久进程信号</p>
+<p>android.permission.SIGNAL_PERSISTENT_PROCESSES，发送一个永久的进程信号</p>
+<p>状态栏控制</p>
+<p>android.permission.STATUS_BAR，允许程序打开、关闭、禁用状态栏</p>
+<p>访问订阅内容</p>
+<p>android.permission.SUBSCRIBED_FEEDS_READ，访问订阅信息的数据库</p>
+<p>写入订阅内容</p>
+<p>android.permission.SUBSCRIBED_FEEDS_WRITE，写入或修改订阅内容的数据库</p>
+<p>显示系统窗口</p>
+<p>android.permission.SYSTEM_ALERT_WINDOW，显示系统窗口</p>
+<p>更新设备状态</p>
+<p>android.permission.UPDATE_DEVICE_STATS，更新设备状态</p>
+<p>使用证书</p>
+<p>android.permission.USE_CREDENTIALS，允许程序请求验证从AccountManager</p>
+<p>使用SIP视频</p>
+<p>android.permission.USE_SIP，允许程序使用SIP视频服务</p>
+<p>使用振动</p>
+<p>android.permission.VIBRATE，允许振动</p>
+<p>唤醒锁定</p>
+<p>android.permission.WAKE_LOCK，允许程序在手机屏幕关闭后后台进程仍然运行</p>
+<p>写入GPRS接入点设置</p>
+<p>android.permission.WRITE_APN_SETTINGS，写入网络GPRS接入点设置</p>
+<p>写入日程提醒</p>
+<p>android.permission.WRITE_CALENDAR，写入日程，但不可读取</p>
+<p>写入联系人</p>
+<p>android.permission.WRITE_CONTACTS，写入联系人，但不可读取</p>
+<p>写入外部存储</p>
+<p>android.permission.WRITE_EXTERNAL_STORAGE，允许程序写入外部存储，如SD卡上写文件</p>
+<p>写入Google地图数据</p>
+<p>android.permission.WRITE_GSERVICES，允许程序写入Google Map服务数据</p>
+<p>写入收藏夹和历史记录</p>
+<p>com.android.browser.permission.WRITE_HISTORY_BOOKMARKS，写入浏览器历史记录或收藏夹，但不可读取</p>
+<p>读写系统敏感设置</p>
+<p>android.permission.WRITE_SECURE_SETTINGS，允许程序读写系统安全敏感的设置项</p>
+<p>读写系统设置</p>
+<p>android.permission.WRITE_SETTINGS，允许读写系统设置项</p>
+<p>编写短信</p>
+<p>android.permission.WRITE_SMS，允许编写短信</p>
+<p>写入在线同步设置</p>
+<p>android.permission.WRITE_SYNC_SETTINGS，写入Google在线同步设置</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/android-development-authority-books.html" target="_blank">王柏元的博客 >> Android开发权限大全</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/android-java-parsing-api-youdao-translation-json-data.html" class="pre-post btn btn-default" title='Android(Java)解析有道翻译API-Json数据'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Android(Java)解析有道翻译API-Json数据</span>
+    </a>
+    
+    
+    <a href="/set-version-number-androidstudio-developing-android-applications.html" class="next-post btn btn-default" title='androidStudio开发安卓应用设置版本号'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            androidStudio开发安卓应用设置版本号</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "31112",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android%E5%BC%80%E5%8F%91%E6%9D%83%E9%99%90%E5%A4%A7%E5%85%A8"><span class="toc-text">Android开发权限大全</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

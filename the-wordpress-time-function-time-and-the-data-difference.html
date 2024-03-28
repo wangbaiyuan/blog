@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="昨天笔者在完善个人的wordpress插件作品“BY超级扩展”时为自己的主题量身定制了获取邮件订阅用户和退订用户记录的功能。在生成退订记录时需要附加退订时间信息。笔者本能地使用the_time(..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    wordpress时间函数the_time()和data()的区别 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="wordpress时间函数the_time()和data()的区别">
+            
+            wordpress时间函数the_time()和data()的区别
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/25</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>昨天笔者在完善个人的wordpress插件作品“BY超级扩展”时为自己的主题量身定制了获取邮件订阅用户和退订用户记录的功能。在生成退订记录时需要附加退订时间信息。笔者本能地使用the_time()函数输出时间信息，但是无论不管我怎么修改，退订记录的时间信息总是无法写进数据库。最后发现时间直接在网页中输出打印出来，这才意识到<strong>the_time()是时间输出函数，它的返回值并不是时间。最后成功使用date(‘’)函数实现功能</strong>。 the_time()和data()区别是返回类型不停，<strong>前者是void，后者是string</strong>。两者的使用方法基本相同。下面为大家总结一下the_time()和data()的使用方法。</p>
+<h2 id="wordpress-the-time-的使用方法"><a href="#wordpress-the-time-的使用方法" class="headerlink" title="wordpress the_time()的使用方法"></a>wordpress the_time()的使用方法</h2><h3 id="代码示例1："><a href="#代码示例1：" class="headerlink" title="代码示例1："></a>代码示例1：</h3><p>&#x2F;&#x2F;wordpress the_time()函数<br><? php the_time('Y年n月j日'); ?></p>
+<h4 id="输出效果："><a href="#输出效果：" class="headerlink" title="输出效果："></a>输出效果：</h4><p>2015年3月25日 the_time()函数的传入值里除了几个字母有讲究， 其它的内容可以完全自定义，下面是为大家总结的wordpress the_time()函数各参数的表示意义，请<strong>注意字母的大小写往往代表不同的含义</strong>：</p>
+<ul>
+<li>参数z：    描述：天数                  示例：365</li>
+<li>参数Y：    描述：年份                  示例：2015</li>
+<li>参数y：    描述：年份                  示例：15</li>
+<li>参数W：    描述：周数                  示例：22</li>
+<li>参数w：    描述：星期                  示例：2</li>
+<li>参数T：    描述：时区                  示例：CST</li>
+<li>参数S：    描述：序列型数字的后缀      示例：st&#x2F;th</li>
+<li>参数r：    描述：完整的日期时间        示例：Wed,25 Mar 2015 20:30:10 +0800</li>
+<li>参数O：    描述：时区                  示例：+0800</li>
+<li>参数n：    描述：月份                  示例：6</li>
+<li>参数M：    描述：月份                  示例：Jan</li>
+<li>参数m：    描述：月份                  示例：01</li>
+<li>参数l：    描述：星期                  示例：星期一</li>
+<li>参数A：    描述：上下午                示例：AM&#x2F;PM</li>
+<li>参数a：    描述：上下午                示例：am&#x2F;pm</li>
+<li>参数H：    描述：分钟                  示例：06</li>
+<li>参数h：    描述：分钟                  示例：6</li>
+<li>参数G：    描述：小时                  示例：06</li>
+<li>参数g：    描述：小时                  示例：6</li>
+<li>参数F：    描述：月份                  示例：一月</li>
+<li>参数D：    描述：星期                  示例：一</li>
+<li>参数j：    描述：日期                  示例：6</li>
+<li>参数d：    描述：日期                  示例：06</li>
+</ul>
+<p>为了大家对以上参数的用法有个比较直观深入的了解，下面提供几个实例供大家参考：</p>
+<h3 id="1-怎样用wordpress输出时间：年-月-日，"><a href="#1-怎样用wordpress输出时间：年-月-日，" class="headerlink" title="1.怎样用wordpress输出时间：年 月 日，"></a>1.怎样用wordpress输出时间：年 月 日，</h3><p>如：2015年3月25日：    </p>
+<p>&#x2F;&#x2F;怎样用wordpress输出时间：年 月 日</p>
+<?php the_time('Y年n月j日'); ?>
+
+<p> </p>
+<h3 id="2-怎样用wordpress输出时分秒时间：，"><a href="#2-怎样用wordpress输出时分秒时间：，" class="headerlink" title="2.怎样用wordpress输出时分秒时间：，"></a>2.怎样用wordpress输出时分秒时间：，</h3><p>如：12:00:00：  </p>
+<p>&#x2F;&#x2F;怎样用wordpress输出时分秒时间：<br><?php the_time('G:i:s');?></p>
+<h3 id="3-怎样用wordpress输出星期几："><a href="#3-怎样用wordpress输出星期几：" class="headerlink" title="3.怎样用wordpress输出星期几："></a>3.怎样用wordpress输出星期几：</h3><p>如：2015年3月25日星期三：</p>
+<p>&#x2F;&#x2F;怎样用wordpress输出星期几：<br><?php the_time('Y年n月j日l') ;?></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在最后还要强调一个问题，就是当你使用中文版的wordpress时，它会很智能的将你的某些时间参数转换成中文的输出方式，比如月份。有时我们可能并不需要这样智能的转换，而只是希望利用阿拉伯数字进行输出，那么应该怎么去解决这个问题呢？ 其实解决问题的办法也不难，只是要求我们将时间函数的参数进行一些修改即可： 比如说我们原来输出月份的代码如下：</p>
+<p>&#x2F;&#x2F;这个输出结果时会自动将月份转换成中文<br><?php the_time('M');?></p>
+<p>我们只需要将以上代码替换成下面这样就行了：</p>
+<p>&#x2F;&#x2F;修改后的代码<br><?php echo date('M',get\_the\_time('U'));?></p>
+<h2 id="wordpress时间函数-data"><a href="#wordpress时间函数-data" class="headerlink" title=" wordpress时间函数 data()"></a> wordpress时间函数 data()</h2><p>上面介绍了wordpress data()函数的使用方法，data函数的参数和the time相同，在此不一一赘述。需要提醒的还是：如果你要在网页中直接输出时间请用the_time(),如果需要调用时间，比如把它传给一个变量，写进数据库等等，就要使用data()了。 一句话： [callout class&#x3D;”warning” title&#x3D;””]**<?php the_time() ?>等价于<?php echo data() ?>**[&#x2F;callout]</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html" target="_blank">王柏元的博客 >> wordpress时间函数the_time()和data()的区别</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/web-hosting-how-to-block-specified-ip-or-network-segments.html" class="pre-post btn btn-default" title='虚拟主机怎样屏蔽指定IP或网段'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            虚拟主机怎样屏蔽指定IP或网段</span>
+    </a>
+    
+    
+    <a href="/android-project-file-structure.html" class="next-post btn btn-default" title='安卓项目的文件结构'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            安卓项目的文件结构</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "37010",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/e29e7a9722581aed5b60edffa5203d1c.png"
+                                 alt="@WordPress时间函数The_time()和Date()的区别|JOYtheme">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                WordPress时间函数The_time()和Date()的区别|JOYtheme
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 转载注明原文出处：王柏元的博客&gt;&gt;http://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#wordpress-the-time-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">wordpress the_time()的使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B1%EF%BC%9A"><span class="toc-text">代码示例1：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="toc-text">输出效果：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%80%8E%E6%A0%B7%E7%94%A8wordpress%E8%BE%93%E5%87%BA%E6%97%B6%E9%97%B4%EF%BC%9A%E5%B9%B4-%E6%9C%88-%E6%97%A5%EF%BC%8C"><span class="toc-text">1.怎样用wordpress输出时间：年 月 日，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%80%8E%E6%A0%B7%E7%94%A8wordpress%E8%BE%93%E5%87%BA%E6%97%B6%E5%88%86%E7%A7%92%E6%97%B6%E9%97%B4%EF%BC%9A%EF%BC%8C"><span class="toc-text">2.怎样用wordpress输出时分秒时间：，</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%80%8E%E6%A0%B7%E7%94%A8wordpress%E8%BE%93%E5%87%BA%E6%98%9F%E6%9C%9F%E5%87%A0%EF%BC%9A"><span class="toc-text">3.怎样用wordpress输出星期几：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wordpress%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0-data"><span class="toc-text"> wordpress时间函数 data()</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

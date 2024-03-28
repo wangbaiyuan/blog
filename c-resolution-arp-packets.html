@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,网络安全" />
+
+
+<meta name="description" content="在网络通讯时，源主机的应用程序知道目的主机的IP地址和端口号，却不知道目的主机的硬件地址，而数据包首先是被网卡接收到再去处理上层协议的，如果接收到的数据包的硬件地址与本机不符，则直接丢弃。因此在..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    C++解析ARP数据包（可选网卡） |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++解析ARP数据包（可选网卡）">
+            
+            C++解析ARP数据包（可选网卡）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/11/17</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在网络通讯时，源主机的应用程序知道目的主机的IP地址和端口号，却不知道目的主机的硬件地址，而数据包首先是被网卡接收到再去处理上层协议的，如果接收到的数据包的硬件地址与本机不符，则直接丢弃。因此在通讯前必须获得目的主机的硬件地址。ARP协议就起到这个作用。源主机发出ARP请求，询问“IP地址是192.168.0.1的主机的硬件地址是多少”，并将这个请求广播到本地网段（以太网帧首部的硬件地址填FF:FF:FF:FF:FF:FF表示广播），目的主机接收到广播的ARP请求，发现其中的IP地址与本机相符，则发送一个ARP应答数据包给源主机，将自己的硬件地址填写在应答包中。</p>
+<p>每台主机都维护一个ARP缓存表，可以用arp -a命令查看。缓存表中的表项有过期时间（一般为20分钟），如果20分钟内没有再次使用某个表项，则该表项失效，下次还要发ARP请求来获得目的主机的硬件地址。 本项目是基于win cap的，要想成功运行本代码，你需要下载安装win cap以及WpdPack并在visual studio中配置wincap的库。</p>
+<p><a href="http://baiyuan.wang/wp-content/uploads/2015/11/arp.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/11/arp.png" alt="arp"></a></p>
+<p>&#x2F;&#x2F; ParseArp.cpp : 定义控制台应用程序的入口点。<br>&#x2F;&#x2F;</p>
+<p>#include “stdafx.h”<br>#include<vector><br>#include&lt;conio.h&gt;<br>#include<iostream><br>#include<fstream><br>#include<iomanip><br>#include “pcap.h”<br>#include&lt;winsock2.h&gt;<br>using namespace std;<br>#pragma comment(lib,”ws2_32.lib”)<br>#pragma comment(lib,”wpcap.lib”)<br>&#x2F;&#x2F;定义ARP包数据<br>struct arppkt<br>{<br>    unsigned short hdtyp;              &#x2F;&#x2F;硬件类型<br>    unsigned short protyp;             &#x2F;&#x2F;协议类型<br>    unsigned char hdsize;              &#x2F;&#x2F;硬件地址长度<br>    unsigned char prosize;             &#x2F;&#x2F;协议地址长度<br>    unsigned short op;                &#x2F;&#x2F;（操作类型）操作值:   ARP&#x2F;RARP<br>    u_char smac[6];                  &#x2F;&#x2F;源MAC地址<br>    u_char sip[4];                    &#x2F;&#x2F;源IP地址<br>    u_char dmac[6];                  &#x2F;&#x2F;目的MAC地址<br>    u_char dip[4];                    &#x2F;&#x2F;目的IP地址<br>};<br>void packet_handler(const pcap_pkthdr *header, const u_char *pkt_data, ostream&amp; out)<br>{<br>    &#x2F;&#x2F;从ARP包中找到头部位置<br>    arppkt* arph &#x3D; (arppkt *)(pkt_data + 14);<br>    &#x2F;&#x2F;输出源IP地址<br>    for (int i &#x3D; 0; i&lt;3; i++)<br>        out &lt;&lt; int(arph-&gt;sip[i]) &lt;&lt; ‘.’;<br>    out.setf(ios::left);<br>    out &lt;&lt; setw(3) &lt;&lt; int(arph-&gt;sip[3]) &lt;&lt; “  “;<br>    out.unsetf(ios::left);<br>    &#x2F;&#x2F;输出源MAC地址<br>    char oldfillchar &#x3D; out.fill(‘0’);<br>    out.setf(ios::uppercase);<br>    for (int i &#x3D; 0; i&lt;5; i++)<br>        out &lt;&lt; hex &lt;&lt; setw(2) &lt;&lt; int(arph-&gt;smac[i]) &lt;&lt; ‘-‘;<br>    out &lt;&lt; hex &lt;&lt; setw(2) &lt;&lt; int(arph-&gt;smac[5]) &lt;&lt; “  “;<br>    out.fill(oldfillchar);<br>    out.unsetf(ios::hex | ios::uppercase);<br>    &#x2F;&#x2F;输出目的IP地址<br>    for (int i &#x3D; 0; i&lt;3; i++)<br>        out &lt;&lt; int(arph-&gt;dip[i]) &lt;&lt; ‘.’;<br>    out.unsetf(ios::left);<br>    out &lt;&lt; setw(3) &lt;&lt; int(arph-&gt;dip[3]) &lt;&lt; ‘ ‘;<br>    out.unsetf(ios::left);<br>    &#x2F;&#x2F;输出目的MAC地址<br>    out.fill(‘0’);<br>    out.setf(ios::uppercase);<br>    for (int i &#x3D; 0; i&lt;5; i++)<br>        out &lt;&lt; hex &lt;&lt; setw(2) &lt;&lt; int(arph-&gt;dmac[i]) &lt;&lt; ‘-‘;<br>    out &lt;&lt; hex &lt;&lt; setw(2) &lt;&lt; int(arph-&gt;dmac[5]) &lt;&lt; “ “;<br>    out.fill(oldfillchar);<br>    out.unsetf(ios::hex | ios::uppercase);<br>    &#x2F;&#x2F;输出操作类型<br>    out &lt;&lt; ntohs(arph-&gt;op) &lt;&lt; “   “;<br>    &#x2F;&#x2F;输出操作时间<br>    time_t t;<br>    time(&amp;t);<br>    out &lt;&lt; ctime(&amp;t);</p>
+<pre><code>out.fill(oldfillchar);
+out &lt;&lt; endl;
+</code></pre>
+<p>}<br>void main(int argc, char *argv[])&#x2F;&#x2F;命令行参数<br>{<br>    &#x2F;&#x2F;检查输入命令格式<br>    if (argc !&#x3D; 2)<br>    {<br>        cout &lt;&lt; “Please  input  command: ParseArp output_file” &lt;&lt; endl;</p>
+<pre><code>    return;
+&#125;
+//初始化网络设备相关参数
+pcap\_if\_t *alldevs;
+pcap\_if\_t *d;
+pcap_t *adhandle;
+char errbuf\[PCAP\_ERRBUF\_SIZE\];
+u_int netmask;
+char packet_filter\[\] = &quot;ether proto \\\arp&quot;;
+struct bpf_program fcode;
+struct pcap_pkthdr *header;
+const u\_char *pkt\_data;
+vector&lt;pcap\_if\_t* &gt; devices;
+vector&lt;pcap_t *&gt; adhandles;
+//获取网络设备列表
+if (pcap_findalldevs(&amp;alldevs, errbuf) == -1)
+&#123;
+    cout &lt;&lt; &quot;Error in pcap_find　all　devs:&quot; &lt;&lt; errbuf;
+    return;
+&#125;
+//选取一个Ethernet网卡
+for (d = alldevs; d!=NULL; d = d-&gt;next)
+&#123;
+    //    网卡设为混杂模式，接收所有帧
+    if ((adhandle = pcap\_open\_live(d-&gt;name, 1000, 1, 300, errbuf)) == NULL)
+    &#123;
+        cout &lt;&lt; &quot;\\nUnable to open the adapter.&quot;;
+        pcap_freealldevs(alldevs);
+        return;
+    &#125;
+    //检查数据链路是否为Ethernet
+    if (pcap\_datalink(adhandle) == DLT\_EN10MB&amp;&amp;d-&gt;addresses != NULL)&#123;
+devices.push_back(d);
+adhandles.push_back(adhandle);
+    &#125;
+    
+&#125;
+
+vector&lt;pcap\_if\_t *&gt;::iterator it;
+for (int i = 0; i &lt; devices.size(); i++)
+    cout &lt;&lt; &quot;网卡：&quot; &lt;&lt; i + 1 &lt;&lt; &quot;:&quot; &lt;&lt; devices\[i\]-&gt;description &lt;&lt; endl;
+
+int i = 0;
+cout &lt;&lt; &quot;请输入网卡&quot;;
+cin &gt;&gt; i;
+//获得子网掩码
+d = devices\[i - 1\];
+netmask = ((sockaddr\_in *)(d-&gt;addresses-&gt;netmask))-&gt;sin\_addr.S\_un.S\_addr;
+//编译过滤器，只捕获ARP包
+if (pcap\_compile(adhandles\[i - 1\], &amp;fcode, packet\_filter, 1, netmask)&lt;0)
+&#123;
+    cout &lt;&lt; &quot;\\nUnable to compile the packet filter.Check the syntax.\\n&quot;;
+    pcap_freealldevs(alldevs);
+    return;
+&#125;
+//设置过滤器
+if (pcap_setfilter(adhandles\[i - 1\], &amp;fcode)&lt;0)
+&#123;
+    cout &lt;&lt; &quot;\\nError setting the filter.\\n&quot;;
+    pcap_freealldevs(alldevs);
+    return;
+&#125;
+//显示提示信息及每项含义
+cout &lt;&lt; &quot;listening on &quot; &lt;&lt; d-&gt;description &lt;&lt; &quot;...&quot; &lt;&lt; endl &lt;&lt; endl;
+
+ofstream fout(argv\[1\], ios::app);   //日志记录文件
+//为了查看日志时的方便，其中加入了日期记录
+time_t t;
+time(&amp;t);
+fout.seekp(0, ios::end);
+if (fout.tellp())
+    fout &lt;&lt; endl;
+fout &lt;&lt; &quot;\\t\\tARP request(1)/reply(2) on&quot; &lt;&lt; ctime(&amp;t);
+cout &lt;&lt; &quot;Sour Ip Addr&quot; &lt;&lt; &quot;  &quot; &lt;&lt; &quot;Sour MAC Address&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;Des Ip Addr&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;Des MAC Address&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;OP&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;Time&quot; &lt;&lt; endl;
+fout &lt;&lt; &quot;Sour Ip Addr&quot; &lt;&lt; &quot;  &quot; &lt;&lt; &quot;Sour MAC Address&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;Des Ip Addr&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;Des MAC Address&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;OP&quot; &lt;&lt; &quot;   &quot; &lt;&lt; &quot;Time&quot; &lt;&lt; endl;
+//释放设备列表
+pcap_freealldevs(alldevs);
+//开始截获ARP包
+int result;
+while ((result = pcap\_next\_ex(adhandles\[i-1\], &amp;header, &amp;pkt_data)) &gt;= 0)
+&#123;   //循环解析ARP数据包
+    if (result == 0)
+        continue;
+    //解析ARP包，结果输出到屏幕与文件
+    packet\_handler(header, pkt\_data, cout);
+    packet\_handler(header, pkt\_data, fout);
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/c-resolution-arp-packets.html" target="_blank">王柏元的博客 >> C++解析ARP数据包（可选网卡）</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/c-scan-specified-host-open-port.html" class="pre-post btn btn-default" title='C++扫描指定主机开放的端口'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            C++扫描指定主机开放的端口</span>
+    </a>
+    
+    
+    <a href="/number-at-least-undirected-graph-elements-not-connected-subset-of.html" class="next-post btn btn-default" title='无向图个数最少且元素间不相连的子集'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            无向图个数最少且元素间不相连的子集</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "20215",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

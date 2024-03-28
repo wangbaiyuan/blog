@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,JAVA,软件推荐" />
+
+
+<meta name="description" content="Notepad++是极客人非常喜欢的一款电脑客户端的编辑器，它的安装包只有7.9M，但是功能却十分强大，界面简单、启动速度快，用它替代系统的“记事本”是个不错的选择。极客人常用的功能有查找替换（..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    notepad++的高级功能：编译java、C++ |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="notepad++的高级功能：编译java、C++">
+            
+            notepad++的高级功能：编译java、C++
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/" rel="tag">软件推荐</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/17</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>Notepad++是极客人非常喜欢的一款电脑客户端的编辑器，它的安装包只有7.9M，但是功能却十分强大，界面简单、启动速度快，用它替代系统的“记事本”是个不错的选择。极客人常用的功能有查找替换（支持正则表达式）、文件转编码，同时它的代码高亮、代码折叠也十分实用，还可以根据你自己的爱好改变代码高亮的风格主题。同时它具有插件扩展功能，安装插件使它具有无限可能。 Notepad++支持的文件类型有： C、C++、Java、C#、XML、HTML、PHP、CSS、makefile、ASCII艺术(.nfo)、doxygen、ini文件、批处理文件、Javascript、ASP、VB、VBS、SQL、Objective-C 、Pascal、Perl、Python、LuaTeX、TCL汇编言、Ruby、Lisp、Scheme、Properties、DiffSmalltalk。 除了强大的编辑能力外，其实我们也可以直接在Notepad++里直接编译运行java、C++代码，这样我们不至于写一个简单的“hello world”也要新建一个eclipse项目，它可以直接编译单个的java文件，和C一样；编辑html的时候也不用打开启动速度极慢的dreamweaver了。虽然它没有专业的编程工那样具有强大的调试功能，但作为轻量级的编程工具还是十分不错的。</p>
+<h2 id="1-下载安装NppExec插件"><a href="#1-下载安装NppExec插件" class="headerlink" title="1.下载安装NppExec插件"></a>1.下载安装NppExec插件</h2><p>分别打开插件——pluginManeger菜单，点击“Show Plugin Manager”打开Notepad++的插件管理： <a href="http://baiyuan.wang/wp-content/uploads/2015/05/image5.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb5.png" alt="下载安装NppExec插件" title="下载安装NppExec插件"></a>   在available选项卡中找到“NppExec”选择安装，重启notepad++。</p>
+<h2 id="2-按F6编译并运行java文件"><a href="#2-按F6编译并运行java文件" class="headerlink" title="2.按F6编译并运行java文件"></a>2.按F6编译并运行java文件</h2><p>notepad++本身并不具备编译功能，而是调用已注册为系统环境变量的JDK工具的编译功能，其实eclipse这些软件也是这样，它们只是编辑器。编译的快捷键是F6 第一次编译的时候，我们需要设置一下编译命令，下面是无参数、无jar引用的java文件编译命令</p>
+<p>javac  “$(FULL_CURRENT_PATH)”<br>java -cp $(CURRENT_DIRECTORY  $(NAME_PART)</p>
+<p>  然后保存为：“java编译”，以后直接选择它作为模板编译。</p>
+<h2 id="3、带参数、带jar引用的java文件编译命令"><a href="#3、带参数、带jar引用的java文件编译命令" class="headerlink" title="3、带参数、带jar引用的java文件编译命令"></a>3、带参数、带jar引用的java文件编译命令</h2><p>不知道细心的朋友有没有发现，上面的编译命令和命令指示符里编译运行的命令是一样的，所有懂得命令指示符编译的朋友可以自己修改编译命令，编译C++的原理也是一样。 下面是带参数、带jar引用的java文件编译命令：</p>
+<p>javac  “$(FULL_CURRENT_PATH)”<br>java -cp “$(CURRENT_DIRECTORY)”;”$(CURRENT_DIRECTORY)&#x2F;json.jar” $(NAME_PART)</p>
+<p>在上面的编译命令中，我在-cpp(classpath)参数”$(CURRENT_DIRECTORY)”后面添加了“;$(CURRENT_DIRECTORY)&#x2F;json.jar”，这表示我引用了当前文件夹下“json.jar”这个外部jar引用.</p>
+<h3 id="实例展示："><a href="#实例展示：" class="headerlink" title="实例展示："></a>实例展示：</h3><p><a href="http://baiyuan.wang/wp-content/uploads/2015/05/image6.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb6.png" alt="image" title="image"></a>  </p>
+<h3 id="文件路径关系："><a href="#文件路径关系：" class="headerlink" title="文件路径关系："></a>文件路径关系：</h3><p><a href="http://baiyuan.wang/wp-content/uploads/2015/05/image7.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb7.png" alt="image" title="image"></a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/notepad-advanced-features-compile-java-c.html" target="_blank">王柏元的博客 >> notepad++的高级功能：编译java、C++</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd8-ex1-socket-communication-java-code.html" class="pre-post btn btn-default" title='SSD8_EX1【socket通信的java实现代码】'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD8_EX1【socket通信的java实现代码】</span>
+    </a>
+    
+    
+    <a href="/practicing-spirit-is-sword.html" class="next-post btn btn-default" title='练“气”还是练“剑”'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            练“气”还是练“剑”</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "62248",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                编译c++和java差不多，百度一下配置gcc的系统变量，用gcc编译一下c++文件再运行exe
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/ff3555cd5e44ed61d24db07e96d356fc.png"
+                                 alt="@Von Alonza">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                Von Alonza
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-22
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                很实用的方法，下载了notepad++，的确可以编译java，启动速度也很快，但是博主，请问怎么用notepad++编译c++呢
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85NppExec%E6%8F%92%E4%BB%B6"><span class="toc-text">1.下载安装NppExec插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%8C%89F6%E7%BC%96%E8%AF%91%E5%B9%B6%E8%BF%90%E8%A1%8Cjava%E6%96%87%E4%BB%B6"><span class="toc-text">2.按F6编译并运行java文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%B8%A6%E5%8F%82%E6%95%B0%E3%80%81%E5%B8%A6jar%E5%BC%95%E7%94%A8%E7%9A%84java%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="toc-text">3、带参数、带jar引用的java文件编译命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA%EF%BC%9A"><span class="toc-text">实例展示：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E5%85%B3%E7%B3%BB%EF%BC%9A"><span class="toc-text">文件路径关系：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

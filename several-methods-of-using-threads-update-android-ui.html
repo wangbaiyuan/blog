@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,android开发,android控件" />
+
+
+<meta name="description" content="方法一：(java习惯，在android不推荐使用）刚刚开始接触android线程编程的时候，习惯好像java一样，试图用下面的代码解决问题
+new Thread( new Runnable()..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Android使用线程更新UI的几种方法 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android使用线程更新UI的几种方法">
+            
+            Android使用线程更新UI的几种方法
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a> <a class="tag-none-link" href="/tags/android%E6%8E%A7%E4%BB%B6/" rel="tag">android控件</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/08/18</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="方法一：-java习惯，在android不推荐使用）"><a href="#方法一：-java习惯，在android不推荐使用）" class="headerlink" title="方法一：(java习惯，在android不推荐使用）"></a><strong>方法一：(java习惯，在android不推荐使用）</strong></h2><p>刚刚开始接触android线程编程的时候，习惯好像java一样，试图用下面的代码解决问题</p>
+<p>new Thread( new Runnable() {<br>   public void run() {<br>       myView.invalidate();<br>  }<br>}).start();</p>
+<p>可以实现功能，刷新UI界面。但是这样是不行的，因为它违背了单线程模型：Android UI操作并不是线程安全的并且这些操作必须在UI线程中执行。 <a href="http://baiyuan.wang/wp-content/uploads/2015/08/W020140901303931719545.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/08/W020140901303931719545.jpg" alt="W020140901303931719545"></a></p>
+<h2 id="方法二：（Thread-Handler"><a href="#方法二：（Thread-Handler" class="headerlink" title="方法二：（Thread+Handler)"></a><strong>方法二：（Thread+Handler)</strong></h2><p>查阅了文档和apidemo后，发觉常用的方法是利用Handler来实现UI线程的更新的。 Handler来根据接收的消息，处理UI更新。Thread线程发出Handler消息，通知更新UI。</p>
+<p>Handler myHandler &#x3D; new Handler() {<br>public void handleMessage(Message msg) {<br>switch (msg.what) {<br>case TestHandler.GUIUPDATEIDENTIFIER:<br>myBounceView.invalidate();<br>break;<br>}<br>super.handleMessage(msg);<br>}<br>};</p>
+<p>class myThread implements Runnable {<br>public void run() {<br>while (!Thread.currentThread().isInterrupted()) { </p>
+<p>Message message &#x3D; new Message();<br>message.what &#x3D; TestHandler.GUIUPDATEIDENTIFIER; </p>
+<p>TestHandler.this.myHandler.sendMessage(message);<br>try {<br>Thread.sleep(100);<br>} catch (InterruptedException e) {<br>Thread.currentThread().interrupt();<br>}<br>}<br>}<br>}</p>
+<p> </p>
+<h2 id="方法三：（java习惯，不推荐）"><a href="#方法三：（java习惯，不推荐）" class="headerlink" title="方法三：（java习惯，不推荐）"></a><strong>方法三：（java习惯，不推荐）</strong></h2><p>在Android平台中需要反复按周期执行方法可以使用Java上自带的TimerTask类，TimerTask相对于Thread来说对于资源消耗的更低，除了使用Android自带的AlarmManager使用Timer定时器是一种更好的解决方法。 我们需要引入import java.util.Timer; 和 import java.util.TimerTask;</p>
+<p>public class JavaTimer extends Activity { </p>
+<p>Timer timer &#x3D; new Timer();<br>TimerTask task &#x3D; new TimerTask(){<br>public void run() {<br>setTitle(“hear me?”);<br>}<br>}; </p>
+<p>public void onCreate(Bundle savedInstanceState) {<br>super.onCreate(savedInstanceState);<br>setContentView(R.layout.main); </p>
+<p>timer.schedule(task, 10000); </p>
+<p>}<br>}</p>
+<p> </p>
+<h2 id="方法四：-TimerTask-Handler"><a href="#方法四：-TimerTask-Handler" class="headerlink" title="方法四：(TimerTask + Handler)"></a><strong>方法四：(TimerTask + Handler)</strong></h2><p>实际上这样做是不行的，这跟Android的线程安全有关！应该通过配合Handler来实现timer功能的！</p>
+<p>public class TestTimer extends Activity { </p>
+<p>Timer timer &#x3D; new Timer();<br>Handler handler &#x3D; new Handler(){<br>public void handleMessage(Message msg) {<br>switch (msg.what) {<br>case 1:<br>setTitle(“hear me?”);<br>break;<br>}<br>super.handleMessage(msg);<br>} </p>
+<p>};  </p>
+<p>TimerTask task &#x3D; new TimerTask(){<br>public void run() {<br>Message message &#x3D; new Message();<br>message.what &#x3D; 1;<br>handler.sendMessage(message);<br>}<br>};  </p>
+<p>public void onCreate(Bundle savedInstanceState) {<br>super.onCreate(savedInstanceState);<br>setContentView(R.layout.main);<br> <br>timer.schedule(task, 10000);<br>}<br>}</p>
+<p> </p>
+<h2 id="方法五：-Runnable-Handler-postDelayed-runnable-time"><a href="#方法五：-Runnable-Handler-postDelayed-runnable-time" class="headerlink" title="方法五：( Runnable + Handler.postDelayed(runnable,time) )"></a><strong>方法五：( Runnable + Handler.postDelayed(runnable,time) )</strong></h2><p>在Android里定时更新 UI，通常使用的是 <em>java.util.Timer</em>, <em>java.util.TimerTask</em>, android_.os._Handler组合。实际上Handler 自身已经提供了定时的功能。</p>
+<p>private Handler handler &#x3D; new Handler(); </p>
+<p>private Runnable myRunnable&#x3D; new Runnable() {<br>public void run() { </p>
+<p>if (run) {<br>handler.postDelayed(this, 1000);<br>count++;<br>}<br>tvCounter.setText(“Count: “ + count); </p>
+<p>}<br>};</p>
+<p> </p>
+<p>然后在其他地方调用</p>
+<p>handler.post(myRunnable);</p>
+<p>handler.post(myRunnable,time);</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<h2 id="知识点总结补充："><a href="#知识点总结补充：" class="headerlink" title="知识点总结补充："></a><strong>知识点总结补充：</strong></h2><p>很多初入Android或Java开发的新手对Thread、Looper、Handler和Message仍然比较迷惑，衍生的有HandlerThread、java.util.concurrent、Task、AsyncTask由于目前市面上的书籍等资料都没有谈到这些问题，今天就这一问题做更系统性的总结。我们创建的Service、Activity以及Broadcast均是一个主线程处理，这里我们可以理解为<strong>UI线程</strong>。但是在操作一些耗时操作时，比如I&#x2F;O读写的大文件读写，数据库操作以及网络下载需要很长时间，为了不阻塞用户界面，出现ANR的响应提示窗口，这个时候我们可以考虑使用Thread线程来解决。 对于从事过J2ME开发的程序员来说Thread比较简单，直接匿名创建重写run方法，调用start方法执行即可。或者从Runnable接口继承，但对于Android平台来说UI控件都没有设计成为<strong>线程安全类型</strong>，所以需要引入一些同步的机制来使其刷新，这点Google在设计Android时倒是参考了下Win32的消息处理机制。</p>
+<ul>
+<li> 1. 对于线程中的刷新一个View为基类的界面，可以<strong>使用postInvalidate()方法</strong>在线程中来处理，其中还提供了一些重写方法比如postInvalidate(int left,int top,int right,int bottom) 来刷新一个矩形区域，以及延时执行，比如postInvalidateDelayed(long delayMilliseconds)或postInvalidateDelayed(long delayMilliseconds,int left,int top,int right,int bottom) 方法，其中第一个参数为毫秒</li>
+<li> 2. 当然推荐的方法是通过一个<strong>Handler来处理</strong>这些，可以在一个线程的run方法中调用handler对象的 postMessage或sendMessage方法来实现，Android程序内部维护着一个消息队列，会轮训处理这些，如果你是Win32程序员可以很好理解这些消息处理，不过相对于Android来说没有提供 PreTranslateMessage这些干涉内部的方法。</li>
+<li>3. Looper又是什么呢? ，其实Android中每一个Thread都跟着一个Looper，Looper可以帮助Thread维护一个消息队列，但是Looper和Handler没有什么关系，我们从开源的代码可以看到Android还提供了一个Thread继承类HanderThread可以帮助我们处理，在HandlerThread对象中可以通过getLooper方法获取一个Looper对象控制句柄，我们可以将其这个Looper对象映射到一个Handler中去来实现一个线程同步机制，Looper对象的执行需要初始化Looper.prepare方法就是昨天我们看到的问题，同时推出时还要释放资源，使用Looper.release方法。</li>
+<li>4.Message 在Android是什么呢? 对于Android中Handler可以传递一些内容，通过Bundle对象可以封装String、Integer以及Blob二进制对象，我们通过在线程中<strong>使用Handler对象的sendEmptyMessage或sendMessage方法来传递一个Bundle对象到Handler处理器</strong>。对于Handler类提供了重写方法<strong>handleMessage(Message msg) 来判断，通过msg.what来区分每条信息</strong>。将Bundle解包来实现Handler类更新UI线程中的内容实现控件的刷新操作。相关的Handler对象有关消息发送sendXXXX相关方法如下，同时还有postXXXX相关方法，这些和Win32中的道理基本一致，一个为发送后直接返回，一个为处理后才返回 .</li>
+<li>5. java.util.concurrent对象分析，对于过去从事Java开发的程序员不会对Concurrent对象感到陌生吧，他是JDK 1.5以后新增的重要特性作为掌上设备，我们不提倡使用该类，考虑到Android为我们已经设计好的Task机制，这里不做过多的赘述，相关原因参考下面的介绍:</li>
+<li>6. 在Android中还提供了一种有别于线程的处理方式，就是<strong>Task以及AsyncTask</strong>，从开源代码中可以看到是针对Concurrent的封装，开发人员可以方便的处理这些异步任务。</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/several-methods-of-using-threads-update-android-ui.html" target="_blank">王柏元的博客 >> Android使用线程更新UI的几种方法</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/android-implementation-effect-of-countdown-button.html" class="pre-post btn btn-default" title='安卓实现倒计时按钮效果'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            安卓实现倒计时按钮效果</span>
+    </a>
+    
+    
+    <a href="/use-memory-as-virtual-disk.html" class="next-post btn btn-default" title='使用内存做虚拟磁盘'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            使用内存做虚拟磁盘</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "55166",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A-java%E4%B9%A0%E6%83%AF%EF%BC%8C%E5%9C%A8android%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%EF%BC%89"><span class="toc-text">方法一：(java习惯，在android不推荐使用）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%EF%BC%88Thread-Handler"><span class="toc-text">方法二：（Thread+Handler)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%EF%BC%88java%E4%B9%A0%E6%83%AF%EF%BC%8C%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">方法三：（java习惯，不推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A-TimerTask-Handler"><span class="toc-text">方法四：(TimerTask + Handler)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%94%EF%BC%9A-Runnable-Handler-postDelayed-runnable-time"><span class="toc-text">方法五：( Runnable + Handler.postDelayed(runnable,time) )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-text">知识点总结补充：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

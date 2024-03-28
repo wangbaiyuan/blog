@@ -1,0 +1,562 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,PHP" />
+
+
+<meta name="description" content="wordpress建站系统为我们提供了丰富的插件功能，但是使用太多的插件往往会拖慢网站的速度，其实一些小插件的功能我们完全可以自己用代码实现，下面是我为大家整理的一些wordpress经典功能的..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    wordpress无插件实现六个经典功能 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="wordpress无插件实现六个经典功能">
+            
+            wordpress无插件实现六个经典功能
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/01/29</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>wordpress建站系统为我们提供了丰富的插件功能，但是使用太多的插件往往会拖慢网站的速度，其实一些小插件的功能我们完全可以自己用代码实现，下面是我为大家整理的一些wordpress经典功能的无插件纯代码实现方法，代码来自互联网。如果没有特殊说明，下面的代码请放在主题文件夹（…&#x2F;wp-content&#x2F;themes&#x2F;你的主题&#x2F;）的模板函数functions.php文件里，修改方法：将下面代码复制粘贴到functions.php的<?php……..?>局域内。</p>
+<h1 id="wordpress无插件实现六个经典功能"><a href="#wordpress无插件实现六个经典功能" class="headerlink" title="wordpress无插件实现六个经典功能"></a>wordpress无插件实现六个经典功能</h1><h2 id="修改wordpress代码实现smtp邮件功能"><a href="#修改wordpress代码实现smtp邮件功能" class="headerlink" title="修改wordpress代码实现smtp邮件功能"></a>修改wordpress代码实现smtp邮件功能</h2><p>相关插件：easy wp smtp 下载地址（(经本人汉化)）[button class&#x3D;”download” size&#x3D;”lg” href&#x3D;”<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1mgqV5Rq">http://pan.baidu.com/s/1mgqV5Rq</a>“ title&#x3D;”easy wp smtp”]密码：0bmd [&#x2F;button]</p>
+<p>&#x2F;&#x2F;使用smtp发邮件<br>add_action(‘phpmailer_init’, ‘mail_smtp’);<br>function mail_smtp( $phpmailer ) {<br>$phpmailer-&gt;IsSMTP();<br>$phpmailer-&gt;SMTPAuth &#x3D; true;&#x2F;&#x2F;启用SMTPAuth服务<br>$phpmailer-&gt;Port &#x3D; 465;&#x2F;&#x2F;MTP邮件发送端口，这个和下面的对应，如果这里填写25，则下面为空白<br>$phpmailer-&gt;SMTPSecure &#x3D;”ssl”;&#x2F;&#x2F;是否验证 ssl，这个和上面的对应，如果不填写，则上面的端口须为25<br>$phpmailer-&gt;Host &#x3D;”smtp.gmail.com”;&#x2F;&#x2F;邮箱的SMTP服务器地址，如果是QQ的则为：smtp.exmail.qq.com<br>$phpmailer-&gt;Username &#x3D; “<a href="mailto:&#x61;&#100;&#109;&#105;&#110;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#x61;&#100;&#109;&#105;&#110;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a>“;&#x2F;&#x2F;你的邮箱地址<br>$phpmailer-&gt;Password &#x3D;”******”;&#x2F;&#x2F;你的邮箱登陆密码<br>}</p>
+<p> </p>
+<h2 id="WordPress无插件代码实现评论回复邮件通知"><a href="#WordPress无插件代码实现评论回复邮件通知" class="headerlink" title="WordPress无插件代码实现评论回复邮件通知"></a>WordPress无插件代码实现评论回复邮件通知</h2><p> </p>
+<p>&#x2F;&#x2F;comment_mail_notify(所有的回复都会发邮件通知)</p>
+<p>function comment_mail_notify($comment_id) {<br>$comment &#x3D; get_comment($comment_id);<br>$parent_id &#x3D; $comment-&gt;comment_parent ? $comment-&gt;comment_parent : ‘’;<br>$spam_confirmed &#x3D; $comment-&gt;comment_approved;<br>if (($parent_id !&#x3D; ‘’) &amp;&amp; ($spam_confirmed !&#x3D; ‘spam’)) {<br>$wp_email &#x3D; ‘no-reply@’ . preg_replace(‘#^www.#’, ‘’, strtolower($_SERVER[‘SERVER_NAME’]));&#x2F;&#x2F;发件人e-mail地址<br>$to &#x3D; trim(get_comment($parent_id)-&gt;comment_author_email);<br>$subject &#x3D; ‘您在[‘.get_option(“blogname”).’]的留言有了回复’;<br>$message &#x3D; ‘</p>
+<div style="background-color:#eef2fa; border:1px solid #d8e3e8; color:#111; padding:0 15px; -moz-border-radius:5px; -webkit-border-radius:5px; -khtml-border-radius:5px;">
+<p>'.trim(get\_comment($parent\_id)->comment_author).', 您好!</p>
+<p>这是您在《'.get\_the\_title($comment->comment\_post\_ID).'》中的留言:<br />'
+.trim(get\_comment($parent\_id)->comment_content).'</p>
+<p>以下是'.trim($comment->comment_author).' 给您的回复:<br />'
+.trim($comment->comment_content).'<br /></p>
+<p>您可以<a href="' . htmlspecialchars(get\_comment\_link($parent_id)) . '">点击这里查看回复的完整内容.</a></p>
+<p>欢迎再度光临 <a href="' . get\_option('home') . '">' . get\_option('blogname') . '</a></p>
+<p>(注:此邮件由系统自动发出,请勿回复!)</p>
+</div>';
+$from = "From: "" . get\_option('blogname') . "" <$wp\_email>";
+$headers = "$fromnContent-Type: text/html; charset=" . get\_option('blog\_charset') . "n";
+wp_mail( $to, $subject, $message, $headers );
+//echo 'mail to ', $to, '<br/> ' , $subject, $message; // for testing
+}
+}
+add\_action('comment\_post', 'comment\_mail\_notify');
+
+<p> </p>
+<h2 id="文章图片自动添加alt和title信息"><a href="#文章图片自动添加alt和title信息" class="headerlink" title="文章图片自动添加alt和title信息"></a>文章图片自动添加alt和title信息</h2><p>&#x2F;* 文章图片自动添加alt和title信息 *&#x2F;<br>function tin_image_alt($content){<br>global $post;<br>$pattern &#x3D; “&#x2F;&lt;img(.*?)src&#x3D;(‘|\“)(.*?).(bmp|gif|jpeg|jpg|png)(‘|\“)(.*?)&gt;&#x2F;i”;<br>$replacement &#x3D; ‘&lt;img$1src&#x3D;$2$3.$4$5 alt&#x3D;”‘.$post-&gt;post_title.’” title&#x3D;”‘.$post-&gt;post_title.’”$6&gt;’;<br>$content &#x3D; preg_replace($pattern,$replacement,$content);<br>return $content;<br>}<br>add_filter(‘the_content’,’tin_image_alt’,15);</p>
+<h2 id="WordPress文字标签关键词自动内链"><a href="#WordPress文字标签关键词自动内链" class="headerlink" title="  WordPress文字标签关键词自动内链"></a>  WordPress文字标签关键词自动内链</h2><p> </p>
+<p>&#x2F;* WordPress文字标签关键词自动内链*&#x2F;<br>$match_num_from &#x3D; 1; &#x2F;&#x2F;一篇文章中同一個標籤少於幾次不自動鏈接<br>$match_num_to &#x3D; 4; &#x2F;&#x2F;一篇文章中同一個標籤最多自動鏈接幾次<br>function tag_sort($a, $b){<br>if ( $a-&gt;name &#x3D;&#x3D; $b-&gt;name ) return 0;<br>return ( strlen($a-&gt;name) &gt; strlen($b-&gt;name) ) ? -1 : 1;<br>}<br>function tin_tag_link($content){<br>global $match_num_from,$match_num_to;<br>$posttags &#x3D; get_the_tags();<br>if ($posttags) {<br>usort($posttags, “tag_sort”);<br>$ex_word &#x3D; ‘’;<br>$case &#x3D; ‘’;<br>foreach($posttags as $tag) {<br>$link &#x3D; get_tag_link($tag-&gt;term_id);<br>$keyword &#x3D; $tag-&gt;name;<br>$cleankeyword &#x3D; stripslashes($keyword);<br>$url &#x3D; “&lt;a href&#x3D;\“$link\“ class&#x3D;\“tooltip-trigger tin\“ title&#x3D;\“”.str_replace(‘%s’,addcslashes($cleankeyword, ‘$’),__(‘查看更多关于 %s 的文章’)).”\“”;<br>$url .&#x3D; ‘ target&#x3D;”_blank”‘;<br>$url .&#x3D; “&gt;”.addcslashes($cleankeyword, ‘$’).”</a>“;<br>$limit &#x3D; rand($match_num_from,$match_num_to);<br>$content &#x3D; preg_replace( ‘|(&lt;a[^&gt;]+&gt;)(.<em>)&lt;pre.*?&gt;(‘.$ex_word.’)(.</em>)&lt;\&#x2F;pre&gt;(&lt;&#x2F;a[^&gt;]<em>&gt;)|U’.$case, ‘$1$2$4$5’, $content);<br>$content &#x3D; preg_replace( ‘|(&lt;img)(.*?)(‘.$ex_word.’)(.*?)(&gt;)|U’.$case, ‘$1$2$4$5’, $content);<br>$cleankeyword &#x3D; preg_quote($cleankeyword,’\‘’);<br>$regEx &#x3D; ‘\‘(?!((&lt;.*?)|(&lt;a.*?)))(‘. $cleankeyword . ‘)(?!(([^&lt;&gt;]</em>?)&gt;)|([^&gt;]*?</a>))\‘s’ . $case;<br>$content &#x3D; preg_replace($regEx,$url,$content,$limit);<br>$content &#x3D; str_replace( ‘’, stripslashes($ex_word), $content);<br>}<br>}<br>return $content;<br>}<br>add_filter(‘the_content’,’tin_tag_link’,12);</p>
+<h2 id="Avatar改用多说gravatar服务器或SSL链接"><a href="#Avatar改用多说gravatar服务器或SSL链接" class="headerlink" title=" Avatar改用多说gravatar服务器或SSL链接"></a> Avatar改用多说gravatar服务器或SSL链接</h2><p> </p>
+<p>&#x2F;* Avatar改用多说gravatar服务器或SSL链接 <em>&#x2F;<br>function mytheme_get_avatar($avatar) {<br>if(ot_get_option(‘gravatar_source’) &#x3D;&#x3D; ‘duoshuo’){<br>$avatar &#x3D; str_replace(array(“<a target="_blank" rel="noopener" href="http://www.gravatar.com","0.gravatar.com","1.gravatar.com","2.gravatar.com"),"gravatar.duoshuo.com",$avatar/">www.gravatar.com&quot;,&quot;0.gravatar.com&quot;,&quot;1.gravatar.com&quot;,&quot;2.gravatar.com&quot;),&quot;gravatar.duoshuo.com&quot;,$avatar</a>);<br>}elseif(ot_get_option(‘gravatar_source’) &#x3D;&#x3D; ‘ssl’){<br>$avatar &#x3D; preg_replace(‘&#x2F;.<em>\&#x2F;avatar\&#x2F;(.</em>)\?s&#x3D;([\d]+)(&amp;?.</em>)&#x2F;‘,’<img src="https://secure.gravatar.com/avatar/$1?s=$2" class="avatar avatar-$2" height="$2" width="$2">‘,$avatar);<br>}<br>return $avatar;<br>}<br>add_filter( ‘get_avatar’, ‘mytheme_get_avatar’);</p>
+<h2 id="替换文章或评论内容外链为内链"><a href="#替换文章或评论内容外链为内链" class="headerlink" title=" 替换文章或评论内容外链为内链"></a> 替换文章或评论内容外链为内链</h2><p> </p>
+<p>&#x2F;* 替换文章或评论内容外链为内链*&#x2F;<br>function convert_to_internal_links($content){<br>preg_match_all(‘&#x2F;\shref&#x3D;(\‘|\“)([^\‘\“#]*?)(\‘|\“)([\s]?)&#x2F;‘,$content,$matches);<br>if($matches){<br>foreach($matches[2] as $val){<br>if(strpos($val,home_url())&#x3D;&#x3D;&#x3D;false){<br>$rep &#x3D; $matches[1][0].$val.$matches[3][0];<br>$new &#x3D; ‘“‘.home_url().’&#x2F;redirect?url&#x3D;’.base64_encode($val).’”‘;<br>$content &#x3D; str_replace(“$rep”,”$new”,$content);<br>}<br>}<br>}<br>return $content;<br>}<br>add_filter(‘the_content’,’convert_to_internal_links’,99);<br>add_filter(‘comment_text’,’convert_to_internal_links’,99);<br>add_filter(‘get_comment_author_link’,’convert_to_internal_links’,99);</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/wordpress-plugin-free-six-classic-features.html" target="_blank">王柏元的博客 >> wordpress无插件实现六个经典功能</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/tinection-themes-wordpress-how-to-save-traffic.html" class="pre-post btn btn-default" title='wordpress使用tinection主题怎样节省流量'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            wordpress使用tinection主题怎样节省流量</span>
+    </a>
+    
+    
+    <a href="/how-to-wordpress-directory-settings-icon.html" class="next-post btn btn-default" title='怎样为wordpress导航菜单设置图标'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            怎样为wordpress导航菜单设置图标</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "40201",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/11712c72b7873a514a3187cd989509bb.png"
+                                 alt="@hezhezhiyu22">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                hezhezhiyu22
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-03-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                对于我等菜鸟而言，你不说清在哪里添加代码，让我们怎么用啊！ :mad:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aab44e6ef61657bc98bcb0d56ea110a6.png"
+                                 alt="@retravel">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                retravel
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-02-13
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                代码不是我写的哦
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/953bc42433734279fcc9babe3b2d8b45.png"
+                                 alt="@以楽会友">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                以楽会友
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-02-13
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                cool啊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aab44e6ef61657bc98bcb0d56ea110a6.png"
+                                 alt="@retravel">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                retravel
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-01-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                未完待续，正在整理，还有些代码没放上去
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d0f7970a29cf29df025200cdab12fe66.png"
+                                 alt="@俊霖">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                俊霖
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-01-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                好评，不过你的代码，有点乱
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wordpress%E6%97%A0%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E5%85%AD%E4%B8%AA%E7%BB%8F%E5%85%B8%E5%8A%9F%E8%83%BD"><span class="toc-text">wordpress无插件实现六个经典功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9wordpress%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0smtp%E9%82%AE%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="toc-text">修改wordpress代码实现smtp邮件功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WordPress%E6%97%A0%E6%8F%92%E4%BB%B6%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E8%AF%84%E8%AE%BA%E5%9B%9E%E5%A4%8D%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5"><span class="toc-text">WordPress无插件代码实现评论回复邮件通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0alt%E5%92%8Ctitle%E4%BF%A1%E6%81%AF"><span class="toc-text">文章图片自动添加alt和title信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WordPress%E6%96%87%E5%AD%97%E6%A0%87%E7%AD%BE%E5%85%B3%E9%94%AE%E8%AF%8D%E8%87%AA%E5%8A%A8%E5%86%85%E9%93%BE"><span class="toc-text">  WordPress文字标签关键词自动内链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Avatar%E6%94%B9%E7%94%A8%E5%A4%9A%E8%AF%B4gravatar%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%88%96SSL%E9%93%BE%E6%8E%A5"><span class="toc-text"> Avatar改用多说gravatar服务器或SSL链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E6%96%87%E7%AB%A0%E6%88%96%E8%AF%84%E8%AE%BA%E5%86%85%E5%AE%B9%E5%A4%96%E9%93%BE%E4%B8%BA%E5%86%85%E9%93%BE"><span class="toc-text"> 替换文章或评论内容外链为内链</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

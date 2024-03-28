@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="API,PHP" />
+
+
+<meta name="description" content="由于在安卓软件开发实践中，笔者想给软件加上软件更新服务，于是决定依托自己的虚拟主机，用php制作一个自己的API。再通过json标准格式输出数据库的查询结果。
+一、实例展示API制作代码的简单形..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    PHP用json_encode转换数组中文乱码 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="PHP用json_encode转换数组中文乱码">
+            
+            PHP用json_encode转换数组中文乱码
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/05</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>由于在安卓软件开发实践中，笔者想给软件加上软件更新服务，于是决定依托自己的虚拟主机，用php制作一个自己的API。再通过json标准格式输出数据库的查询结果。</p>
+<h2 id="一、实例展示"><a href="#一、实例展示" class="headerlink" title="一、实例展示"></a>一、实例展示</h2><p>API制作代码的简单形式是：</p>
+<?php
+$id = $_GET\['id'\];//get接受传值
+api($id);//执行函数
+//定义函数
+function api($id){
+//函数体
+$array= array(1,2,3);//这是只是示意，表示$array是数组
+$json=jsons\_encode($array);//通过jsons\_encode函数输出数组的json格式
+echo $json;
+}
+?>
+
+<p>通过jsons_encode函数把数组转换成json格式时，会发现形如这样的中文乱码： \u901a\u8baf\u5f55\uff0c\u662f\u738b\u67cf\u5143\u81ea\u4e3b\u5f00\ 在反复检查PHP使用编码和数据库编码后，笔者才发现这是jsons_encode函数的问题，造成的原因如下：</p>
+<h2 id="二、原因分析"><a href="#二、原因分析" class="headerlink" title="二、原因分析:"></a>二、原因分析:</h2><p>在存储到数据库时!MySQL 不会存储 unicode 字符：MySQL 仅支持从基本的多语种平面字符 (0×0000-0xFFFF)。请尝试存储一个同义词相反:) 更新： MySQL 5.5.3 上 (其中尚未 GA), 支持补充字符如果您使用 UTF8MB4 编码。 json_encode中文的时候，会把每个中文字符encode成“uxxxx”,而存进数据库的时候，“”被屏蔽了，直接变成”uxxxx”</p>
+<h2 id="三、-解决问题："><a href="#三、-解决问题：" class="headerlink" title="三、 解决问题："></a>三、 解决问题：</h2><h3 id="1-避免json-encode将中文转换unicode编码"><a href="#1-避免json-encode将中文转换unicode编码" class="headerlink" title="1. 避免json_encode将中文转换unicode编码."></a>1. 避免json_encode将中文转换unicode编码.</h3><p>PHP5.4版本，已经给Json新增了一个选项: JSON_UNESCAPED_UNICODE。加上这个选项后，就不会自动把中文编码了。 $json&#x3D; json_encode(“王柏元的博客”, JSON_UNESCAPED_UNICODE);</p>
+<h3 id="2-先将中文字段urlencode，json-encode后，再用urldecode，也可以保证中文不会被转成unicode。"><a href="#2-先将中文字段urlencode，json-encode后，再用urldecode，也可以保证中文不会被转成unicode。" class="headerlink" title="2. 先将中文字段urlencode，json_encode后，再用urldecode，也可以保证中文不会被转成unicode。"></a>2. 先将中文字段urlencode，json_encode后，再用urldecode，也可以保证中文不会被转成unicode。</h3><p>$json&#x3D;urldecode(json_encode(array(‘brief’&#x3D;&gt;urlencode(‘王柏元的博客),’title’&#x3D;&gt;urlencode(王柏元的博客)));</p>
+<h2 id="四、解决问题的代码"><a href="#四、解决问题的代码" class="headerlink" title="四、解决问题的代码"></a>四、解决问题的代码</h2><p>上面分析了问题出现的原因，如果你的PHP版本在5.4或以上，你可以使用上面的解决方案一。 第二种方案是个通解，下面我来提供自己的代码给大家参考：</p>
+<?php
+function jsons_encode($array){
+//遍历已有数组，将每个值 urlencode 一下
+foreach($array as $key=>$value){
+$array\[$key\]=urlencode($value);
+ }
+//用urldecode将值反解
+ return urldecode(json_encode($array));
+}
+/**注意：中间省略了数组获取的代码，
+你可以使用上面的jsons_encode函数对你的数组进行转换
+*/
+
+$json=jsons_encode($array);
+echo $json;
+?>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/php-using-json-encode-an-array-of-chinese-characters.html" target="_blank">王柏元的博客 >> PHP用json_encode转换数组中文乱码</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/parsing-json-data-android-development.html" class="pre-post btn btn-default" title='Android开发解析JSON数据'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Android开发解析JSON数据</span>
+    </a>
+    
+    
+    <a href="/java-program-in-eclipse-environment-faq.html" class="next-post btn btn-default" title='Eclipse环境下的Java编程常见问题'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Eclipse环境下的Java编程常见问题</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "34006",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E4%BE%8B%E5%B1%95%E7%A4%BA"><span class="toc-text">一、实例展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="toc-text">二、原因分析:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-text">三、 解决问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%81%BF%E5%85%8Djson-encode%E5%B0%86%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2unicode%E7%BC%96%E7%A0%81"><span class="toc-text">1. 避免json_encode将中文转换unicode编码.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%88%E5%B0%86%E4%B8%AD%E6%96%87%E5%AD%97%E6%AE%B5urlencode%EF%BC%8Cjson-encode%E5%90%8E%EF%BC%8C%E5%86%8D%E7%94%A8urldecode%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BF%9D%E8%AF%81%E4%B8%AD%E6%96%87%E4%B8%8D%E4%BC%9A%E8%A2%AB%E8%BD%AC%E6%88%90unicode%E3%80%82"><span class="toc-text">2. 先将中文字段urlencode，json_encode后，再用urldecode，也可以保证中文不会被转成unicode。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">四、解决问题的代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

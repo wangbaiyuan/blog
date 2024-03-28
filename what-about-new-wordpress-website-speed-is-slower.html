@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,网站优化" />
+
+
+<meta name="description" content="新建立的wordpress站点，不管是前台还是后台，一般会有打开速度的问题。笔者也遇到这个问题，接下来向大家介绍：新建wordpress网站速度慢怎么办 出现的原因有两个:1.google在中国..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    新建wordpress网站速度慢怎么办 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="新建wordpress网站速度慢怎么办">
+            
+            新建wordpress网站速度慢怎么办
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96/" rel="tag">网站优化</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/01/11</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>新建立的wordpress站点，不管是前台还是后台，一般会有打开速度的问题。笔者也遇到这个问题，接下来向大家介绍：新建wordpress网站速度慢怎么办 出现的原因有两个:1.google在中国大陆被网络长城屏蔽，导致网站引用Google 的资源无法加载；2.wordpress的Gravatar头像无法加载（也是墙掉的结果）； <a href="http://baiyuan.wang/wp-content/uploads/2015/05/design_ad_193099_m.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/design_ad_193099_m.jpg" alt="design_ad_193099_m"></a></p>
+<h2 id="怎样解决google字体无法加载问题"><a href="#怎样解决google字体无法加载问题" class="headerlink" title="怎样解决google字体无法加载问题"></a>怎样解决google字体无法加载问题</h2><blockquote>
+<p>最好的方法是禁用google字体服务。</p>
+</blockquote>
+<p>Google在中国大陆访问时常抽风，因此也影响到了google api和一些公共服务，而其中现在很流行的google fonts也饱受困扰，很多google的公共库文件访问缓慢或者根本就是无法访问， 比如： theme.googleusercontent.com 、fonts.google apis.com 、ajax.google apis.com 很多网站前端以前都是直接用google的地址，这会或多或少的影响网站打开速度（不过笔者没遇到这个问题，可能是使用国人自己做的主题的原因）。</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>1、安装插件：在插件中搜索 Disable Google Fonts，选择安装，然后启用，这样就可以禁止Google字体的加载，这样就可以提高访问速度了。 最近360网站卫士提供的公共库资源（ <a target="_blank" rel="noopener" href="http://libs.useso.com/">http://libs.useso.com/</a> ），效果果然提高不少。 这个插件是调用360的CDN常用前端公共库替换所有谷歌google.com域名链接。 插件下载地址: <a target="_blank" rel="noopener" href="http://baiye.us/wp-content/uploads/2014/06/googlefontsto360.zip">http://baiye.us/wp-content/uploads/2014/06/googlefontsto360.zip</a> 2、删除代码：很多人不喜欢用插件那么这个可以修改代码打开&#x2F;wp-includes&#x2F;script-loader.php搜索fonts.googleapis.com找到代码位置，直接把&#x2F;&#x2F;fonts.googleapis.com&#x2F;…这个链接整个删掉即可。（修改前请备份好数据，用&#x2F;&#x2F;注释掉也是可以的哦） 3、推荐使用这种方法，依次打开 &#x2F;wp-includes&#x2F;script-loader.php，约581行的位置，替换谷歌的字体库为360网站卫士的国内CDN节点，把&#x2F;wp-includes&#x2F;script-loader.php文件中的fonts.googleapis.com换成fonts.useso.com即可。</p>
+<h2 id="怎样解决wordpress的Gravatar头像无法加载的问题"><a href="#怎样解决wordpress的Gravatar头像无法加载的问题" class="headerlink" title="怎样解决wordpress的Gravatar头像无法加载的问题"></a>怎样解决wordpress的Gravatar头像无法加载的问题</h2><h3 id="首先讲讲什么是gravatar头像"><a href="#首先讲讲什么是gravatar头像" class="headerlink" title="首先讲讲什么是gravatar头像"></a>首先讲讲什么是gravatar头像</h3><p>Gravatar全称Globally Recognized Avatar（全球识别头像），来自国外网站（<a target="_blank" rel="noopener" href="http://www.gravatar.com)提供的在线头像服务,主要用在博客和论坛留言中,依靠邮件地址识别判断,为每个用户展示个性化的通用头像服务,完全免费,最初用在wordpress上,现在已经遍地开花,很多博客都支持gravatar头像显示.——因为被墙掉的缘故,所有的博客一般都会出现头像无法加载的问题/">http://www.gravatar.com）提供的在线头像服务，主要用在博客和论坛留言中，依靠邮件地址识别判断，为每个用户展示个性化的通用头像服务，完全免费，最初用在WordPress上，现在已经遍地开花，很多博客都支持Gravatar头像显示。——因为被墙掉的缘故，所有的博客一般都会出现头像无法加载的问题</a></p>
+<h3 id="介绍一下头像插件-WP-User-Avatar"><a href="#介绍一下头像插件-WP-User-Avatar" class="headerlink" title="介绍一下头像插件-WP User Avatar"></a>介绍一下头像插件-WP User Avatar</h3><p>安装 WP User Avatar 以后，就可以 在后台 - 设置 - 讨论，设置网站的默认头像，还会在后台 - 用户 - 我的个人资料，添加了一个自定义头像功能，允许用户设置自己的头像。这样一来，如果用户在“个人资料”中设置了自己的头像，就优先显示，如果没有设置，就显示用户的 Gravatar 头像，或者网站的默认头像。详细参考地址：<a target="_blank" rel="noopener" href="http://www.wpdaxue.com/wp-user-avatar.html">http://www.wpdaxue.com/wp-user-avatar.html</a></p>
+<h3 id="如果想保留Gravatar服务，可以这样"><a href="#如果想保留Gravatar服务，可以这样" class="headerlink" title="如果想保留Gravatar服务，可以这样"></a>如果想保留Gravatar服务，可以这样</h3><p>参考地址：<a target="_blank" rel="noopener" href="http://www.v7v3.com/wpjiaocheng/201401511.html">http://www.v7v3.com/wpjiaocheng/201401511.html</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/what-about-new-wordpress-website-speed-is-slower.html" target="_blank">王柏元的博客 >> 新建wordpress网站速度慢怎么办</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/computer-post-sound-corresponds-to-the-fault-analysis.html" class="pre-post btn btn-default" title='电脑开机自检声音对应的故障分析'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            电脑开机自检声音对应的故障分析</span>
+    </a>
+    
+    
+    <a href="/snowdon-united-states-put-emphasis-on-network-attack-now-needs-defensive.html" class="next-post btn btn-default" title='斯诺登：美国已经把太多的重点放在网络进攻，现在需要的是防御'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            斯诺登：美国已经把太多的重点放在网络进攻，现在需要的是防御</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "40424",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7e48d2cde9ab4b4f7a9a22d50ca284c6.png"
+                                 alt="@荷兰网">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                荷兰网
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-02-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                禁用谷歌字体以后速度果然快多了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/693339abd7d962bb89708eaf88e3df25.png"
+                                 alt="@过客">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                过客
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-01-12
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我的评论哪去了？鄙视u
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/693339abd7d962bb89708eaf88e3df25.png"
+                                 alt="@过客">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                过客
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-01-12
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                可以代码压缩啊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-01-11
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                还有哪些关于wordpress加速的方法，欢迎大家提出，在此留言评论
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E6%A0%B7%E8%A7%A3%E5%86%B3google%E5%AD%97%E4%BD%93%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98"><span class="toc-text">怎样解决google字体无法加载问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E6%A0%B7%E8%A7%A3%E5%86%B3wordpress%E7%9A%84Gravatar%E5%A4%B4%E5%83%8F%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">怎样解决wordpress的Gravatar头像无法加载的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E8%AE%B2%E8%AE%B2%E4%BB%80%E4%B9%88%E6%98%AFgravatar%E5%A4%B4%E5%83%8F"><span class="toc-text">首先讲讲什么是gravatar头像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%A4%B4%E5%83%8F%E6%8F%92%E4%BB%B6-WP-User-Avatar"><span class="toc-text">介绍一下头像插件-WP User Avatar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E6%83%B3%E4%BF%9D%E7%95%99Gravatar%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%BF%99%E6%A0%B7"><span class="toc-text">如果想保留Gravatar服务，可以这样</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

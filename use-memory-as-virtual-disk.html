@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="电脑内存盘有多大使用电脑内存当硬盘来使用将极大地提高程序运行、文件读写的速度，为了有一个直观的了解，极客人使用磁盘速度测试软件测试自己的内存盘（大小为1G）和机械硬盘分区（大小为30G），测试效..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    使用内存做虚拟磁盘 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用内存做虚拟磁盘">
+            
+            使用内存做虚拟磁盘
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/08/14</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="电脑内存盘有多大"><a href="#电脑内存盘有多大" class="headerlink" title="电脑内存盘有多大"></a>电脑内存盘有多大</h2><p>使用电脑内存当硬盘来使用将极大地提高程序运行、文件读写的速度，为了有一个直观的了解，极客人使用磁盘速度测试软件测试自己的内存盘（大小为1G）和机械硬盘分区（大小为30G），测试效果如下： <a href="http://baiyuan.wang/wp-content/uploads/2015/11/virtual-disk.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/11/virtual-disk.jpg" alt="virtual-disk"></a> 对比之下，内存和机械硬盘的速度判若云泥，我就发图不解释。</p>
+<h2 id="内存的特点"><a href="#内存的特点" class="headerlink" title="内存的特点"></a>内存的特点</h2><p>电脑程序一般存储在磁盘中，运行的时候数据会从磁盘读取、存写在内存中，然后CPU处理内存中的数据。由于CPU处理速度较快，磁盘无法满足这样的速度，所以需要将数据中转到高速度的内存中去。通过CPU反复处理数据必然也要频繁读写内存，内存同时对CPU的数据读写请求给予雷霆万钧的响应。 因此，内存的特点除了高速，还有读写频繁、响应速度快。至于虚拟磁盘怎样制作，可以百度关键词“大内存怎样制作虚拟硬盘”。</p>
+<h2 id="怎样充分利用虚拟磁盘（内存盘）"><a href="#怎样充分利用虚拟磁盘（内存盘）" class="headerlink" title="怎样充分利用虚拟磁盘（内存盘）"></a>怎样充分利用虚拟磁盘（内存盘）</h2><p>正因为内存具有上述特点，使用内存做虚拟磁盘我们也要把它用在刀刃上。我们不会用虚拟内存存储电影音乐，因为磁盘的速度完全可以满足播放电影音乐的要求（你一般不会发现你把电影保存在本地播放时出现卡顿），同时内存容量小、价格昂贵，用它存电影音乐不太现实。 举电影音乐的例子是说我们不要把读写速度要求不大、大容量的数据放在虚拟硬盘上。那哪些数据对读写速度要求较高且文件体量并不大呢？</p>
+<h3 id="1-系统、浏览器及其他应用程序缓存"><a href="#1-系统、浏览器及其他应用程序缓存" class="headerlink" title="1.系统、浏览器及其他应用程序缓存"></a>1.系统、浏览器及其他应用程序缓存</h3><p>不管你懂不懂什么是缓存，但如果你经常使用电脑管家类软件清理电脑垃圾，对“系统、浏览器及其他应用程序缓存”这些名词必定不会感到陌生。 <a href="http://baiyuan.wang/wp-content/uploads/2015/11/cache.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/11/cache.jpg" alt="cache"></a> 缓存一般是系统和应用程序访问最活跃的文件，同时会产生大量的磁盘碎片（不懂自行百度），而且是读写速度要求也很高。所以把缓存放在内存盘除了提高响应速度，还可以减少对磁盘的伤害。 怎样把缓存放在虚拟磁盘，你可以百度“怎样修改浏览器缓存目录”、“怎样修改XX软件的缓存文件存放位置”</p>
+<h3 id="2-临时文件"><a href="#2-临时文件" class="headerlink" title="2.临时文件"></a>2.临时文件</h3><p>临时文件会带来较多的磁盘碎片，较多的磁盘碎片对磁盘有一定伤害，修改临时文件目录的方法是修改系统环境变量。将环境变量中temp和TMP对应的值改为虚拟磁盘的地址。 右键计算机-属性-高级系统设置-环境变量。  </p>
+<h3 id="3-软件开发中的项目文件"><a href="#3-软件开发中的项目文件" class="headerlink" title="3.软件开发中的项目文件"></a>3.软件开发中的项目文件</h3><p>程序员在调试编译程序时会调用大量的项目文件，磁盘的速度往往是拖累编译速度的罪魁祸首，在没有使用固态硬盘的时候使用虚拟磁盘存放这些文件将会大幅提高编译速度，但是平时存放不要放在虚拟磁盘里，下面是原因：</p>
+<h2 id="4-风险"><a href="#4-风险" class="headerlink" title="4.风险"></a>4.风险</h2><p>内存具有数据易失性，如果电脑意外断电虚拟磁盘里的文件可能将会全部丢失，项目文件只可放在里面编译，如果平时存放其内，可能几天的心血因为突如其来的断电归于虚无。 所以你可以看到，除了项目文件，上面的缓存、临时文件往往是你可有可无的文件，意外丢失也无关紧要，就权当帮你清除了一下电脑垃圾。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/use-memory-as-virtual-disk.html" target="_blank">王柏元的博客 >> 使用内存做虚拟磁盘</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/several-methods-of-using-threads-update-android-ui.html" class="pre-post btn btn-default" title='Android使用线程更新UI的几种方法'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Android使用线程更新UI的几种方法</span>
+    </a>
+    
+    
+    <a href="/baidu-face-recognition-open-for-first-time.html" class="next-post btn btn-default" title='百度人脸识别服务首次对外开放'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            百度人脸识别服务首次对外开放</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "28672",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%84%91%E5%86%85%E5%AD%98%E7%9B%98%E6%9C%89%E5%A4%9A%E5%A4%A7"><span class="toc-text">电脑内存盘有多大</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">内存的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E6%A0%B7%E5%85%85%E5%88%86%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98%EF%BC%88%E5%86%85%E5%AD%98%E7%9B%98%EF%BC%89"><span class="toc-text">怎样充分利用虚拟磁盘（内存盘）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%B3%BB%E7%BB%9F%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E5%85%B6%E4%BB%96%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%BC%93%E5%AD%98"><span class="toc-text">1.系统、浏览器及其他应用程序缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6"><span class="toc-text">2.临时文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6"><span class="toc-text">3.软件开发中的项目文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%A3%8E%E9%99%A9"><span class="toc-text">4.风险</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

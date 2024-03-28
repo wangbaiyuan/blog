@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="Web,JAVA,Http" />
+
+
+<meta name="description" content="在进行安卓学习中，极客人因为需要实现登录认证的功能，要实现http用post方式提交数据。下面是从CSDN转载的文章内容
+程序组成部分：1.客户端用eclipse HttpUtils.java ..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    [转]java实现Http-post向服务器提交数据 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="[转]java实现Http-post向服务器提交数据">
+            
+            [转]java实现Http-post向服务器提交数据
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Http/" rel="tag">Http</a> <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/08</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在进行安卓学习中，极客人因为需要实现登录认证的功能，要实现http用post方式提交数据。下面是从CSDN转载的文章内容</p>
+<h2 id="程序组成部分："><a href="#程序组成部分：" class="headerlink" title="程序组成部分："></a>程序组成部分：</h2><p>1.客户端用eclipse HttpUtils.java 标准java接口，实现http用post方式提交数据。 （用post方式提交 username 和 password）</p>
+<h2 id="重点注意点："><a href="#重点注意点：" class="headerlink" title="重点注意点："></a>重点注意点：</h2><h3 id="1-public-static-String-sendPostMessage-Map-params-String-encode"><a href="#1-public-static-String-sendPostMessage-Map-params-String-encode" class="headerlink" title="1. public static String sendPostMessage(Map&lt;String,String&gt; params , String encode)"></a>1. public static String sendPostMessage(Map&lt;String,String&gt; params , String encode)</h3><p>目的: 在客户端向服务器端发送 数据 params , 最终获取从服务器返回的输入流，最终将该输入流转换成字符串。注意使用标准java接口如何实现http的post请求，成功与服务器连接，并且获得从服务器端响应返回的数据。</p>
+<h3 id="2-public-String-String-changInputStream-InputStream-inputStream-String-encode"><a href="#2-public-String-String-changInputStream-InputStream-inputStream-String-encode" class="headerlink" title="2. public String String changInputStream(InputStream inputStream , String encode)"></a>2. public String String changInputStream(InputStream inputStream , String encode)</h3><p>目的: 将一个输入流按照指定编码方式转变成一个字符串。(本例中是指，将从服务器端返回的输入流InputStream转变成一个字符串String，编码方式是encode方式)</p>
+<h3 id="3-Map-的实例化方法及迭代方法"><a href="#3-Map-的实例化方法及迭代方法" class="headerlink" title="3. Map&lt;String ,String&gt; 的实例化方法及迭代方法"></a>3. Map&lt;String ,String&gt; 的实例化方法及迭代方法</h3><ul>
+<li><p>Map  的实例化方法：</p>
+<p>Map&lt;String, String&gt; params &#x3D; new HashMap&lt;String, String&gt;();<br>params.put(“username”, “admin”);<br>params.put(“password”, “123”);</p>
+</li>
+<li><p>Map 的迭代方法：</p>
+</li>
+</ul>
+<p>StringBuffer stringBuffer &#x3D; new StringBuffer();<br>for (Map.Entry&lt;String, String&gt; entry : params.entrySet()) {<br>try {<br>stringBuffer<br>.append(entry.getKey())<br>.append(“&#x3D;”)<br>.append(URLEncoder.encode(entry.getValue(), encode))<br>.append(“&amp;”);</p>
+<p>} catch (UnsupportedEncodingException e) {<br>&#x2F;&#x2F; TODO Auto-generated catch block<br>e.printStackTrace();</p>
+<p>}<br>&#x2F;&#x2F; 删掉最后一个 &amp; 字符<br>stringBuffer.deleteCharAt(stringBuffer.length() - 1);</p>
+<p> </p>
+<h2 id="程序思路："><a href="#程序思路：" class="headerlink" title="程序思路："></a>程序思路：</h2><ul>
+<li>1. 客户端建立http链接httpURLConnection，使用OutputStream向服务器传入数据</li>
+<li>2. 获得从服务器端返回的输入流InputStream</li>
+<li>3. 将InputStream转换成字符串String</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------------------------</p>
+<h2 id="关键代码："><a href="#关键代码：" class="headerlink" title="关键代码："></a>关键代码：</h2><p>1. 客户端 HttpUtils.java</p>
+<p>package com.http.post;</p>
+<p>import java.io.ByteArrayOutputStream;<br>import java.io.IOException;<br>import java.io.InputStream;<br>import java.io.OutputStream;<br>import java.io.UnsupportedEncodingException;<br>import java.net.HttpURLConnection;<br>import java.net.MalformedURLException;<br>import java.net.URL;<br>import java.net.URLEncoder;<br>import java.util.HashMap;<br>import java.util.Map;</p>
+<p>public class HttpUtils {</p>
+<p>  &#x2F;&#x2F; 表示服务器端的url<br>  private static String PATH &#x3D; “<a target="_blank" rel="noopener" href="http://192.168.0.100:8080/myhttp/servlet/LoginAction">http://192.168.0.100:8080/myhttp/servlet/LoginAction</a>“;<br>  private static URL url;</p>
+<p>  public HttpUtils() {<br>    &#x2F;&#x2F; TODO Auto-generated constructor stub<br>  }</p>
+<p>  static {<br>    try {<br>      url &#x3D; new URL(PATH);<br>    } catch (MalformedURLException e) {<br>      &#x2F;&#x2F; TODO Auto-generated catch block<br>      e.printStackTrace();<br>    }<br>  }</p>
+<p>  &#x2F;*<br>   * params 填写的URL的参数 encode 字节编码<br>   *&#x2F;<br>  public static String sendPostMessage(Map&lt;String, String&gt; params,<br>      String encode) {</p>
+<pre><code>StringBuffer stringBuffer = new StringBuffer();
+
+if (params != null &amp;&amp; !params.isEmpty()) &#123;
+  for (Map.Entry&lt;String, String&gt; entry : params.entrySet()) &#123;
+    try &#123;
+      stringBuffer
+          .append(entry.getKey())
+          .append(&quot;=&quot;)
+          .append(URLEncoder.encode(entry.getValue(), encode))
+          .append(&quot;&amp;&quot;);
+
+    &#125; catch (UnsupportedEncodingException e) &#123;
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    &#125;
+  &#125;
+  // 删掉最后一个 &amp; 字符
+  stringBuffer.deleteCharAt(stringBuffer.length() - 1);
+  System.out.println(&quot;--&gt;&gt;&quot; + stringBuffer.toString());
+
+  try &#123;
+    HttpURLConnection httpURLConnection = (HttpURLConnection) url
+        .openConnection();
+    httpURLConnection.setConnectTimeout(3000);
+    httpURLConnection.setDoInput(true);// 从服务器获取数据
+    httpURLConnection.setDoOutput(true);// 向服务器写入数据
+
+    // 获得上传信息的字节大小及长度
+    byte\[\] mydata = stringBuffer.toString().getBytes();
+    // 设置请求体的类型
+    httpURLConnection.setRequestProperty(&quot;Content-Type&quot;,
+        &quot;application/x-www-form-urlencoded&quot;);
+    httpURLConnection.setRequestProperty(&quot;Content-Lenth&quot;,
+        String.valueOf(mydata.length));
+
+    // 获得输出流，向服务器输出数据
+    OutputStream outputStream = (OutputStream) httpURLConnection
+        .getOutputStream();
+    outputStream.write(mydata);
+
+    // 获得服务器响应的结果和状态码
+    int responseCode = httpURLConnection.getResponseCode();
+    if (responseCode == 200) &#123;
+
+      // 获得输入流，从服务器端获得数据
+      InputStream inputStream = (InputStream) httpURLConnection
+          .getInputStream();
+      return (changeInputStream(inputStream, encode));
+
+    &#125;
+
+  &#125; catch (IOException e) &#123;
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+  &#125;
+&#125;
+
+return &quot;&quot;;
+</code></pre>
+<p>  }</p>
+<p>  &#x2F;*<br>   * &#x2F;&#x2F; 把从输入流InputStream按指定编码格式encode变成字符串String<br>   *&#x2F;<br>  public static String changeInputStream(InputStream inputStream,<br>      String encode) {</p>
+<pre><code>// ByteArrayOutputStream 一般叫做内存流
+ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+byte\[\] data = new byte\[1024\];
+int len = 0;
+String result = &quot;&quot;;
+if (inputStream != null) &#123;
+
+  try &#123;
+    while ((len = inputStream.read(data)) != -1) &#123;
+      byteArrayOutputStream.write(data, 0, len);
+
+    &#125;
+    result = new String(byteArrayOutputStream.toByteArray(), encode);
+
+  &#125; catch (IOException e) &#123;
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+  &#125;
+
+&#125;
+
+return result;
+</code></pre>
+<p>  }</p>
+<p>  &#x2F;**<br>   * @param args<br>   *&#x2F;<br>  public static void main(String[] args) {<br>    &#x2F;&#x2F; TODO Auto-generated method stub<br>    Map&lt;String, String&gt; params &#x3D; new HashMap&lt;String, String&gt;();<br>    params.put(“username”, “admin”);<br>    params.put(“password”, “123”);<br>    String result &#x3D; sendPostMessage(params, “utf-8”);<br>    System.out.println(“-result-&gt;&gt;” + result);</p>
+<p>  }</p>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/gojava-implementation-http-post-to-submit-data-to-the-server.html" target="_blank">王柏元的博客 >> [转]java实现Http-post向服务器提交数据</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd8-ex3-java-rmi-2-remote-interface-declarations.html" class="pre-post btn btn-default" title='SSD8_Ex3【JAVA_RMI】(2)远程接口声明'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI】(2)远程接口声明</span>
+    </a>
+    
+    
+    <a href="/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html" class="next-post btn btn-default" title='SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "58767",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86%EF%BC%9A"><span class="toc-text">程序组成部分：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E6%B3%A8%E6%84%8F%E7%82%B9%EF%BC%9A"><span class="toc-text">重点注意点：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-public-static-String-sendPostMessage-Map-params-String-encode"><span class="toc-text">1. public static String sendPostMessage(Map&lt;String,String&gt; params , String encode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-public-String-String-changInputStream-InputStream-inputStream-String-encode"><span class="toc-text">2. public String String changInputStream(InputStream inputStream , String encode)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Map-%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%8F%8A%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95"><span class="toc-text">3. Map&lt;String ,String&gt; 的实例化方法及迭代方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-text">程序思路：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">关键代码：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

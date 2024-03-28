@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="个人程序库,Http" />
+
+
+<meta name="description" content="类 BYhttpClient介绍
+java.lang.Object
+
+cn.wangbaiyuan.tools.BYhttpClient
+
+
+
+
+public class BYhttpClien..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    基于http post的自制工具类BYhttpClient |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="基于http post的自制工具类BYhttpClient">
+            
+            基于http post的自制工具类BYhttpClient
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Http/" rel="tag">Http</a> <a class="tag-none-link" href="/tags/%E4%B8%AA%E4%BA%BA%E7%A8%8B%E5%BA%8F%E5%BA%93/" rel="tag">个人程序库</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/10</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="类-BYhttpClient介绍"><a href="#类-BYhttpClient介绍" class="headerlink" title="类 BYhttpClient介绍"></a>类 BYhttpClient介绍</h2><ul>
+<li>java.lang.Object</li>
+<li><ul>
+<li>cn.wangbaiyuan.tools.BYhttpClient</li>
+</ul>
+</li>
+</ul>
+<hr>
+<pre><code>public class BYhttpClient
+extends java.lang.Object
+</code></pre>
+<ul>
+<li><ul>
+<li><h3 id="构造器概要"><a href="#构造器概要" class="headerlink" title="构造器概要"></a>构造器概要</h3><p>构造器</p>
+<p>构造器和说明</p>
+<p><code>BYhttpClient(java.lang.String iurl, java.lang.String iencode)</code></p>
+</li>
+<li><h3 id="方法概要"><a href="#方法概要" class="headerlink" title="方法概要"></a>方法概要</h3><p>All MethodsInstance MethodsConcrete Methods</p>
+<p>限定符和类型</p>
+<p>方法和说明</p>
+<p><code>java.lang.String</code></p>
+<p><code>sendHttpClientPOSTRequest(java.lang.String path, java.util.Map&lt;java.lang.String,java.lang.String&gt; params)</code></p>
+<ul>
+<li><h3 id="从类继承的方法-java-lang-Object"><a href="#从类继承的方法-java-lang-Object" class="headerlink" title="从类继承的方法 java.lang.Object"></a>从类继承的方法 java.lang.Object</h3><code>equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><h3 id="构造器详细资料"><a href="#构造器详细资料" class="headerlink" title="构造器详细资料"></a>构造器详细资料</h3><ul>
+<li><h4 id="BYhttpClient"><a href="#BYhttpClient" class="headerlink" title="BYhttpClient"></a>BYhttpClient</h4><p>public BYhttpClient(java.lang.String iurl,<br>                java.lang.String iencode)<br>参数:</p>
+<p><code>iurl</code> - 根地址，你的服务器加你的项目文件夹地址</p>
+<p><code>iencode</code> - 编码格式</p>
+</li>
+</ul>
+</li>
+<li><h3 id="方法详细资料"><a href="#方法详细资料" class="headerlink" title="方法详细资料"></a>方法详细资料</h3><ul>
+<li><h4 id="sendHttpClientPOSTRequest"><a href="#sendHttpClientPOSTRequest" class="headerlink" title="sendHttpClientPOSTRequest"></a>sendHttpClientPOSTRequest</h4><p>public java.lang.String sendHttpClientPOSTRequest(java.lang.String path,<br>                                              java.util.Map&lt;java.lang.String,java.lang.String&gt; params)<br>                                       throws ClientProtocolException,<br>                                              java.io.IOException<br>参数:</p>
+<p><code>path</code> - 相对于根地址的文件地址，你向哪个URL发起请求</p>
+<p><code>params</code> - MAP格式的键值对</p>
+<p>返回: 完成提交post请求并获取服务器应答的字符串</p>
+<p>抛出:</p>
+<p><code>ClientProtocolException</code></p>
+<p><code>java.io.IOException</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="http://baiyuan.wang/wp-content/uploads/2015/06/2-13102101222Kc1.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/06/2-13102101222Kc1.jpg" alt="2-13102101222Kc"></a></p>
+<h2 id="类-BYhttpClient代码"><a href="#类-BYhttpClient代码" class="headerlink" title="类 BYhttpClient代码"></a>类 BYhttpClient代码</h2><p>package cn.wangbaiyuan.tools;</p>
+<p>import java.io.BufferedReader;<br>import java.io.IOException;<br>import java.io.InputStream;<br>import java.io.InputStreamReader;<br>import java.io.UnsupportedEncodingException;<br>import java.util.ArrayList;<br>import java.util.List;<br>import java.util.Map;</p>
+<p>import org.apache.http.HttpResponse;<br>import org.apache.http.NameValuePair;<br>import org.apache.http.client.ClientProtocolException;<br>import org.apache.http.client.HttpClient;<br>import org.apache.http.client.entity.UrlEncodedFormEntity;<br>import org.apache.http.client.methods.HttpPost;<br>import org.apache.http.impl.client.DefaultHttpClient;<br>import org.apache.http.message.BasicNameValuePair;<br>import org.apache.http.params.BasicHttpParams;<br>import org.apache.http.params.CoreConnectionPNames;<br>import org.apache.http.params.HttpParams;</p>
+<p>import android.util.Log;<br>import android.widget.Toast;</p>
+<p>@SuppressWarnings(“deprecation”)<br>&#x2F;**<br> * 一个httppost的获取网络数据工具类，完成提交post请求并获取服务器应答的字符串<br> * @author 王柏元<br> *<br> *&#x2F;<br>public class BYhttpClient {<br>private String hostUrl&#x3D;”<a href="http://baiyuan.wang/">http://baiyuan.wang/</a>“;<br>private String encode;<br>&#x2F;**<br> *<br> * @param iurl 根地址，你的服务器加你的项目文件夹地址<br> * @param iencode 编码格式<br> *&#x2F;<br>public BYhttpClient(String iurl,String iencode){<br>    hostUrl&#x3D;iurl;<br>    encode&#x3D;iencode;<br>}<br>&#x2F;**<br> *<br> * @param path  相对于根地址的文件地址，你向哪个URL发起请求<br> * @param params MAP格式的键值对<br> * @return<br> * @throws ClientProtocolException<br> * @throws IOException<br> *&#x2F;<br>public String sendHttpClientPOSTRequest(String path, Map&lt;String, String&gt; params) throws ClientProtocolException, IOException {<br>      List<NameValuePair> pairs &#x3D; new ArrayList<NameValuePair>();&#x2F;&#x2F;存放请求参数<br>      BufferedReader in &#x3D; null;<br>      Log.e(“bypaper”, hostUrl+”&#x2F;“+path);<br>      for(Map.Entry&lt;String, String&gt; entry:params.entrySet()){<br>       pairs.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));<br>      }<br>      &#x2F;&#x2F;防止客户端传递过去的参数发生乱码，需要对此重新编码成UTF-8<br>      UrlEncodedFormEntity entity &#x3D; new UrlEncodedFormEntity(pairs,encode);<br>      HttpPost httpPost &#x3D; new HttpPost(hostUrl+”&#x2F;“+path);<br>      Log.e(“bypaper”, hostUrl+”&#x2F;“+path);</p>
+<pre><code>  httpPost.setEntity(entity);
+  
+ HttpClient client = new DefaultHttpClient();
+ client.getParams().setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 15000);
+  HttpResponse response = client.execute(httpPost);
+  Log.e(&quot;bypaper&quot;,&quot;client.execute(httpPost)&quot;);
+  String result=&quot;服务器没有应答&quot;;
+  if(response.getStatusLine().getStatusCode() == 200)&#123;
+      in = new BufferedReader(new InputStreamReader(response.getEntity()  
+              .getContent()));  
+      StringBuffer sb = new StringBuffer(&quot;&quot;);  
+      String line = &quot;&quot;;  
+      while ((line = in.readLine()) != null) &#123;  
+          sb.append(line);  
+      &#125;  
+      in.close();  
+      result = sb.toString();
+  
+  &#125;
+  else if(response.getStatusLine().getStatusCode() ==404)&#123;
+      Toast.makeText(null, &quot;页面不存在&quot;, Toast.LENGTH_SHORT);
+  &#125;
+  return result;
+ &#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/self-made-based-on-http-post-utility-class-byhttpclient.html" target="_blank">王柏元的博客 >> 基于http post的自制工具类BYhttpClient</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd8-ex3-java-rmi-3-open-the-rmi-service.html" class="pre-post btn btn-default" title='SSD8_Ex3【JAVA_RMI】(3)开启RMI服务'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</span>
+    </a>
+    
+    
+    <a href="/ssd8-ex3-java-rmi-2-remote-interface-declarations.html" class="next-post btn btn-default" title='SSD8_Ex3【JAVA_RMI】(2)远程接口声明'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI】(2)远程接口声明</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "3862",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB-BYhttpClient%E4%BB%8B%E7%BB%8D"><span class="toc-text">类 BYhttpClient介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%A6%82%E8%A6%81"><span class="toc-text">构造器概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E6%A6%82%E8%A6%81"><span class="toc-text">方法概要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%B1%BB%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95-java-lang-Object"><span class="toc-text">从类继承的方法 java.lang.Object</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E8%AF%A6%E7%BB%86%E8%B5%84%E6%96%99"><span class="toc-text">构造器详细资料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BYhttpClient"><span class="toc-text">BYhttpClient</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%AF%A6%E7%BB%86%E8%B5%84%E6%96%99"><span class="toc-text">方法详细资料</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sendHttpClientPOSTRequest"><span class="toc-text">sendHttpClientPOSTRequest</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB-BYhttpClient%E4%BB%A3%E7%A0%81"><span class="toc-text">类 BYhttpClient代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

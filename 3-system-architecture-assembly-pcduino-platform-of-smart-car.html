@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="IoT" />
+
+
+<meta name="description" content="一、系统设计本文设计中，智能车通信控制系统主要由飞思卡尔小车模型、pcDuino开发板及其外接模块、远程控制客户端（智能手机）、无线局域网设备组成，其系统结构示意图如下： 依图所示，为了使用pc..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    【3】系统架构与组装-Pcduino平台下的智能小车 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【3】系统架构与组装-Pcduino平台下的智能小车">
+            
+            【3】系统架构与组装-Pcduino平台下的智能小车
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/IoT/" rel="tag">IoT</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/03/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、系统设计"><a href="#一、系统设计" class="headerlink" title="一、系统设计"></a>一、系统设计</h2><p>本文设计中，智能车通信控制系统主要由飞思卡尔小车模型、pcDuino开发板及其外接模块、远程控制客户端（智能手机）、无线局域网设备组成，其系统结构示意图如下：<a href="http://baiyuan.wang/wp-content/uploads/2018/03/Screen-Shot-2018-03-27-at-20.01.53.png"><img src="http://baiyuan.wang/wp-content/uploads/2018/03/Screen-Shot-2018-03-27-at-20.01.53-750x500.png"></a> 依图所示，为了使用pcDuino对智能车模型的电机、舵机进行控制，本文使用L298P扩展模块插入pcDuino主板上的Arduino兼容硬件接口，由于L298P和pcDuino主板电平不匹配的原因，两者中间通过T board模块完成电平转换。双目摄像头通过USB接口接入pcDuino，由于pcDuino配备了无线WIFI模块，可以通过无线局域网和外部的远程客户端完成组网，实现远程通信和控制。 为了使用智能手机客户端对智能车系统进行控制，本设计中采用智能手机连入局域网向智能车系统发送命令来实现，系统结构是典型的C&#x2F;S（客户端-服务器）结构，这意味着智能车pcDuino开发板作为服务器，同时pcDuino借助Arduino接口完成电机、舵机等控制。客户端服务器之间的通信指令设计在4.2节中进行了详细论述。除了控制指令，客户端获取实施视频会借助MJPG-streamer来完成，这会在4.3节中详细介绍。  </p>
+<h2 id="二、模块组装"><a href="#二、模块组装" class="headerlink" title="二、模块组装"></a>二、模块组装</h2><p>本系统中的硬件模块及其型号如下：</p>
+<ul>
+<li>电源：5v 2A可充电锂电池，容量10000mAh；本设计中使用了通用的智能手机使用的移动电源来充当智能车的电源模块，由于pcDuino和电机的要求，2A的电流参数是很必要的。</li>
+<li>pcDuino V3 3B 双核A20高性能 Cortex-A7开发板；</li>
+<li>KS352双目摄像头，1280*480分辨率，广角160°；</li>
+<li>飞思卡尔智能车模型，带舵机电机；</li>
+<li>L298P Motor Shield 步进 直流电机驱动模块</li>
+<li>pcDuino V23.3V到5电平转换板</li>
+</ul>
+<p><a href="http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-4.png"><img src="http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-4.png"></a>   pcDuino通过USB OTG与移动电源进行连接，通过USB与双目摄像头连接。将电平转换板插接在pcDuino接口上后，再将L298P和电平转换板进行连接。L298P中MA、MB一共四个接头可驱动两个电机，本文使用MA驱动，其引脚号为12；L298P上的9号引脚与舵机相连。 其连接示意图如下：   <a href="http://baiyuan.wang/wp-content/uploads/2018/03/Screen-Shot-2018-03-27-at-20.03.46.png"><img src="http://baiyuan.wang/wp-content/uploads/2018/03/Screen-Shot-2018-03-27-at-20.03.46.png"></a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/3-system-architecture-assembly-pcduino-platform-of-smart-car.html" target="_blank">王柏元的博客 >> 【3】系统架构与组装-Pcduino平台下的智能小车</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/4-pcduino-communication-instruction-design-platform-of-smart-car.html" class="pre-post btn btn-default" title='【4】通讯指令设计-Pcduino平台下的智能小车'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            【4】通讯指令设计-Pcduino平台下的智能小车</span>
+    </a>
+    
+    
+    <a href="/chinese-internet-company-work-overtime-report-2018-nonprofessional-edition.html" class="next-post btn btn-default" title='《2018年中国互联网公司加班报告非专业版》'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            《2018年中国互联网公司加班报告非专业版》</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "42355",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-text">一、系统设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%A8%A1%E5%9D%97%E7%BB%84%E8%A3%85"><span class="toc-text">二、模块组装</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

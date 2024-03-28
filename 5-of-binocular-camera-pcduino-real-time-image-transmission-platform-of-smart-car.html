@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="IoT" />
+
+
+<meta name="description" content="一、Mjpg-streamer开源库由于开发实时视频推送系统，可能会涉及到流媒体服务器的实现，但是通过“MJPG-streamer”开源工具可以快捷地实现。“MJPG-streamer”是成熟的..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车">
+            
+            【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/IoT/" rel="tag">IoT</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/03/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、Mjpg-streamer开源库"><a href="#一、Mjpg-streamer开源库" class="headerlink" title="一、Mjpg-streamer开源库"></a>一、Mjpg-streamer开源库</h2><p>由于开发实时视频推送系统，可能会涉及到流媒体服务器的实现，但是通过“MJPG-streamer”开源工具可以快捷地实现。“MJPG-streamer”是成熟的轻量级的视频服务器软件，可以利用它获取摄像头画面然后发布在实时视频服务器。MJPG-streamer采用模块化的设计思路，包括输入模块和输出模块，输入模块定义了输入来源，比如摄像头、文件等等，MJPG-streamer然后将视频通过输出模块输出，比如有http等网络输出，也有文件的本地输出[8]。 本文采用支持UVC协议的双目摄像头作为图像数据的输入来源，选用http协议推送视频流，所以涉及的组件有output_http输出组件和input_uvc输入组件。通过MJPG-streamer，可以方便地将pcDuino上双目摄像头的视频通过http协议推送。</p>
+<h2 id="二、实现与测试"><a href="#二、实现与测试" class="headerlink" title="二、实现与测试"></a>二、实现与测试</h2><p>使用MJPG-streamer库开发实时图像传输系统方便高效，其安装命令如下：</p>
+<p>sudo apt-get install cmake libjpeg8-dev -f<br>sudo mkdir -p &#x2F;home&#x2F;workspace&#x2F;mjpg-streamer<br>cd &#x2F;home&#x2F;workspace&#x2F;mjpg-streamer<br>sudo git clone <a target="_blank" rel="noopener" href="https://github.com/jacksonliam/mjpg-streamer.git">https://github.com/jacksonliam/mjpg-streamer.git</a><br>cd mjpg-streamer&#x2F;mjpg-streamer-experimental&#x2F;<br>sudo make &amp;&amp; sudo make install</p>
+<p>安装完毕可以使用命令：</p>
+<p>mjpg_streamer -i “input_uvc.so -d &#x2F;dev&#x2F;video0 -y -r 1280x480 -f 10” -o “output_http.so -p 8090 -w &#x2F;var&#x2F;www&#x2F;mjpg_streamer”</p>
+<p>mjpg_streamer安装后可作为系统服务启动，同时配置输入输出参数才能正常工作。在上述命令上涉及以下命令： -i “input_uvc.so -d &#x2F;dev&#x2F;video0 -y -r 1280x480 -f 10”部分是输入参数，</p>
+<ul>
+<li>so表示使用input_uvc.so作为输入模块</li>
+<li>-d &#x2F;dev&#x2F;video0 定义了访问的摄像头的设备路径为&#x2F;dev&#x2F;video0。</li>
+<li>-r 1280x480 定义了摄像头的分辨率为1280x480</li>
+<li>-f 定义了实时视频的帧率为每秒10帧</li>
+<li>-y 表示启用mjpg_streamer的YUV模式。由于mjpg_streamer处理的视频数据格式为MJPEG，而本设计采用的摄像头是YUV格式，启用mjpg_streamer的YUV模式就是为了兼容摄像头的视频流格式。</li>
+</ul>
+<p>-o “output_http.so -p 8090 -w &#x2F;var&#x2F;www&#x2F;mjpg_streamer”部分是输出参数，</p>
+<ul>
+<li>so表示使用output_http.so作为输出模块</li>
+<li>-p定义了http输出端口为8090</li>
+<li>-w 定义了http服务的根目录</li>
+</ul>
+<p>在命令行中启动后如下：   <a href="http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-6.png"><img src="http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-6.png"></a> 启动mjpg_streamer视频服务器后，可以在Chrome浏览器中输入智能车的IP和服务端口测试。mjpg_streamer默认视频端口是8090，当然也可以在启动参数进行设置。 假设智能车IP为192.168.137.2，则可访问<a target="_blank" rel="noopener" href="http://192.168.137.2:8090/?action=stream">http://192.168.137.2:8090/?action=stream</a>访问动态的视频流，访问<a target="_blank" rel="noopener" href="http://192.168.137.2:8090/?action=stream">http://192.168.137.2:8090/?action=snapshot</a>访问静态的抓拍图片。 当在浏览器访问上面的URL时，浏览器实际上渲染的页面源代码是： &lt;img src&#x3D;”<a target="_blank" rel="noopener" href="http://192.168.137.2:8090/?action=snapshot%20">http://192.168.137.2:8090/?action=snapshot</a> ”&#x2F;&gt; &lt;img src&#x3D;”<a target="_blank" rel="noopener" href="http://192.168.137.2:8090/?action=stream">http://192.168.137.2:8090/?action=stream</a>”&#x2F;&gt; 也就是说浏览器使用了img图片标签显示双目摄像头视频，值得注意的是即使是当action参数为stream时，这个img标签竟然可以持续地、动态地拉取和显示来自与服务器的视频流，这是一件很有趣的现象： <a href="http://baiyuan.wang/wp-content/uploads/2018/03/Picture2-1.png"><img src="http://baiyuan.wang/wp-content/uploads/2018/03/Picture2-1.png"></a> 当然，使用img标签显示动态视频流并不是在所有浏览器都得到支持，例如IE就不行。 为了研究img标签显示视频流问题，可使用Chrome调试工具“审查元素”对这个HTTP请求进行分析： <a href="http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-7.png"><img src="http://baiyuan.wang/wp-content/uploads/2018/03/Picture1-7.png"></a> 依上图所示，根据这个HTTP请求的响应头，可以知道其文件扩展名Content-Type(Mime-Type)为multipart&#x2F;x-mixed-replace。 HTTP超文本协议中，HTTP请求的响应消息由状态行、消息报头、正文组成 [10] ，其中消息报头是一些描述响应数据的描述性信息，包括服务器信息、状态码、缓存控制策略等等，其中包括的Content-Type(Mime-Type)是为了告知浏览器当前传输数据的数据格式、类型。 Web服务器在响应客户端的HTTP请求时，返回的数据使用MIME报文格式进行封装。一般来说，一个HTTP响应只能包含一个数据块，但是，MIME有一种特殊的MIME类型：“multipart&#x2F;mixed”， 这种MIME类型可用一个HTTP响应数据块来表示多个数据块。其中 multipart&#x2F;x-mixed-replace MIME类型就是 “multipart&#x2F;mixed”中的一种，其中 “replace”表示每一个新数据块都会代替前一个数据块，这告诉浏览器，这种类型的新数据块不是追加到旧数据块后面，而是替代它[15]。本文中浏览器中img标签显示视频流也正是这个原因，它意味着视频图片帧会被不断刷新，最后形成连贯的视频。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/5-of-binocular-camera-pcduino-real-time-image-transmission-platform-of-smart-car.html" target="_blank">王柏元的博客 >> 【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/docker-in-docker.html" class="pre-post btn btn-default" title='Docker in Docker'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Docker in Docker</span>
+    </a>
+    
+    
+    <a href="/4-pcduino-communication-instruction-design-platform-of-smart-car.html" class="next-post btn btn-default" title='【4】通讯指令设计-Pcduino平台下的智能小车'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【4】通讯指令设计-Pcduino平台下的智能小车</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "22200",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Mjpg-streamer%E5%BC%80%E6%BA%90%E5%BA%93"><span class="toc-text">一、Mjpg-streamer开源库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E7%8E%B0%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="toc-text">二、实现与测试</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

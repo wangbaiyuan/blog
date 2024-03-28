@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,网站优化" />
+
+
+<meta name="description" content="做博客站以来，笔者换了不少主题，最后决定使用的是知言创作的tinection主题，这是一款个人认为非常优秀的wordpress主题，但是其缺点也很明显：速度太慢，因为tinection主题代码里..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    wordpress使用tinection主题怎样节省流量 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="wordpress使用tinection主题怎样节省流量">
+            
+            wordpress使用tinection主题怎样节省流量
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96/" rel="tag">网站优化</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/01/31</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>做博客站以来，笔者换了不少主题，最后决定使用的是知言创作的tinection主题，这是一款个人认为非常优秀的wordpress主题，但是其缺点也很明显：速度太慢，因为tinection主题代码里加载了太多css，js文件，导致向服务器请求次数极多，好在知言更新主题的速度较快，希望能在以后的更新中精简一下代码和减少文件请求次数。 除了上述缺点，tinection还有一个问题：它耗费流量太大。之前笔者使用的欲思主题在仅本人调试访问的情况下一个月才花费1个G流量，而现在的tinection主题一天就要花费近300M流量，而且扪心自问网站的访问频次并没有之前使用欲思主题的次数多。而对于个人用户来说，大家一般使用的是虚拟主机，空间商提供的月流量常常有限，而且即使使用CDN加速，按照tinection主题的这样的“耗油量”也不够花，为此，笔者琢磨了一下主题的代码，向大家介绍一个实用的wordpress使用tinection主题怎样节省流量的方法。</p>
+<h2 id="减少随机缩略图的张数"><a href="#减少随机缩略图的张数" class="headerlink" title="减少随机缩略图的张数"></a>减少随机缩略图的张数</h2><p>tinection的文章列表和相关列表都为无图文章随机分配缩略图，但是很“鸡肋”的是随机分配的所有图片竟然有40张之多，其实由于随机分配图片，减少图片张数并不能节省流量，但是在大多数使用了“静态文件缓存”的博客站来说，太多的随机图片将使访问者很难碰到之前缓存的同一文件。所以减少缩略图以提高缓存文件命中概率，是省流量的可行方法。</p>
+<h3 id="具体方法："><a href="#具体方法：" class="headerlink" title="具体方法："></a>具体方法：</h3><p>在主题文件夹themes\tinection\下找到functions.php，搜索“$random &#x3D; mt_rand”，这是个产生随机数的函数，你可以根据需要设置为你想要的图片张数。 例如笔者只想使用15张：</p>
+<p>$random &#x3D; mt_rand(1, 15);</p>
+<p>这样主题只会调用tinection主题随机图片文件夹“tinection\images\random\”下的“1~15.jpg”图片</p>
+<h2 id="推荐：降低缩略图质量减少流量"><a href="#推荐：降低缩略图质量减少流量" class="headerlink" title="推荐：降低缩略图质量减少流量"></a>推荐：降低缩略图质量减少流量</h2><p>笔者通过“审查元素”发现，tinection主题缩略图大小偏大，而且极其可笑的是，竟然有的缩略图片比原图片还大不少。其中有一个原图片54K，缩略之后竟然达到102K！对于大量使用的tinection主题将耗费太多不必要的流量。笔者经过修改代码后把这个图片大小降到了14K，而且图片质量影响不大。</p>
+<h3 id="具体方法：-1"><a href="#具体方法：-1" class="headerlink" title="具体方法："></a>具体方法：</h3><p>在主题文件夹themes\tinection\下找到functions.php，搜索“function tin_thumb_source”，将该函数内容改成：</p>
+<p>&#x2F;* 缩略图采用类型<br>&#x2F;* ----------------- *&#x2F;<br>function tin_thumb_source($src,$w&#x3D;300,$h&#x3D;200,$customize&#x3D;true){<br>    $timthumb &#x3D; ot_get_option(‘timthumb’);<br>    $cloudimgsuffix &#x3D; ot_get_option(‘cloudimgsuffix’);<br>    if($timthumb&#x3D;&#x3D;&#x3D;’on’){<br>        if(tin_is_mobile()&#x3D;&#x3D;true){&#x2F;&#x2F;判断是否是移动设备<br>        $img &#x3D; get_bloginfo(‘template_url’).’&#x2F;functions&#x2F;timthumb.php?src&#x3D;’.$src.’&amp;q&#x3D;30&amp;w&#x3D;’.$w.’&amp;h&#x3D;’.$h.’&amp;zc&#x3D;1’;}&#x2F;&#x2F;移动设备图片质量为30<br>        else{<br>            $img &#x3D; get_bloginfo(‘template_url’).’&#x2F;functions&#x2F;timthumb.php?src&#x3D;’.$src.’&amp;q&#x3D;80&amp;w&#x3D;’.$w.’&amp;h&#x3D;’.$h.’&amp;zc&#x3D;1’;}&#x2F;&#x2F;默认图片质量为80</p>
+<pre><code>&#125;else&#123;
+    if(empty($cloudimgsuffix)||$customize==false) $cloudimgsuffix = &#39;?imageView2/1/w/&#39;.$w.&#39;/h/&#39;.$h.&#39;/q/100&#39;;
+    $img = $src.$cloudimgsuffix;
+&#125;
+return $img;
+</code></pre>
+<p>}</p>
+<p>其中笔者把移动设备的缩略图质量设置成了20，其它设备设置成了80，大家可以根据自己的需要修改。<strong>还有需要指出的是，经本人实践，本主题的缩略图功能对png格式图片缩略效果极差，甚至增加原图片大小，建议大家写文章时插入jpg格式图片</strong>。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/tinection-themes-wordpress-how-to-save-traffic.html" target="_blank">王柏元的博客 >> wordpress使用tinection主题怎样节省流量</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/micro-envelope-alipay-red-envelope-with-netease-cloud-music-illegally.html" class="pre-post btn btn-default" title='微信封杀支付宝红包与网易云音乐违法吗？'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            微信封杀支付宝红包与网易云音乐违法吗？</span>
+    </a>
+    
+    
+    <a href="/wordpress-plugin-free-six-classic-features.html" class="next-post btn btn-default" title='wordpress无插件实现六个经典功能'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            wordpress无插件实现六个经典功能</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "53490",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1cfe70df284a018d4ba63e20c72e0fd5.png"
+                                 alt="@sdad">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                sdad
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                评论反应比较慢这个怎么解决
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-03-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                但是主题很强大呀
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/b393ce85763db1ee77cb25b7c761ec88.png"
+                                 alt="@有点蓝">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                有点蓝
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-03-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我表示这个主题本身就很大了，代码冗余太多，折腾起来太费劲~
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-01-26
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这个主题是“知言的自留地”做的，你可以请教作者额
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/356492ffa74241913f8d6b7148a1d4a2.png"
+                                 alt="@柠檬雪冰">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                柠檬雪冰
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-01-25
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                请问怎么才能让这个主题能在ＰＨＰ７上运行呢？谢谢
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/5e027396789a18c37aeda616e3d7991b.png"
+                                 alt="@Jim">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                Jim
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-11-14
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                无限流量表示不怕
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aae8c5b8bcd894c7f6fe8da6baa10e86.png"
+                                 alt="@鲜活">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                鲜活
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-07-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这个主题很好看
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/9b1a3c7d7423eb37879769b234be5d3c.png"
+                                 alt="@超級efly">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                超級efly
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-02-03
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                前來支持一下～～似乎挺不錯的樣子！ :twisted:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%8F%E5%B0%91%E9%9A%8F%E6%9C%BA%E7%BC%A9%E7%95%A5%E5%9B%BE%E7%9A%84%E5%BC%A0%E6%95%B0"><span class="toc-text">减少随机缩略图的张数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">具体方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%EF%BC%9A%E9%99%8D%E4%BD%8E%E7%BC%A9%E7%95%A5%E5%9B%BE%E8%B4%A8%E9%87%8F%E5%87%8F%E5%B0%91%E6%B5%81%E9%87%8F"><span class="toc-text">推荐：降低缩略图质量减少流量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95%EF%BC%9A-1"><span class="toc-text">具体方法：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

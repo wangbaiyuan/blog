@@ -1,0 +1,371 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,MySql" />
+
+
+<meta name="description" content="关于webservice由于之前写过JAVA和PHP的JSON以及JMI的网络服务，这次在使用webservice完成管理待办事项自然就联想到它们。JAVA和PHP JSON、JMI、webse..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    java实现webservice+MySQl |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="java实现webservice+MySQl">
+            
+            java实现webservice+MySQl
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/">计算机技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/MySql/" rel="tag">MySql</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/26</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="关于webservice"><a href="#关于webservice" class="headerlink" title="关于webservice"></a>关于webservice</h2><p>由于之前写过JAVA和PHP的JSON以及JMI的网络服务，这次在使用webservice完成管理待办事项自然就联想到它们。JAVA和PHP JSON、JMI、webservice三者共同之处是可以提供服务器的资源共享。 Web Service具有跨平台性，可以在不同设备、不同编程语言中进行调用，所以它的应用范围应该要比RMI更广</p>
+<h2 id="基于MySQl数据库查询的webservice实现管理待办事项列表"><a href="#基于MySQl数据库查询的webservice实现管理待办事项列表" class="headerlink" title="基于MySQl数据库查询的webservice实现管理待办事项列表"></a>基于MySQl数据库查询的webservice实现管理待办事项列表</h2><h3 id="运行截图"><a href="#运行截图" class="headerlink" title="运行截图"></a>运行截图</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv11.png"> <img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv2.png"> 添加用户： <img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv31.png"> 添加事项： <img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv41.png"> 查询事项： <img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv51.png"> 删除事项： <img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv61.png"> 清空事项： <img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv71.png"></p>
+<h3 id="服务器端代码是怎么实现的"><a href="#服务器端代码是怎么实现的" class="headerlink" title="服务器端代码是怎么实现的"></a>服务器端代码是怎么实现的</h3><p>下面介绍一下是怎样实现上述功能的服务端代码：。 我的服务端主要有四个类： 数据库连接及方法接口TodoListInterDbFace、数据库连接及方法实现类TodolistDb及方法实现类以及webservice接口TodoListServerInterface、Webservice实现类TodoListServer。  </p>
+<h4 id="下面是示意图："><a href="#下面是示意图：" class="headerlink" title="下面是示意图："></a>下面是示意图：</h4><p><img src="http://baiyuan.wang/wp-content/uploads/2015/06/062615_0650_javawebserv81.png"></p>
+<h3 id="客户端代码是怎么实现的"><a href="#客户端代码是怎么实现的" class="headerlink" title="客户端代码是怎么实现的"></a>客户端代码是怎么实现的</h3><p>wsimport -keep <a target="_blank" rel="noopener" href="http://127.0.0.1:8002/webservice/TodoList?wsdl%E8%A7%A3%E6%9E%90WSDL%E5%90%8E%EF%BC%9A">http://127.0.0.1:8002/webservice/TodoList?wsdl解析WSDL后：</a> 创建TodoListClient类main方法为：</p>
+<p>public static void main(String[] args){<br>        int cmdLength&#x3D;args.length;<br>        TodoListServerService tlist &#x3D; new TodoListServerService() ;<br>        TodoListServerInterface todoList &#x3D; tlist.getTodoListPort();<br>        String note&#x3D;”WebService待办事项客户端©王柏元—命令行版:\n”<br>                + “1.帮助信息：\n\thelp\n”<br>                + “2.用户注册：\n\tregister [用户名] [密码]\n”<br>                + “ 3.添加待办事项：\n\tadd [你的用户名] [你的密码] [待办事项标题] [邀请谁？他的用户名] [开始时间] [结束时间]\n”<br>                + “\t 时间格式：2015-06-05 22:29:19\n”<br>                + “4. 查询待办事项：\n\tquery [你的用户名] [你的密码][开始时间] [结束时间]\n”<br>                + “5.删除待办事项：\n\tdelete [你的用户名] [你的密码] [待办事项ID]\n”<br>                + “6.清除待办事项：\n\tclear [username] [password]\n”<br>                + “7.关于本程序：\n\tabout\n”<br>                + “8.退出:\n quit\n\t”<br>                + “请输入命令：”;<br>        String about&#x3D;”WebService待办事项客户端©王柏元—命令行行版:\n”<br>                + “作者:王柏元\n”<br>                + “个人网站：<a href="http://baiyuan.wang//n">http://baiyuan.wang\\n</a>“<br>                + “运行模式：命令行环境\n”<br>                + “程序介绍：使用Java WebService创建一个待办事项管理系统。”<br>                + “不同的用户可以使用这个待办事项管理系统执行查询、添加和删除”<br>                + “待办事项的操作。服务器支持待办事项的登记和清除等功能；”;<br>            &#x2F;&#x2F;System.out.println(hello.hello(“liyong”));<br>                <br>            switch(args[0]){<br>            <br>            case<br>“register”:<br>                if(cmdLength&#x3D;&#x3D;3){<br>                    System.out.println(todoList.addMeetingUsers(args[1], args[2]));<br>                }else{<br>                    System.out.println(“命令参数错误\n”<br>                            + “用户注册：\n\tregister [用户名] [密码]\n”);<br>                }<br>                break;<br>            case “add”:<br>                if(cmdLength&#x3D;&#x3D;9){<br>                    System.out.println(todoList.addMeetings(args[1], args[2],args[3] ,args[4],args[5]+” “<br>                +args[6], args[7]+” “+args[8]));<br>                }else{<br>                    System.out.println(“命令参数错误\n”<br>                            + “添加会议：\n\tadd [你的用户名] [你的密码] [邀请谁？他的用户名][会议标题] [开始时间] [结束时间] \n”);<br>                }<br>                break;<br>            case “query”:<br>                if(cmdLength&#x3D;&#x3D;7){<br>                    if(todoList.loginMeetings(args[1], args[2]).equals(“1”))<br>                        System.out.println(todoList.searchrMeetings(args[3]+” “+ args[4],args[5]+” “+ args[6]));<br>                }else{<br>                    System.out.println(“命令参数错误\n”<br>                            + “查询会议：\n\tquery [用户名] [密码][开始时间] [结束时间]\n”);<br>                }<br>                break;<br>            case “delete”:<br>                if(cmdLength&#x3D;&#x3D;4){<br>                    if(todoList.loginMeetings(args[1], args[2]).equals(“1”))<br>                        System.out.println(todoList.deleteMeetings(args[1], args[3]));<br>                }else{<br>                    System.out.println(“命令参数错误\n”<br>                            + “删除会议：\n\tdelete [你的用户名] [你的密码] [会议ID]\n”);<br>                }<br>                break;<br>            case “clear”:<br>                if(cmdLength&#x3D;&#x3D;3){<br>                    if(todoList.loginMeetings(args[1], args[2]).equals(“1”))<br>                        System.out.println(todoList.clearMeetings(args[1]));<br>                }else{<br>                    System.out.println(“命令参数错误\n”<br>                            + “清除会议：\n\tclear [username] [password]\n”);<br>                }<br>                break;<br>            case “about”:<br>                System.out.println(about);break;<br>        <br>            case<br>“help”:<br>            System.out.println(note);break;<br>                <br>                }<br>        }</p>
+<p>  对于菜单的实现原理请参考我的博客文章：<a href="http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html">http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/java-implementation-webservice-mysql.html" target="_blank">王柏元的博客 >> java实现webservice+MySQl</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/talk-about-web-api.html" class="pre-post btn btn-default" title='谈谈网络API'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            谈谈网络API</span>
+    </a>
+    
+    
+    <a href="/method-of-absolute-time-java-timetostring.html" class="next-post btn btn-default" title='自制绝对时间相对化java方法TimeToString'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            自制绝对时间相对化java方法TimeToString</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "7967",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8Ewebservice"><span class="toc-text">关于webservice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EMySQl%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E7%9A%84webservice%E5%AE%9E%E7%8E%B0%E7%AE%A1%E7%90%86%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E5%88%97%E8%A1%A8"><span class="toc-text">基于MySQl数据库查询的webservice实现管理待办事项列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%88%AA%E5%9B%BE"><span class="toc-text">运行截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BB%A3%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-text">服务器端代码是怎么实现的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E7%A4%BA%E6%84%8F%E5%9B%BE%EF%BC%9A"><span class="toc-text">下面是示意图：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BB%A3%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="toc-text">客户端代码是怎么实现的</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

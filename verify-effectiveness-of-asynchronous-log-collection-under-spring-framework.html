@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,Spring" />
+
+
+<meta name="description" content="Logback+AsyncAppenderlogback的介绍. Logback是由log4j创始人设计的另一个开源日志组件。 为了避免日志记录会给服务带来性能问题，在项目中决定采用“异步记录日..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Spring框架下异步日志收集及验证是否生效 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Spring框架下异步日志收集及验证是否生效">
+            
+            Spring框架下异步日志收集及验证是否生效
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/Spring/" rel="tag">Spring</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/05/15</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Logback-AsyncAppender"><a href="#Logback-AsyncAppender" class="headerlink" title="Logback+AsyncAppender"></a>Logback+AsyncAppender</h2><p>logback的介绍. Logback是由log4j创始人设计的另一个开源日志组件。 为了避免日志记录会给服务带来性能问题，在项目中决定采用“异步记录日志”进行记录。这里就要使用到<strong>Logback的AsyncAppender组件</strong>。简而言之，就是AsyncAppender会在请求处理的主线程以外<strong>新建一个子线程 -“日志记录线程</strong>”进行日志输出。<strong>避免日志输出造成主线程阻塞</strong>。 在运行过程中，主线程不会直接输出日志，而是将<strong>日志以Event的方式发给日志线程</strong>，Event在日志线程中会形成一条队列。而AsyncAppender的配置项很多都是对队列的配置，比如：</p>
+<ul>
+<li>queueSize int BlockingQueue的最大容量，默认情况下，大小为256。</li>
+<li>discardingThreshold int 默认情况下，当BlockingQueue还有20%容量，他将丢弃TRACE、DEBUG和INFO级别的event，只保留WARN和ERROR级别的event。为了保持所有的events，设置该值为0。</li>
+<li>includeCallerData boolean 提取调用者数据的代价是相当昂贵的。为了提升性能，默认情况下，当event被加入到queue时，event关联的调用者数据不会被提取。默认情况下，只有”cheap”的数据，如线程名。</li>
+</ul>
+<p>需要注意到点：</p>
+<ul>
+<li>AsyncAppender只是实现将日志事件缓存到队列，具体怎么输出日志需要在 <appender-ref ref="xxxx"/>中实现，完整代码如下：</li>
+</ul>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"service":"${appName}"}</customFields>
+        </encoder>
+    </appender>
+    <appender name="ASYNC\_CONSOLE\_JSON" class="ch.qos.logback.classic.AsyncAppender">
+        <neverBlock>true</neverBlock>
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>1000</queueSize>
+        <appender-ref ref="JSON"/>
+    </appender>
+    <root level="info">
+        <appender-ref ref="ASYNC\_CONSOLE\_JSON"/>
+    </root>
+</configuration>
+
+<h2 id="Shutdown-hook"><a href="#Shutdown-hook" class="headerlink" title="Shutdown hook"></a>Shutdown hook</h2><p>为了在JVM虚拟机退出之前，能将日志线程的队列中的日志处理完毕，需要注册一个<strong>shutdown hook</strong> 详见： <a target="_blank" rel="noopener" href="https://logback.qos.ch/manual/appenders.html#AsyncAppender">https://logback.qos.ch/manual/appenders.html#AsyncAppender</a></p>
+<h2 id="怎样验证异步日志收集是否生效"><a href="#怎样验证异步日志收集是否生效" class="headerlink" title="怎样验证异步日志收集是否生效"></a>怎样验证异步日志收集是否生效</h2><p>按照Logback的文档实现异步日志很简单，那么怎么验证异步日志有没有生效就是个问题。这里引入一个“<strong>VisualVM</strong>”工具，它可以列出一个Java进程所包含的线程。可以看到下面的AsyncAppender-Works-xxx就是日志收集线程。 <a href="https://baiyuan.wang/wp-content/uploads/2019/05/WechatIMG371.png"><img src="https://baiyuan.wang/wp-content/uploads/2019/05/WechatIMG371.png"></a></p>
+<h2 id="扩展资料"><a href="#扩展资料" class="headerlink" title="扩展资料"></a>扩展资料</h2><ul>
+<li>Java日志框架：logback详解：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xrq730/p/8628945.html">https://www.cnblogs.com/xrq730/p/8628945.html</a></li>
+<li>Logback AsyncAppender 示例：<a target="_blank" rel="noopener" href="https://examples.javacodegeeks.com/enterprise-java/logback/logback-ayncappender-example/">https://examples.javacodegeeks.com/enterprise-java/logback/logback-ayncappender-example/</a></li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/verify-effectiveness-of-asynchronous-log-collection-under-spring-framework.html" target="_blank">王柏元的博客 >> Spring框架下异步日志收集及验证是否生效</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/best-practices-when-creating-node-js-web-service.html" class="pre-post btn btn-default" title='新建NodeJS Web服务的几个最佳实践'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            新建NodeJS Web服务的几个最佳实践</span>
+    </a>
+    
+    
+    <a href="/nginxs-implementation-of-canary-release-in-website-revision.html" class="next-post btn btn-default" title='Nginx在网站改版中实现金丝雀发布'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Nginx在网站改版中实现金丝雀发布</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "23420",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Logback-AsyncAppender"><span class="toc-text">Logback+AsyncAppender</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shutdown-hook"><span class="toc-text">Shutdown hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E6%A0%B7%E9%AA%8C%E8%AF%81%E5%BC%82%E6%AD%A5%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%E6%98%AF%E5%90%A6%E7%94%9F%E6%95%88"><span class="toc-text">怎样验证异步日志收集是否生效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E8%B5%84%E6%96%99"><span class="toc-text">扩展资料</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

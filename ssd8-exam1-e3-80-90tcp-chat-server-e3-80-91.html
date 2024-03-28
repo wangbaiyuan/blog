@@ -1,0 +1,507 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="SSD8" />
+
+
+<meta name="description" content="这是SSD8练习的Exam1，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式计算实验课2013级进度同步。点击标签或在本站搜索“SSD8”即可获取已更新的SSD8答案。上一练习：SS..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD8_Exam1【TCP Chat Server】 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD8_Exam1【TCP Chat Server】">
+            
+            SSD8_Exam1【TCP Chat Server】
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/29</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>这是<a href="http://baiyuan.wang/tag/ssd8" title="查看更多关于 SSD8 的文章">SSD8</a>练习的Exam1，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式计算实验课2013级进度同步。点击标签或在本站搜索“<a href="http://baiyuan.wang/tag/ssd8" title="查看更多关于 SSD8 的文章">SSD8</a>”即可获取已更新的SSD8答案。上一练习：<a href="http://baiyuan.wang/ssd8-ex2-udp-vs-tcp.html">SSD8_EX2【UDP vs TCP】</a>;如果你想继续跟踪SSD练习进展，建议<a href="http://baiyuan.wang/newsletter?action=subscribe">订阅本站</a>。 本次练习采用多线程、TCP通信协议制作一个多人聊天软件，将用户上线下线消息、正常交流信息对所有连接的用户进行广播。极客人的主要思维是建立socket的hashmap，遍历hashmap与众多客户端通信。</p>
+<h2 id="一、实验题目"><a href="#一、实验题目" class="headerlink" title="一、实验题目"></a>一、实验题目</h2><p>根据题目下文给出的聊天协议列表，使用Java sockets实现一个简单的TCP聊天服务器。该服务器应该具有以下功能： 1. 从每一个客户端（client）读取信息； 2. 能将读取的信息转发给所有客户端； 3. 通过命令行获得端口（port）信息； 4. 监听特定端口（port）的请求信息； 5. 能够处理并发连接，即需要使用多线程来处理每一个连接。 题中已经提供了一个图形化客户端<strong>GUIClient.jar。</strong></p>
+<h3 id="GUIClient-jar反编译文件在“相关下载中”，这是客户端的源代码"><a href="#GUIClient-jar反编译文件在“相关下载中”，这是客户端的源代码" class="headerlink" title="GUIClient.jar反编译文件在“相关下载中”，这是客户端的源代码"></a><strong>GUIClient.jar反编译文件在“相关下载中”，这是客户端的源代码</strong></h3><h2 id="二、Chat-Server服务器端代码"><a href="#二、Chat-Server服务器端代码" class="headerlink" title="二、Chat Server服务器端代码"></a>二、Chat Server服务器端代码</h2><h3 id="Chat-Server-java"><a href="#Chat-Server-java" class="headerlink" title="Chat Server.java:"></a>Chat Server.java:</h3><p>package cn.wangbaiyuan;</p>
+<p>import java.io.DataInputStream;<br>import java.io.DataOutputStream;<br>import java.io.IOException;<br>import java.io.PrintWriter;<br>import java.io.UnsupportedEncodingException;<br>import java.net.ServerSocket;<br>import java.net.Socket;<br>import java.text.SimpleDateFormat;<br>import java.util.Calendar;<br>import java.util.Date;<br>import java.util.HashMap;<br>import java.util.Iterator;<br>import java.util.NoSuchElementException;<br>import java.util.StringTokenizer;</p>
+<p>&#x2F;**<br> * ChatServer类启动服务器服务<br> *<br> * @author <a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a><br> *代码为<a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a>原创，并同步发布在<br> *<a href="http://baiyuan.wang/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">王柏元的博客</a>转载请注明来源<br> *&#x2F;<br>public class ChatServer {<br>    private static HashMap&lt;String, Socket&gt; serverSocketMap &#x3D; new HashMap&lt;String, Socket&gt;();<br>    ServerSocket serverSocket;<br>    private int port &#x3D; 1234;<br>&#x2F;**<br> * 启动聊天服务端服务<br> * @throws IOException 抛出IOException<br> *&#x2F;<br>    public ChatServer() throws IOException {<br>        serverSocket &#x3D; new ServerSocket(port);<br>        System.out.println(“ChatServer服务器启动……”);<br>    }</p>
+<pre><code>public void service() &#123;
+    while (true) &#123;
+        Socket socket = null;
+        try &#123;
+            socket = serverSocket.accept();
+            Thread work = new Thread(new Handler(socket)); // 为客户连接创建工作线程
+            work.start();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+
+/\*\*
+ \* 处理子线程类
+</code></pre>
+<p> * @author <a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a><br> *代码为<a target="_blank" rel="noopener" href="http://wangbaiyuan">王柏元</a>原创，并同步发布在<br> *<a href="http://baiyuan.wang/ssd8-exam1%e3%80%90tcp-chat-server%e3%80%91.html">王柏元的博客</a>转载请注明来源<br> *&#x2F;<br>    public class Handler implements Runnable { &#x2F;&#x2F; 负责与单个客户通信的线程<br>        private Socket socket;<br>        DataInputStream br;<br>        DataOutputStream bw;<br>        PrintWriter pw;</p>
+<pre><code>    public Handler(Socket socket) throws UnsupportedEncodingException,
+            IOException &#123;
+        this.socket = socket;
+    &#125;
+
+    @SuppressWarnings(&quot;deprecation&quot;)
+    /\*\*
+     \* 有新连接时初始化,并向已连接用户广播信息
+     \* @throws IOException
+     */
+    public void initStream() throws IOException &#123; // 初始化输入输出流对象方法
+        br = new DataInputStream(socket.getInputStream());
+        bw = new DataOutputStream(socket.getOutputStream());
+        String str1 = br.readUTF();
+        System.out.println(str1);
+        StringTokenizer localStringTokenizer1 = new StringTokenizer(str1,
+                &quot;^&quot;);//分割字符串
+        try &#123;
+            String head = localStringTokenizer1.nextToken();
+            System.out.println(head);
+            String nameIP = localStringTokenizer1.nextToken();
+            StringTokenizer localStringTokenizer2 = new StringTokenizer(
+                    nameIP, &quot;@&quot;);
+            String name = localStringTokenizer2.nextToken();
+            serverSocketMap.put(name, socket);
+            String ip = localStringTokenizer2.nextToken();
+            String member = localStringTokenizer1.nextToken();
+            String message = localStringTokenizer1.nextToken();
+            String message_join = &quot;m^system@10.22.56.186^all^&quot; + name
+                    \+ &quot; has joined from &quot; + ip + &quot;__\[time:&quot; + nowTime()
+                    \+ &quot;\]^&quot;;
+            sentoAll(name, message_join);
+        &#125; catch (NoSuchElementException localNoSuchElementException) &#123;
+            System.out.println(&quot;GUIClient: No Such Element Exception&quot;);
+        &#125;
+    &#125;
+
+    /\*\*
+     \* 群发消息
+     \* @param name
+     \*            群发消息的消息源\-昵称
+     \* @param message
+     \*            群发消息的消息
+     \* @throws IOException
+     */
+    public void sentoAll(String name, String message) throws IOException &#123;
+        Iterator iterator = serverSocketMap.keySet().iterator();
+        while (iterator.hasNext()) &#123;
+            String key = (String) iterator.next();
+            Socket received = serverSocketMap.get(key);
+            bw = new DataOutputStream(received.getOutputStream());
+            bw.writeUTF(message);
+
+        &#125;
+    &#125;
+</code></pre>
+<p>&#x2F;**<br> * 获取当前时间<br> * @return 当前时间<br> *&#x2F;<br>        public String nowTime() {<br>            Calendar c &#x3D; Calendar.getInstance();<br>            c.setTimeInMillis(new Date().getTime());<br>            SimpleDateFormat dateFormat &#x3D; new SimpleDateFormat(<br>                    “yy-MM-dd HH:mm:ss”);<br>            return dateFormat.format(c.getTime());<br>        }</p>
+<pre><code>    /\*\*
+     \* 执行发送内容
+     */
+    public void run() &#123; // 执行的内容
+        try &#123;
+            System.out.println(socket.getInetAddress() + &quot;加入了群聊&quot;);
+            initStream(); // 初始化输入输出流对象
+            String info = null;
+            while (null != (info = br.readUTF())) &#123;
+                StringTokenizer localStringTokenizer1 = new StringTokenizer(
+                        info, &quot;^&quot;);
+                try &#123;
+                    String head = localStringTokenizer1.nextToken();
+                    String nameIP = localStringTokenizer1.nextToken();
+                    StringTokenizer localStringTokenizer2 = new StringTokenizer(
+                            nameIP, &quot;@&quot;);
+                    String name = localStringTokenizer2.nextToken();
+                    String ip = localStringTokenizer2.nextToken();
+                    String member = localStringTokenizer1.nextToken();
+                    String message = localStringTokenizer1.nextToken();
+                    if (head.equals(&quot;m&quot;)) &#123;
+                        String message_exchange = &quot;m^&quot; + name
+                                \+ &quot;@10.22.56.186^all^&quot; + message
+                                \+ &quot;___\[time:&quot; + nowTime() + &quot;\]^&quot;;
+                        sentoAll(name, message_exchange);
+
+                    &#125; else if (head.equals(&quot;j&quot;)) &#123;
+                        String message_join = &quot;j^system@10.22.56.186^all^&quot;
+                                \+ name + &quot; has joined from &quot; + ip
+                                \+ &quot;___\[time:&quot; + nowTime() + &quot;\]^&quot;;
+                        sentoAll(name, message_join);
+
+                    &#125; else if (head.equals(&quot;p&quot;)) &#123;
+                        String message_exit = &quot;m^system@10.22.56.186^all^&quot;
+                                \+ name + &quot; has leaved! ___\[time:&quot;
+                                \+ nowTime() + &quot;\]^&quot;;
+                        serverSocketMap.remove(name);
+                        sentoAll(name, message_exit);
+                    &#125;
+                &#125; catch (NoSuchElementException localNoSuchElementException) &#123;
+                    System.out
+                            .println(&quot;GUIClient: No Such Element Exception&quot;);
+                &#125;
+                System.out.println(info);
+            &#125;
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            if (null != socket) &#123;
+                try &#123;
+                    socket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public static void main(String\[\] args) throws IOException &#123;
+    new ChatServer().service(); // 启动服务
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd8-exam1-e3-80-90tcp-chat-server-e3-80-91.html" target="_blank">王柏元的博客 >> SSD8_Exam1【TCP Chat Server】</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/wordpress-function-hook-hook-book-3.html" class="pre-post btn btn-default" title='Wordpress函数钩子(Hook)大全(3)'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Wordpress函数钩子(Hook)大全(3)</span>
+    </a>
+    
+    
+    <a href="/ssd8-exam1tcp.html" class="next-post btn btn-default" title='SSD8_Exam1[TCP Chat Server]'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_Exam1[TCP Chat Server]</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "32005",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E9%A2%98%E7%9B%AE"><span class="toc-text">一、实验题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUIClient-jar%E5%8F%8D%E7%BC%96%E8%AF%91%E6%96%87%E4%BB%B6%E5%9C%A8%E2%80%9C%E7%9B%B8%E5%85%B3%E4%B8%8B%E8%BD%BD%E4%B8%AD%E2%80%9D%EF%BC%8C%E8%BF%99%E6%98%AF%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-text">GUIClient.jar反编译文件在“相关下载中”，这是客户端的源代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Chat-Server%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-text">二、Chat Server服务器端代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chat-Server-java"><span class="toc-text">Chat Server.java:</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,在线应用" />
+
+
+<meta name="description" content="前段时间我写了一篇关于“利用第三方网站在线做自己的APP”的文章，介绍了许多在线APP生成工具，在这里我特以“安米”为典例向大家介绍一下怎样为discuz做移动客户端，包括主流移动操作系统：安卓..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    为discuz站点做移动客户端（安卓+IOS） |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="为discuz站点做移动客户端（安卓+IOS）">
+            
+            为discuz站点做移动客户端（安卓+IOS）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/%E5%9C%A8%E7%BA%BF%E5%BA%94%E7%94%A8/" rel="tag">在线应用</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/06</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>前段时间我写了一篇关于“利用第三方网站在线做自己的APP”的文章，介绍了许多在线APP生成工具，在这里我特以“安米”为典例向大家介绍一下怎样为discuz做移动客户端，包括主流移动操作系统：安卓和IOS。其中要告诉大家的是，最近安米已经移除了discuz客户端免费版的植入广告。</p>
+<h1 id="为discuz站点做移动客户端（安卓-IOS）"><a href="#为discuz站点做移动客户端（安卓-IOS）" class="headerlink" title="为discuz站点做移动客户端（安卓+IOS）"></a>为discuz站点做移动客户端（安卓+IOS）</h1><h2 id="1-登录安米官网，进入discuz转换页面"><a href="#1-登录安米官网，进入discuz转换页面" class="headerlink" title="1.登录安米官网，进入discuz转换页面"></a>1.登录安米官网，进入discuz转换页面</h2><p>安米官网：<a target="_blank" rel="noopener" href="http://www.appbyme.com/mobcentACA/app/create/start" title="http://www.appbyme.com/mobcentACA/app/create/start">www.appbyme.com/mobcentACA/app/create/start</a> discuz转换页面地址：<a target="_blank" rel="noopener" href="http://www.appbyme.com/mobcentACA/app/create/start" title="http://www.appbyme.com/mobcentACA/app/create/start">http://www.appbyme.com/mobcentACA/app/create/start</a> 请根据实际注册登录新建应用页面 <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb.png" alt="image" title="image"></a></p>
+<ul>
+<li><h2 id="2-根据官方文档，制作客户端"><a href="#2-根据官方文档，制作客户端" class="headerlink" title="2.根据官方文档，制作客户端"></a>2.根据官方文档，制作客户端</h2></li>
+<li><p>官方文档地址：<a target="_blank" rel="noopener" href="http://www.appbyme.com/mobcentACA/view/staticPage/Discuz.jsp" title="http://www.appbyme.com/mobcentACA/view/staticPage/Discuz.jsp">http://www.appbyme.com/mobcentACA/view/staticPage/Discuz.jsp</a>，官方的文档介绍的相当仔细，在此我就不赘述了。</p>
+</li>
+</ul>
+<p>制作过程中，会下载安米的验证文件和插件，插件可在discuz后台“应用”中添加插件，搜索“安米”，安装该插件即可。根据在线制作的人数多少，你的建立应用的任务可能会等待一段时间。</p>
+<h2 id="应用管理、发布和升级"><a href="#应用管理、发布和升级" class="headerlink" title="应用管理、发布和升级"></a>应用管理、发布和升级</h2><p>在安米的应用管理面板中会提供应用管理和更新推送服务，每一次升级应用后，当用户启动你的论坛app是都会弹出更新信息框，提示升级，百度贴吧类似。 <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image1.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb1.png" alt="image" title="image"></a>  </p>
+<h2 id="应用截图预览"><a href="#应用截图预览" class="headerlink" title="应用截图预览"></a>应用截图预览</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-26-38-568.jpg">![“百源IT论坛”安卓APP首页](http://baiyuan.wang/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-26-38-568_thumb.jpg “”百源IT论坛”安卓APP首页”)</a> <a href="http://baiyuan.wang/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-16-33-421.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/Screenshot_2015-03-06-14-16-33-421_thumb.jpg" alt="百源IT论坛——用户中心" title="Screenshot_2015-03-06-14-16-33-421"></a> 百源IT论坛——用户中心 <a href="http://baiyuan.wang/wp-content/uploads/2015/03/image2.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/03/image_thumb2.png" alt="客户端发帖" title="客户端发帖"></a> 客户端发帖</p>
+<h3 id="如果你想尝试其他第三方制作app，可能参考我之前写的文章：利用第三方网站在线做自己的APP-王柏元的博客-http-baiyuan-wang-107-html"><a href="#如果你想尝试其他第三方制作app，可能参考我之前写的文章：利用第三方网站在线做自己的APP-王柏元的博客-http-baiyuan-wang-107-html" class="headerlink" title="如果你想尝试其他第三方制作app，可能参考我之前写的文章：利用第三方网站在线做自己的APP | 王柏元的博客 http://baiyuan.wang/107.html"></a>如果你想尝试其他第三方制作app，可能参考我之前写的文章：<a href="http://baiyuan.wang/107.html" title="【转载】利用第三方网站在线做自己的APP">利用第三方网站在线做自己的APP | 王柏元的博客 http://baiyuan.wang/107.html</a></h3>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/mobile-client-for-discuz-site-android-ios.html" target="_blank">王柏元的博客 >> 为discuz站点做移动客户端（安卓+IOS）</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/windowspe-u-disk-to-reinstall-windows-system.html" class="pre-post btn btn-default" title='u盘windowsPE重装windows系统'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            u盘windowsPE重装windows系统</span>
+    </a>
+    
+    
+    <a href="/information-collection-of-open-platform-api.html" class="next-post btn btn-default" title='信息查询开放平台API大全'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            信息查询开放平台API大全</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "14139",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/4e10de96eb7459074d68ee644692bd24.png"
+                                 alt="@tyndale">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                tyndale
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-06-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                小云应该不是开源吧
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/bbdfe12c6937e3452e43ccb9d5537645.png"
+                                 alt="@陈旭">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                陈旭
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-03-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                很有用，顶一个。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BAdiscuz%E7%AB%99%E7%82%B9%E5%81%9A%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%88%E5%AE%89%E5%8D%93-IOS%EF%BC%89"><span class="toc-text">为discuz站点做移动客户端（安卓+IOS）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%99%BB%E5%BD%95%E5%AE%89%E7%B1%B3%E5%AE%98%E7%BD%91%EF%BC%8C%E8%BF%9B%E5%85%A5discuz%E8%BD%AC%E6%8D%A2%E9%A1%B5%E9%9D%A2"><span class="toc-text">1.登录安米官网，进入discuz转换页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B9%E6%8D%AE%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%8C%E5%88%B6%E4%BD%9C%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-text">2.根据官方文档，制作客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86%E3%80%81%E5%8F%91%E5%B8%83%E5%92%8C%E5%8D%87%E7%BA%A7"><span class="toc-text">应用管理、发布和升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E6%88%AA%E5%9B%BE%E9%A2%84%E8%A7%88"><span class="toc-text">应用截图预览</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%83%B3%E5%B0%9D%E8%AF%95%E5%85%B6%E4%BB%96%E7%AC%AC%E4%B8%89%E6%96%B9%E5%88%B6%E4%BD%9Capp%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%8F%82%E8%80%83%E6%88%91%E4%B9%8B%E5%89%8D%E5%86%99%E7%9A%84%E6%96%87%E7%AB%A0%EF%BC%9A%E5%88%A9%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BD%91%E7%AB%99%E5%9C%A8%E7%BA%BF%E5%81%9A%E8%87%AA%E5%B7%B1%E7%9A%84APP-%E7%8E%8B%E6%9F%8F%E5%85%83%E7%9A%84%E5%8D%9A%E5%AE%A2-http-baiyuan-wang-107-html"><span class="toc-text">如果你想尝试其他第三方制作app，可能参考我之前写的文章：利用第三方网站在线做自己的APP | 王柏元的博客 http:&#x2F;&#x2F;baiyuan.wang&#x2F;107.html</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

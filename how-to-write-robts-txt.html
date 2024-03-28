@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="robots.txt" />
+
+
+<meta name="description" content="虽然说对于广大站长来说，我们可能希望搜索引擎收录我们的网页越多越好，但是有的时候我们并不希望搜索引擎收录我们的一些网页，比如后台登陆页面，密码保护页面，私密页面。搜索引擎网络爬虫，我们常常把它称..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    网络蜘蛛访问控制文件robot.txt的写法 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="网络蜘蛛访问控制文件robot.txt的写法">
+            
+            网络蜘蛛访问控制文件robot.txt的写法
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/robots-txt/" rel="tag">robots.txt</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/03/14</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>虽然说对于广大站长来说，我们可能希望搜索引擎收录我们的网页越多越好，但是有的时候我们并不希望搜索引擎收录我们的一些网页，比如后台登陆页面，密码保护页面，私密页面。搜索引擎网络爬虫，我们常常把它称为搜索“蜘蛛”，因为这些“蜘蛛”沿着网络上的链接爬行可谓无网不入，曾经笔者甚至无语的发现，谷歌图片的搜索蜘蛛连我的个人用户头像都收录，这种殷勤令我哭笑不得。 所以网站的根目录常常有一个叫“robot.txt”的文件，robot是英语“机器人”的意思，你可以理解为网络机器人，也就是搜索蜘蛛，通过这个文件中的文本来告诉搜索引擎，哪个目录，哪个页面或者什么格式的图片不想被收录。</p>
+<h2 id="先给大家讲几个例子："><a href="#先给大家讲几个例子：" class="headerlink" title="先给大家讲几个例子："></a>先给大家讲几个例子：</h2><p><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/"></a><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/"></a></p>
+<p>#禁止admin页面<br>user-agent:*<br>Disallow:&#x2F;admin&#x2F;<br>Disallow:&#x2F;*.jpg$</p>
+<h3 id="第一行：“-禁止admin页面”"><a href="#第一行：“-禁止admin页面”" class="headerlink" title="第一行：“#禁止admin页面”"></a>第一行：“#禁止admin页面”</h3><p>第一个字符“#”，表示注释，可以随意写不对蜘蛛爬行产生任何效果，主要的作用就是提醒自己接下来一段代码是什么目的。</p>
+<h3 id="第二行代码：“user-agent"><a href="#第二行代码：“user-agent" class="headerlink" title="第二行代码：“user-agent:*"></a>第二行代码：“user-agent:*</h3><p>user-agent汉译为用户代理，你可能在网站日志里可以看到这个单词，手机浏览器的“UA标识”也是这个词，在robot.txt里你可以理解为“访问用户（搜索蜘蛛）的身份”。 常见的搜索蜘蛛标识有：</p>
+<p>1.谷歌Google蜘蛛 Googlebot Googlebot-Mobile Googlebot-Image Mediapartners-Google Adsbot-Google</p>
+<p>2.百度(Baidu)蜘蛛 Baiduspider</p>
+<p>3.雅虎(Yahoo)蜘蛛 Yahoo!+Slurp Yahoo!+Slurp+China：雅虎中国蜘蛛</p>
+<p>4.有道(Yodao)蜘蛛 YodaoBot YoudaoBot YodaoBot-Image</p>
+<p>5.搜搜(Soso)蜘蛛 Sosospider Sosoimagespider</p>
+<p>6.微软(Bing和MSN)蜘蛛 bingbot msnbot msnbot-media</p>
+<p>7.搜狗(Sogou)蜘蛛 Sogou Web Sprider Sogou Orion spider Sogou-Test-Spider</p>
+<p>“user-agent:<em>”其中“</em>”是通配符，表示“所有”，意思就是要告诉所有的搜索引擎“：你们要注意了！下面就是我要告诉你们的内容！”，“user-agent:*”下面的代码对所有蜘蛛都有效；如果是”user-agent:Baiduspider “在段落头，表示下面这段代码是对百度蜘蛛说的，其他蜘蛛不受下面代码控制。</p>
+<h3 id="第三行代码：“Disallow-admin-”"><a href="#第三行代码：“Disallow-admin-”" class="headerlink" title="第三行代码：“Disallow:&#x2F;admin&#x2F;”"></a>第三行代码：“Disallow:&#x2F;admin&#x2F;”</h3><p>disallow，是”不允许“之意，表示”你的网站地址&#x2F;admin“这个目录下的网页不允许蜘蛛访问抓取， 例如我还可以不想让搜索引擎收录我网站的bbs目录，那我就可以写成“Disallow:&#x2F;bbs&#x2F;”，如果是多个目录，一个目录写一行，下一个目录换一行写，以此类推就可以了。如果你整个网站都不让抓取，比如你的网站正在调试内测时，可以写”disallow:<em>“;另外，”disallow:&#x2F;wp</em>“表示包括”wp-content、wp-include“等网站根目录下以wp为前缀的目录都禁止蜘蛛爬行。</p>
+<h3 id="第四行代码：“Disallow-jpg-”"><a href="#第四行代码：“Disallow-jpg-”" class="headerlink" title="第四行代码：“Disallow:&#x2F;*.jpg$”"></a>第四行代码：“Disallow:&#x2F;*.jpg$”</h3><p>这行代码就是要告诉搜索引擎，我不需要你收录以.jpg结尾的所有图片文件。例如我还可以不想让搜索引擎收录我网站的.png格式的图片，那我就可以写成“Disallow:&#x2F;*.png$”如果是多个文件格式，一个文件格式写一行，下一个文件格式换一行写，以此类推就可以了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.写完之后你就可以把他保存成名为”robot.txt“（文件名必须如此）的文件，用FTP上传到你网站的根目录就可以了！ 2.网站的网页不是收录越多越好，大家都知道搜索引擎比较网络上的网页相似度（相似度太高的两个页面会分散权重）的时候，不仅仅会进行不同网站间的纵向比较，而且会进行同一网站不同页面间的比较，所以，比如对于个人博客的作者归档和首页，页面内容差不多一样，我们完全可以屏蔽蜘蛛访问作者归档的页面。当然，你可以酌情控制你的日期归档、目录归档是否让搜索蜘蛛抓取。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/how-to-write-robts-txt.html" target="_blank">王柏元的博客 >> 网络蜘蛛访问控制文件robot.txt的写法</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/javascript-implementation-article-copy-plus-copyright-information.html" class="pre-post btn btn-default" title='JavaScript实现文章复制加版权信息'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            JavaScript实现文章复制加版权信息</span>
+    </a>
+    
+    
+    <a href="/write-in-wordpress-said.html" class="next-post btn btn-default" title='在wordpress上写说说/短微博'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            在wordpress上写说说/短微博</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "53729",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E7%BB%99%E5%A4%A7%E5%AE%B6%E8%AE%B2%E5%87%A0%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-text">先给大家讲几个例子：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%A1%8C%EF%BC%9A%E2%80%9C-%E7%A6%81%E6%AD%A2admin%E9%A1%B5%E9%9D%A2%E2%80%9D"><span class="toc-text">第一行：“#禁止admin页面”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%A1%8C%E4%BB%A3%E7%A0%81%EF%BC%9A%E2%80%9Cuser-agent"><span class="toc-text">第二行代码：“user-agent:*</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%A1%8C%E4%BB%A3%E7%A0%81%EF%BC%9A%E2%80%9CDisallow-admin-%E2%80%9D"><span class="toc-text">第三行代码：“Disallow:&#x2F;admin&#x2F;”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%EF%BC%9A%E2%80%9CDisallow-jpg-%E2%80%9D"><span class="toc-text">第四行代码：“Disallow:&#x2F;*.jpg$”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

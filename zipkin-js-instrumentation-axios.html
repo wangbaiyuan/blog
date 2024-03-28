@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JS,微服务" />
+
+
+<meta name="description" content="Zipkin 是由Twitter公司开发并开源的分布式追踪系统，而axios则是常用的Javascript HTTP客户端。由于zipkin-js官方没有提供axios的适配，同时同类型库zip..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    【开源】zipkin-js-instrumentation-axios: 集成axios和zipkin |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【开源】zipkin-js-instrumentation-axios: 集成axios和zipkin">
+            
+            【开源】zipkin-js-instrumentation-axios: 集成axios和zipkin
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JS/" rel="tag">JS</a> <a class="tag-none-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/02/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>Zipkin 是由Twitter公司开发并开源的分布式追踪系统，而axios则是常用的Javascript HTTP客户端。由于zipkin-js官方没有提供axios的适配，同时同类型库zipkin-jinstrumentation-axios已经破坏了axios的原有功能，为此极客人制作了本库用于集成zipkin和axios，可以支持axios原有的所有方法属性，其用法和axios完全一致。</p>
+<h1 id="zipkin-js-instrumentation-axios"><a href="#zipkin-js-instrumentation-axios" class="headerlink" title="zipkin-js-instrumentation-axios"></a>zipkin-js-instrumentation-axios</h1><p>Adds Zipkin tracing support for the <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/axios">axios</a> JS HTTP client library. It <strong>supports all features of <code>axios</code></strong>.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a><a target="_blank" rel="noopener" href="https://github.com/geekeren/zipkin-js-instrumentation-axios#installation"></a>Installation</h2><p>npm install zipkin-js-instrumentation-axios –save</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a><a target="_blank" rel="noopener" href="https://github.com/geekeren/zipkin-js-instrumentation-axios#usage"></a>Usage</h2><p>You need to use <code>wrapAxios</code> fucntion to wrap the native <code>axios</code> instance, and the <code>axios</code> instance’s type&#x2F;functions&#x2F;attributes are not affected. As a result, you can use <code>zipkinAxios</code> the same as <code>axios</code> For example:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;axios&#x27;</span>);<br><span class="hljs-keyword">const</span> wrapAxios = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;zipkin-js-instrumentation-axios&#x27;</span>);<br><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">Tracer</span>, <span class="hljs-title class_">ExplicitContext</span>, <span class="hljs-title class_">ConsoleRecorder</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;zipkin&#x27;</span>);<br><br><span class="hljs-keyword">const</span> ctxImpl = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExplicitContext</span>();<br><span class="hljs-keyword">const</span> recorder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConsoleRecorder</span>();<br><span class="hljs-keyword">const</span> localServiceName = <span class="hljs-string">&#x27;service-a&#x27;</span>; <span class="hljs-comment">// name of this application</span><br><span class="hljs-keyword">const</span> tracer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tracer</span>(&#123; ctxImpl, recorder, localServiceName &#125;);<br><br><span class="hljs-keyword">const</span> remoteServiceName = <span class="hljs-string">&#x27;weather-api&#x27;</span>;<br><span class="hljs-keyword">const</span> zipkinAxios = <span class="hljs-title function_">wrapAxios</span>(axios, &#123; tracer, localServiceName, remoteServiceName &#125;);<br><br>zipkinAxios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user?ID=12345&#x27;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response);<br>  &#125;)<br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+<p> </p>
+<h3 id="Interceptors-of-Axios-also-supported"><a href="#Interceptors-of-Axios-also-supported" class="headerlink" title="Interceptors of Axios also supported"></a><a target="_blank" rel="noopener" href="https://github.com/geekeren/zipkin-js-instrumentation-axios#interceptors-of-axios-also-supported"></a>Interceptors of Axios also supported</h3><p>You can intercept requests or responses before they are handled by then or catch.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Add a request interceptor</span><br>axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">config</span>) &#123;<br>    <span class="hljs-comment">// Do something before request is sent</span><br>    <span class="hljs-keyword">return</span> config;<br>  &#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-comment">// Do something with request error</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;);<br> <br><span class="hljs-comment">// Add a response interceptor</span><br>axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-comment">// Do something with response data</span><br>    <span class="hljs-keyword">return</span> response;<br>  &#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-comment">// Do something with response error</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+<p> </p>
+<h3 id="The-test-cases-all-passed"><a href="#The-test-cases-all-passed" class="headerlink" title="The test cases all passed"></a><a target="_blank" rel="noopener" href="https://github.com/geekeren/zipkin-js-instrumentation-axios#the-test-cases-all-passed"></a>The test cases all passed</h3><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-title">axios</span> instrumentation - integration test<br>   ✓ should add headers to requests<br>   ✓ should sup<span class="hljs-keyword">port</span> request shorthand (defaults to GET)<br>   ✓ should sup<span class="hljs-keyword">port</span> both url and uri options<br>   ✓ should sup<span class="hljs-keyword">port</span> promise callback<br>   ✓ should re<span class="hljs-keyword">port</span> 404 when path does not exist<br>   ✓ should re<span class="hljs-keyword">port</span> when service does not exist (41ms)<br>   ✓ should re<span class="hljs-keyword">port</span> when service returns 400<br>   ✓ should re<span class="hljs-keyword">port</span> when service returns 500<br></code></pre></td></tr></table></figure>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/zipkin-js-instrumentation-axios.html" target="_blank">王柏元的博客 >> 【开源】zipkin-js-instrumentation-axios: 集成axios和zipkin</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/on-continuous-integration-change-merge.html" class="pre-post btn btn-default" title='关于持续集成-变更合并'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            关于持续集成-变更合并</span>
+    </a>
+    
+    
+    <a href="/k8s-health-examination-with-ready-survival-probes.html" class="next-post btn btn-default" title='K8S使用就绪和存活探针配置健康检查'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            K8S使用就绪和存活探针配置健康检查</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "51735",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#zipkin-js-instrumentation-axios"><span class="toc-text">zipkin-js-instrumentation-axios</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-text">Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Interceptors-of-Axios-also-supported"><span class="toc-text">Interceptors of Axios also supported</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-test-cases-all-passed"><span class="toc-text">The test cases all passed</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

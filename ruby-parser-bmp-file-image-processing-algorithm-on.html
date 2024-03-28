@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="ruby" />
+
+
+<meta name="description" content="一、BMP文件格式详解（BMP file format）BMP文件格式，又称为Bitmap（位图）或是DIB(Device-Independent Device，设备无关位图)，是Windows..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Ruby解析bmp文件及图片处理算法（一） |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Ruby解析bmp文件及图片处理算法（一）">
+            
+            Ruby解析bmp文件及图片处理算法（一）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/ruby/" rel="tag">ruby</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/12/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、BMP文件格式详解（BMP-file-format）"><a href="#一、BMP文件格式详解（BMP-file-format）" class="headerlink" title="一、BMP文件格式详解（BMP file format）"></a>一、BMP文件格式详解（BMP file format）</h2><p>BMP文件格式，又称为Bitmap（位图）或是DIB(Device-Independent Device，设备无关位图)，是Windows系统中广泛使用的图像文件格式 下面以Notepad++为分析工具，结合Windows的位图<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/datastructure">数据结构</a>对BMP文件格式进行一个深度的剖析。 BMP文件的数据按照从文件头开始的先后顺序分为四个部分： <strong>bmp文件头(bmp file header)：</strong>提供文件的格式、大小等信息 <strong>位图信息头(bitmap information)：</strong>提供图像数据的尺寸、位平面数、压缩方式、颜色索引等信息 <strong>调色板(color palette)：</strong> 可选，如使用索引来表示图像，调色板就是索引与其对应的颜色的映射表 Ø <strong>位图数据(bitmap data)：</strong>就是图像数据啦^_^ 下面结合Windows结构体的定义，通过一个表来分析这四个部分。</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602111.jpg"></p>
+<p>BMP文件数据结构</p>
+<p>我们一般见到的图像以24位图像为主，即R、G、B三种颜色各用8个bit来表示，这样的图像我们称为真彩色，这种情况下是不需要调色板的，也就是所位图信息头后面紧跟的就是位图数据了。因此，我们常常见到有这样一种说法：位图文件从文件头开始偏移54个字节就是位图数据了，这其实说的是24或32位图的情况。这也就解释了我们按照这种程序写出来的程序为什么对某些位图文件没用了。</p>
+<h3 id="BMP文件头数据结构"><a href="#BMP文件头数据结构" class="headerlink" title="BMP文件头数据结构"></a>BMP文件头数据结构</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602218.jpg"></p>
+<p>Paste_Image.png</p>
+<h3 id="位图信息头数据结构"><a href="#位图信息头数据结构" class="headerlink" title="位图信息头数据结构"></a>位图信息头数据结构</h3><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602311.jpg"></p>
+<p>位图信息头数据结构</p>
+<h3 id="位图数据"><a href="#位图数据" class="headerlink" title="位图数据"></a><strong>位图数据</strong></h3><p>每个像素占一个字节，取得这个字节后，以该字节为索引查询相应的颜色，并显示到相应的显示设备上就可以了。 注意：由于位图信息头中的图像高度是正数，所以位图数据在文件中的排列顺序是<strong>从左下角到右上角，以行为主序排列的。</strong></p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143602417.jpg"></p>
+<p>也即我们见到的第一个像素60是图像最左下角的数据，第二个人像素60为图像最后一行第二列的数据，…一直到最后一行的最后一列数据，后面紧接的是倒数第二行的第一列的数据，依此类推。</p>
+<ul>
+<li>如果图像是24位或是32位数据的位图的话，位图数据区就不是索引而是实际的像素值了。下面说明一下，此时位图数据区的每个像素的RGB颜色阵列排布：</li>
+<li>24位RGB按照BGR的顺序来存储每个像素的各颜色通道的值，一个像素的所有颜色分量值都存完后才存下一个下一个像素，不进行交织存储。</li>
+<li>32位数据按照BGRA的顺序存储，其余与24位位图的方式一样。 像素的排布规则与前述一致。</li>
+</ul>
+<p><strong>对齐规则</strong> 讲完了像素的排列规则以及各像素的颜色分量的排列规则，最后我们谈谈数据的对齐规则。我们知道Windows默认的扫描的最小单位是4字节，如果数据对齐满足这个值的话对于数据的获取速度等都是有很大的增益的。因此，BMP图像顺应了这个要求，要求每行的数据的长度必须是4的倍数，如果不够需要进行比特填充（以0填充），这样可以达到按行的快速存取。这时，位图数据区的大小就未必是 图片宽×每像素字节数×图片高 能表示的了，因为每行可能还需要进行比特填充。 填充后的每行的字节数为：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603516.jpg"></p>
+<p>，其中BPP（Bits Per Pixel）为每像素的比特数。 在程序中，我们可以表示为： <strong>int iLineByteCnt &#x3D; (((m_iImageWidth * m_iBitsPerPixel) + 31) &gt;&gt; 5) &lt;&lt; 2;** 这样，位图数据区的大小为： **m_iImageDataSize &#x3D; iLineByteCnt * m_iImageHeight;** 我们在扫描完一行数据后，也可能接下来的数据并不是下一行的数据，可能需要跳过一段填充数据： **skip &#x3D; 4 - ((m_iImageWidth * m_iBitsPerPixel)&gt;&gt;3) &amp; 3;</strong></p>
+<h2 id="二、Ruby实现BMP图片的解析"><a href="#二、Ruby实现BMP图片的解析" class="headerlink" title="二、Ruby实现BMP图片的解析"></a>二、Ruby实现BMP图片的解析</h2><p>根据上面的BMP图片格式的介绍，我可以写出以下Ruby代码。</p>
+<pre><code>@file = File.open(file, &quot;rb+&quot;)
+@bitMapFileHeader = @file.read(14).unpack(&#39;a2LS2L&#39;)
+
+@type=@bitMapFileHeader\[0\] #文件类型，BM：BMP图片
+
+if @type!=&quot;BM&quot;
+  puts &quot;不是BMP图片&quot;
+  exit
+end
+
+@size=@bitMapFileHeader\[1\] #文件大小
+@offBits=@bitMapFileHeader\[4\] #图像数据的偏移字节
+@bitMapInfoHeader = @file.read(40).unpack(&#39;L3S2L6&#39;)
+
+@infoSize=@bitMapInfoHeader\[0\] #图片信息字段大小
+@width=@bitMapInfoHeader\[1\] #图片宽度
+@height=@bitMapInfoHeader\[2\] #图片高度
+@planes=@bitMapInfoHeader\[3\] #平面数
+@bitCountPerPixel=@bitMapInfoHeader\[4\] #图片位数
+@compression=@bitMapInfoHeader\[5\]
+@imageDataSize=@bitMapInfoHeader\[6\] #图片数据段大小
+@xPelsPerMeter=@bitMapInfoHeader\[7\]
+@yPelsPerMeter=@bitMapInfoHeader\[8\]
+@ClrUsed=@bitMapInfoHeader\[9\]
+@ClrImportant=@bitMapInfoHeader\[10\]
+@skipByteALine = 4 - ((@width * @bitCountPerPixel)&gt;&gt;3) &amp; 3
+if @bitCountPerPixel == 24
+
+  iLineByteCnt = (((@width * @bitCountPerPixel) + 31) &gt;&gt; 5) &lt;&lt; 2
+  @file.seek @offBits
+  @imageDataArray= @file.read(@imageDataSize).unpack(&quot;C*&quot;)
+end
+</code></pre>
+<p>  file对象中的read(length)是从文件指针开始读出length个字节的数据，数据类型是字符串，通过unpack函数，我们可以通过传入unpack参数解析出bmp图片的数据结构。 以<code>@file.read(14).unpack(&#39;a2LS2L&#39;)</code>为例，根据上面的BMP文件数据结构的分析，read(14)是读出bmp文件的前14个字节的文件头，参数’a2LS2L’可以将14个字节的数据解析为 两个字符（1*2字节）、一个Long型（1*8字节）、两个Short型（2*2字节），分别取出bmp图片的文件类型（“BM”）、文件大小、两个保留字段、 <strong>图像数据偏移量（@imageDataSize）</strong> 。</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603620.jpg"></p>
+<p>Paste_Image.png</p>
+<p>再从文件中读入@imageDataSize个字节的数据，解析为字符数组，里面除了一些因对齐规则以外的数据都是图片的数据；</p>
+<p>@imageDataArray&#x3D; @file.read(@imageDataSize).unpack(“C*”)</p>
+<p>  如果是24位BMP图片，<strong>那么每个像素占据三个字节，分别为RGB中的B、G、R值</strong>。 以一个height&#x3D;2，width&#x3D;2的图片为例，其图片数据部分转成单字节数组如下：</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>14</p>
+<p>15</p>
+<p>16</p>
+<p>124</p>
+<p>254</p>
+<p>258</p>
+<p>123</p>
+<p>212</p>
+<p>21</p>
+<p>221</p>
+<p>56</p>
+<p>107</p>
+<p>204</p>
+<p>251</p>
+<p>100</p>
+<p>52</p>
+<p>100</p>
+<p>111</p>
+<p>59</p>
+<p>其中每一行的无效数据：skipByteALine &#x3D; 4 - ((2 * 24)&gt;&gt;3) &amp; 3&#x3D;2 为了更形象地表示图片像素与RGB数据的对应关系，在此我以二维矩阵的方式展示上面的一维数组：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603719.jpg"></p>
+<p>Paste_Image.png</p>
+<p>由于对齐原则，第一行的7 、8，第二行的15、16元素将被丢弃。 基于以上考虑，可以通过以下Ruby代码获取指定像素位置的RGB值</p>
+<p>#图片（i，j）位置的RGB,二维坐标到一维坐标的映射，同时考虑到一个像素的位数以及skip量<br>def getRGB(i, j)<br> linearIndex &#x3D; (@width*i+j)*(@bitCountPerPixel&gt;&gt;3)+i*@skipByteALine<br>RGB.new(@imageDataArray[linearIndex+2], @imageDataArray[linearIndex+1], @imageDataArray[linearIndex])<br>end</p>
+<p>  通过以下Ruby代码设置指定像素位置的RGB值</p>
+<p>def setRGB(i, j, rgb)<br>  linearIndex &#x3D; (@width*i+j)*(@bitCountPerPixel&gt;&gt;3)+i*@skipByteALine  @imageDataArray[linearIndex+2] &#x3D; rgb.r<br>@imageDataArray[linearIndex+1] &#x3D; rgb.g<br>@imageDataArray[linearIndex] &#x3D; rgb.b<br>end</p>
+<p> </p>
+<h2 id="三、Ruby处理图片"><a href="#三、Ruby处理图片" class="headerlink" title="三、Ruby处理图片"></a>三、Ruby处理图片</h2><p>通过上面介绍的setRGB和getRGB方法来修改bmp的图片数据字节数组，我们就可以对bmp的指定像素进行操作了，下面介绍将图片灰度化：</p>
+<p>#灰度化图片，取RGB三色平均值<br> #灰度化图片<br>  #取RGB三色平均值<br>  def self.grey(bmp)<br>    for i in 0 .. bmp.height - 1<br>      for j in 0 .. bmp.width - 1<br>        rgb &#x3D; bmp.getRGB(i, j)<br>        grey &#x3D; rgb.getGreyLevel<br>        bmp.setRGB(i, j, RGB.new(grey, grey, grey))<br>      end<br>    end<br>  end</p>
+<p>  上面的代码我取得所有像素的RGB，然后求出R、G、B值的平均值，RGB值三值相同时像素呈现为灰色 上面的操作只会修改图像数据字节数组，修改完毕需要保存到磁盘，保存方法如下：</p>
+<p>def save(file)<br>@saveFile &#x3D; File.open(file, “wb”)<br>@saveFile.write(@bitMapFileHeader.pack(‘a2LS2L’))<br>@saveFile.write(@bitMapInfoHeader.pack(‘L3S2L6’))<br>@saveFile.write(@imageDataArray.pack(‘C*’))<br>@file.close  @saveFile.close<br>end</p>
+<p>  原图：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603811.jpg"></p>
+<p>raw.jpg</p>
+<p>处理效果：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161230143603918.jpg"></p>
+<p>out_grey.jpg</p>
+<blockquote>
+<p>下篇文章我将介绍<strong>二值化</strong>、<strong>浮雕滤镜</strong>、<strong>底片滤镜</strong>等图像处理算法 <strong>预览：</strong></p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/201612301436041014.jpg"></p>
+<p>Paste_Image.png</p>
+</blockquote>
+<h2 id="项目主页"><a href="#项目主页" class="headerlink" title="项目主页"></a>项目主页</h2><p><a target="_blank" rel="noopener" href="https://github.com/geekeren">geekeren</a>&#x2F;<strong><a target="_blank" rel="noopener" href="https://github.com/geekeren/RubyImageProcess">RubyImageProcess</a></strong>  </p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/hzqnju/article/details/5927825">http://blog.csdn.net/hzqnju/article/details/5927825</a> <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/30fbaab6d0a6">http://www.jianshu.com/p/30fbaab6d0a6</a> <a target="_blank" rel="noopener" href="http://blog.csdn.net/hxker/article/details/50013303">http://blog.csdn.net/hxker/article/details/50013303</a> <a target="_blank" rel="noopener" href="http://blog.csdn.net/o_sun_o/article/details/8351037">http://blog.csdn.net/o_sun_o&#x2F;article&#x2F;details&#x2F;8351037</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ruby-parser-bmp-file-image-processing-algorithm-on.html" target="_blank">王柏元的博客 >> Ruby解析bmp文件及图片处理算法（一）</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ruby-basic-image-processing-algorithm-2-binary-grayscale-emboss.html" class="pre-post btn btn-default" title='Ruby图片处理基本算法（二）二值、灰度、浮雕...'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Ruby图片处理基本算法（二）二值、灰度、浮雕...</span>
+    </a>
+    
+    
+    <a href="/in-ruby-jane-books-crawler-statistics-users-post-information.html" class="next-post btn btn-default" title='用Ruby简书爬虫统计用户文章信息'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            用Ruby简书爬虫统计用户文章信息</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "16972",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81BMP%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E8%AF%A6%E8%A7%A3%EF%BC%88BMP-file-format%EF%BC%89"><span class="toc-text">一、BMP文件格式详解（BMP file format）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BMP%E6%96%87%E4%BB%B6%E5%A4%B4%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">BMP文件头数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E5%9B%BE%E4%BF%A1%E6%81%AF%E5%A4%B4%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">位图信息头数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E5%9B%BE%E6%95%B0%E6%8D%AE"><span class="toc-text">位图数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Ruby%E5%AE%9E%E7%8E%B0BMP%E5%9B%BE%E7%89%87%E7%9A%84%E8%A7%A3%E6%9E%90"><span class="toc-text">二、Ruby实现BMP图片的解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Ruby%E5%A4%84%E7%90%86%E5%9B%BE%E7%89%87"><span class="toc-text">三、Ruby处理图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%BB%E9%A1%B5"><span class="toc-text">项目主页</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

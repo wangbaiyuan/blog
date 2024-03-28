@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="SSD7" />
+
+
+<meta name="description" content="
+这是SSD7练习的EX3，预计极客人将会写一个系列，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD7”即可获取已更新的SSD7答案。上一练习：SSD7_E..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD7_EX3【高级SQL】 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD7_EX3【高级SQL】">
+            
+            SSD7_EX3【高级SQL】
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD7/" rel="tag">SSD7</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/11</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>这是SSD7练习的EX3，预计极客人将会写一个系列，更新频率会和NWPU数据库系统实验课2013级进度同步。点击标签或在本站搜索“SSD7”即可获取已更新的SSD7答案。<a href="http://baiyuan.wang/ssd7-ex2-sql.html">上一练习：SSD7_EX2【SQL】</a></p>
+</blockquote>
+<h2 id="原题摘要"><a href="#原题摘要" class="headerlink" title="原题摘要:"></a>原题摘要:</h2><p>此练习以图书馆系统library schema为案例，案例包含了图书馆书籍信息、图书馆成员信息，图书馆借阅信息（某本书被某个读者借阅几次），提供书籍的出版社信息，出版社订单信息。为了与其他练习作区分，本次练习的每个关系名字最后一个字符为阿拉伯数字‘4’。 使用CREATE TABLE and INSERT statements提供的SQL语句创建你的所有关系，要求在一个空的数据库中运行提供的SQL语句创建数据库。</p>
+<h2 id="英文："><a href="#英文：" class="headerlink" title="英文："></a>英文：</h2><p>For this exercise, we will use the library schema. <a href="http://baiyuan.wang/wp-content/uploads/2015/05/clip_image001.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/clip_image001_thumb.png" alt="SSD7_EX3高级SQL" title="SSD7_EX3高级SQL"></a> It includes information about book titles in the library, information about library members, about the number of times the books were read by members, about the suppliers who supply books to the library, and about orders placed with the suppliers. To distinguish the table names used in this exercise from the table names in other exercise, each table name in this exercise ends with the character ‘4’. Point of clarification: The ReceivedDate column refers to the date when the Order was received by the system (i.e., recorded in the database). It does not refer to the date a consumer received the items ordered by him.  </p>
+<blockquote>
+<p><em><strong>作业还是自己做的好，以下是我做的结果，作交流学习之用，不要盲目抄袭，东西学会了才是自己的！答案可能有纰漏，欢迎指正，水平有限，仅供参考：</strong></em></p>
+</blockquote>
+<p>  1.运行提供的SQL语句，完成关系的创建和部分数据插入。 2.书写SQL语句，删除所有关系中的数据，将你的答案书写在一个名为delete_rows.sql的文件中。</p>
+<h2 id="delete-rows-sql"><a href="#delete-rows-sql" class="headerlink" title="delete_rows.sql"></a>delete_rows.sql</h2><p>USE libsupply;<br>DELETE FROM book4;<br>DELETE FROM title4;<br>DELETE FROM member4;</p>
+<p>    3.按照要求书写SQL语句，并运行它们，完成对数据库的修改和完善。  </p>
+<h2 id="alter-tables-sql："><a href="#alter-tables-sql：" class="headerlink" title="alter_tables.sql："></a>alter_tables.sql：</h2><p>alter table libsupply.title4<br>add constraint ak_isbn  alternate KEYS title4(isbn);<br>alter table libsupply.title4<br>add constraint ak_isbn  alternate KEYS title4(name);</p>
+<p>alter table libsupply.MEMBER4<br>add Join_date DATE;<br>alter table libsupply.MEMBER4<br>add Gender CHAR(1);<br>ALTER TABLE libsupply.book4<br>add CONSTRAINT fk_callnumber FOREIGN KEY(callnumber) REFERENCES libsupply.title4(callnumber);<br>ALTER TABLE libsupply.book4<br>add CONSTRAINT fk_borrowerid FOREIGN KEY(borrowerid) REFERENCES libsupply.member4(libid);<br>CREATE TABLE PURCHASE_ORDER4(<br>PoNum char(8),<br>Qty INT,<br>OrderDate DATE,<br>DueDate DATE,<br>ReceivedDate DATE,<br>PRIMARY KEY(PoNum)<br>);<br>CREATE TABLE SUPPLIER4(<br>Supplier_Id char(8),<br>Name varchar(30),<br>Address VARCHAR(100),<br>PRIMARY KEY(Supplier_Id)<br>);</p>
+<p>CREATE TABLE READ_BY4(<br>callnumber  char(8) NOT NULL,<br>LibId char(6) NOT NULL,<br>TimesRead INT,<br>Primary KEY(CallNumber, LibId),<br>FOREIGN KEY(CallNumber) REFERENCES libsupply.title4(CallNumber),<br>FOREIGN KEY(LibId) REFERENCES libsupply.MEMBER4(LibId)<br>);</p>
+<p>CREATE TABLE ORDERED4(<br>CallNumber char(8) NOT NULL,<br>PoNum char(8),<br>Supplier_Id char(8),<br>PRIMARY KEY(CallNumber, PoNum, Supplier_Id),<br>FOREIGN KEY(CallNumber) REFERENCES libsupply.TITLE4(CallNumber),<br>FOREIGN KEY(PoNum) REFERENCES libsupply.PURCHASE_ORDER4(PoNum),<br>FOREIGN KEY(Supplier_Id) REFERENCES libsupply.SUPPLIER4(Supplier_Id)<br>);<br>ALTER TABLE READ_BY4<br>add CONSTRAINT CK_TR CHECK(TimesRead&gt;&#x3D;0);</p>
+<p>2）运行INSERT SQL statements提供的SQL语句插入数据 3）按照以下查询要求书写SQL语句，将你的答案书写在一个名为queries.sql的文件中。</p>
+<h2 id="（1）列出符合以下要求的所有图书馆成员的ID，第一名字和Join-date"><a href="#（1）列出符合以下要求的所有图书馆成员的ID，第一名字和Join-date" class="headerlink" title="（1）列出符合以下要求的所有图书馆成员的ID，第一名字和Join_date;"></a>（1）列出符合以下要求的所有图书馆成员的ID，第一名字和Join_date;</h2><p>ID以字符“A%B”或者“A&amp;B”开始。●不晚于Nov. 30, 1997加入图书馆</p>
+<p>SELECT libid,fname,Join_date<br>FROM libsupply.member4<br>WHERE (libid LIKE ‘A&#x2F;%B%’ ESCAPE ‘&#x2F;‘ or libid LIKE ‘A&amp;B%’)AND JOIN_date&lt;’1997-11-30’;</p>
+<p> </p>
+<h2 id="（2）列出符合以下要求的所有书的名字、ISBN、CallNumber。"><a href="#（2）列出符合以下要求的所有书的名字、ISBN、CallNumber。" class="headerlink" title="（2）列出符合以下要求的所有书的名字、ISBN、CallNumber。"></a>（2）列出符合以下要求的所有书的名字、ISBN、CallNumber。</h2><p>●由两个或两个以上的出版社提供。 ●所有的订单总量在10本以上。 ●按照订单总量递减的顺序排列结果。</p>
+<p>USE libsupply;</p>
+<p>SELECT<br>    t4.name,t4.isbn,t4.callnumber<br>FROM<br>    title4 t4,ordered4 o4,purchase_order4 po4,supplier4 s4<br>WHERE<br>    t4.callnumber &#x3D; o4.callnumber<br>AND o4.ponum &#x3D; po4.ponum<br>AND o4.supplier_id &#x3D; s4.supplier_id<br>GROUP BY t4.callnumber<br>HAVING COUNT(O4.SUPPLIER_ID)&gt;&#x3D;2 and SUM(po4.Qty)&gt;&#x3D;10<br>ORDER BY o4.supplier_id;</p>
+<p>  &#x2F;*</p>
+<h2 id="3）列出符合以下要求的所有图书馆成员ID和第一名字。"><a href="#3）列出符合以下要求的所有图书馆成员ID和第一名字。" class="headerlink" title="(3）列出符合以下要求的所有图书馆成员ID和第一名字。"></a>(3）列出符合以下要求的所有图书馆成员ID和第一名字。</h2><p>●借阅书的次数小于图书馆所有书借阅次数综合的5%。 ●按照借阅次数的递增顺序排列结果。 *&#x2F;</p>
+<p>SELECT m4.libid,m4.fname<br>from member4 m4,read_by4 rb4<br>WHERE m4.libid&#x3D;rb4.libid<br>GROUP BY rb4.libId<br>HAVING SUM(rb4.TimesRead)&lt;(SELECT SUM(TimesRead)<br>from read_by4)*0.05<br>ORDER BY SUM(rb4.TimesRead);</p>
+<p> </p>
+<h2 id="（4）列出符合以下要求的所有图书馆成员的ID和第一名字。"><a href="#（4）列出符合以下要求的所有图书馆成员的ID和第一名字。" class="headerlink" title="（4）列出符合以下要求的所有图书馆成员的ID和第一名字。"></a>（4）列出符合以下要求的所有图书馆成员的ID和第一名字。</h2><p>●性别为女。 ●在图书馆有借阅记录（读某本书一次）。 ●按名字的字母顺序排列结果。</p>
+<p>SELECT libid,fname<br>from member4<br>WHERE libid in(<br>SELECT libid<br>from read_by4<br>)and Gender&#x3D;’F’<br>ORDER BY fname;</p>
+<h2 id="（5）列出符合以下要求的所有出版的名字，ID，和订书总量。"><a href="#（5）列出符合以下要求的所有出版的名字，ID，和订书总量。" class="headerlink" title="（5）列出符合以下要求的所有出版的名字，ID，和订书总量。"></a>（5）列出符合以下要求的所有出版的名字，ID，和订书总量。</h2><p>●平均订书量（某个出版社收到的订书总量除以该出版社收到的订单数）低于系统的平均订书量（系统收到的订书总量除以所有订单数）。 *&#x2F;</p>
+<p>select s4.Name,s4.Supplier_Id,SUM(po4.Qty)&#x2F;COUNT(o4.PoNum),SUM(po4.Qty),COUNT(o4.PoNum)<br>from ordered4 o4, supplier4 s4,purchase_order4 po4<br>where o4.PoNum&#x3D;po4.PoNum and o4.Supplier_Id&#x3D;s4.Supplier_Id<br>GROUP BY o4.Supplier_Id<br>HAVING SUM(po4.Qty)&#x2F;COUNT(o4.PoNum)&lt;(<br>SELECT AVG(Qty)<br>FROM purchase_order4<br>);</p>
+<p>  &#x2F;*</p>
+<h2 id="（6）列出符合以下要求的所有图书馆成员的第一名字，ID。"><a href="#（6）列出符合以下要求的所有图书馆成员的第一名字，ID。" class="headerlink" title="（6）列出符合以下要求的所有图书馆成员的第一名字，ID。"></a>（6）列出符合以下要求的所有图书馆成员的第一名字，ID。</h2><p>●性别为男。 ●Oct. 10, 1995前加入图书馆。 ●阅读不同标题（title）书籍的次数在5次或5次以下。 ●阅读同一书籍（同一title）的次数在两次或两次以上 *&#x2F;</p>
+<p>SELECT m4.libid,m4.fname<br>from member4 m4,read_by4 rb4,title4 t4<br>where m4.gender&#x3D;’M’<br>and m4.JOIN_date&lt;&#x3D;’1995-10-10’<br>and t4.callnumber&#x3D;rb4.callnumber<br>and m4.libid&#x3D;rb4.libid<br>AND rb4.TimesRead&gt;&#x3D;2<br>GROUP BY (m4.LibId)<br>HAVING COUNT(DISTINCT t4.name)&lt;&#x3D;5;</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd7-ex3-advanced-sql.html" target="_blank">王柏元的博客 >> SSD7_EX3【高级SQL】</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/practicing-spirit-is-sword.html" class="pre-post btn btn-default" title='练“气”还是练“剑”'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            练“气”还是练“剑”</span>
+    </a>
+    
+    
+    <a href="/12-way-to-enhance-the-wordpress-web-site-security.html" class="next-post btn btn-default" title='强化WordPress网站安全的 12 个方法'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            强化WordPress网站安全的 12 个方法</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "22725",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E9%A2%98%E6%91%98%E8%A6%81"><span class="toc-text">原题摘要:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8B%B1%E6%96%87%EF%BC%9A"><span class="toc-text">英文：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete-rows-sql"><span class="toc-text">delete_rows.sql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alter-tables-sql%EF%BC%9A"><span class="toc-text">alter_tables.sql：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%88%97%E5%87%BA%E7%AC%A6%E5%90%88%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%E7%9A%84%E6%89%80%E6%9C%89%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%88%90%E5%91%98%E7%9A%84ID%EF%BC%8C%E7%AC%AC%E4%B8%80%E5%90%8D%E5%AD%97%E5%92%8CJoin-date"><span class="toc-text">（1）列出符合以下要求的所有图书馆成员的ID，第一名字和Join_date;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%88%97%E5%87%BA%E7%AC%A6%E5%90%88%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%E7%9A%84%E6%89%80%E6%9C%89%E4%B9%A6%E7%9A%84%E5%90%8D%E5%AD%97%E3%80%81ISBN%E3%80%81CallNumber%E3%80%82"><span class="toc-text">（2）列出符合以下要求的所有书的名字、ISBN、CallNumber。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%89%E5%88%97%E5%87%BA%E7%AC%A6%E5%90%88%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%E7%9A%84%E6%89%80%E6%9C%89%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%88%90%E5%91%98ID%E5%92%8C%E7%AC%AC%E4%B8%80%E5%90%8D%E5%AD%97%E3%80%82"><span class="toc-text">(3）列出符合以下要求的所有图书馆成员ID和第一名字。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E5%88%97%E5%87%BA%E7%AC%A6%E5%90%88%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%E7%9A%84%E6%89%80%E6%9C%89%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%88%90%E5%91%98%E7%9A%84ID%E5%92%8C%E7%AC%AC%E4%B8%80%E5%90%8D%E5%AD%97%E3%80%82"><span class="toc-text">（4）列出符合以下要求的所有图书馆成员的ID和第一名字。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E5%88%97%E5%87%BA%E7%AC%A6%E5%90%88%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%E7%9A%84%E6%89%80%E6%9C%89%E5%87%BA%E7%89%88%E7%9A%84%E5%90%8D%E5%AD%97%EF%BC%8CID%EF%BC%8C%E5%92%8C%E8%AE%A2%E4%B9%A6%E6%80%BB%E9%87%8F%E3%80%82"><span class="toc-text">（5）列出符合以下要求的所有出版的名字，ID，和订书总量。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E5%88%97%E5%87%BA%E7%AC%A6%E5%90%88%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%E7%9A%84%E6%89%80%E6%9C%89%E5%9B%BE%E4%B9%A6%E9%A6%86%E6%88%90%E5%91%98%E7%9A%84%E7%AC%AC%E4%B8%80%E5%90%8D%E5%AD%97%EF%BC%8CID%E3%80%82"><span class="toc-text">（6）列出符合以下要求的所有图书馆成员的第一名字，ID。</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="Web,FTP,IPv6" />
+
+
+<meta name="description" content=" 
+
+现在在校园局域网里建立个人的FTP服务器和使用远程桌面已经蔚然成风。由于局域网给予了FTP高达10M的传输速度，它便成为极佳的分享工具。由于发现学校的电脑支持IPv6,又考虑到IPv6地址..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    建立IPv6 FTP和web服务器实现跨校访问 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="建立IPv6 FTP和web服务器实现跨校访问">
+            
+            建立IPv6 FTP和web服务器实现跨校访问
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/FTP/" rel="tag">FTP</a> <a class="tag-none-link" href="/tags/IPv6/" rel="tag">IPv6</a> <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/18</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p> </p>
+<blockquote>
+<p>现在在校园局域网里建立个人的FTP服务器和使用远程桌面已经蔚然成风。由于局域网给予了FTP高达10M的传输速度，它便成为极佳的分享工具。由于发现学校的电脑支持IPv6,又考虑到IPv6地址如同天文数字不存在不足问题，笔者突发奇想：能不能通过建立IPV4 FTP和WEB的方法建立IPV6的FTP和WEB服务器？甚至实现不同学校间支持IPV6用户的互联互通！</p>
+</blockquote>
+<p>  试验的结果令人振奋，此法果然可行！下面放出我的试验结果图：   <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141218151116_62850.jpg">  </p>
+<blockquote>
+<p>笔者使用这个FTP成功实现了和远在湖南大学同学的直接的FTP文件传输</p>
+</blockquote>
+<p> </p>
+<ul>
+<li>ping测试结果：</li>
+</ul>
+<p>  <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141218144443_87681.png"></p>
+<h2 id="教程：建立IPV6-FTP和web服务器实现跨校访问"><a href="#教程：建立IPV6-FTP和web服务器实现跨校访问" class="headerlink" title="教程：建立IPV6 FTP和web服务器实现跨校访问"></a>教程：建立IPV6 FTP和web服务器实现跨校访问</h2><h3 id="工具-软件"><a href="#工具-软件" class="headerlink" title="工具&#x2F;软件"></a>工具&#x2F;软件</h3><ul>
+<li><p>win7及以上版本电脑（XP电脑开启IPV6的方法请百度）</p>
+</li>
+<li><p>serv-u FTP建立软件，XAMPP web环境搭建软件</p>
+</li>
+<li><p>有IPV6访问功能的网络</p>
+</li>
+</ul>
+<p>（注：XAMPP支持PHP等，单纯的html和简单的FTP服务win7是自带的，可以不安装以上两种软件）</p>
+<h3 id="方法-步骤"><a href="#方法-步骤" class="headerlink" title="方法&#x2F;步骤"></a>方法&#x2F;步骤</h3><ul>
+<li>安装IPv6协议并验证是否有IPv6访问权限：</li>
+</ul>
+<p>点击右下角网络图标，打开“网络和共享中心”-本地连接-属性-本连接使用下列项目 <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141218150801_31787.png"></p>
+<ul>
+<li>获取本机IPv6地址，可通过ipconfig命令</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141219105631_95811.png"></p>
+<ul>
+<li>搭建FTP服务器</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141218153519_46278.png"> 搭建IPV6 FTP服务器和搭建IPV4FTP服务器一样，打开serv-u管理控制台，在 在 域详细信息中 点击“配置域的监听器”，然后如下图添加监听器： 类型：FTP IP地址：你的IPV6地址 <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141218153554_35731.png"> 为了验证你是否你是否成功搭建，你可以在浏览器中键入：ftp:&#x2F;&#x2F;[你的IPV6地址] <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141218153613_45827.png"></p>
+<ul>
+<li>搭建web服务器</li>
+</ul>
+<p>  搭建web服务器你可以百度，笔者推荐“XAMPP”这款软件，为了验证你是否你是否成功搭建，你可以在浏览器中键入：http:&#x2F;&#x2F;[你的IPV6地址] 下面是我的试验效果： <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141219105826_74419.png">  </p>
+<blockquote>
+<p>以上的WEB和FTP服务器访问，笔者在我的其他大学支持IPV6的同学计算机上试验通过，可以直接通过IPV6网络直接传文件和访问WEB网页</p>
+</blockquote>
+<p> </p>
+<h2 id="进阶篇：添加域名解析到本机IPV6地址，做地址好记的全IPV6网络的web-ftp服务器！"><a href="#进阶篇：添加域名解析到本机IPV6地址，做地址好记的全IPV6网络的web-ftp服务器！" class="headerlink" title="进阶篇：添加域名解析到本机IPV6地址，做地址好记的全IPV6网络的web&#x2F;ftp服务器！"></a>进阶篇：添加域名解析到本机IPV6地址，做地址好记的全IPV6网络的web&#x2F;ftp服务器！</h2><p>  上面看到，IPV6的IP地址极长，和32位的IPV4相比，高达128位的IPv6足足是其4倍，这很不利于我们的记忆，我们可以把自己的域名解析到自己电脑的IPV6地址。</p>
+<h3 id="具体方法是"><a href="#具体方法是" class="headerlink" title="具体方法是"></a>具体方法是</h3><p>在域名管理中添加“AAAA”记录指向你的IPv6地址，笔者使用的是DNSpod管理自己的域名，如下图 <img src="http://baiyuan.wang/wp-content/uploads/2014/12/20141219110626_95826.png"></p>
+<h2 id="最后："><a href="#最后：" class="headerlink" title="最后："></a>最后：</h2><p> </p>
+<blockquote>
+<p>本教程系本人原创，互联网上类似资源也较少，希望大家批评指正。</p>
+</blockquote>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html" target="_blank">王柏元的博客 >> 建立IPv6 FTP和web服务器实现跨校访问</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/experience-in-metalworking-forging.html" class="pre-post btn btn-default" title='金工实习心得:锻造'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            金工实习心得:锻造</span>
+    </a>
+    
+    
+    <a href="/qt-how-to-modify-system-time-and-time-zone-error-problem.html" class="next-post btn btn-default" title='QT中怎样修改系统时间及其时区错误问题'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            QT中怎样修改系统时间及其时区错误问题</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "16363",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/452e603391de8eab06a33b3426a1ed67.png"
+                                 alt="@金先生">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                金先生
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-06-26
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                去www.meibu.com 申请个动态域名，直接用域名解析这个IPv6地址，访问起来更方便的了，省的去记那么长的IP地址
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-05
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我也不知道是不是所有学校的ipv6网都连接在一起了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/6fdd76110103b62b897470aa951777c3.png"
+                                 alt="@suqin">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                suqin
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-04
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                您好，我搭建了一个Ftp 服务器，环境：
+ubuntu 14.04 + Vsftpd
+开启了ipv6支持，校内可以通过ipv6 访问，但是无法实现跨校区访问，能请教您一下是什么问题吗
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-04-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                或者是防火墙屏蔽了FTP、WEB服务联网，请在控制面板-防火墙为当前服务添加例外
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-04-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                请把命令指示符ipconfig的截图和你的IPV6地址发给我邮箱
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d3cb757121f725fe825a1176031a1c14.png"
+                                 alt="@wu">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                wu
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-04-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                电脑可以连接ipv6,可以ping通自己的ipv6地址。但是别人ping不通。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-04-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                请确定能访问IPV6，请把你的问题说清楚
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d3cb757121f725fe825a1176031a1c14.png"
+                                 alt="@wu">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                wu
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-04-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                按你的方法，ftp服务器ping不通啊。不知道什么原因
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-20
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                文章下面有个分享按钮
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                文章下面有分享按钮
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/a2d036621ff80bfe88b64c17c723ad7b.png"
+                                 alt="@wrj">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                wrj
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                转载你的这篇文章啊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f6376ac9794a070fed7bcd94d0af0540.png"
+                                 alt="@王柏元">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                收藏转载什么
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/80c4f637d0a5b2e006c8787dda1f97a0.png"
+                                 alt="@华光湮灭">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                华光湮灭
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                如何收藏或转载
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%99%E7%A8%8B%EF%BC%9A%E5%BB%BA%E7%AB%8BIPV6-FTP%E5%92%8Cweb%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%B7%A8%E6%A0%A1%E8%AE%BF%E9%97%AE"><span class="toc-text">教程：建立IPV6 FTP和web服务器实现跨校访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7-%E8%BD%AF%E4%BB%B6"><span class="toc-text">工具&#x2F;软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-%E6%AD%A5%E9%AA%A4"><span class="toc-text">方法&#x2F;步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%9A%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%88%B0%E6%9C%AC%E6%9C%BAIPV6%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%81%9A%E5%9C%B0%E5%9D%80%E5%A5%BD%E8%AE%B0%E7%9A%84%E5%85%A8IPV6%E7%BD%91%E7%BB%9C%E7%9A%84web-ftp%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%81"><span class="toc-text">进阶篇：添加域名解析到本机IPV6地址，做地址好记的全IPV6网络的web&#x2F;ftp服务器！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95%E6%98%AF"><span class="toc-text">具体方法是</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%9A"><span class="toc-text">最后：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

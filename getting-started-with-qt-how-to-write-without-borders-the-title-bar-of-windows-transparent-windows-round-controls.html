@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="QT" />
+
+
+<meta name="description" content="对于QT的初学者来说，去除边框，实现窗口透明度可能是美化GUI的基本要求，笔者综合了网上的代码，进行了总结：
+无边框（标题栏）的窗口&#x2F;&#x2F;无边框（标题栏）的窗口
+QApplic..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    QT入门：怎么写无边框（标题栏）的窗口、透明窗口、圆角控件 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="QT入门：怎么写无边框（标题栏）的窗口、透明窗口、圆角控件">
+            
+            QT入门：怎么写无边框（标题栏）的窗口、透明窗口、圆角控件
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/QT/" rel="tag">QT</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>对于QT的初学者来说，去除边框，实现窗口透明度可能是美化GUI的基本要求，笔者综合了网上的代码，进行了总结：</p>
+<h2 id="无边框（标题栏）的窗口"><a href="#无边框（标题栏）的窗口" class="headerlink" title="无边框（标题栏）的窗口"></a>无边框（标题栏）的窗口</h2><p>&#x2F;&#x2F;无边框（标题栏）的窗口</p>
+<p>QApplication a(argc, argv);<br> MainWindow w;<br> w.setWindowOpacity(1);<br> w.setWindowFlags(Qt::FramelessWindowHint);<br> w.setAttribute(Qt::WA_TranslucentBackground);<br> w.show();</p>
+<p>  setWindowOpacity(1)这一句代码实现窗口的透明效果，函数里面的参数是透明度，1表示不透明 setWindowFlags(Qt::FramelessWindowHint);隐藏窗口的标题栏和边框  </p>
+<h2 id="背景刷成黑色-前景色设为白色。"><a href="#背景刷成黑色-前景色设为白色。" class="headerlink" title="背景刷成黑色,前景色设为白色。"></a>背景刷成黑色,前景色设为白色。</h2><p>方法一、paltette方式，经测试，该方法不会影响到其他控件,推荐使用  </p>
+<p>QPalette bgpal &#x3D; palette();<br>bgpal.setColor (QPalette::Background, QColor (0, 0 , 0, 255));<br>&#x2F;&#x2F;bgpal.setColor (QPalette::Background, Qt::transparent);<br>bgpal.setColor (QPalette::Foreground, QColor (255,255,255,255));<br>setPalette (bgpal);</p>
+<p>  方法二、stylesheet方式 影响子控件的方法是：  </p>
+<p>setStyleSheet (“background-color: rgb(0,0,0);color: rgb(255,255,255);”);</p>
+<p>  不影响子控件的方法是：  </p>
+<p>setStyleSheet (“venus–TitleBar {background-color: rgb(0,0,0);color: rgb(255,255,255);}”);</p>
+<p>   </p>
+<h2 id="圆角控件-用stylesheet方式"><a href="#圆角控件-用stylesheet方式" class="headerlink" title="圆角控件 用stylesheet方式"></a>圆角控件 用stylesheet方式</h2><p> </p>
+<p>setStyleSheet (“border-radius:10px;”);</p>
+<p> </p>
+<h2 id="圆角窗口"><a href="#圆角窗口" class="headerlink" title="  圆角窗口 "></a>  圆角窗口 </h2><p> </p>
+<p>RoundRectWin::RoundRectWin() { QPalette p &#x3D; palette(); QPixmap img(“roundrect.png”);<br>    QBitmap mask(“roundrect_mask.png”);<br>    p.setBrush(QPalette::Window, QBrush(img));<br>    setPalette(p);<br>    setMask(mask);<br>    resize(img.size());<br>    &#x2F;&#x2F;setWindowFlags(Qt::FramelessWindowHint);&#x2F;&#x2F;这句会去掉标题栏 } 注意:mask的图多余部分设为白色</p>
+<p>   </p>
+<h2 id="半透明窗口"><a href="#半透明窗口" class="headerlink" title="半透明窗口"></a>半透明窗口</h2><p> </p>
+<ol>
+<li><p>窗口整体透明，但是窗体上的控件不透明。 通过设置窗体的背景色来实现，将背景色设置为全透。 试验效果：</p>
+<p> QPalette pal &#x3D; palette();<br>pal.setColor(QPalette::Background, QColor(0x00,0xff,0x00,0x00)); setPalette(pal);</p>
+<p>窗体标题栏不透明；   窗体客户区上的控件不透明，QLabel控件只是字显示，控件背景色透明； 窗体客户区完全透明。 另外从网上看到的方法：</p>
+<p> setAttribute(Qt::WA_TranslucentBackground, true)；</p>
+<p>试验的结果是类似于上面的方法，但有时候窗体会被一些杂色斑点填充，未找到原因。</p>
+</li>
+<li><p>窗口及其上面的控件都半透明： </p>
+<p>setWindowOpacity(0.7)</p>
+<p>  试验效果：窗口及控件都半透明。注意不能够setWindowFlags(Qt::FramelessWindowHint);要不就不起作用  </p>
+</li>
+<li><p>窗口整体不透明，局部透明：在Paint事件中使用Clear模式绘图。  </p>
+<p>void TestWindow::paintEvent( QPaintEvent* )<br>{ QPainter p(this);<br> p.setCompositionMode( QPainter::CompositionMode_Clear );<br> p.fillRect( 10, 10, 300, 300, Qt::SolidPattern );<br> }</p>
+<p>  试验效果：绘制区域全透明。如果绘制区域有控件不会影响控件。 以上实验均是基于Directfb的Qte测试。在Linux下及Windows下效果会略有不同。 比如在Windows下第3个实验，绘制区域就是一个黑窟窿，如果Window本身半透，则是Window下面的内容加上半透效果，不是全透明效果。</p>
+</li>
+</ol>
+<p>    </p>
+<h2 id="控制QPixmap的alpha"><a href="#控制QPixmap的alpha" class="headerlink" title="控制QPixmap的alpha"></a>控制QPixmap的alpha</h2><p>   </p>
+<p>QPixmap temp(pixmapTop.size());<br>temp.fill(Qt::transparent);<br>    QPainter p(&amp;temp);<br>    p.setCompositionMode(QPainter::CompositionMode_Source);<br>    p.drawPixmap(0, 0, pixmapTop);<br>    p.setCompositionMode(QPainter::CompositionMode_DestinationIn);<br>    p.fillRect(temp.rect(), QColor(0, 0, 0, alpha)); &#x2F;&#x2F;–lable显示前景图片<br> ui-&gt;label-&gt;setScaledContents(true);<br>    ui-&gt;label-&gt;setPixmap(temp);</p>
+<p> </p>
+<h2 id="layout-的边界"><a href="#layout-的边界" class="headerlink" title=" layout 的边界"></a> layout 的边界</h2><p> </p>
+<p> layout-&gt;setMargin (0);</p>
+<p>   </p>
+<blockquote>
+<p>以上代码来自互联网，经本人整理发布,后续笔者研究后发布拖动窗口代码</p>
+</blockquote>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/getting-started-with-qt-how-to-write-without-borders-the-title-bar-of-windows-transparent-windows-round-controls.html" target="_blank">王柏元的博客 >> QT入门：怎么写无边框（标题栏）的窗口、透明窗口、圆角控件</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/one-click-installation-and-automatically-configures-java-jdk-environment-variables.html" class="pre-post btn btn-default" title='一键安装JDK和自动配置java环境变量'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            一键安装JDK和自动配置java环境变量</span>
+    </a>
+    
+    
+    <a href="/how-to-use-qt-to-find-content-you-want-to-find-a-string-and-tag.html" class="next-post btn btn-default" title='怎样用QT查找字符串并标记要查找的内容'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            怎样用QT查找字符串并标记要查找的内容</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "17871",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E8%BE%B9%E6%A1%86%EF%BC%88%E6%A0%87%E9%A2%98%E6%A0%8F%EF%BC%89%E7%9A%84%E7%AA%97%E5%8F%A3"><span class="toc-text">无边框（标题栏）的窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E5%88%B7%E6%88%90%E9%BB%91%E8%89%B2-%E5%89%8D%E6%99%AF%E8%89%B2%E8%AE%BE%E4%B8%BA%E7%99%BD%E8%89%B2%E3%80%82"><span class="toc-text">背景刷成黑色,前景色设为白色。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%86%E8%A7%92%E6%8E%A7%E4%BB%B6-%E7%94%A8stylesheet%E6%96%B9%E5%BC%8F"><span class="toc-text">圆角控件 用stylesheet方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%86%E8%A7%92%E7%AA%97%E5%8F%A3"><span class="toc-text">  圆角窗口 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8A%E9%80%8F%E6%98%8E%E7%AA%97%E5%8F%A3"><span class="toc-text">半透明窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6QPixmap%E7%9A%84alpha"><span class="toc-text">控制QPixmap的alpha</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#layout-%E7%9A%84%E8%BE%B9%E7%95%8C"><span class="toc-text"> layout 的边界</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

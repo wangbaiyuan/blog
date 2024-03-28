@@ -1,0 +1,498 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,android开发" />
+
+
+<meta name="description" content="Android应用在运行之中会产生一些数据，比如图片的缓存，数据库文件，配置文件等等。我们开发时可能会有这样的一个需求清除应用内缓存的数据，可以让用户选择删除应用内产生的数据，这也是比较人性化的..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    怎样释放Android手机存储空间 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="怎样释放Android手机存储空间">
+            
+            怎样释放Android手机存储空间
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2017/02/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>Android应用在运行之中会产生一些数据，比如图片的缓存，数据库文件，配置文件等等。我们开发时可能会有这样的一个需求清除应用内缓存的数据，可以让用户选择删除应用内产生的数据，这也是比较人性化的设计点。过多的缓存会占用手机的存储空间，据说也会降低手机的IO性能。 下面这是简书Android APP中提供了清除缓存的设计：</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2017/02/20170223133730116.jpg" alt="简书清除缓存"></p>
+<blockquote>
+<p>那么Android应用在运行中会产生哪些数据呢？它们都被存放在哪里？然后我们根据产生数据的位置实现清除功能</p>
+</blockquote>
+<h2 id="首先简单讲讲Android的四种数据存储方式"><a href="#首先简单讲讲Android的四种数据存储方式" class="headerlink" title="首先简单讲讲Android的四种数据存储方式"></a>首先简单讲讲Android的四种数据存储方式</h2><h3 id="1、SharePreferenc"><a href="#1、SharePreferenc" class="headerlink" title="1、SharePreferenc"></a>1、SharePreferenc</h3><p>一种轻型的数据存储方式，实际上是基于XML文件存储的“key-value”键值对数据；通常用来存储程序的一些配置信息。</p>
+<h4 id="SharePreference的存储目录："><a href="#SharePreference的存储目录：" class="headerlink" title="SharePreference的存储目录："></a>SharePreference的存储目录：</h4><p><strong>其存储在“data&#x2F;data&#x2F;程序包名&#x2F;shared_prefs目录下。</strong></p>
+<h4 id="SharePreference修改和存储数据"><a href="#SharePreference修改和存储数据" class="headerlink" title="SharePreference修改和存储数据"></a>SharePreference修改和存储数据</h4><ul>
+<li>根据Context的getSharedPrerences(key, [模式])方法获取SharedPreference对象；</li>
+<li>利用SharedPreference的editor()方法获取Editor对象；</li>
+<li>通过Editor的putXXX()方法，将键值对存储数据；</li>
+<li>通过Editor的commit()方法将数据提交到SharedPreference内</li>
+</ul>
+<h3 id="2、SQLite"><a href="#2、SQLite" class="headerlink" title="2、SQLite"></a>2、SQLite</h3><p>SQLite是一个轻量级关系型数据库，既然是关系型数据库，那操作起来其实跟mysql、sql server差不多的。</p>
+<blockquote>
+<p>Android提供了强大数据库管理库，同时也支持运行哦原生命令，实现数据库的增删改查</p>
+</blockquote>
+<h3 id="3、-File"><a href="#3、-File" class="headerlink" title="3、 File"></a>3、 File</h3><blockquote>
+<p>Android中可以在设备本身的存储设备或外接的存储设备中创建用于保存数据的文件。在默认状态下，文件是不能在不同程序间共享的。</p>
+</blockquote>
+<p>File可以通过FileInputStream和FileOutputStream对文件进行操作。</p>
+<h3 id="4、ContentProvider"><a href="#4、ContentProvider" class="headerlink" title="4、ContentProvider"></a>4、ContentProvider</h3><p>ContentProvider相对于其它的方式比较复杂，当然其功能相对于其它的方式也是革命性的改变。它能够实现跨应用之间的数据操作。利用ContentResolver对象的delete、update、insert、query等方法去操ContentProvider的对象，让ContentProvider对象的方法去对数据操作。</p>
+<h4 id="实现方式为："><a href="#实现方式为：" class="headerlink" title="实现方式为："></a>实现方式为：</h4><ul>
+<li>在A程序中定义一个ContentProvider，重载其增删查改等方法；</li>
+<li>在A程序中的AndroidManifest.xml中注册ContentProvider；</li>
+<li>在B程序中通过ContentResolver和Uri来获取ContentProvider的数据，同样利用Resolver的增删查改方法来获得和处理数据</li>
+</ul>
+<h2 id="Android应用的数据存储路径"><a href="#Android应用的数据存储路径" class="headerlink" title="Android应用的数据存储路径"></a>Android应用的数据存储路径</h2><p>应用内数据的所有路径和对应的数据清除代码：</p>
+<ul>
+<li><p><strong>&#x2F;data&#x2F;data&#x2F;com.xxx.xxx&#x2F;cache</strong> - 应用内缓存（注：对应方法<strong>getCacheDir()</strong> ）</p>
+<p>  public static void cleanInternalCache(Context context) {<br>  deleteFilesByDirectory(context.getCacheDir());<br>  }</p>
+<p> </p>
+</li>
+<li><p><strong>&#x2F;data&#x2F;data&#x2F;com.xxx.xxx&#x2F;databases</strong> - 应用内数据库</p>
+<p>  public static void cleanDatabases(Context context) {<br>  deleteFilesByDirectory(new File(“&#x2F;data&#x2F;data&#x2F;“<br>          + context.getPackageName() + “&#x2F;databases”));<br>  }</p>
+<p> </p>
+</li>
+<li><p><strong>&#x2F;data&#x2F;data&#x2F;com.xxx.xxx&#x2F;shared_prefs</strong> - 应用内配置文件</p>
+</li>
+</ul>
+<p> public static void cleanSharedPreference(Context context) {<br>        deleteFilesByDirectory(new File(“&#x2F;data&#x2F;data&#x2F;“<br>                + context.getPackageName() + “&#x2F;shared_prefs”));<br>    }</p>
+<p> </p>
+<ul>
+<li><strong>&#x2F;data&#x2F;data&#x2F;com.xxx.xxx&#x2F;files</strong> - 应用内文件（注：对应方法getFilesDir())</li>
+</ul>
+<p>  public static void cleanFiles(Context context) {<br>        deleteFilesByDirectory(context.getFilesDir());<br>    }</p>
+<p>  由于Android应用数据存储的权限比较宽泛，一个Android应用几乎可以在SD卡任意位置创建一个目录和文件，所以上面的几个存储路径只是Android应用最基本的存储路径。更多的清除代码实现在下面的清除工具类中将于更详细的讲解</p>
+<h3 id="清除工具类的代码实现"><a href="#清除工具类的代码实现" class="headerlink" title="清除工具类的代码实现"></a>清除工具类的代码实现</h3><p>为了方便使用，下面时我封装好的数据清除工具类：</p>
+<p>package cn.wangbaiyuan.utils;</p>
+<p>&#x2F;**<br> * Created by BrainWang on 2017-02-21.<br> *&#x2F;<br>import java.io.File;<br>import java.io.IOException;<br>import java.math.BigDecimal;<br>import android.content.Context;<br>import android.os.Environment;</p>
+<p>&#x2F;**<br> * 清除缓存<br> *<br> *&#x2F;<br>public class CleanDataUtil {</p>
+<pre><code>/\*\* \* 清除本应用内部缓存(/data/data/com.xxx.xxx/cache) * * @param context */
+public static void cleanInternalCache(Context context) &#123;
+    deleteFilesByDirectory(context.getCacheDir());
+&#125;
+
+/\*\* \* 清除本应用所有数据库(/data/data/com.xxx.xxx/databases) * * @param context */
+public static void cleanDatabases(Context context) &#123;
+    deleteFilesByDirectory(new File(&quot;/data/data/&quot;
+            \+ context.getPackageName() + &quot;/databases&quot;));
+&#125;
+
+/\*\*
+ \* \* 清除本应用SharedPreference(/data/data/com.xxx.xxx/shared_prefs) * * @param
+ \* context
+ */
+public static void cleanSharedPreference(Context context) &#123;
+    deleteFilesByDirectory(new File(&quot;/data/data/&quot;
+            \+ context.getPackageName() + &quot;/shared_prefs&quot;));
+&#125;
+
+/\*\* \* 按名字清除本应用数据库 \* \* @param context * @param dbName */
+public static void cleanDatabaseByName(Context context, String dbName) &#123;
+    context.deleteDatabase(dbName);
+&#125;
+
+/\*\* \* 清除/data/data/com.xxx.xxx/files下的内容 * * @param context */
+public static void cleanFiles(Context context) &#123;
+    deleteFilesByDirectory(context.getFilesDir());
+&#125;
+
+/\*\*
+ \* \* 清除外部cache下的内容(/mnt/sdcard/android/data/com.xxx.xxx/cache) * * @param
+ \* context
+ */
+public static void cleanExternalCache(Context context) &#123;
+    if (Environment.getExternalStorageState().equals(
+            Environment.MEDIA_MOUNTED)) &#123;
+        deleteFilesByDirectory(context.getExternalCacheDir());
+    &#125;
+&#125;
+
+/\*\* \* 清除自定义路径下的文件，使用需小心，请不要误删。而且只支持目录下的文件删除 \* \* @param filePath */
+public static void cleanCustomCache(String filePath) &#123;
+    deleteFilesByDirectory(new File(filePath));
+&#125;
+
+/\*\* \* 清除本应用所有的数据 \* \* @param context * @param filepath */
+public static void cleanApplicationData(Context context, String... filepath) &#123;
+    cleanInternalCache(context);
+    cleanExternalCache(context);
+    cleanDatabases(context);
+    cleanSharedPreference(context);
+    cleanFiles(context);
+    for (String filePath : filepath) &#123;
+        cleanCustomCache(filePath);
+    &#125;
+&#125;
+
+/\*\* \* 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理 * * @param directory */
+private static void deleteFilesByDirectory(File directory) &#123;
+    if (directory != null &amp;&amp; directory.exists() &amp;&amp; directory.isDirectory()) &#123;
+        for (File item : directory.listFiles()) &#123;
+            item.delete();
+        &#125;
+    &#125;
+&#125;
+
+/\*\*
+ \* 清除所有缓存，相当于设置里应用管理中的“清除数据”，清除数据时应用将会退出
+ \* @param context
+ */
+public static void clearAppUserData(Context context) &#123;
+    try &#123;
+        Runtime.getRuntime().exec(&quot;pm clear &quot; + context.getPackageName());
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p> </p>
+<h2 id="系统设置应用管理的”清除数据“的实现方法"><a href="#系统设置应用管理的”清除数据“的实现方法" class="headerlink" title="系统设置应用管理的”清除数据“的实现方法"></a>系统设置应用管理的”清除数据“的实现方法</h2><p>在Android系统设置的应用管理中，提供了”清除数据“的功能，这一功能对应用数据的清除更加彻底，我们可以在代码中实现类似的需求，不过下面代码的执行将使应用退出：</p>
+<p>  &#x2F;**<br>     * 清除所有缓存，相当于设置里应用管理中的“清除数据”，清除数据时应用将会退出<br>     * @param context<br>     *&#x2F;<br>    public static void clearAppUserData(Context context) {<br>        try {<br>            Runtime.getRuntime().exec(“pm clear “ + context.getPackageName());<br>        } catch (IOException e) {<br>            e.printStackTrace();<br>        }<br>    }</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/how-release-android-mobile-phone-storage-space.html" target="_blank">王柏元的博客 >> 怎样释放Android手机存储空间</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/by-using-java-cv-for-binocular-camera-image-under-ubuntu.html" class="pre-post btn btn-default" title='Ubuntu下利用Java CV获取双目摄像头图像'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Ubuntu下利用Java CV获取双目摄像头图像</span>
+    </a>
+    
+    
+    <a href="/practice-photo-haze-algorithm-under-ndk-two-dimensional-array.html" class="next-post btn btn-default" title='【图片去霾算法实践】NDK下二维数组的传递'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【图片去霾算法实践】NDK下二维数组的传递</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "53913",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E7%AE%80%E5%8D%95%E8%AE%B2%E8%AE%B2Android%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">首先简单讲讲Android的四种数据存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81SharePreferenc"><span class="toc-text">1、SharePreferenc</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SharePreference%E7%9A%84%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%EF%BC%9A"><span class="toc-text">SharePreference的存储目录：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SharePreference%E4%BF%AE%E6%94%B9%E5%92%8C%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE"><span class="toc-text">SharePreference修改和存储数据</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81SQLite"><span class="toc-text">2、SQLite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81-File"><span class="toc-text">3、 File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81ContentProvider"><span class="toc-text">4、ContentProvider</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E4%B8%BA%EF%BC%9A"><span class="toc-text">实现方式为：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android%E5%BA%94%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E8%B7%AF%E5%BE%84"><span class="toc-text">Android应用的数据存储路径</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E5%B7%A5%E5%85%B7%E7%B1%BB%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">清除工具类的代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86%E7%9A%84%E2%80%9D%E6%B8%85%E9%99%A4%E6%95%B0%E6%8D%AE%E2%80%9C%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-text">系统设置应用管理的”清除数据“的实现方法</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

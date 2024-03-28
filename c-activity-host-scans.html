@@ -1,0 +1,562 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,网络安全,计算机网络" />
+
+
+<meta name="description" content=" 
+
+（1）以命令方式运行：DOS&gt;scanHost  start_ip  end_ip
+（2）输出内容：活动主机IP地址。
+
+实现原理：
+
+（1）通过某IP发送ICMP_ECHO请求报文..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    C++活动主机扫描 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++活动主机扫描">
+            
+            C++活动主机扫描
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/11/20</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p> </p>
+<ul>
+<li>（1）以命令方式运行：DOS&gt;scanHost  start_ip  end_ip</li>
+<li>（2）输出内容：活动主机IP地址。</li>
+</ul>
+<p>实现原理：</p>
+<ul>
+<li>（1）通过某IP发送ICMP_ECHO请求报文，接收到ICMP_response 报文，表明该IP主机活动。</li>
+<li>（2）利用原始套接字</li>
+<li>（3）为了提高检测时间，利用多线程技术。</li>
+</ul>
+<p>  <a href="http://baiyuan.wang/wp-content/uploads/2015/11/scanhost.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/11/scanhost.jpg" alt="scanhost"></a></p>
+<p>#include <iostream><br>#include <ctime><br>#include &lt;winsock2.h&gt;<br>#include <cstdlib><br>#pragma comment (lib, “ws2_32.lib”)</p>
+<p>using namespace std;</p>
+<p>&#x2F;&#x2F;ip包头部结构<br>typedef struct iphdr<br>{<br>    unsigned int headlen : 4;        &#x2F;&#x2F;头部长度<br>    unsigned int version : 4;        &#x2F;&#x2F;版本号<br>    unsigned char tos;             &#x2F;&#x2F;服务类型<br>    unsigned short totallen;       &#x2F;&#x2F;总长度<br>    unsigned short id;             &#x2F;&#x2F;ip包id号<br>    unsigned short flag;           &#x2F;&#x2F;标记<br>    unsigned char ttl;             &#x2F;&#x2F;生存时间<br>    unsigned char prot;            &#x2F;&#x2F;协议类型<br>    unsigned short checksum;       &#x2F;&#x2F;校验和<br>    unsigned int sourceIp;         &#x2F;&#x2F;源IP地址<br>    unsigned int destIp;           &#x2F;&#x2F;目的ip地址<br>}IpHeader;</p>
+<p>typedef struct icmphdr<br>{<br>    BYTE type;                     &#x2F;&#x2F;ICMP类型码<br>    BYTE code;                     &#x2F;&#x2F;ICMP子类型<br>    USHORT checksum;               &#x2F;&#x2F;校验和<br>    USHORT id;                     &#x2F;&#x2F;ICMP包ID号<br>    USHORT seq;                    &#x2F;&#x2F;序列号<br>}IcmpHeader;</p>
+<p>#define ICMP_ECHO 8                &#x2F;&#x2F;ICMP回送请求<br>#define ICMP_ECHO_REPLY 0          &#x2F;&#x2F;ICMP回送应答<br>#define ICMP_MIN 8                 &#x2F;&#x2F;ICMP包头长度<br>#define STATUS_FAILED 0xFFFF       &#x2F;&#x2F;错误码<br>#define DEF_PACKET_SIZE 32         &#x2F;&#x2F;缺省数据长度<br>#define MAX_PACKET 1024            &#x2F;&#x2F;最大数据长度<br>#define MAX_PING_PACKET_SIZE MAX_PACKET + sizeof(IpHeader)</p>
+<p>WSADATA wsaData;<br>SOCKET sockRaw;                    &#x2F;&#x2F;原始套接字<br>struct sockaddr_in dest, from, end1;<br>int fromlen &#x3D; sizeof(from);        &#x2F;&#x2F;接受ICMP包长度<br>char* recvbuf &#x3D; new char[MAX_PING_PACKET_SIZE];<br>unsigned int addr &#x3D; 0;             &#x2F;&#x2F;IP地址<br>long ThreadNumCounter &#x3D; 0, ThreadNumLimit &#x3D; 20;<br>long* aa &#x3D; &ThreadNumCounter;</p>
+<p>&#x2F;&#x2F;填充ICMP包的函数<br>void fill_icmp_data(char* icmp_data, int datasize)<br>{<br>    IcmpHeader* icmp_hdr;<br>    char* datapart;<br>    icmp_hdr &#x3D; (IcmpHeader*)icmp_data;<br>    icmp_hdr-&gt;type &#x3D; ICMP_ECHO;          &#x2F;&#x2F;设置信息类型<br>    icmp_hdr-&gt;id &#x3D; (USHORT)GetCurrentThreadId();        &#x2F;&#x2F;设置当前线程的ID号<br>    datapart &#x3D; icmp_data + sizeof(IcmpHeader);           &#x2F;&#x2F;计算ICMP包数据部分<br>    memset(datapart, ‘A’, datasize - sizeof(IcmpHeader));<br>}</p>
+<p>&#x2F;&#x2F;解析IP地址的函数<br>void decode_resp(char* buf, int bytes, struct sockaddr_in* from)<br>{<br>    IpHeader* iphdr;<br>    IcmpHeader* icmphdr;<br>    unsigned short iphdrlen;<br>    iphdr &#x3D; (IpHeader*)buf;</p>
+<pre><code>//跳过IP包头部
+iphdrlen = iphdr-&gt;headlen * 4;
+icmphdr = (IcmpHeader*)(buf + iphdrlen);
+
+//数据包过短，丢弃
+if (bytes &lt; iphdrlen + ICMP_MIN)
+&#123;
+    return;
+&#125;
+//不是回送响应，丢弃
+if (icmphdr-&gt;type != ICMP\_ECHO\_REPLY)
+&#123;
+    return;
+&#125;
+//ID号不相符，丢弃
+if (icmphdr-&gt;id != (USHORT)GetCurrentThreadId())
+&#123;
+    return;
+&#125;
+
+//输出处于活动状态的主机
+cout &lt;&lt; &quot;活动主机: &quot; &lt;&lt; inet\_ntoa(from-&gt;sin\_addr) &lt;&lt; endl;
+</code></pre>
+<p>}</p>
+<p>&#x2F;&#x2F;校验和计算函数<br>USHORT checksum(USHORT* buffer, int size)<br>{<br>    unsigned long cksum &#x3D; 0;<br>    while (size &gt; 1)<br>    {<br>        cksum +&#x3D; *buffer++;<br>        size -&#x3D; sizeof(USHORT);<br>    }<br>    if (size)<br>    {<br>        cksum +&#x3D; <em>(UCHAR</em>)buffer;<br>    }<br>    cksum &#x3D; (cksum &gt;&gt; 16) + (cksum &amp; 0xffff);<br>    cksum +&#x3D; (cksum &gt;&gt; 16);<br>    return (USHORT)(~cksum);<br>}</p>
+<p>&#x2F;&#x2F;线程调用函数<br>DWORD WINAPI FindIP(LPVOID pIPAddrTemp)<br>{<br>    InterlockedIncrement(aa);</p>
+<pre><code>char icmp\_data\[MAX\_PACKET\];
+memset(icmp\_data, 0, MAX\_PACKET);
+int datasize = DEF\_PACKET\_SIZE;
+datasize += sizeof(IcmpHeader);
+
+//填充ICMP包
+fill\_icmp\_data(icmp_data, datasize);
+((IcmpHeader*)icmp_data)-&gt;checksum = 0;
+((IcmpHeader*)icmp_data)-&gt;seq = 0;
+//计算校验和后填入
+((IcmpHeader*)icmp\_data)-&gt;checksum = checksum((USHORT*)icmp\_data, datasize);
+//发送ICMP包
+int bwrote = sendto(sockRaw, icmp_data, datasize, 0, (struct sockaddr*)pIPAddrTemp, sizeof(dest));
+int n = 0;
+if (bwrote == SOCKET_ERROR)
+&#123;
+    if (WSAGetLastError() == WSAETIMEDOUT)
+    &#123;
+        cout &lt;&lt; &quot;time out&quot; &lt;&lt; endl;
+    &#125;
+    cout &lt;&lt; &quot;Sendto failed: &quot; &lt;&lt; WSAGetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+    n = 1;
+&#125;
+if (WSAGetLastError() == WSAETIMEDOUT)
+&#123;
+    cout &lt;&lt; &quot;Timed out&quot; &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+    n = 1;
+&#125;
+if (bwrote &lt; datasize)
+&#123;
+    cout &lt;&lt; &quot;Wrote &quot; &lt;&lt; bwrote &lt;&lt; &quot; bytes&quot; &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+    n = 1;
+&#125;
+//接收ICMP包
+int bread = recvfrom(sockRaw, recvbuf, MAX\_PING\_PACKET_SIZE, 0, (struct sockaddr*)&amp;from, &amp;fromlen);
+if (bread == SOCKET_ERROR)
+&#123;
+    if (WSAGetLastError() == WSAETIMEDOUT)
+    &#123;
+        cout &lt;&lt; &quot;Timed out&quot; &lt;&lt; endl;
+    &#125;
+    cout &lt;&lt; &quot;Recvfrom failed: &quot; &lt;&lt; WSAGetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+    n = 1;
+&#125;
+//去掉IP包头部，判断并输出IP地址
+if (n == 0)
+&#123;
+    decode_resp(recvbuf, bread, &amp;from);
+&#125;
+InterlockedDecrement(aa);
+return 0;
+</code></pre>
+<p>}</p>
+<p>int main(int argc, char* argv[])<br>{<br>    &#x2F;&#x2F;检查输入命令格式<br>    if (argc !&#x3D; 3)<br>    {<br>        cout &lt;&lt; “Please input command: ScanHost start_address end_address” &lt;&lt; endl;<br>        return 0;<br>    }</p>
+<pre><code>//开始使用Ws2_32.dll
+if (WSAStartup(MAKEWORD(2, 1), &amp;wsaData) != 0)
+&#123;
+    cout &lt;&lt; &quot;WSAStartup failed: &quot; &lt;&lt; GetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+&#125;
+
+//创建原始套接字
+sockRaw = WSASocket(AF\_INET, SOCK\_RAW, IPPROTO\_ICMP, NULL, 0, WSA\_FLAG_OVERLAPPED);
+if (sockRaw == INVALID_SOCKET)
+&#123;
+    cout &lt;&lt; &quot;WSASocket() failed: &quot; &lt;&lt; WSAGetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+&#125;
+
+//设置接收延时
+int timeout = 1000;
+int bread = setsockopt(sockRaw, SOL\_SOCKET, SO\_RCVTIMEO, (char*)&amp;timeout, sizeof(timeout));
+if (bread == SOCKET_ERROR)
+&#123;
+    cout &lt;&lt; &quot;Failed to set recv timeout: &quot; &lt;&lt; WSAGetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+&#125;
+
+//设置发送延时
+timeout = 1000;
+bread = setsockopt(sockRaw, SOL\_SOCKET, SO\_RCVTIMEO, (char*)&amp;timeout, sizeof(timeout));
+if (bread == SOCKET_ERROR)
+&#123;
+    cout &lt;&lt; &quot;Failed to set recv timeout: &quot; &lt;&lt; WSAGetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FAILED);
+&#125;
+
+//初始化地址结构
+memset(&amp;dest, 0, sizeof(dest));
+unsigned long startIP, endIP;
+dest.sin\_family = AF\_INET;
+dest.sin\_addr.s\_addr = inet_addr(argv\[1\]);
+startIP = inet_addr(argv\[1\]);
+end1.sin\_family = AF\_INET;
+end1.sin\_addr.s\_addr = inet_addr(argv\[2\]);
+endIP = inet_addr(argv\[2\]);
+
+HANDLE hThread;
+while (htonl(startIP) &lt;= htonl(endIP))
+&#123;
+    //判断线程数目
+    if (ThreadNumCounter &gt; ThreadNumLimit)
+    &#123;
+        Sleep(5000);
+        continue;
+    &#125;
+    DWORD ThreadID;
+    sockaddr\_in * pIPAddrTemp = new(sockaddr\_in);
+    if (!pIPAddrTemp)
+    &#123;
+        cout &lt;&lt; &quot;Memory alloc failed&quot; &lt;&lt; endl;
+        return 0;
+    &#125;
+    *pIPAddrTemp = dest;
+
+    //创建新线程
+    clock_t start;
+    start = clock();
+    hThread = CreateThread(NULL, NULL, FindIP, (LPVOID)pIPAddrTemp, NULL, &amp;ThreadID);
+    long i = 60000000L;
+    while (i--)
+        ;
+    TerminateThread(hThread, 0);
+    InterlockedDecrement(aa);
+    memset(&amp;from, 0, sizeof(from));
+    startIP = htonl(htonl(startIP) + 1);
+    dest.sin\_addr.s\_addr = startIP;
+&#125;
+
+//是否有结束的线程
+while (ThreadNumCounter != 0)
+&#123;
+    Sleep(2000);
+    return 0;
+&#125;
+
+system(&quot;pause&quot;);
+
+return 0;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/c-activity-host-scans.html" target="_blank">王柏元的博客 >> C++活动主机扫描</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/backtracking-method-undirected-graph-node-color-color-number-at-least.html" class="pre-post btn btn-default" title='回溯法求无向图结点涂色最少颜色数'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            回溯法求无向图结点涂色最少颜色数</span>
+    </a>
+    
+    
+    <a href="/c-scan-specified-host-open-port.html" class="next-post btn btn-default" title='C++扫描指定主机开放的端口'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            C++扫描指定主机开放的端口</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "21303",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

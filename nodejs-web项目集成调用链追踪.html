@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="在微服务架构中，一次用户请求往往调用多个服务，微服务调用链追踪工具可以
+
+在用户请求发生错误时，帮助我们定位root cause
+在性能优化时提供可观测性指标，找到架构中最耗时的服务和API请求..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    NodeJs web项目集成调用链追踪 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="NodeJs web项目集成调用链追踪">
+            
+            NodeJs web项目集成调用链追踪
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/12/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在微服务架构中，一次用户请求往往调用多个服务，微服务调用链追踪工具可以</p>
+<ul>
+<li>在用户请求发生错误时，帮助我们定位root cause</li>
+<li>在性能优化时提供可观测性指标，找到架构中最耗时的服务和API请求，帮助我们对症下药</li>
+</ul>
+<p>现在的NodeJs web项目比较流行地采用express作为服务器，axios也是一款比较流行的HTTP客户端。微服务的特点之一，自己作为服务端的同时，也为作为客户端访问其它服务。所以集成调用链追踪的关键在于：</p>
+<ul>
+<li>集成server，处理客户端请求。通常会有现成的框架实现了此功能：构造新的，或者从上游的HTTP 请求的header中获取一个包含tracing的结构体（如x-b3-spanid）</li>
+<li>集成client，在发出请求和返回数据时记录请求，zipkin等工具需要知道每个请求的请求时间、返回码、路径等等。</li>
+<li>将server的请求头tracing数据传递到客户端</li>
+</ul>
+<h2 id="传统微服务（非istio）"><a href="#传统微服务（非istio）" class="headerlink" title="传统微服务（非istio）"></a>传统微服务（非istio）</h2><h3 id="工具方法"><a href="#工具方法" class="headerlink" title="工具方法"></a>工具方法</h3><p><a href="https://baiyuan.wang/wp-content/uploads/2019/12/zipkin-architecture.png"><img src="https://baiyuan.wang/wp-content/uploads/2019/12/zipkin-architecture.png"></a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><br><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">Tracer</span>, <span class="hljs-title class_">ExplicitContext</span>, <span class="hljs-title class_">ConsoleRecorder</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;zipkin&#x27;</span>);<br><span class="hljs-keyword">const</span> &#123; expressMiddleware &#125;= <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;zipkin-instrumentation-express&#x27;</span>);<br><span class="hljs-keyword">const</span> recorder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConsoleRecorder</span>();<br><span class="hljs-keyword">const</span> &#123; get &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lodash&#x27;</span>);<br><br><span class="hljs-keyword">const</span> zipkinTracer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tracer</span>(&#123;<br>  <span class="hljs-attr">ctxImpl</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExplicitContext</span>(),<br>  recorder,<br>  <span class="hljs-attr">localServiceName</span>: <span class="hljs-string">&#x27;&lt;YOUR\_SERVICE\_NAME&gt;&#x27;</span><br>&#125;);<br><span class="hljs-keyword">const</span> zipkinMiddleware = <span class="hljs-title function_">expressMiddleware</span>(&#123; <span class="hljs-attr">tracer</span>: zipkinTracer &#125;);<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getTraceIdFromRequest</span> = req =&gt; <span class="hljs-title function_">get</span>(req, <span class="hljs-string">&#x27;\_trace\_id&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">isolateZipkinContextByRequest</span> = (<span class="hljs-params">req, res, next</span>) =&gt; &#123;<br>  zipkinTracer.<span class="hljs-title function_">scoped</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    zipkinTracer.<span class="hljs-title function_">setId</span>(<span class="hljs-title function_">getTraceIdFromRequest</span>(req));<br>    <span class="hljs-title function_">next</span>();<br>  &#125;);<br>&#125;;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  zipkinTracer,<br>  zipkinMiddleware,<br>  isolateZipkinContextByRequest,<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p> </p>
+<h3 id="express-服务器路由集成zipkin"><a href="#express-服务器路由集成zipkin" class="headerlink" title="express 服务器路由集成zipkin"></a>express 服务器路由集成zipkin</h3><p> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">router.<span class="hljs-title function_">use</span>(zipkinMiddleware);<br>router.<span class="hljs-title function_">use</span>(isolateZipkinContextByRequest);<br></code></pre></td></tr></table></figure>
+
+<p>由于nodejs是主线程为单线程的服务器语言，高并发由异步消息队列完成。所以保证从服务器端传递tracing信息和客户端tracing信息在同一个“上下文”，不能简单地采用一个全局变量来保存tracing信息。此处的isolateZipkinContextByRequest至关重要，  </p>
+<h3 id="axios客户端集成zipkin"><a href="#axios客户端集成zipkin" class="headerlink" title="axios客户端集成zipkin"></a>axios客户端集成zipkin</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;axios&#x27;</span>);<br><span class="hljs-keyword">const</span> wrapAxios = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;zipkin-instrumentation-axiosjs&#x27;</span>);<br><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">Tracer</span>, <span class="hljs-title class_">ExplicitContext</span>, <span class="hljs-title class_">ConsoleRecorder</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;zipkin&#x27;</span>);<br><br><span class="hljs-keyword">const</span> ctxImpl = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExplicitContext</span>();<br><span class="hljs-keyword">const</span> recorder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConsoleRecorder</span>();<br><span class="hljs-keyword">const</span> localServiceName = <span class="hljs-string">&#x27;service-a&#x27;</span>; <span class="hljs-comment">// name of this application</span><br><span class="hljs-keyword">const</span> tracer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tracer</span>(&#123; ctxImpl, recorder, localServiceName &#125;);<br><br><span class="hljs-keyword">const</span> remoteServiceName = <span class="hljs-string">&#x27;weather-api&#x27;</span>;<br><span class="hljs-keyword">const</span> zipkinAxios = <span class="hljs-title function_">wrapAxios</span>(axios, &#123; tracer, remoteServiceName &#125;);<br><br>zipkinAxios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/user?ID=12345&#x27;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response);<br>  &#125;)<br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+<p>  详见：<a target="_blank" rel="noopener" href="https://github.com/openzipkin/zipkin-js/tree/master/packages/zipkin-instrumentation-axiosjs">https://github.com/openzipkin/zipkin-js/tree/master/packages/zipkin-instrumentation-axiosjs</a>  </p>
+<h2 id="istio"><a href="#istio" class="headerlink" title="istio"></a>istio</h2><p>相比传统的K8S架构，由于service mesh使用sidecar的方式代理了pod的所有网络请求，构造请求头、和记录请求路径、请求返回码等操作可以在sidebar等istio组件上实现。 所以在istio语境下我们只需要实现HTTP header中的tracing信息从服务端到客户端的传递。同样的原因，nodejs是单线程语言，不能通过一个thread级别隔离的全局变量来保存tracing信息，同时通过层层函数调用栈的方式来传递request的tracing信息则过于麻烦。express库本身没有提供类似于spring或者PHP中的session的会话对象，这里会引入一个“express-http-context”的npm库完成request之间的数据“隔离”。</p>
+<h3 id="获取请求中的tracing-header"><a href="#获取请求中的tracing-header" class="headerlink" title="获取请求中的tracing header"></a>获取请求中的tracing header</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; pick &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lodash&#x27;</span>);<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-title function_">getForwardHeaders</span>(<span class="hljs-params">req</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">pick</span>(req.<span class="hljs-property">headers</span>,<br>      [<span class="hljs-string">&#x27;x-request-id&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-b3-traceid&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-b3-spanid&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-b3-parentspanid&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-b3-sampled&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-b3-flags&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-ot-span-context&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-datadog-trace-id&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-datadog-parent-id&#x27;</span>,<br>        <span class="hljs-string">&#x27;x-datadog-sampled&#x27;</span><br>      ]<br>    ) || &#123;&#125;;<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>express的集成代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; getForwardHeaders &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./util/tracer&#x27;</span>);<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><span class="hljs-keyword">const</span> httpContext = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-http-context&#x27;</span>);<br>app.<span class="hljs-title function_">use</span>(httpContext.<span class="hljs-property">middleware</span>);<br>app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>  httpContext.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;traceHeaders&#x27;</span>, <span class="hljs-title function_">getForwardHeaders</span>(req));<br>  <span class="hljs-title function_">next</span>();<br>&#125;);<br><br>client的集成代码：<br><br><span class="hljs-string">``</span><span class="hljs-string">`js</span><br><span class="hljs-string">const axios = require(&#x27;axios&#x27;);</span><br><span class="hljs-string">const httpContext = require(&#x27;express-http-context&#x27;);</span><br><span class="hljs-string"></span><br><span class="hljs-string">// 关键代码</span><br><span class="hljs-string">config.headers = Object.assign(config.headers || &#123;&#125;, httpContext.get(&#x27;traceHeaders&#x27;));</span><br><span class="hljs-string">axios(config)</span><br><span class="hljs-string">    .then(res =&gt; &#123;</span><br><span class="hljs-string">      //</span><br><span class="hljs-string">    &#125;)</span><br><span class="hljs-string">    .catch(err =&gt; &#123;</span><br><span class="hljs-string">     //</span><br><span class="hljs-string">    &#125;)</span><br></code></pre></td></tr></table></figure>
+<p>  参考资料  </p>
+<ul>
+<li>zipkin链路追踪原理：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/iiiiiher/p/10256676.html">https://www.cnblogs.com/iiiiiher/p/10256676.html</a></li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/nodejs-web%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90%E8%B0%83%E7%94%A8%E9%93%BE%E8%BF%BD%E8%B8%AA.html" target="_blank">王柏元的博客 >> NodeJs web项目集成调用链追踪</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/build-github-into-a-continuous-publishing-platform-for-personal-full-platform-works.html" class="pre-post btn btn-default" title='将Github打造成个人全平台作品的持续发布平台'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            将Github打造成个人全平台作品的持续发布平台</span>
+    </a>
+    
+    
+    <a href="/periodically-clean-up-the-docker-resources-on-the-virtual-machine.html" class="next-post btn btn-default" title='定期清理虚拟机上的docker资源'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            定期清理虚拟机上的docker资源</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "22206",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%BE%AE%E6%9C%8D%E5%8A%A1%EF%BC%88%E9%9D%9Eistio%EF%BC%89"><span class="toc-text">传统微服务（非istio）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95"><span class="toc-text">工具方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#express-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B7%AF%E7%94%B1%E9%9B%86%E6%88%90zipkin"><span class="toc-text">express 服务器路由集成zipkin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#axios%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%9B%86%E6%88%90zipkin"><span class="toc-text">axios客户端集成zipkin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#istio"><span class="toc-text">istio</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E4%B8%AD%E7%9A%84tracing-header"><span class="toc-text">获取请求中的tracing header</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

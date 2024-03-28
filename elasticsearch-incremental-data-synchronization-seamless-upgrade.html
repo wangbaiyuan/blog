@@ -1,0 +1,474 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="ElasticSearch作为一款开源的全文搜索引擎在如今的软件开发得到了越来越广泛的应用，在业务功能开发方面，可以选用ElasticSearch提供比数据库查询更强大的搜索方式，同时基于搜索结..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    ElasticSearch增量数据同步与无缝升级 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="ElasticSearch增量数据同步与无缝升级">
+            
+            ElasticSearch增量数据同步与无缝升级
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/10/07</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>ElasticSearch作为一款开源的全文搜索引擎在如今的软件开发得到了越来越广泛的应用，在业务功能开发方面，可以选用ElasticSearch提供比数据库查询更强大的搜索方式，同时基于搜索结果评分（权重）和高亮让我们很轻易地通过它实现一个站内的搜索引擎。</p>
+<h2 id="ElasticSearch-VS-数据库"><a href="#ElasticSearch-VS-数据库" class="headerlink" title="ElasticSearch VS 数据库"></a>ElasticSearch VS 数据库</h2><p>刚接触ElasticSearch（ES）时我们经常将它与数据库类比起来学习，从结构上：</p>
+<ul>
+<li>Indices类似于数据库的database</li>
+<li>Type类似于数据库的table</li>
+<li>Fields类似于数据表的列</li>
+<li>Documents类似于数据表的行（即每条记录） 同时，数据库提供的搜索语法都能在ES上找到影子，比如数据库提供AND、OR逻辑运算符，ES中有must, should，而数据库的如“like”等文字匹配功能在ES中则更加强大。</li>
+</ul>
+<p>尽管如此，ES本质上的定位仍是一个搜索引擎。NoSQL和ES一样都有着相同松散的结构，虽然我们也有一些讨论是否可以<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/25535889">用ES来替代非关系型数据库</a>(撇开ES是不是一种NoSQL)，但是一个现实是ES和NoSQL依旧是互有利弊；再者，传统关系型数据库的事务性、多表关联结构也是ES无法提供的。 所以，在实际的开发过程中，关系型数据库、NoSQL、ES依旧是相辅相成的关系，我们一般只会在较复杂的搜索场景下会选用ES提供搜索服务，而其源数据依旧来自于数据库，所以这就引出了ES与数据库之间的数据同步问题。</p>
+<h2 id="全量数据导入"><a href="#全量数据导入" class="headerlink" title="全量数据导入"></a>全量数据导入</h2><p>在第一次将存储在数据库里面的数据导入到ES需要执行全量导入，当后续有数据更新时通过消息队列通知ES更新数据。</p>
+<h2 id="使用消息队列实现ES增量同步"><a href="#使用消息队列实现ES增量同步" class="headerlink" title="使用消息队列实现ES增量同步"></a>使用消息队列实现ES增量同步</h2><p>消息队列在软件开发领域是一个十分常见的名词。</p>
+<p>在操作系统层面，我们可以利用消息队列做进程间的通信；在一个单体应用，比如Android应用，利用一个MessageQueue类来解决UI线程与耗时子线程之间的界面刷新问题，在物联网领域，基于发布&#x2F;订阅模型模型的MQTT协议被广泛应用于平台对海量设备的消息分发，而在分布式系统，以及最近几年日益热门的微服务架构中，是一个十分常用的实现异步消息、解耦应用、最终一致性的组件。</p>
+<p>常见的消息队列采用“发布-订阅”模式，初入门者几乎可以认为这是个“观察者模式”。</p>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2019/03/20190314095430110.jpg" alt="消息队列模式-“发布-订阅”模式"></p>
+<p>消息队列模式-“发布-订阅”模式</p>
+<p>目前常用的消息队列框架有Kafka、RabbitMQ。</p>
+<p>消息队列实现增量同步的方式，是在主服务对数据库进行创建、删除、修改一条记录时，发布一条主题消息给消息队列，同时同步服务需要订阅相关主题，这样消息队列就可以将更新的记录转发给同步服务，同步服务再根据消息的内容在ES里面进行更新记录。</p>
+<p>消息队列实现增量同步除了可以解耦主服务和同步服务，还有一个好处就是保证同步的容错性，比如当数据库添加一条记录时，如果直接采用HTTP的方式（可能是一个post请求）与同步服务取得联系时出现连接失败、post请求失败的时候，如果不采取任何措施这条记录就会无法得到同步。而消息队列的失败重发的机制可以很好的解决这个问题，同时消息队列，FIFO（先进先出）的机制也保证了消息转发的顺序。</p>
+<h2 id="ES索引更改后怎样做无缝重建"><a href="#ES索引更改后怎样做无缝重建" class="headerlink" title="ES索引更改后怎样做无缝重建"></a>ES索引更改后怎样做无缝重建</h2><p>ES索引更改发生在ElasticSearch 索引结构发生变化，比如随着业务的发展对Type中字段的增减以及字段类型的更改，或者发生在ES版本升级带来的结构变化时，例如ES 5.0版本将之前的string类型拆分为text和keyword类型，当我们希望对ES进行版本升级时，那么之前的string类型就不可再用了。</p>
+<p>与常见的Web服务的蓝绿部署实现无宕机升级类似，ES无缝升级也可以类比实现。Web服务的蓝绿部署的原理是使用LoadBalancer（负载均衡器）做流量切换，新旧服务都有不同的访问URL，但是只有LoadBalancer的URL对外可访问，即：</p>
+<ul>
+<li>服务升级前：负载均衡指向旧服务V1</li>
+<li>服务升级中：发布新服务V2，负载均衡依旧指向旧服务，此时存在新旧服务同时存在</li>
+<li>服务升级完成：新服务V2启动完成，负载均衡切换指向，将访问流量导向新服务V2</li>
+<li>服务升级完成：负载均衡切换指向后停掉旧服务V1</li>
+</ul>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2019/03/20190314095430213.jpg" alt="蓝绿部署"></p>
+<p>蓝绿部署</p>
+<h3 id="ES索引的别名"><a href="#ES索引的别名" class="headerlink" title="ES索引的别名"></a>ES索引的别名</h3><p>ES提供了通过索引别名（alias）来访问索引的方式：比如</p>
+<p>curl -XPOST ‘<a target="_blank" rel="noopener" href="http://localhost:9200/_aliases">http://localhost:9200/_aliases</a>‘ -d<br>{<br>    “actions”: [<br>        {“add”: {“index”: “test_20181007”, “alias”: “test”}}<br>    ]<br>}</p>
+<p>就为索引test_20181007创建了一条别名test，这样访问localhost:9200&#x2F;test&#x2F;_search和localhost:9200&#x2F;test_20181007&#x2F;_search都可以搜索索引里面的内容。</p>
+<p>ES的别名的存在为ES的无缝升级和切换提供了可能，类似于负载均衡切换指向一样，我们可以让ES别名在升级前后，指向新旧不同版本的索引即可。</p>
+<h3 id="ES无缝升级"><a href="#ES无缝升级" class="headerlink" title="ES无缝升级"></a>ES无缝升级</h3><ul>
+<li>新建带版本的新索引</li>
+<li>暂停增量更新 由于在升级期间我们不希望后续的记录更新到旧索引上，所以需要将消息队列进行暂停（pause）操作，在新索引创建成功后再开启。</li>
+<li>执行全量数据导入</li>
+<li>切换对外别名指向 一个别名可以指向多个索引，所以我们在添加别名到新索引的同时必须从旧的索引中删除它。这个操作需要原子化，这意味着我们需要使用 _aliases 操作：</li>
+</ul>
+<p>POST &#x2F;_aliases<br>{<br>    “actions”: [<br>        { “remove”: { “index”: “test_v1”, “alias”: “test” }},<br>        { “add”:    { “index”: “test_v2”, “alias”: “test” }}<br>    ]<br>}</p>
+<ul>
+<li>删除旧索引</li>
+</ul>
+<p>DELETE &#x2F;test_v1</p>
+<ul>
+<li>开启增量更新 这样在升级过程中的数据库中有更新的记录将会在新索引上同步</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/elasticsearch-incremental-data-synchronization-seamless-upgrade.html" target="_blank">王柏元的博客 >> ElasticSearch增量数据同步与无缝升级</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/quick-overview-aws-fargate.html" class="pre-post btn btn-default" title='AWS Fargate速览'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            AWS Fargate速览</span>
+    </a>
+    
+    
+    <a href="/open-source-rn-expandabletextreactnative-long-text-folding-component.html" class="next-post btn btn-default" title='【开源】RN-ExpandableText：ReactNative长文本折叠组件'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【开源】RN-ExpandableText：ReactNative长文本折叠组件</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "20378",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-18
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                没有，我这里讲的是用ElasticSearch做业务功能，不是做的日志搜索分析
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1aabac6d068eef6a7bad3fdf50a05cc8.png"
+                                 alt="@dd">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                dd
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                用的是logstash吗
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch-VS-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">ElasticSearch VS 数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E9%87%8F%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5"><span class="toc-text">全量数据导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0ES%E5%A2%9E%E9%87%8F%E5%90%8C%E6%AD%A5"><span class="toc-text">使用消息队列实现ES增量同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E7%B4%A2%E5%BC%95%E6%9B%B4%E6%94%B9%E5%90%8E%E6%80%8E%E6%A0%B7%E5%81%9A%E6%97%A0%E7%BC%9D%E9%87%8D%E5%BB%BA"><span class="toc-text">ES索引更改后怎样做无缝重建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%AB%E5%90%8D"><span class="toc-text">ES索引的别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES%E6%97%A0%E7%BC%9D%E5%8D%87%E7%BA%A7"><span class="toc-text">ES无缝升级</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

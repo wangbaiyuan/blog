@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,计算机网络,数据库,SSD8,分布式系统" />
+
+
+<meta name="description" content="RMI和网络API周末做了网络与分布式系统实验的EX3-java实现RMI分布式议程服务。RMI的全称是“远程方法调用 (Remote Method Invocation)”。下面是极客人的理解..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API">
+            
+            SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a> <a class="tag-none-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="tag">分布式系统</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/07</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="RMI和网络API"><a href="#RMI和网络API" class="headerlink" title="RMI和网络API"></a>RMI和网络API</h2><p>周末做了网络与分布式系统实验的EX3-java实现RMI分布式议程服务。RMI的全称是“远程方法调用 (Remote Method Invocation)”。下面是极客人的理解：使用RMI远程方法调用，可以实现一个java客户端对java RMI的服务端进行远程调用对方的方法，这些方法在服务器端进行了声明并具体实现，而客户端中只有这些方法的定义而没有方法的内容实现——即一个JAVA接口。没有这些方法实现的JAVA客户端可以通过网络连接获取远程服务器端的对象，然后对远程对象和方法进行调用和操作。也就是说客户端的方法定义在本地，而具体实现却在通过网络连接的”遥远”的服务器上 就极客人目前个人的理解，JAVA RMI除了为客户端省去许多代码，其实还可以为服务器端的数据开放提供另外一种有连接的查询接口，比如现在网络上许多API服务，都是PHP+JSON的形式，通过URL的请求，服务器端查询相关结果后以JSON数据包的形式向客户端返回。这样的数据查询方式现在非常普遍，尤其是微信越来越流行的当下，许多公众号都在采用通过对第三方API返回JSON数据包进行解析，为用户提供天气查询、车票查询、机器人聊天、IP查询、归属地查询等服务。 虽然RMI和JSON-网络API不一样，但是极客人学到RMI就不由自主想到了JSON的网络API。不过两者的不同也显而易见，网络上的JSON-API都是被动接受的，客户端只能向服务器请求数据后服务器返回，而RMI的客户端的权限更大，只要RMI的接口在服务器端有定义，客户端可以主动对服务器进行操作，比如数据库操作：查询数据库，删除数据库记录；运行命令:对服务器进行关机（一个实行远程关机的代码极客人将在本系列文章的最后给出），一般说来，java服务器端程序在本地能做到的一切，都可以通过RMI的方式授权给客户端。 本系列文章主要是通过JAVA RMI实现远程会议管理。分享本次练习的答案不是目的，目的是在此梳理一下这两天的经验方法。</p>
+<h2 id="SSD8-EX3问题概述："><a href="#SSD8-EX3问题概述：" class="headerlink" title="SSD8_EX3问题概述："></a>SSD8_EX3问题概述：</h2><p>  这是<a href="http://baiyuan.wang/tag/ssd8">SSD8</a>练习的Ex3，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式系统实验课2013级进度同步。点击标签或在本站搜索“<a href="http://baiyuan.wang/tag/ssd8">SSD8</a>”即可获取已更新的<a href="http://baiyuan.wang/tag/ssd8">SSD8</a>答案。上一练习：<a href="http://baiyuan.wang/ssd8-exam1%E3%80%90tcp-chat-server%E3%80%91.html">SSD8_Exam1【TCP Chat Server】;</a>如果你想继续跟踪SSD练习进展，建议<a href="http://baiyuan.wang/newsletter?action=subscribe">订阅本站</a>。 1) 使用Java RMI创建一个分布式议程共享服务。不同的用户可以使用这个共享议程服务执行查询、添加和删除会议的操作。服务器支持会议的登记和清除等功能； 2) 议程共享服务包括以下功能：用户注册、添加会议、查询会议、删除会议、清除会议； 相关代码和分析将在后续文章中给出。</p>
+<h2 id="系列文章链接："><a href="#系列文章链接：" class="headerlink" title="系列文章链接："></a>系列文章链接：</h2><p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html">SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-2-remote-interface-declarations.html">SSD8_Ex3【JAVA_RMI】(2)远程接口声明</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-3-open-the-rmi-service.html">SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-4-the-conference-database-tables.html">SSD8_Ex3【JAVA_RMI】(4)会议数据库建表</a></p>
+<p><a href="http://baiyuan.wang/ssd8-ex3-java-rmi-5-the-database-connection-and-session-method-definition.html">SSD8_Ex3【JAVA_RMI】(5)数据库连接和会议方法定义</a></p>
+<p><a href="http://baiyuan.wang/java-rmi-6-making-the-command-line-navigation-menu.html">SSD8_Ex3【JAVA_RMI】(6)制作命令行导航菜单</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html" target="_blank">王柏元的博客 >> SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/gojava-implementation-http-post-to-submit-data-to-the-server.html" class="pre-post btn btn-default" title='[转]java实现Http-post向服务器提交数据'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            [转]java实现Http-post向服务器提交数据</span>
+    </a>
+    
+    
+    <a href="/using-the-command-line-to-configure-routing-and-access-internet-and-intranet.html" class="next-post btn btn-default" title='用命令行配置路由同时访问内外网'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            用命令行配置路由同时访问内外网</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "17720",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RMI%E5%92%8C%E7%BD%91%E7%BB%9CAPI"><span class="toc-text">RMI和网络API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSD8-EX3%E9%97%AE%E9%A2%98%E6%A6%82%E8%BF%B0%EF%BC%9A"><span class="toc-text">SSD8_EX3问题概述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5%EF%BC%9A"><span class="toc-text">系列文章链接：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

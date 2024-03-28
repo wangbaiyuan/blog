@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="IoT" />
+
+
+<meta name="description" content="一、指令数据包协议设计在远程控制智能车系统中，远程客户端通过指令通信对智能车进行控制。在本文设计中仅涉及速度方向控制指令，为了考虑系统的可扩展性：因为后续需求可能出现更多类型的指令，本文为指令数..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    【4】通讯指令设计-Pcduino平台下的智能小车 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="【4】通讯指令设计-Pcduino平台下的智能小车">
+            
+            【4】通讯指令设计-Pcduino平台下的智能小车
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/IoT/" rel="tag">IoT</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/03/27</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、指令数据包协议设计"><a href="#一、指令数据包协议设计" class="headerlink" title="一、指令数据包协议设计"></a>一、指令数据包协议设计</h2><p>在远程控制智能车系统中，远程客户端通过指令通信对智能车进行控制。在本文设计中仅涉及速度方向控制指令，为了考虑系统的可扩展性：因为后续需求可能出现更多类型的指令，本文为指令数据设计了指令代号，指令由指令代号和指令数据区组成；考虑到客户端和服务端更好地进行指令处理，指令字长为32位，与int数据类型字长相等，在服务端和和客户端进行socet套接字收发数据时可等同于int数据进行处理。在与本设计类似的课题研究中，往往使用char字符来控制方向，我觉得是不足取的，因为一个char类型如果进行分位存取数据可以节省网络流量和尽可能保证实时性的。  </p>
+<p>指令代号(4bit)</p>
+<p>指令数据区(28bit)</p>
+<p>  当指令代号为1，表示发送车的速度方向控制指令，指令数据包为示意图：  </p>
+<p>0</p>
+<p>3</p>
+<p>4</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<p>20</p>
+<p>21</p>
+<p>31</p>
+<p>指令代号 (4bit)</p>
+<p>舵机角度 (8bit)</p>
+<p>方向 (1bit)</p>
+<p>速度 (8bit)</p>
+<p>预留字段 (11bit)</p>
+<p>  *<em>1.<strong><strong>舵机角度：8bit</strong></strong>，控制舵机的偏转角度(A)<strong><strong>，取值范围0-180</strong> A&#x3D;90度时，舵机处于中间位置； A&lt;90时，舵机偏右； A&gt;90时，舵机偏左。 *<em>2.<strong><strong>方向：1bit</strong></strong>，控制车的前进与后退</em>*</strong>(D)<strong><strong>，取值0</strong></strong>或1</em>* D&#x3D;0，表示小车后退； D&#x3D;1，表示小车前进。 <strong>3.<strong><strong>速度：8bit</strong></strong>，控制车的的行进速度****(S)</strong> 取值范围为Arduino PWM引脚可写入的数据范围，为0-255。 **4.**<strong>预留字段</strong> 用于后续可能出现的需求的扩展</p>
+<h2 id="二、指令数据包的封包与解包"><a href="#二、指令数据包的封包与解包" class="headerlink" title="二、指令数据包的封包与解包"></a>二、指令数据包的封包与解包</h2><p>根据上一小节对指令的协议设计，我们可以通过对int数据的移位运算和逻辑运算进行封包和解包。 指令的封包就是在32位数据结构的相应位置存放对应的指令数据。 下面以指令内容为指令代号（code）c&#x3D;1，角度（angle）a&#x3D;40，方向（direction）d&#x3D;1，速度v&#x3D;150的封包与解包过程为例(为了阅读更加直观，下面的计算值使用32位二进制表示)：</p>
+<ol>
+<li>将指定代号c&#x3D;1左移28位:</li>
+</ol>
+<p>c&lt;&lt;28 &#x3D; 0001 0000 0000 0000 0000 0000 0000 0000</p>
+<ol start="2">
+<li>将a的二进制（101000）表示左移20位：</li>
+</ol>
+<p>a&lt;&lt;20 &#x3D; 0000 0010 1010 0000 0000 0000 0000 0000</p>
+<ol start="3">
+<li>将d的二进制（1）表示左移19位：</li>
+</ol>
+<p>d&lt;&lt;19 &#x3D; 0000 0000 0000 1000 0000 0000 0000 0000</p>
+<ol start="4">
+<li>将v的二进制（10010110）表示左移11位：</li>
+</ol>
+<p>d&lt;&lt;19 &#x3D; 0000 0000 0000 0100 1011 0000 0000 0000</p>
+<ol start="5">
+<li>将上述计算的临时值进行或运算即可得到最终的指令：</li>
+</ol>
+<p>cmd &#x3D; 0001 0010 1010 11001011 0000 0000 0000 综上所述，我们得到指令封包计算公式： cmd &#x3D; (c&lt;&lt;28) | (a&lt;&lt;20) | (d&lt;&lt;19) | (v&lt;&lt;11) 等同于 ((c&lt;&lt;17)|(a&lt;&lt;9)|(d&lt;&lt;8)| v ) &lt;&lt; 11   指令的解包就是从收到的指令数据（int）的对应位置取出数据。 下面以收到的指令为cmd &#x3D; 313307136(二进制：0001 0010 1010 11001011 0000 0000 0000)为例进行数据的解包：</p>
+<ol>
+<li>将cmd右移11位，剔除保留字段，这时速度数据区（8位）的最后一位移到末位，将结果赋值给cmd, 通过与运算“取出”移位后的末尾8位，即为速度：</li>
+</ol>
+<p>cmd &gt;&gt; 11 &#x3D; 0001 0010 1010 11001011 0 v &#x3D; cmd | (1111 1111) &#x3D; 1001 0110</p>
+<ol start="2">
+<li>cmd右移8位，剔除速度字段，这时方向数据区（1位）的最后一位移到末位，将结果赋值给cmd, 通过与运算“取出”移位后的末尾最后1位，即为方向：</li>
+</ol>
+<p>cmd &gt;&gt; 8 &#x3D; 0001 0010 1010 1 d &#x3D; cmd | (1) &#x3D; 1</p>
+<ol start="3">
+<li>cmd右移8位，剔除速度字段，这时方向数据区（1位）的最后一位移到末位，将结果赋值给cmd, 通过与运算“取出”移位后的末尾最后8位，即为角度：</li>
+</ol>
+<p>cmd &gt;&gt; 1 &#x3D; 0001 0010 1010 d &#x3D; cmd | (1111 1111) &#x3D; 0010 1010 综上所述，我们得到指令解包计算公式： cmd &#x3D; cmd &gt;&gt; 11; v &#x3D; cmd &amp; 0xFF; d &#x3D; (cmd &gt;&gt; 8) &amp; 1; a &#x3D; (cmd &gt;&gt; 9) &amp; 0xFF;</p>
+<h2 id="三、指令数据包封包、解包的程序实现"><a href="#三、指令数据包封包、解包的程序实现" class="headerlink" title="三、指令数据包封包、解包的程序实现"></a>三、指令数据包封包、解包的程序实现</h2><p>定义汽车速度方向“向量”结构体：</p>
+<p>struct CarVector{<br>int angle; &#x2F;&#x2F;角度<br>bool direction;&#x2F;&#x2F;方向<br>int speed;&#x2F;&#x2F;速度<br>};</p>
+<p>  根据上述的封包计算公式，可以使用如下C++代码实现封包函数，传入汽车向量结构体返回int数据：</p>
+<p>int createCmd(struct CarVector carVector) {<br> int code &#x3D; 1;&#x2F;&#x2F;命令代号<br> return ((code &lt;&lt; 17) | (carVector.angle &lt;&lt; 9) | (carVector.direction &lt;&lt; 8) | carVector.speed) &lt;&lt; 11;<br>}</p>
+<p>实现解包函数把int数据传给carVector结构体指针</p>
+<p>void parseCmd(int cmd, struct CarVector *carVector) {<br>   cmd &#x3D; cmd &gt;&gt; 11;<br>   carVector-&gt;speed &#x3D; cmd &amp; 0xFF;<br>   carVector-&gt;direction &#x3D; (cmd &gt;&gt; 8) &amp; 1;<br>   carVector-&gt;angle &#x3D; (cmd &gt;&gt; 9) &amp; 0xFF;<br>}</p>
+<h2 id="四、通信指令封包解包测试"><a href="#四、通信指令封包解包测试" class="headerlink" title="四、通信指令封包解包测试"></a>四、通信指令封包解包测试</h2><p>编写如下程序进行实验测试，本程序通过先构造一个速度为40，后退，舵机偏角为150的CarVector，将其封包后在进行解包，解析出的速度、方向、偏角值与CarVector相同，表明测试通过。</p>
+<p>int main() {<br>struct CarVector sendCarVector&#x3D;{40,false,150},receiveCarVector;<br>    int cmd &#x3D;createCmd(sendCarVector);<br>    printf(“发送命令%d(10)\n”,cmd);<br>    parseCmd(cmd,&amp;receiveCarVector);<br>    printf(“角度：%d\n方向：%d\n速度：%d”,receiveCarVector.angle,receiveCarVector.direction,receiveCarVector.speed);<br>    return 0;<br>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/4-pcduino-communication-instruction-design-platform-of-smart-car.html" target="_blank">王柏元的博客 >> 【4】通讯指令设计-Pcduino平台下的智能小车</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/5-of-binocular-camera-pcduino-real-time-image-transmission-platform-of-smart-car.html" class="pre-post btn btn-default" title='【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            【5】双目摄像头的实时图像传输-Pcduino平台下的智能小车</span>
+    </a>
+    
+    
+    <a href="/3-system-architecture-assembly-pcduino-platform-of-smart-car.html" class="next-post btn btn-default" title='【3】系统架构与组装-Pcduino平台下的智能小车'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【3】系统架构与组装-Pcduino平台下的智能小车</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "21520",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%8C%87%E4%BB%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E5%8D%8F%E8%AE%AE%E8%AE%BE%E8%AE%A1"><span class="toc-text">一、指令数据包协议设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8C%87%E4%BB%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E5%B0%81%E5%8C%85%E4%B8%8E%E8%A7%A3%E5%8C%85"><span class="toc-text">二、指令数据包的封包与解包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8C%87%E4%BB%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B0%81%E5%8C%85%E3%80%81%E8%A7%A3%E5%8C%85%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0"><span class="toc-text">三、指令数据包封包、解包的程序实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%80%9A%E4%BF%A1%E6%8C%87%E4%BB%A4%E5%B0%81%E5%8C%85%E8%A7%A3%E5%8C%85%E6%B5%8B%E8%AF%95"><span class="toc-text">四、通信指令封包解包测试</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="博客客户端,JS" />
+
+
+<meta name="description" content="在京东、百度糯米等网站的手机端网页上，常常有有个悬浮提示“点击打开客户端”，如果用户在手机上安装了客户端，将会自动调用客户端打开与当前网页内容一致的客户端页面；如果用户没有安装这些APP，浏览器..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    网页添加链接调用APP与跳转下载网址 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="网页添加链接调用APP与跳转下载网址">
+            
+            网页添加链接调用APP与跳转下载网址
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JS/" rel="tag">JS</a> <a class="tag-none-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%AE%A2%E6%88%B7%E7%AB%AF/" rel="tag">博客客户端</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/01/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在京东、百度糯米等网站的手机端网页上，常常有有个悬浮提示“点击打开客户端”，如果用户在手机上安装了客户端，将会自动调用客户端打开与当前网页内容一致的客户端页面；如果用户没有安装这些APP，浏览器将会跳转到下载网址，让用户下载客户端。在王柏元的博客客户端中也实现了这一功能。 之前在<a href="http://baiyuan.wang/android-open-specified-link-call-other-app.html">《安卓实现打开指定链接调用其他应用程序》</a>介绍了如果让客户端点击特定链接（APPLINK）时自动调用客户端软件，在此再次重复一遍： 在打开指定链接需要跳转到的Activity的AndroidManifest.xml清单文件中中加入一条intent-filter标签，并如下面的例子设置scheme、HOST等属性。</p>
+ <intent-filter>
+ <action android:name="android.intent.action.MAIN" />
+ <category android:name="android.intent.category.LAUNCHER" />
+ </intent-filter>
+ <intent-filter>
+ <action android:name="android.intent.action.VIEW"/>
+ <category android:name="android.intent.category.DEFAULT" />
+ <category android:name="android.intent.category.BROWSABLE" />
+ <data android:scheme="wbyblog" android:host="baiyuan.wang"
+ android:pathPrefix="/home"/>
+</intent-filter>
+
+ <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="wbyblog" android:host="baiyuan.wang"
+                    android:pathPrefix="/home"/>
+</intent-filter>
+
+<h2 id="怎样链接到客户端指定页面"><a href="#怎样链接到客户端指定页面" class="headerlink" title="怎样链接到客户端指定页面"></a>怎样链接到客户端指定页面</h2><p>通过</p>
+<blockquote>
+<p>category android:name&#x3D;”android.intent.category.BROWSABLE” &#x2F;&gt; <data android:scheme="wbyblog" android:host="baiyuan.wang" android:pathPrefix="/home"/></p>
+</blockquote>
+<p>这一Intent调用Activity不仅能在applink被点击时启动该APP，还支持类似HTTP的GET传值，这就是跳转到网页对应的客户端页面的前提。 比如：王柏元的博客客户端注册了android:scheme&#x3D;”wbyblog” android:host&#x3D;”baiyuan.wang” android:pathPrefix&#x3D;”&#x2F;post” 的Intent的postActivity，在浏览器打开链接：”wbyblog:&#x2F;&#x2F;baiyuan.wang&#x2F;post?postid&#x3D;1234**&amp;title&#x3D;网页添加链接调用APP与跳转下载网址 “时，将把postid:1234**和title:网页添加链接调用APP与跳转下载网址 传入postActivity；在postActivity中通过下列代码实现获取传入的值。</p>
+<p> Intent intent&#x3D;getIntent();<br>        String action &#x3D; intent.getAction();<br>        if(Intent.ACTION_VIEW.equals(action)){<br>            Uri uri &#x3D; intent.getData();<br>            if(uri !&#x3D; null){<br>                String title &#x3D; uri.getQueryParameter(“title”);<br>                postid&#x3D; uri.getQueryParameter(“postid”);</p>
+<pre><code>        &#125;
+</code></pre>
+<p>这样你就可以根据传值显示特定的app页面了</p>
+<h2 id="网页端实现已安装客户端则调用、无则下载"><a href="#网页端实现已安装客户端则调用、无则下载" class="headerlink" title="网页端实现已安装客户端则调用、无则下载"></a>网页端实现已安装客户端则调用、无则下载</h2><p>在服务端我们需要动态生成当前网页对应的APPLINK，并通过一个悬浮固定的div显示applink，以便醒目吸引用户点击。比如极客人实现的在手机网页、文章页面，生成有该链接的div（电脑不予显示）： <a href="http://baiyuan.wang/wp-content/uploads/2016/01/baiyuan.wang_2016-01-09_23-20-51.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/01/baiyuan.wang_2016-01-09_23-20-51.jpg" alt="博客app自动链接调用下载"></a> 博客app自动链接调用下载</p>
+<?php
+function addOpenAPPlink(){
+   if (wp\_is\_mobile()&&is_single()){
+       global $post;
+       $postid=$post->ID;
+       $posttitle=$post->post_title;
+       echo '<div style=" max-height:2.5em; color:white;
+             padding: 0.5em;font-size: 1.3em;width: 100%;
+             bottom: 0px;z-index: 99999;display: block;
+             position: fixed;background-color: rgba(68, 184, 234, 0.8);text-align: center;
+            "><img style="width:1.5em;height:1.5em;float:left " src="http://baiyuan.wang/favicon.ico" />王柏元的博客客户端已发布
+            <div id="openapp" style="font-size:0.95em;padding:0.1em;float:right;border: 1px solid white;border-radius: 4px;background-color: rgba(108, 207, 216, 0.78); " >点击打开</div></div>'; 
+                
+             echo 
+               '<script type="text/javascript">
+               function isInstalled(){
+                var the_href="http://mobile.baidu.com/#/item?docid=8613180";//获得下载链接
+                window.location="wbyblog://baiyuan.wang/post?postid='.$postid.'&title='.$posttitle.'";//打开某手机上的某个app应用
+                
+                setTimeout(function(){
+                    window.location=the_href;//如果超时就跳转到app下载页
+                },1000);
+                }
+                $("#openapp").click(function(){
+                    isInstalled();
+                }
+                );
+                </script>
+       
+                '; 
+       
+   }
+
+}
+
+add\_action ( 'wp\_footer', 'addOpenAPPlink' );
+?>
+
+<p>其中关键部分为下面的js代码：</p>
+<script type="text/javascript">
+               function isInstalled(){
+                var the_href="http://mobile.baidu.com/#/item?docid=8613180";//获得下载链接
+                window.location="wbyblog://baiyuan.wang/post?postid='.$postid.'&title='.$posttitle.'";//打开某手机上的某个app应用
+                
+                setTimeout(function(){
+                    window.location=the_href;//如果超时就跳转到app下载页
+                },1000);
+                }
+                $("#openapp").click(function(){
+                    isInstalled();
+                }
+                );
+                </script>
+
+<p>js实现了让浏览器打开applink从而自动调用你的app(当然前提是你安装了)，并在1000m后跳转到app下载页面，其它并不能判断你的手机上是否安装了你的APP，但是展现的效果是一样的！</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/page-add-links-call-app-jump-download-url.html" target="_blank">王柏元的博客 >> 网页添加链接调用APP与跳转下载网址</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/webview-shows-rich-text-interact-with-js-java.html" class="pre-post btn btn-default" title='webview显示富文本与JS和java的交互'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            webview显示富文本与JS和java的交互</span>
+    </a>
+    
+    
+    <a href="/confused-androidstudio-code-with-ndk-prevention-apk-decompiling.html" class="next-post btn btn-default" title='AndroidStudio代码混淆和NDK预防apk反编译'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            AndroidStudio代码混淆和NDK预防apk反编译</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "2813",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-01-04
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好，I am using Wordpress CMS with a theme named "Tinection".
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/a4b4fbd3459d3c1fe1fe536755db38a0.png"
+                                 alt="@宅配">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                宅配
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-12-29
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                Hi there 比臉大牛排 sharing which blog platform you're using?
+
+I'm looking to start my own blog soon but I'm having 
+a tough time making a decision between BlogEngine/Wordpress/B2evolution and 
+Drupal. The reason I ask is because your design and style 
+seems different then most blogs and I'm looking for something completely unique.
+
+P.S Sorry for getting off-topic but I had to ask!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/373231c440d315d16d2d693b590649d1.png"
+                                 alt="@好文推荐">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                好文推荐
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-01-15
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                关注一下
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E6%A0%B7%E9%93%BE%E6%8E%A5%E5%88%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8C%87%E5%AE%9A%E9%A1%B5%E9%9D%A2"><span class="toc-text">怎样链接到客户端指定页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E7%AB%AF%E5%AE%9E%E7%8E%B0%E5%B7%B2%E5%AE%89%E8%A3%85%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%88%99%E8%B0%83%E7%94%A8%E3%80%81%E6%97%A0%E5%88%99%E4%B8%8B%E8%BD%BD"><span class="toc-text">网页端实现已安装客户端则调用、无则下载</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

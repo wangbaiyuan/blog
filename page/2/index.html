@@ -1,0 +1,1282 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="" />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content ">
+                
+
+
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/verify-effectiveness-of-asynchronous-log-collection-under-spring-framework.html">
+                        Spring框架下异步日志收集及验证是否生效</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年05月15日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    Logback+AsyncAppenderlogback的介绍. Logback是由log4j创始人设计的另一个开源日志组件。 为了避免日志记录会给服务带来性能问题，在项目中决定采用“异步记录日志”进行记录。这里就要使用到Logbac...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/Spring/" rel="tag">Spring</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/verify-effectiveness-of-asynchronous-log-collection-under-spring-framework.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/nginxs-implementation-of-canary-release-in-website-revision.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2019/10/baiyuan.wang_2019-10-23_13-25-07.png"
+                         alt="Nginx在网站改版中实现金丝雀发布">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/nginxs-implementation-of-canary-release-in-website-revision.html">
+                        Nginx在网站改版中实现金丝雀发布</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年04月23日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    在网站改版中我们希望选取部分用户进行金丝雀发布来给自己的新网站做“试点”，在确认新网站使用没有问题后，会慢慢加大新网站“试点”的比重，从而用到“金丝雀发布”。 “金丝雀发布”这一典故来源于采煤行业，据说以前矿工挖煤的时候，矿工下矿井前...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/nginxs-implementation-of-canary-release-in-website-revision.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/protecting-user-privacy-data-in-logs.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2019/04/PII-Protection.jpg"
+                         alt="保护日志中的用户隐私数据">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/protecting-user-privacy-data-in-logs.html">
+                        保护日志中的用户隐私数据</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年04月14日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    
+2019年度“315”晚会人工智能拨打骚扰电话的情节，让大众了解到在信息时代，保护个人隐私的重要性。本篇文章分享了在日志记录中保护用户隐私数据的七个最佳实践。
+
+与“中国人愿意用隐私交换便利性”的心态完全不同，欧美国家在个人隐私保护...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/DevOps/" rel="tag">DevOps</a> <a class="tag-none-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/protecting-user-privacy-data-in-logs.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/use-modsecurity-escort-your-wordpress-blog.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2019/03/20190312152420118.gif"
+                         alt="利用ModSecurity为你的wordpress博客保驾护航">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/use-modsecurity-escort-your-wordpress-blog.html">
+                        利用ModSecurity为你的wordpress博客保驾护航</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年03月12日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    ModSecurity是一个入侵探测与阻止的引擎，它主要是用于Web应用程序所以也可以叫做Web应用程序防火墙；它可以作为Apache Web服务器的一个模块或单独的应用程序来运行。ModSecurity的目的是为增强Web应用程序的...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/use-modsecurity-escort-your-wordpress-blog.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/on-continuous-integration-change-merge.html">
+                        关于持续集成-变更合并</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年02月21日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    发布的时候，各特性分支才merge到master，如果几个特性分支修改了相同文件并造成冲突，如果发布周期比较长的话，merge的时候可能就会造成大量冲突。个人经验，一般是尽量做到持续发布、快速迭代（尽快merge到master），其次...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/CI-CD/" rel="tag">CI/CD</a> <a class="tag-none-link" href="/tags/%E6%95%8F%E6%8D%B7/" rel="tag">敏捷</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/on-continuous-integration-change-merge.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/zipkin-js-instrumentation-axios.html">
+                        【开源】zipkin-js-instrumentation-axios: 集成axios和zipkin</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年02月19日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    Zipkin 是由Twitter公司开发并开源的分布式追踪系统，而axios则是常用的Javascript HTTP客户端。由于zipkin-js官方没有提供axios的适配，同时同类型库zipkin-jinstrumentation...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JS/" rel="tag">JS</a> <a class="tag-none-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/zipkin-js-instrumentation-axios.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/k8s-health-examination-with-ready-survival-probes.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2019/01/20190117183007118.jpg"
+                         alt="K8S使用就绪和存活探针配置健康检查">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/k8s-health-examination-with-ready-survival-probes.html">
+                        K8S使用就绪和存活探针配置健康检查</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2019年01月17日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    健康检查健康检查（Health Check）可用于服务运行的状态监控，比如腾讯旗下的DNSPOD的D监控，要求配置一个访问路径以判断网站是否可以正常访问实际上就是一个健康检查，当发现健康检查失败时会发送一个邮件通知或者短信来告知网站管...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="tag">分布式系统</a> <a class="tag-none-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a> <a class="tag-none-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/k8s-health-examination-with-ready-survival-probes.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/trip-san-francisco.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2019/04/20190416091305118.jpg"
+                         alt="旧金山之行">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/trip-san-francisco.html">
+                        旧金山之行</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2018年12月22日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    美西海岸有山，名曰“旧金山”。
+忽闻海上有仙山飞机降落前的旧金山，青山如黛，江山如画，山在飘渺虚无间。
+ 山在缥缈虚无间
+
+鸟瞰下鳞次栉比的街道，就像美国地图一样，被切分得规规整整。
+陈旧而意蕴十足的街头在旧金山的街头闲逛，没有想象中...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%B2%81%E6%9C%88/">岁月</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/trip-san-francisco.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/cloudformation-infrastructure-code-behind-it.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2018/11/20181116134234212.jpg"
+                         alt="Cloudformation与其背后的“基础设施即代码”">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/cloudformation-infrastructure-code-behind-it.html">
+                        Cloudformation与其背后的“基础设施即代码”</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2018年11月16日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    熟悉AWS的肯定不会对Cloudformation感到陌生，AWS官方对Cloudformation的定义如下：
+
+AWS CloudFormation 云资源服务可使开发人员和系统管理员轻松有序地创建、管理和更新相关 AWS 云资源...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/cloudformation-infrastructure-code-behind-it.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/communication-no-spray.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="https://baiyuan.wang/wp-content/uploads/2019/02/20190222075700118.jpg"
+                         alt="沟通从远离喷子开始">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/communication-no-spray.html">
+                        沟通从远离喷子开始</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2018年11月11日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    喷子或者杠精可能不知道自己是喷子或者杠精，只是想通过反驳别人的观点彰显自己的存在感，满足自己的虚荣心并以此为傲。比较可惜的是，他们失去了一次是对别人思想学习与吸纳的机会。还有高级一点的喷子，不知道对方有时候说的话有他特殊的上下文，而是...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9E%81%E5%AE%A2%E8%A7%86%E7%82%B9/">极客视点</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E6%B2%9F%E9%80%9A/" rel="tag">沟通</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/communication-no-spray.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+
+<nav class="pagination" role="navigation">
+    <div id="page-nav">
+        <a class="extend prev" rel="prev" href="/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/"><i class='fa fa-angle-right'></i></a>
+    </div>
+</nav>
+
+
+
+            </main>
+            
+                
+    <aside class="col-md-4 sidebar">
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        搜索
+    </h3>
+    <div id="search-form">
+        <div id="result-mask" class="hide"></div>
+        <div class="search-area">
+            
+            
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="https://baiyuan.wang"></form>
+            
+        </div>
+        <div id="result-wrap" class="hide">
+            <div id="search-result"></div>
+        </div>
+        <div class="hide">
+            <template id="search-tpl">
+                <div class="item">
+                    <a href="/{path}" title="{title}">
+                        <div class="title">{title}</div>
+                        <div class="content">{content}</div>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+
+            
+        
+            
+            
+            
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+            
+        
+            
+            <div class="widget">
+    <h3 class="title">
+        随便看看
+    </h3>
+    <div class="content random_posts">
+        <ul>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/by-shuoshuo-wp-plugin-release-feedback.html" target="_blank">BY说说-wordpress说说插件发布与反馈</a>
+                        <div class="date">2015-08-20</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/get-position-with-baidu-map-wechat-development-latitude-longitude-resolution.html" target="_blank">微信开发获取位置与百度地图经纬度解析</a>
+                        <div class="date">2015-12-14</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/htpasswd-set-site-directory-file-passwords.html" target="_blank">用.htpasswd设置网站目录、文件访问密码</a>
+                        <div class="date">2015-06-16</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/implemented-by-ipv6-to-access-ipv4-resources-free-internet-access.html" target="_blank">通过IPV6访问IPV4资源实现免费上网</a>
+                        <div class="date">2014-12-29</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/local-area-network-lan-simple-udp-video-calls.html" target="_blank">一个简单的局域网UDP实时视频</a>
+                        <div class="date">2016-04-12</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/new-to-wp-plugins-encountered-exception-that-is-n-characters-output.html" target="_blank">插件在启用的过程中产生了594个字符的异常输出</a>
+                        <div class="date">2015-03-19</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/open-source-terraform-implementation-sharing-azure-subscription-in-team.html" target="_blank">【开源】Terraform实现在Team中分享Azure订阅</a>
+                        <div class="date">2019-10-25</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/sql-and-use-navicat-to-make-er-diagram-and-interactive.html" target="_blank">用Navicat制作ER图及与SQL互相转化</a>
+                        <div class="date">2015-05-21</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/translation-phinx-introduction-installation-phinx-tutorial-1.html" target="_blank">【译】Phinx的介绍与安装-Phinx教程(1)</a>
+                        <div class="date">2015-08-24</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/year-2015-baidu-k-station-of-the-intelligence-collection.html" target="_blank">2015年元旦百度新年大K站的情报汇总</a>
+                        <div class="date">2015-01-03</div>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+            
+        
+            
+            <link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css" rel="stylesheet">
+<div class="widget">
+    <h3 class="title">
+        最新评论
+    </h3>
+    <div class="content recent_comments">
+        
+        <div class="gt-container brief">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                sdad
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                评论反应比较慢这个怎么解决
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                calvin
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                放在iPhoneX的模拟器上在计算MaxHeight值会无法计算，先将containerHeight默认值设置为auto，计算完containerHeight后设置为0，刷新重新计算，再将containerHeight设置为auto计算minHeight可解决此问题，不知道有没有更好的方法？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                长江大学陈刚同学
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                湖北武漢東湖社區論壇有個直接取名叫“三峽大學”，長期噴
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小麦社区
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                站点名称：小麦社区
+站点描述：综合社区
+站点地址：http://www.axiaomai.cn
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                博客大全
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                博客大全特邀站长前来入住！！！！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                WordPress时间函数The_time()和Date()的区别|JOYtheme
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 转载注明原文出处：王柏元的博客&gt;&gt;http://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-01-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好，贵站的内容类型和本站类型不是很匹配，抱歉。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                所以保护知识产权不是一句假话，只有让创新的人能获得利益，才能鼓励人创新。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                如果随随便便就能买到，自己花大精力去做开发岂不是自找的辛苦啊，所以外国不封锁，反而什么也发展不起来。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                本站名称：天鸡部落
+本站链接：https://3838521.com/
+诚意友链，望审核回复留言
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+    </div>
+</div>
+
+            
+        
+            
+    </aside>
+    <aside class="col-md-4 sidebar scroll-fix">
+        
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+    </aside>
+    <aside class="col-md-4 sidebar">
+        
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        友链
+    </h3>
+    <div class="content friends-link">
+        
+        <a href="https://magpie.wangbaiyuan.cn/" class="fa" target="_blank">
+            Magpie抽奖系统</a>
+        
+        <a href="https://md.wangbaiyuan.cn/" class="fa" target="_blank">
+            极客MD编辑器</a>
+        
+        <a href="http://www.jurieo.com/" class="fa" target="_blank">
+            俊霖</a>
+        
+        <a href="https://webapproach.net/" class="fa" target="_blank">
+            知言的自留地</a>
+        
+        <a href="https://www.wangtianyi.top/" class="fa" target="_blank">
+            不要吵到这里的Bug - 王天一</a>
+        
+        <a href="http://www.deathearth.com/" class="fa" target="_blank">
+            一个程序猿的编码人生</a>
+        
+        <a href="https://www.enetn.com/" class="fa" target="_blank">
+            e网络</a>
+        
+        <a href="https://www.icheny.cn/" class="fa" target="_blank">
+            乘月网</a>
+        
+        <a href="https://ewind.us/" class="fa" target="_blank">
+            ewind the doodler</a>
+        
+    </div>
+</div>
+
+            
+        
+    </aside>
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

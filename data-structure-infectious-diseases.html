@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,递归,数据结构" />
+
+
+<meta name="description" content="DescriptionThis assignment asks you to finish the implementation of a program that assesses the l..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    数据结构-传染病问题 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构-传染病问题">
+            
+            数据结构-传染病问题
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a> <a class="tag-none-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/11/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h2><p>This assignment asks you to finish the implementation of a program that assesses the level of infection in a tissue sample. You are given data representing a rectangular tissue sample, overlaid with a grid. Certain portions of the tissue are infected; others are not. Your goal is to help assess the extent of the infection by writing a program that, given the coordinates of a colony of infection, can determine its size. A typical use of the program follows. The user interacts with the program only through command-line arguments. The user supplies to the program a data filename and the coordinates of a cell in the grid. The coordinates are specified by row and then column, both starting at zero. The program calculates the extent of infection at that coordinate and outputs a two-dimensional representation of the tissue sample. Figure 1 depicts（叙述） the execution（执行） of the program. <a href="http://baiyuan.wang/wp-content/uploads/2014/11/infect.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2014/11/infect.jpg" alt="infect"></a></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>#include <iostream><br>#include <fstream></p>
+<p>using namespace std;</p>
+<p>#include “grid.h”</p>
+<p>&#x2F;&#x2F; You do not need to alter function indexof.<br>int grid::indexof (int row, int col) const {<br>  return row*cols+col;<br>}</p>
+<p>&#x2F;&#x2F; You do not need to alter function infected.<br>bool grid::infected(int row, int col) const {<br>  return (area-&gt;operator[](indexof(row, col)) &#x3D;&#x3D; INFECTED);<br>}</p>
+<p>&#x2F;&#x2F; You may need to alter the constructor<br>grid::grid (string file) {<br>  ifstream grid_file;</p>
+<p>  grid_file.open (file.c_str());</p>
+<p>  grid_file &gt;&gt; rows;<br>  grid_file &gt;&gt; cols;</p>
+<p>  area &#x3D; new vector<bool>(rows<em>cols, NOT_INFECTED);<br>  note &#x3D; new vector<string>(rows</em>cols, “0  “);<br>  while (true) {</p>
+<pre><code>int blob_row;
+int blob_col;
+
+grid\_file &gt;&gt; blob\_row;
+grid\_file &gt;&gt; blob\_col;
+
+if (grid_file.eof()) &#123;
+    break;
+&#125;
+
+area-&gt;operator\[\](indexof(blob\_row,blob\_col)) = INFECTED;
+note-&gt;operator\[\](indexof(blob\_row,blob\_col)) = &quot;1  &quot;;
+</code></pre>
+<p>  }</p>
+<p>  grid_file.close();<br>}</p>
+<p>&#x2F;&#x2F; You may need to alter the destructor<br>grid::~grid () {<br>  delete area;<br>  delete note;<br>}</p>
+<p>&#x2F;&#x2F; You will need to alter this function to display the<br>&#x2F;&#x2F; plus signs (+) next to the cells that belong to<br>&#x2F;&#x2F; a counted colony.<br>ostream &amp;operator&lt;&lt;(ostream &amp;stream, const grid&amp; ob) {</p>
+<p>  for (int row&#x3D;0; row &lt; ob.rows; row++) {</p>
+<pre><code>for (int col=0; col &lt; ob.cols; col++) &#123;
+  //stream &lt;&lt; ob.area-&gt;operator\[\](ob.indexof(row, col));
+  stream &lt;&lt; ob.note-&gt;operator\[\](ob.indexof(row, col));
+&#125;
+
+stream &lt;&lt; endl;
+</code></pre>
+<p>  }</p>
+<p>  stream &lt;&lt; endl;<br>  return stream;<br>}</p>
+<p>&#x2F;&#x2F; Replace the return statement in this function with your<br>&#x2F;&#x2F; recursive implementation of this method *&#x2F;<br>int grid::count (int row, int col) {<br>    if(0&lt;&#x3D;row&amp;&amp;row &lt;  rows&amp;&amp;0&lt;&#x3D;col&amp;&amp;col &lt; cols)<br>    {<br>        if(infected( row,col)&amp;&amp;note-&gt;operator[](indexof(row,col)) &#x3D;&#x3D;”1  “)<br>        {<br>            note-&gt;operator[](indexof( row,col)) &#x3D;”1+ “;<br>            return 1+count (row+1, col+1)+count (row+1, col)+<br>                   count (row+1, col-1)+count (row, col-1)+<br>                   count (row , col+1)+count (row-1, col+1)+<br>                   count (row-1, col )+count (row-1, col-1);<br>        }<br>        else<br>            return 0;<br>    }<br>    else return 0;<br>}<br>&#x2F;*string grid::noteplus(int row,int col) const{<br>    if(note-&gt;operator[](indexof(row, col)) &#x3D;&#x3D; INFECTED){<br>        return “+  “;<br>    }<br>else<br>        return “   “;<br>}</p>
+<p>*&#x2F;</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/data-structure-infectious-diseases.html" target="_blank">王柏元的博客 >> 数据结构-传染病问题</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/reprint-relationship-between-bandwidth-and-download-speed-speed.html" class="pre-post btn btn-default" title='【转载】带宽、下载速度、网速 的关系'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            【转载】带宽、下载速度、网速 的关系</span>
+    </a>
+    
+    
+    <a href="/reprint-use-of-third-party-web-sites-online-to-do-your-app.html" class="next-post btn btn-default" title='【转载】利用第三方网站在线做自己的APP'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            【转载】利用第三方网站在线做自己的APP</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "21397",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/80c4f637d0a5b2e006c8787dda1f97a0.png"
+                                 alt="@华光湮灭">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                华光湮灭
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2014-12-12
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                可以评论了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

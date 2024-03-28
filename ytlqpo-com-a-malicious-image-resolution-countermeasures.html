@@ -1,0 +1,1038 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="htaccess,网站安全,SEO,Web,PHP" />
+
+
+<meta name="description" content="前天在百度搜索王柏元的博客网站关键词时，猛地在百度结果的第一页中发现了一个标题、简介和我完全一样的网站，不看不知道，这个网站还不是传统意义上的抄袭、盗链，不仅仅把我的网站全部照搬，而且把网页里所..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    被.ytlqpo.com恶意镜像的解决、反制措施 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="被.ytlqpo.com恶意镜像的解决、反制措施">
+            
+            被.ytlqpo.com恶意镜像的解决、反制措施
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a> <a class="tag-none-link" href="/tags/SEO/" rel="tag">SEO</a> <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a> <a class="tag-none-link" href="/tags/htaccess/" rel="tag">htaccess</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>前天在百度搜索王柏元的博客网站关键词时，猛地在百度结果的第一页中发现了一个标题、简介和我完全一样的网站，不看不知道，这个网站还不是传统意义上的抄袭、盗链，不仅仅把我的网站全部照搬，而且把网页里所有的链接都置换成那个镜像网站地址的。 我这才知道：我的网站被人家恶意镜像了。 和一般的镜像不太一样，这个镜像网站不仅仅是针对我一个网站，而是自动镜像。主要表现为：</p>
+<ul>
+<li>①我的网址：<a href="http://baiyuan.wang/">http://baiyuan.wang</a>;镜像网址就是：wangbaiyuan.ytlqpo.com。另外一个网站网址：<a target="_blank" rel="noopener" href="http://weixin.baiyuan.wang/">http://weixin.baiyuan.wang</a>,镜像网址就是weixinwangbaiyuan.ytlqpo.com经过本人测试：把你的网站网址去掉主机记录和顶级域名，加上.ytlqpo.com，就知道你自己有没有被镜像！</li>
+<li>②为镜像网站里所有链接添加镜像，比如我的网站里有个友情链接：<a target="_blank" rel="noopener" href="http://www.zhiyanblog.com/">http://www.zhiyanblog.com</a>,这个友情链接就会置换成：zhiyanblog.ytlqpo.com.</li>
+</ul>
+<h2 id="一、经过本人测试中招的大网站有："><a href="#一、经过本人测试中招的大网站有：" class="headerlink" title="一、经过本人测试中招的大网站有："></a>一、经过本人测试中招的大网站有：</h2><p>360. ytlqpo.com 镜像360网站 sogou. ytlqpo.com 镜像搜狗搜索 qq. ytlqpo.com 镜像qq官网 net. ytlqpo.com 镜像万网官网</p>
+<p>haosou. ytlqpo.com 镜像好搜网站</p>
+<p><a href="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-19_09-21-30.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-19_09-21-30.jpg" alt="360被镜像"></a> 号称安全神站的360也未能幸免 不过恭喜百度搜索主页神奇地幸免了</p>
+<h2 id="二、测试的站长朋友网站被镜像的有："><a href="#二、测试的站长朋友网站被镜像的有：" class="headerlink" title="二、测试的站长朋友网站被镜像的有："></a>二、测试的站长朋友网站被镜像的有：</h2><p>zhiyan blog.ytl qpo.com 镜像<a target="_blank" rel="noopener" href="http://www.zhiyanblog.com/">http://www.zhiyanblog.com</a> nai ba.ytlqpo.com 镜像naiba.im wangb aiyuan .ytlqpo.com 镜像<a href="http://baiyuan.wang/">http://baiyuan.wang</a></p>
+<h2 id="三、恶意镜像很危险"><a href="#三、恶意镜像很危险" class="headerlink" title="三、恶意镜像很危险"></a>三、恶意镜像很危险</h2><p>恶意镜像由于照搬了源站的所有内容，如果你的网站权重不够高就苦逼了，百度如果分不清哪个源站，难保把你当抄袭，如果你的权重干不过人家的话。不管你的权重高不高，被恶意镜像的网站无疑会削弱你的权重，因为百度蜘蛛发现了大量和你网站一模一样的内容。虽然网上有很多恶意镜像的解决办法，但是我感觉我这次遇到的情况和网上的都不太一样，使用网上许多方法都不奏效。</p>
+<h2 id="四、解决与反制措施"><a href="#四、解决与反制措施" class="headerlink" title="四、解决与反制措施"></a>四、解决与反制措施</h2><p>在尝试多种方法无效后，我想到了一个权宜之计：禁止恶意镜像网站的访问IP，之所以说是权宜之计，因为难保它的IP会变，还有这个IP不是镜像网址的解析IP 因为多次尝试解决问题过程中，我发现这个恶意镜像的网站的原理大概是：别人访问abc.ytlqpo.com 的时候，它会访问一下(www)abc.com(cn\net\cc\xyz\wang),然后把访问的结果修改一下链接返回给你。所以，它必须有一个访问源站的过程。于是乎解决方案就是禁止这个访问IP. 在搜寻海量的网站日志没有确认这个IP后，我写了一个PHP文件来截获这个访问IP。</p>
+<h2 id="1-截获IP"><a href="#1-截获IP" class="headerlink" title="1.截获IP"></a>1.截获IP</h2><?
+$file = "ip.txt";//保存的文件名
+$ip = $\_SERVER\['REMOTE\_ADDR'\];
+$handle = fopen($file, 'a');
+fwrite($handle, "IP Address: ");
+fwrite($handle, "$ip");
+fwrite($handle, "\\n");
+fclose($handle);
+?>
+
+<p>将上述文件命名为“ip.php”放在网站根目录,然后我通过镜像网站网址访问wangbaiyuan.ytlqpo.com&#x2F;ip.php，然后在上述PHP程序生成的ip.txt中获取了这个IP： <strong>104.194.16.230</strong> （美国）</p>
+<h3 id="2-屏蔽IP"><a href="#2-屏蔽IP" class="headerlink" title="2.屏蔽IP"></a>2.屏蔽IP</h3><p><strong>在htaccess中添加下述代码：</strong></p>
+<p>Deny from 104.194.16.230</p>
+<p>对于htaccess屏蔽IP的方法，我的之前一篇文章有详细介绍：<a href="http://baiyuan.wang/web-hosting-how-to-block-specified-ip-or-network-segments.html">htaccess屏蔽ip访问</a>。 当你再次用镜像网址访问你的网站的时候就会报403错误了，现在百度即使收录了这个网址对你的网站也不会产生任何影响.</p>
+<h3 id="3-反制措施"><a href="#3-反制措施" class="headerlink" title="3.反制措施"></a>3.反制措施</h3><p>为了给这个镜像网站小小的“反击”，我决定把这个403错误页面设置为其他网站网址，实现方法是在屏蔽IP的htaccess代码中添加：</p>
+<p>ErrorDocument 403 <a target="_blank" rel="noopener" href="http://news.baidu.com/">http://news.baidu.com/</a></p>
+<p>这样你访问你的镜像网址时，会发现它镜像的是其实百度新闻。（不知道百度蜘蛛发现一个网站在完全抄袭自己家的东西会是什么感觉）</p>
+<h4 id="演示效果："><a href="#演示效果：" class="headerlink" title="演示效果："></a>演示效果：</h4><p>wangb aiyuan .ytlqpo.com(为了不给这个网址做传递权重和宣传，防止产生链接效果，请自行复制此链接去掉空格在浏览器中打开) 当然你写可以根据个人需求让你的镜像网址转向镜像其他的网站，比如： <strong>借助它Fanqiang！</strong></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ytlqpo-com-a-malicious-image-resolution-countermeasures.html" target="_blank">王柏元的博客 >> 被.ytlqpo.com恶意镜像的解决、反制措施</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/sql-and-use-navicat-to-make-er-diagram-and-interactive.html" class="pre-post btn btn-default" title='用Navicat制作ER图及与SQL互相转化'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            用Navicat制作ER图及与SQL互相转化</span>
+    </a>
+    
+    
+    <a href="/philosophy-of-programming-materialized.html" class="next-post btn btn-default" title='哲学到编程：思想的实例化'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            哲学到编程：思想的实例化</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "51022",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/2ec7074adfe3dd7bc74c1433f090862d.png"
+                                 alt="@曾劲松">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                曾劲松
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-09-08
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                现在你那个获取IP的方法已经不行了，我上传上去，我自己的网站可以打开那个文件，但是镜像站就打不开那个文件，所以获取不到。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/17f383c4f8bf4be337a8809db0ac634c.png"
+                                 alt="@网搜天下">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                网搜天下
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-12-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                请问NGINX 怎么设置啊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aa83d5de82ab93a84c68861d539a8780.png"
+                                 alt="@网站被.Ytlqpo.Com等恶意镜像的解决、反制措施详细教程 &amp;#8211; 逍遥乐IT博客">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                网站被.Ytlqpo.Com等恶意镜像的解决、反制措施详细教程 &amp;#8211; 逍遥乐IT博客
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-10-14
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 来源：王柏元 分类：网站开发与网络建设 围观16次          (adsbygoogle = window.adsbygoogle || [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aa83d5de82ab93a84c68861d539a8780.png"
+                                 alt="@网站被.Ytlqpo.Com等恶意镜像的解决、反制措施详细教程 &amp;#8211; 逍遥乐IT博客">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                网站被.Ytlqpo.Com等恶意镜像的解决、反制措施详细教程 &amp;#8211; 逍遥乐IT博客
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-10-13
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 原文链接：http://baiyuan.wang/ytlqpo-com-a-malicious-image-resolution-countermeasures.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                现在这个网站已经被360封杀了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/b8c2681bfe163bd861904cd3bc549979.png"
+                                 alt="@同盟源">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                同盟源
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                还有这么无聊的人..
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                机智!但我觉得好像没有必要的样子
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1a0ec53b0c704b6d8fd989d6bf6fe01d.png"
+                                 alt="@wordpress优化">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                wordpress优化
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                看了几个，把如下IP段都屏蔽了104.194.16.0/255
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                没有问题，网站回复不方便的话用QQ咨询
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1aa7c54902af7783d72fc70a6b0ad2a6.png"
+                                 alt="@厘米天空">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                厘米天空
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                # BEGIN WordPress
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+
+# END WordPress
+
+Order Allow,Deny
+Allow from all
+Deny from 104.194.16.230
+这是htdocs下.htaccess文件里所有内容，麻烦博主帮忙看下是否有写错，谢谢！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我也是万网的免费主机
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1aa7c54902af7783d72fc70a6b0ad2a6.png"
+                                 alt="@厘米天空">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                厘米天空
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                Order Allow,Deny
+Deny from 104.194.16.230
+Allow from all
+没有起作用，是哪里不对吗？用的是万网的免费主机~
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你就直接使用我获取到的IP：104.194.16.230
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/1aa7c54902af7783d72fc70a6b0ad2a6.png"
+                                 alt="@厘米天空">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                厘米天空
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                请教博主，我用了360网站卫士CDN，结果用了博主的方法获取的IP是CDN的IP怎么办？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                让它能惹怒百度
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/3b59f757f6f147f3626898e98f535207.png"
+                                 alt="@爱探路">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                爱探路
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                ErrorDocument 403 http://news.baidu.com/   设置成这样的话，那个网址就会 你的域名.ytlqpo.com  这个也不太好啊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这是普遍性的，我已经向百度举报了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/3b59f757f6f147f3626898e98f535207.png"
+                                 alt="@爱探路">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                爱探路
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                我也中招...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/54fdc8577b9627657aa823a01c3df7ad.png"
+                                 alt="@jlwb.xyz">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                jlwb.xyz
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-19
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                已参照教程成功阻挡之，感谢感谢！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%8F%E8%BF%87%E6%9C%AC%E4%BA%BA%E6%B5%8B%E8%AF%95%E4%B8%AD%E6%8B%9B%E7%9A%84%E5%A4%A7%E7%BD%91%E7%AB%99%E6%9C%89%EF%BC%9A"><span class="toc-text">一、经过本人测试中招的大网站有：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B5%8B%E8%AF%95%E7%9A%84%E7%AB%99%E9%95%BF%E6%9C%8B%E5%8F%8B%E7%BD%91%E7%AB%99%E8%A2%AB%E9%95%9C%E5%83%8F%E7%9A%84%E6%9C%89%EF%BC%9A"><span class="toc-text">二、测试的站长朋友网站被镜像的有：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%81%B6%E6%84%8F%E9%95%9C%E5%83%8F%E5%BE%88%E5%8D%B1%E9%99%A9"><span class="toc-text">三、恶意镜像很危险</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E5%8F%8D%E5%88%B6%E6%8E%AA%E6%96%BD"><span class="toc-text">四、解决与反制措施</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%88%AA%E8%8E%B7IP"><span class="toc-text">1.截获IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B1%8F%E8%94%BDIP"><span class="toc-text">2.屏蔽IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8D%E5%88%B6%E6%8E%AA%E6%96%BD"><span class="toc-text">3.反制措施</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C%EF%BC%9A"><span class="toc-text">演示效果：</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

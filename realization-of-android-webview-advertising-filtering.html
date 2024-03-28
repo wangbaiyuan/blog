@@ -1,0 +1,694 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="现在大部分的android平台的浏览器都具有广告过滤的功能，同时大部分网站都有广告。广告行业是个盈利巨大的产业，就我看来，现在绝大部分的互联网产品，一般有两种营利模式：免费有广告和会员无广告；他..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Android webview广告过滤的实现 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android webview广告过滤的实现">
+            
+            Android webview广告过滤的实现
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/05/02</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>现在大部分的android平台的浏览器都具有广告过滤的功能，同时大部分网站都有广告。广告行业是个盈利巨大的产业，就我看来，现在绝大部分的互联网产品，一般有两种营利模式：免费有广告和会员无广告；他们大部分（包括网站和APP等）盈利来源就是广告。作为用户而言，对广告十分反感，但是互联网上的服务我们能免费享受与支撑这些服务得以延续与成长却得益于广告。 <a href="http://baiyuan.wang/wp-content/uploads/2016/05/baiyuan.wang_2016-05-02_11-46-22.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/05/baiyuan.wang_2016-05-02_11-46-22.jpg" alt="优酷广告"></a> 百度了一下，网上竟然没有Android浏览器屏蔽广告的代码实现，所以极客人只能自己动手了。网页上的广告一般是站长在网页植入一段js代码，要想屏蔽广告只需要将这些js屏蔽掉即可。</p>
+<h2 id="WebViewClient的几个回调函数"><a href="#WebViewClient的几个回调函数" class="headerlink" title="WebViewClient的几个回调函数"></a>WebViewClient的几个回调函数</h2><p>要想对Webview实现一些高级操作，首先要学习WebViewClient的用法，这是Webview几个常用回调函数</p>
+<ul>
+<li>1、<strong>public boolean shouldOverrideUrlLoading(WebView view, String url)</strong> ： 在点击请求的是链接是才会调用，重写此方法返回true表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边。</li>
+<li>2、**public void onReceivedSslError(WebView view, SslErrorHandler handler, android.net.http.SslError error)**： 重写此方法可以让webview处理https请求。</li>
+<li>3、**public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event)**：重写此方法才能够处理在浏览器中的按键事件。</li>
+<li>4、 <strong>public void onLoadResource(WebView view, String url)</strong> ：在加载页面资源时会调用，每一个资源（比如图片）的加载都会调用一次。</li>
+<li>5、 <strong>public void onPageStarted(WebView view, String url, Bitmap favicon)</strong> ：在页面加载开始时调用。</li>
+<li>6、<strong>public void onPageFinished(WebView view, String url)</strong> ：在页面加载结束时调用。</li>
+</ul>
+<p>初看上面的回调函数，极客人发现了一个巨大的坑，拦截广告就是拦截加载广告的js，上面的onLoadResource似乎是很合适的函数，只要判断onLoadResource的参数url是否是加载广告js的即可，如果不是广告相关的url正常加载，如果是则不加载。但是在使用onLoadResource之后才发现根本不行。 这里引用WebViewClient另外一个回调函数：<strong>public WebResourceResponse shouldInterceptRequest(WebView view, String url)</strong> shouldInterceptRequest有两种重载。</p>
+<ul>
+<li><strong>public WebResourceResponse shouldInterceptRequest (WebView view, String url)</strong> 从API 11开始引入，API 21弃用</li>
+<li><strong>public WebResourceResponse shouldInterceptRequest (WebView view, WebResourceRequest request)</strong> 从API 21开始引入</li>
+</ul>
+<p>这里极客人暂且使用shouldInterceptRequest (WebView view, String url)完成对webview广告的拦截。</p>
+<h2 id="拦截广告资源URL"><a href="#拦截广告资源URL" class="headerlink" title="拦截广告资源URL"></a>拦截广告资源URL</h2><p>在Webview加载资源时会回调shouldInterceptRequest函数，我们可以通过重写shouldInterceptRequest函数实现对webview的资源请求进行处理。进行处理后返回数据。如果主程序返回的数据为null，WebView会自行请求网络加载资源。这里有个坑：不是shouldInterceptRequest函数返回null就能屏蔽掉请求！正确的屏蔽请求的方式：</p>
+<p>@Override<br>    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {<br>        url &#x3D; url.toLowerCase();<br> if (!ADFilterTool.hasAd(context, url)) {<br>                return super.shouldInterceptRequest(view, url);&#x2F;&#x2F;正常加载<br>            }else{<br>                return new WebResourceResponse(null,null,null);&#x2F;&#x2F;含有广告资源屏蔽请求<br>            }<br>    }</p>
+<p>下面是极客人写的屏蔽广告的**NoAdWebViewClient类： **只需使用webview.setWebViewClient(NoAdWebViewClient webclient)即可屏蔽指定webview的广告。</p>
+<p>package cn.wangbaiyuan.webviewadblock;</p>
+<p>import android.content.Context;<br>import android.util.Log;<br>import android.webkit.WebResourceResponse;<br>import android.webkit.WebView;<br>import android.webkit.WebViewClient;</p>
+<p>&#x2F;**<br> * Created by BrainWang on 05&#x2F;01&#x2F;2016.<br> *&#x2F;<br>public class NoAdWebViewClient extends WebViewClient {<br>    private  String homeurl;<br>    private Context context;</p>
+<pre><code>public NoAdWebViewClient(Context context,String homeurl) &#123;
+    this.context = context;
+    this.homeurl = homeurl;
+&#125;
+@Override
+public WebResourceResponse shouldInterceptRequest(WebView view, String url) &#123;
+    url = url.toLowerCase();
+    if(!url.contains(homeurl))&#123;
+        if (!ADFilterTool.hasAd(context, url)) &#123;
+            return super.shouldInterceptRequest(view, url);
+        &#125;else&#123;
+            return new WebResourceResponse(null,null,null);
+        &#125;
+    &#125;else&#123;
+        return super.shouldInterceptRequest(view, url);
+    &#125;
+
+
+&#125;
+</code></pre>
+<p>}</p>
+<p>判断URL是否含广告的<strong>ADFilterTool类：</strong>该类通过判断url是否包含在广告拦截库中</p>
+<h3 id="ADFilterTool-java"><a href="#ADFilterTool-java" class="headerlink" title="ADFilterTool.java"></a>ADFilterTool.java</h3><p>package cn.wangbaiyuan.webviewadblock;</p>
+<p>import android.content.Context;<br>import android.content.res.Resources;<br>import android.util.Log;</p>
+<p>&#x2F;**<br> * Created by BrainWang on 05&#x2F;01&#x2F;2016.<br> *&#x2F;<br>public class ADFilterTool {<br>    public static boolean hasAd(Context context, String url) {<br>        Resources res &#x3D; context.getResources();<br>        String[] adUrls &#x3D; res.getStringArray(R.array.adBlockUrl);<br>        for (String adUrl : adUrls) {<br>            if (url.contains(adUrl)) {<br>                return true;<br>            }<br>        }<br>        return false;<br>    }<br>}</p>
+<h3 id="广告url资源文件（广告拦截库可自行百度更新）：AdUrlString-xml"><a href="#广告url资源文件（广告拦截库可自行百度更新）：AdUrlString-xml" class="headerlink" title="广告url资源文件（广告拦截库可自行百度更新）：AdUrlString.xml"></a>广告url资源文件（广告拦截库可自行百度更新）：AdUrlString.xml</h3><p>所谓广告拦截库，实际上是请求广告资源的url合集，网络上有大量的广告拦截库，读者可以定期更新一下文件来实现对广告的高效过滤。本文屏蔽的方式比较粗暴，凡是含有广告资源的域名统统禁止。要想实现更精准的过滤，访友你可以使用通配符匹配url的方式进行拦截，现在PC端的浏览器正是这样做的。</p>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="adBlockUrl">
+        <item>ubmcmm.baidustatic.com</item>
+        <item>cpro2.baidustatic.com</item>
+        <item>cpro.baidustatic.com</item>
+        <item>s.lianmeng.360.cn</item>
+        <item>nsclick.baidu.com</item>
+        <item>pos.baidu.com</item>
+        <item>cbjs.baidu.com</item>
+        <item>cpro.baidu.com</item>
+        <item>images.sohu.com/cs/jsfile/js/c.js</item>
+        <item>union.sogou.com/</item>
+        <item>sogou.com/</item>
+        <item>a.baidu.com</item>
+        <item>c.baidu.com</item>
+
+<pre><code>&lt;/string-array&gt;
+</code></pre>
+</resources>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/realization-of-android-webview-advertising-filtering.html" target="_blank">王柏元的博客 >> Android webview广告过滤的实现</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/why-do-you-want-write.html" class="pre-post btn btn-default" title='为什么要写作'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            为什么要写作</span>
+    </a>
+    
+    
+    <a href="/local-area-network-lan-simple-udp-video-calls.html" class="next-post btn btn-default" title='一个简单的局域网UDP实时视频'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            一个简单的局域网UDP实时视频</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "7942",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-11
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                程序员一枚
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/c7078eb51595c0d1240a15462919b893.png"
+                                 alt="@乘月网">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                乘月网
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-10
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                已添加贵站友链，有空常交流哦。对了你从事什么职业呀？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-10
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                已加
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/c7078eb51595c0d1240a15462919b893.png"
+                                 alt="@乘月网">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                乘月网
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-09
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                嗯嗯，一起做友链怎么样？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-09
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                是的，之前也想过不过没搞。这篇文章主要是提供思路的。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/c7078eb51595c0d1240a15462919b893.png"
+                                 alt="@乘月网">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                乘月网
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-09
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                嗨，你可以采用解析adblock规则的的方式加强广告拦截哈，而且它的规则一直在更新维护。
+我是做android开发的，这个是我的博客：https://www.icheny.cn，我们可以一起做友情链接哈。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/8e7f2f2387b806e7af3a19e5139212f7.png"
+                                 alt="@1255093692">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                1255093692
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-10-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                webview.setWebViewClient(NoAdWebViewClient webclient)；这个webclient是什么，不太懂
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/ca2eb553d2c7a4639daaf009eb1d757f.png"
+                                 alt="@泉州软件开发公司">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                泉州软件开发公司
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-10
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                谢谢分享。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WebViewClient%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-text">WebViewClient的几个回调函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%B9%BF%E5%91%8A%E8%B5%84%E6%BA%90URL"><span class="toc-text">拦截广告资源URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ADFilterTool-java"><span class="toc-text">ADFilterTool.java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E5%91%8Aurl%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%EF%BC%88%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%BA%93%E5%8F%AF%E8%87%AA%E8%A1%8C%E7%99%BE%E5%BA%A6%E6%9B%B4%E6%96%B0%EF%BC%89%EF%BC%9AAdUrlString-xml"><span class="toc-text">广告url资源文件（广告拦截库可自行百度更新）：AdUrlString.xml</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

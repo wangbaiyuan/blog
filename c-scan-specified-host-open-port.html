@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,网络安全,计算机网络" />
+
+
+<meta name="description" content="C++扫描指定主机开放的端口，OS提供了connect()系统调用，用于与远程主机某端口建立连接，如果远程主机该端口处于帧听状态，则connect()连接成功；否则说明该端口关闭。   
+&#x..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    C++扫描指定主机开放的端口 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++扫描指定主机开放的端口">
+            
+            C++扫描指定主机开放的端口
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/11/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>C++扫描指定主机开放的端口，OS提供了connect()系统调用，用于与远程主机某端口建立连接，如果远程主机该端口处于帧听状态，则connect()连接成功；否则说明该端口关闭。   <a href="http://baiyuan.wang/wp-content/uploads/2015/11/scanhosts.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/11/scanhosts.jpg" alt="scanhosts"></a></p>
+<p>&#x2F;&#x2F; ScanPorts.cpp : 定义控制台应用程序的入口点。<br>&#x2F;&#x2F;</p>
+<p>#include “stdafx.h”<br>#include<iostream><br>using namespace std;<br>#include&lt;WinSock2.h&gt;<br>#pragma comment (lib,”ws2_32.lib”)<br>#define STATUS_FALIED 0xFFFF<br>unsigned long serverIP;<br>long MaxThread &#x3D; 200;<br>long ThreadCount &#x3D; 0;<br>long *aa &#x3D; &ThreadCount;</p>
+<p>&#x2F;&#x2F;扫描端口的线程<br>DWORD WINAPI ScanPort(LPVOID lpParam){<br>    short Port &#x3D; <em>(short</em>)lpParam;<br>    InterlockedIncrement(aa);<br>    &#x2F;&#x2F;创建流式套接字<br>    SOCKET sock &#x3D; socket(AF_INET, SOCK_STREAM,0);<br>    if (sock &#x3D;&#x3D; INVALID_SOCKET){<br>        cout &lt;&lt; “创建套接字失败！” &lt;&lt; endl;<br>        return 0;</p>
+<pre><code>&#125;
+else&#123;
+    //填充服务器地址
+    sockaddr_in severAddr;
+    severAddr.sin\_family = AF\_INET;
+    severAddr.sin_port = htons(Port);
+    severAddr.sin\_addr.S\_un.S_addr = serverIP;
+    //判断此机器是否打开
+    connect(sock, (sockaddr*)&amp;severAddr, sizeof(severAddr));
+    struct fd_set write;
+    FD_ZERO(&amp;write);
+    FD_SET(sock, &amp;write);
+    //初始化超时时间
+    struct timeval timeout;
+    timeout.tv_sec = 100 / 1000;
+    timeout.tv_usec = 0;
+    if (select(0,NULL,&amp;write,NULL,&amp;timeout)&gt;0)
+    &#123;
+        cout &lt;&lt; Port &lt;&lt;&quot;,&quot;;
+    &#125;;
+    closesocket(sock);
+
+
+&#125;
+
+InterlockedDecrement(aa);
+return 0;
+</code></pre>
+<p>}</p>
+<p>void main(int argc, char *argv[])<br>{<br>    if (argc !&#x3D; 2){<br>        cout &lt;&lt; “请输入目的主机IP地址” &lt;&lt; endl;</p>
+<pre><code>&#125;
+//建立与socket库的绑定
+WSADATA WSAData;
+if (WSAStartup(MAKEWORD(2, 2), &amp;WSAData) != 0)
+&#123;
+    cout &lt;&lt; &quot;WSAStartup falied!&quot; &lt;&lt; GetLastError() &lt;&lt; endl;
+    ExitProcess(STATUS_FALIED);
+&#125;
+serverIP = inet_addr(argv\[1\]);
+cout &lt;&lt; &quot;下列端口已开放：&quot; &lt;&lt; endl;
+for (int i = 1; i &lt; 1024; i++)&#123;
+    //超过最大允许线程数等待
+    while (ThreadCount &gt;= MaxThread)
+        Sleep(10);
+    //创建线程，扫描端口
+DWORD ThreadID;
+CreateThread(NULL, 0, ScanPort, (LPVOID)new short(i), 0, &amp;ThreadID);
+&#125;
+//还有没有结束的线程，等待
+while (ThreadCount&gt;0)
+    Sleep(50);
+
+WSACleanup();
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/c-scan-specified-host-open-port.html" target="_blank">王柏元的博客 >> C++扫描指定主机开放的端口</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/c-activity-host-scans.html" class="pre-post btn btn-default" title='C++活动主机扫描'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            C++活动主机扫描</span>
+    </a>
+    
+    
+    <a href="/c-resolution-arp-packets.html" class="next-post btn btn-default" title='C++解析ARP数据包（可选网卡）'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            C++解析ARP数据包（可选网卡）</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "18774",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,json,虚拟主机" />
+
+
+<meta name="description" content="在上一篇博文中，我向大家介绍了依托虚拟主机为自制APP提供软件更新服务的第一节，向大家介绍了用PHP做软件更新信息API的具体过程，在上节我成功利用自己的虚拟主机建立了自己的API，通过URL传..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    依托虚拟主机为APP提供软件更新服务（二） |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="依托虚拟主机为APP提供软件更新服务（二）">
+            
+            依托虚拟主机为APP提供软件更新服务（二）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/json/" rel="tag">json</a> <a class="tag-none-link" href="/tags/%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA/" rel="tag">虚拟主机</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/22</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在上一篇博文中，我向大家介绍了依托虚拟主机为自制APP提供软件更新服务的第一节，向大家介绍了用PHP做软件更新信息API的具体过程，在上节我成功利用自己的虚拟主机建立了自己的API，通过URL传入ID值，获取了软件信息的JSON字符如下： [callout class&#x3D;”info” title&#x3D;”使用PHP制作的API”]{“sw_id”:”1”,”sw_name”:”BY通讯录”,”sw_version”:”1.2”,”sw_url”:”<a href="http://baiyuan.wang/api/software/Contactss/_1/_2.apk%22,%22sw_description">http://baiyuan.wang/api/software/Contactss\_1\_2.apk&quot;,&quot;sw_description</a>“:” 1.BY通讯录，是王柏元自主开发的APP，作安卓开发入门试验之用；\n 2.调用在自己虚拟主机上的数据库搭建的API，实现了版本更新功能；\n 3.使用一些新的安卓技术。”}[&#x2F;callout] 接下来，我以安卓为例向大家介绍在安卓开发中调用API并实现软件的检测更新、更新提示、下载更新、安装更新的系列过程。</p>
+<h1 id="依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析JSON、实现软件更新、自动安装"><a href="#依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析JSON、实现软件更新、自动安装" class="headerlink" title="依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析JSON、实现软件更新、自动安装"></a>依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析JSON、实现软件更新、自动安装</h1><p>   </p>
+<h2 id="一、获取网络JSON数据的工具类"><a href="#一、获取网络JSON数据的工具类" class="headerlink" title="一、获取网络JSON数据的工具类"></a>一、获取网络JSON数据的工具类</h2><p>下面是结合网上代码实现的一个联网获取JSON数据的工具类，类名为：HttpUtils，下面的代码我将在文章后面提供下载链接。</p>
+<p>package cn.wangbaiyuan.http;<br>import java.io.ByteArrayOutputStream;<br>import java.io.IOException;<br>import java.io.InputStream;<br>import java.net.HttpURLConnection;<br>import java.net.URL;</p>
+<p>import android.util.Log;<br>import android.widget.Toast;</p>
+<p>&#x2F;**<br>* @author 王柏元<br>*<br>*&#x2F;</p>
+<p>public class HttpUtils {</p>
+<p>public HttpUtils() {<br>&#x2F;&#x2F; TODO Auto-generated constructor stub<br>}</p>
+<p>&#x2F;**<br>* @param url_path json的URL<br>* @return<br>*&#x2F;<br>public static String getJsonContent(String url_path){</p>
+<p>String jsonString &#x3D; “”;<br>try {<br>URL url &#x3D; new URL(url_path);<br>HttpURLConnection connection &#x3D; (HttpURLConnection)url.openConnection();<br>connection.setRequestMethod(“GET”);<br>connection.setConnectTimeout(3000);<br>connection.setDoInput(true);  &#x2F;&#x2F;从服务器获得数据<br>connection.connect();<br>int responseCode &#x3D; connection.getResponseCode();<br>Log.d(“log_tag”,responseCode+””);<br>if (200 &#x3D;&#x3D; responseCode) {<br>jsonString &#x3D; changeInputStream(connection.getInputStream());</p>
+<p>}<br>&#x2F;&#x2F;            else{<br>&#x2F;&#x2F;                 jsonString &#x3D; responseCode+””;<br>&#x2F;&#x2F;            }</p>
+<p>} catch (Exception e) {<br>Log.d(“log_tag”,e.toString());<br>jsonString &#x3D;”获取服务器信息出错”;<br>&#x2F;&#x2F; TODO: handle exception<br>}</p>
+<p>&#x2F;&#x2F;<br>return jsonString;<br>}</p>
+<p>private static String changeInputStream(InputStream inputStream){<br>&#x2F;&#x2F; TODO Auto-generated method stub<br>String  jsonString &#x3D;””;</p>
+<p>ByteArrayOutputStream outputStream &#x3D; new ByteArrayOutputStream();<br>byte[] data &#x3D; new byte[1024];<br>int len &#x3D; 0;<br>try {<br>while((len&#x3D;inputStream.read(data))!&#x3D;-1){<br>outputStream.write(data, 0, len);<br>}<br>} catch (IOException e) {<br>&#x2F;&#x2F; TODO Auto-generated catch block<br>e.printStackTrace();<br>}</p>
+<p>jsonString &#x3D; new String(outputStream.toByteArray());<br>return jsonString;<br>}</p>
+<p>}</p>
+<p>  在上面的代码中，getJsonContent函数的参数为url_path，返回值为String，实现了连接网络、并获取对应URL的JSON数据的功能。getJsonContent函数是HttpUtils类的一个静态方法，你只需要在任意项目引入这个文件，使用HttpUtils.getJsonContent(API的网址)来获取网络上API的数据。  </p>
+<h2 id="二、在安卓代码中使用getJsonContent-API的网址-获取数据并解析"><a href="#二、在安卓代码中使用getJsonContent-API的网址-获取数据并解析" class="headerlink" title="二、在安卓代码中使用getJsonContent(API的网址)获取数据并解析"></a>二、在安卓代码中使用getJsonContent(API的网址)获取数据并解析</h2><p>在任意项目引入上述文件HttpUtils.java，使用HttpUtils.getJsonContent(API的网址)来获取网络上API的数据，这个过程需要新建一个线程，不然程序会在联网时受到阻塞，停止运行，线程里面的代码如下：</p>
+<p>Runnable checkupdate &#x3D; new Runnable(){</p>
+<p>@Override<br>public void run() {<br>String url_path &#x3D; “<a href="http://baiyuan.wang/api/update.php?id=1">http://baiyuan.wang/api/update.php?id=1</a>“;</p>
+<p>String jsonString &#x3D; HttpUtils.getJsonContent(url_path);</p>
+<p>try {<br>JSONObject Json&#x3D;new JSONObject(jsonString);&#x2F;&#x2F;根据API内容实例化一个JSONObject 对象<br>sw_version&#x3D;Json.getString(“sw_version”);&#x2F;&#x2F;获取JSONObject 的键“sw_version”对应的值；<br>version_des&#x3D;Json.getString(“sw_description”);&#x2F;&#x2F;获取JSONObject 的键“sw_description”对应的值；</p>
+<p>download_url&#x3D;Json.getString(“sw_url”);&#x2F;&#x2F;获取JSONObject 的键“sw_url”对应的值；</p>
+<p>} catch (JSONException e) {<br>&#x2F;&#x2F; TODO Auto-generated catch block<br>e.printStackTrace();<br>Log.e(“log_tag”,e.toString());<br>}<br>hander.sendEmptyMessage(0x123);<br>}</p>
+<p>};</p>
+<p>  通过上述代码我获取了软件的版本号、版本描述、版本下载地址。</p>
+<h2 id="三、安卓开发获取软件版本号"><a href="#三、安卓开发获取软件版本号" class="headerlink" title="三、安卓开发获取软件版本号"></a>三、安卓开发获取软件版本号</h2><p>要想实现版本更新，肯定要把网络上发布的最新版本和正在使用的版本号进行比较，所以需要获取当前软件的版本号，实现代码如下：</p>
+<p>PackageManager packageManager &#x3D; getPackageManager();<br>&#x2F;&#x2F; getPackageName()是你当前类的包名，0代表是获取版本信息<br>PackageInfo packInfo &#x3D; packageManager.getPackageInfo(getPackageName(),0);<br>ApplicationInfo applicationInfo &#x3D; packageManager.getApplicationInfo(getPackageName(), 0);<br>current_version &#x3D; packInfo.versionName;&#x2F;&#x2F;获取当前版本<br>String applicationName &#x3D; (String) packageManager.getApplicationLabel(applicationInfo);<br>version_label.setText(applicationName+current_version);&#x2F;&#x2F;让界面上一个textview显示版本号</p>
+<h2 id="四、比较版本号判断是否选择更新；"><a href="#四、比较版本号判断是否选择更新；" class="headerlink" title="四、比较版本号判断是否选择更新；"></a>四、比较版本号判断是否选择更新；</h2><p>获取当前使用的版本号后，需要对最新版本和正在使用的版本号进行比较，比较代码如下：</p>
+<p>Double latest_Version&#x3D;Double.parseDouble(sw_version);<br>if(Double.parseDouble(current_version)&lt;latest_Version)<br>{</p>
+<p>&#x2F;&#x2F;如果版本有更新怎么办？添加版本有更新时的代码<br>}<br>else<br>Toast.makeText(about.this, “当前是最新版本”, 5).show();</p>
+<p> </p>
+<h3 id="五、版本有更新时弹出版本更新提示框"><a href="#五、版本有更新时弹出版本更新提示框" class="headerlink" title="五、版本有更新时弹出版本更新提示框"></a>五、版本有更新时弹出版本更新提示框</h3><p>AlertDialog.Builder builder&#x3D;new AlertDialog.Builder(about.this)<br>.setTitle(“版本更新”)<br>.setMessage(version_des);&#x2F;&#x2F;版本更新说明<br>builder.setPositiveButton(“下载更新”, download_listener);&#x2F;&#x2F;设置按钮“下载更新”点击的监听器<br>builder.setNegativeButton(“以后再说”, null);<br>builder.create();<br>builder.show();</p>
+<p> </p>
+<h3 id="六、处理下载更新：下载软件并自动执行安装"><a href="#六、处理下载更新：下载软件并自动执行安装" class="headerlink" title="六、处理下载更新：下载软件并自动执行安装"></a>六、处理下载更新：下载软件并自动执行安装</h3><p>&#x2F;&#x2F;打开到url的连接</p>
+<p>OnClickListener download_listener &#x3D;new OnClickListener() {</p>
+<p>@Override<br>public void onClick(DialogInterface dialog, int which) {<br>new Thread(download).start();<br>Toast.makeText(about.this, “开始下载……”, Toast.LENGTH_LONG).show();<br>}<br>};<br>Runnable download &#x3D; new Runnable(){</p>
+<p>@Override<br>public void run() {<br>String sdcard&#x3D;Environment.getExternalStorageDirectory()+”&#x2F;“;<br>String filepath&#x3D;sdcard+”BYContacts&#x2F;“;&#x2F;&#x2F;新安装包会下载到 “内存卡\BYContacts”文件夹下</p>
+<p>download_url&#x3D;(download_url.startsWith(“http:&#x2F;&#x2F;“))?download_url:”http:&#x2F;&#x2F;“+download_url;<br>try {<br>URL url &#x3D; new URL(download_url);<br>&#x2F;&#x2F;打开到url的连接<br>HttpURLConnection connection &#x3D; (HttpURLConnection)url.openConnection();<br>&#x2F;&#x2F;以下为java IO部分，大体来说就是先检查文件夹是否存在，不存在则创建,然后的文件名重复问题，没有考虑<br>InputStream istream&#x3D;connection.getInputStream();<br>String filename&#x3D;download_url.substring(download_url.lastIndexOf(“&#x2F;“)+1);</p>
+<p>File dir&#x3D;new File(filepath);<br>if (!dir.exists()) {<br>dir.mkdir();<br>}<br>File file&#x3D;new File(filepath+filename);<br>file.createNewFile();</p>
+<p>OutputStream output&#x3D;new FileOutputStream(file);<br>byte[] buff &#x3D; new byte[1024];<br>int hasRead &#x3D; 0;<br>&#x2F;&#x2F; 将URL对应的资源下载到本地<br>while((hasRead &#x3D; istream.read(buff)) &gt; 0)<br>{<br>output.write(buff, 0 , hasRead);<br>}<br>output.flush();<br>output.close();<br>istream.close();<br>hander.sendEmptyMessage(012);<br>Log.e(“log_tag”,file.toString());</p>
+<p>openFile(file);&#x2F;&#x2F;打开安装包<br>} catch (Exception e) {<br>Log.e(“log_tag”,”下载错误”+e.toString());<br>e.printStackTrace();<br>}<br>}<br>};</p>
+<p> </p>
+<h2 id="七、下载完毕执行自动安装函数openFile-File-file-的代码"><a href="#七、下载完毕执行自动安装函数openFile-File-file-的代码" class="headerlink" title="七、下载完毕执行自动安装函数openFile(File file)的代码"></a>七、下载完毕执行自动安装函数openFile(File file)的代码</h2><p>private void openFile(File file) {<br>Log.e(“OpenFile”, file.getName());<br>Intent intent &#x3D; new Intent();<br>intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);<br>intent.setAction(android.content.Intent.ACTION_VIEW);<br>intent.setDataAndType(Uri.fromFile(file),<br>“application&#x2F;vnd.android.package-archive”);<br>startActivity(intent);<br>}</p>
+<p>  此函数的作用打开下载好的安装包，进入安装过程。</p>
+<h2 id="八、源码下载"><a href="#八、源码下载" class="headerlink" title="八、源码下载"></a>八、源码下载</h2>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/virtual-hosts-provide-app-update-services-b.html" target="_blank">王柏元的博客 >> 依托虚拟主机为APP提供软件更新服务（二）</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/prezi-that-youll-know-how-much-ppt-weak.html" class="pre-post btn btn-default" title='看了prezi你才会知道PPT有多弱'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            看了prezi你才会知道PPT有多弱</span>
+    </a>
+    
+    
+    <a href="/virtual-hosts-provide-app-update-services-a.html" class="next-post btn btn-default" title='依托虚拟主机为自制APP提供软件更新服务（一）'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            依托虚拟主机为自制APP提供软件更新服务（一）</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "58641",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BE%9D%E6%89%98%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%B8%BA%E8%87%AA%E5%88%B6APP%E6%8F%90%E4%BE%9B%E8%BD%AF%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%AE%89%E5%8D%93%E8%A7%A3%E6%9E%90JSON%E3%80%81%E5%AE%9E%E7%8E%B0%E8%BD%AF%E4%BB%B6%E6%9B%B4%E6%96%B0%E3%80%81%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85"><span class="toc-text">依托虚拟主机为自制APP提供软件更新服务（二）——安卓解析JSON、实现软件更新、自动安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%8E%B7%E5%8F%96%E7%BD%91%E7%BB%9CJSON%E6%95%B0%E6%8D%AE%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-text">一、获取网络JSON数据的工具类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8%E5%AE%89%E5%8D%93%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8getJsonContent-API%E7%9A%84%E7%BD%91%E5%9D%80-%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A7%A3%E6%9E%90"><span class="toc-text">二、在安卓代码中使用getJsonContent(API的网址)获取数据并解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E5%8F%B7"><span class="toc-text">三、安卓开发获取软件版本号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%AF%94%E8%BE%83%E7%89%88%E6%9C%AC%E5%8F%B7%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E9%80%89%E6%8B%A9%E6%9B%B4%E6%96%B0%EF%BC%9B"><span class="toc-text">四、比较版本号判断是否选择更新；</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%89%88%E6%9C%AC%E6%9C%89%E6%9B%B4%E6%96%B0%E6%97%B6%E5%BC%B9%E5%87%BA%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E6%8F%90%E7%A4%BA%E6%A1%86"><span class="toc-text">五、版本有更新时弹出版本更新提示框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%A4%84%E7%90%86%E4%B8%8B%E8%BD%BD%E6%9B%B4%E6%96%B0%EF%BC%9A%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%E5%B9%B6%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-text">六、处理下载更新：下载软件并自动执行安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%AF%95%E6%89%A7%E8%A1%8C%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85%E5%87%BD%E6%95%B0openFile-File-file-%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="toc-text">七、下载完毕执行自动安装函数openFile(File file)的代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="toc-text">八、源码下载</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

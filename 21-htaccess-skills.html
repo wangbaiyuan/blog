@@ -1,0 +1,568 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="htaccess,网站优化,SEO" />
+
+
+<meta name="description" content="  Apache Web 服务器可以通过 .htaccess 文件来操作各种信息，这是一个目录级配置文件的默认名称，允许去中央化的 Web 服务器配置管理。可用来重写服务器的全局配置。该文件的目..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    21 个非常有用的 .htaccess 提示和技巧 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="21 个非常有用的 .htaccess 提示和技巧">
+            
+            21 个非常有用的 .htaccess 提示和技巧
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SEO/" rel="tag">SEO</a> <a class="tag-none-link" href="/tags/htaccess/" rel="tag">htaccess</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96/" rel="tag">网站优化</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/01/15</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>  Apache Web 服务器可以通过 .htaccess 文件来操作各种信息，这是一个目录级配置文件的默认名称，允许去中央化的 Web 服务器配置管理。可用来重写服务器的全局配置。该文件的目的就是为了允许单独目录的访问控制配置，例如密码和内容访问。在做网站的时候常常用到很多.htaccess 规则，我给大家总结了21 个非常有用的 .htaccess 提示和技巧 下面是 21 个非常有用的 .htaccess 配置的提示和技巧：</p>
+<h2 id="1-定制目录的-Index-文件"><a href="#1-定制目录的-Index-文件" class="headerlink" title="1. 定制目录的 Index 文件"></a>1. 定制目录的 Index 文件</h2><p> </p>
+<p>DirectoryIndex index.html index.php index.htm</p>
+<p>  你可以使用上面的配置来更改目录的默认页面，例如你将这个脚本放在 foo 目录，则用户请求 &#x2F;foo&#x2F; 时候就会访问 &#x2F;foo&#x2F;index.html。</p>
+<h2 id="2-自定义错误页"><a href="#2-自定义错误页" class="headerlink" title="2. 自定义错误页"></a>2. 自定义错误页</h2><p>ErrorDocument 404 errors&#x2F;404.html</p>
+<p> </p>
+<p>当用户访问页面报错时，例如页面找不到你希望显示自定义的错误页面，你可以通过这种方法来实现。或者是动态的页面：</p>
+<p>ErrorDocument 404 &#x2F;psych&#x2F;cgi-bin&#x2F;error&#x2F;error?404</p>
+<p> </p>
+<h2 id="3-控制访问文件和目录的级别"><a href="#3-控制访问文件和目录的级别" class="headerlink" title="3. 控制访问文件和目录的级别"></a>3. 控制访问文件和目录的级别</h2><p>.htaccess 经常用来限制和拒绝访问某个文件和目录，例如我们有一个 includes 文件夹，这里存放一些脚本，我们不希望用户直接访问这个文件夹，那么通过下面的脚本可以实现：</p>
+<p># no one gets in here!<br>deny from all</p>
+<p> </p>
+<p>上述脚本是拒绝所有的访问，你也可以根据IP段来拒绝：</p>
+<p># no nasty crackers in here!<br>order deny,allow<br>deny from all<br>allow from 192.168.0.0&#x2F;24<br># this would do the same thing..<br>#allow from 192.168.0</p>
+<p> </p>
+<p>一般这些方法是通过防火墙来处理，但在一个生产环境中的服务器来说，这样的调整非常方便。 有时候你只是想禁止某个ip访问：</p>
+<p># someone else giving the ruskies a bad name..<br>order allow,deny<br>deny from 83.222.23.219<br>allow from all</p>
+<p> </p>
+<h2 id="4-修改环境变量"><a href="#4-修改环境变量" class="headerlink" title="4. 修改环境变量"></a>4. 修改环境变量</h2><p>环境变量包含了服务器端 CGI 的一些扩展信息，可使用 SetEnv 和 UnSetEnv 进行设置以及取消设置.</p>
+<p>SetEnv SITE_WEBMASTER “Jack Sprat”<br>SetEnv SITE_WEBMASTER_URI mailto:<a href="mailto:&#74;&#x61;&#99;&#107;&#46;&#83;&#x70;&#114;&#x61;&#116;&#64;&#x63;&#104;&#x61;&#114;&#x61;&#99;&#116;&#101;&#114;&#111;&#108;&#x6f;&#x67;&#121;&#46;&#99;&#x6f;&#x6d;">&#74;&#x61;&#99;&#107;&#46;&#83;&#x70;&#114;&#x61;&#116;&#64;&#x63;&#104;&#x61;&#114;&#x61;&#99;&#116;&#101;&#114;&#111;&#108;&#x6f;&#x67;&#121;&#46;&#99;&#x6f;&#x6d;</a></p>
+<p>UnSetEnv REMOTE_ADDR</p>
+<p> </p>
+<h2 id="5-301-重定向"><a href="#5-301-重定向" class="headerlink" title="5. 301 重定向"></a>5. 301 重定向</h2><p>如果你希望某个页面跳转到新的页面：</p>
+<p>Redirect 301 &#x2F;old&#x2F;file.html <a target="_blank" rel="noopener" href="http://yourdomain.com/new/file.html">http://yourdomain.com/new/file.html</a></p>
+<p> </p>
+<p>下面可以实现对整个路径的重定向</p>
+<p>RedirectMatch 301 &#x2F;blog(.*) <a target="_blank" rel="noopener" href="http://yourdomain.com/$1">http://yourdomain.com/$1</a></p>
+<p> </p>
+<h2 id="6-通过-htaccess-实现缓存策略"><a href="#6-通过-htaccess-实现缓存策略" class="headerlink" title="6. 通过 .htaccess 实现缓存策略"></a>6. 通过 .htaccess 实现缓存策略</h2><p>通过设置在浏览器上缓存静态文件可以提升网站的性能：</p>
+<p># year<br>&lt;FilesMatch”.(ico|pdf|flv|jpg|jpeg|png|gif|swf|mp3|mp4)$”&gt;<br>Header set Cache-Control “public”<br>Header set Expires “Thu, 15 Apr 2010 20:00:00 GMT”<br>Header unset Last-Modified<br></FilesMatch><br>#2 hours<br>&lt;FilesMatch”.(html|htm|xml|txt|xsl)$”&gt;<br>Header set Cache-Control “max-age&#x3D;7200, must-revalidate”<br></FilesMatch><br>&lt;FilesMatch”.(js|css)$”&gt;<br>SetOutputFilter DEFLATE<br>Header set Expires “Thu, 15 Apr 2010 20:00:00 GMT”<br></FilesMatch></p>
+<p> </p>
+<h2 id="7-使用-GZIP-对输出进行压缩"><a href="#7-使用-GZIP-对输出进行压缩" class="headerlink" title="7. 使用 GZIP 对输出进行压缩"></a>7. 使用 GZIP 对输出进行压缩</h2><p>在 .htaccess 中添加下面的代码可以将所有的 css、js 和 html 使用 GZIP 算法压缩：</p>
+<p>&lt;IfModulemod_gzip.c&gt;<br>    mod_gzip_on       Yes<br>    mod_gzip_dechunk  Yes<br>    mod_gzip_item_include file      .(html?|txt|css|js|php|pl)$<br>    mod_gzip_item_include handler   ^cgi-script$<br>    mod_gzip_item_include mime      ^text&#x2F;.*<br>    mod_gzip_item_include mime      ^application&#x2F;x-javascript.*<br>    mod_gzip_item_exclude mime      ^image&#x2F;.*<br>    mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*<br></IfModule></p>
+<p> </p>
+<p>使用上面代码的前提是启用 mod_gzip 模块，你可以使用下面脚本来判断 Web 服务器是否提供 mod_deflate 支持：</p>
+<Location>
+    SetOutputFilter DEFLATE
+      SetEnvIfNoCase Request_URI  
+        .(?:gif|jpe?g|png)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI  
+        .(?:exe|t?gz|zip|gz2|sit|rar)$ no-gzip dont-vary
+</Location>
+
+<p> </p>
+<p>如果 Web 服务器不支持 mod_deflate ，那么可使用下面方法：</p>
+<p>&lt;FilesMatch”.(txt|html|htm|php)”&gt;<br>    php_value output_handler ob_gzhandler<br></FilesMatch></p>
+<p> </p>
+<p>更多关于压缩的内容请阅读: <a target="_blank" rel="noopener" href="http://viralpatel.net/blogs/compress-php-css-js-javascript-optimize-website-performance/">Compressing PHP, CSS, JavaScript(JS)</a>.</p>
+<h2 id="8-强制要求使用-HTTPS-访问"><a href="#8-强制要求使用-HTTPS-访问" class="headerlink" title="8. 强制要求使用 HTTPS 访问"></a>8. 强制要求使用 HTTPS 访问</h2><p>通过以下脚本可以强制整个网站必须使用 https 方式访问：</p>
+<p>RewriteEngine On<br>RewriteCond %{HTTPS} !on<br>RewriteRule (.*) https:&#x2F;&#x2F;%{HTTP_HOST}%{REQUEST_URI}</p>
+<p> </p>
+<h2 id="9-URL-重写"><a href="#9-URL-重写" class="headerlink" title="9. URL 重写"></a>9. URL 重写</h2><p>例如要将 product.php?id&#x3D;12 重写为 product-12.html</p>
+<p>RewriteEngine on<br>RewriteRule ^product-([0-9]+).html$ product.php?id&#x3D;$1</p>
+<p> </p>
+<p>将 product.php?id&#x3D;12 重写为 product&#x2F;ipod-nano&#x2F;12.html</p>
+<p>RewriteEngine on<br>RewriteRule ^product&#x2F;([a-zA-Z0-9_-]+)&#x2F;([0-9]+).html$ product.php?id&#x3D;$2</p>
+<p> </p>
+<p>重定向没有 www 到有 www 的 URL 地址：</p>
+<p>RewriteEngine On<br>RewriteCond %{HTTP_HOST} ^viralpatel.net$<br>RewriteRule (.*) <a target="_blank" rel="noopener" href="http://www.viralpatel.net/$1">http://www.viralpatel.net/$1</a> [R&#x3D;301,L]</p>
+<p> </p>
+<p>重写 yoursite.com&#x2F;user.php?username&#x3D;xyz 到 yoursite.com&#x2F;xyz</p>
+<p>RewriteEngine On<br>RewriteRule ^([a-zA-Z0-9_-]+)$ user.php?username&#x3D;$1<br>RewriteRule ^([a-zA-Z0-9_-]+)&#x2F;$ user.php?username&#x3D;$1</p>
+<p> </p>
+<p>重定向某个域名到一个 public_html 里新的子文件夹：</p>
+<p>RewriteEngine On<br>RewriteCond %{HTTP_HOST} ^test.com$ [OR]<br>RewriteCond %{HTTP_HOST} ^<a target="_blank" rel="noopener" href="http://www.test.com$/">www.test.com$</a><br>RewriteCond %{REQUEST_URI} !^&#x2F;new&#x2F;<br>RewriteRule (.*) &#x2F;new&#x2F;$1</p>
+<p> </p>
+<h2 id="10-阻止列出目录文件"><a href="#10-阻止列出目录文件" class="headerlink" title="10. 阻止列出目录文件"></a>10. 阻止列出目录文件</h2><p>使用下面代码可以防止列表目录里的所有文件：</p>
+<p>Options -Indexes</p>
+<p> </p>
+<p>或者</p>
+<p>IndexIgnore *</p>
+<p> </p>
+<p>更多详情 <a target="_blank" rel="noopener" href="http://viralpatel.net/blogs/htaccess-directory-listing-enable-disable-allow-deny-prevent-htaccess-directory-listing/">Denying&#x2F;Allowing directory listing</a>.</p>
+<h2 id="11-添加新的-MIME-Types"><a href="#11-添加新的-MIME-Types" class="headerlink" title="11. 添加新的 MIME-Types"></a>11. 添加新的 MIME-Types</h2><p>MIME-types 依赖于文件的扩展名，未能被识别的文件扩展名会当成文本数据传输</p>
+<p>AddType application&#x2F;x-endnote-connection enz<br>AddType application&#x2F;x-endnote-filter enf<br>AddType application&#x2F;x-spss-savefile sav</p>
+<p> </p>
+<h2 id="12-防盗链"><a href="#12-防盗链" class="headerlink" title="12. 防盗链"></a>12. 防盗链</h2><p>你不希望别人网站引用你站内的图片、css 等静态文件，也就是传说中的防盗链，可以使用如下脚本：</p>
+<p>RewriteCond %{HTTP_REFERER} !^$<br>RewriteCond %{REQUEST_URI} !^&#x2F;(wp-login.php|wp-admin&#x2F;|wp-content&#x2F;plugins&#x2F;|wp-includes&#x2F;).* [NC]<br>RewriteCond %{HTTP_REFERER} !^<a target="_blank" rel="noopener" href="http://www.askapache.com.*$/">http://www.askapache.com.*$</a> [NC]<br>RewriteRule .(ico|pdf|flv|jpg|jpeg|mp3|mpg|mp4|mov|wav|wmv|png|gif|swf|css|js)$ - [F,NS,L]</p>
+<p> </p>
+<h2 id="13-指定上传文件的大小限制，适用于-PHP"><a href="#13-指定上传文件的大小限制，适用于-PHP" class="headerlink" title="13. 指定上传文件的大小限制，适用于 PHP"></a>13. 指定上传文件的大小限制，适用于 PHP</h2><p>php_value upload_max_filesize 20M<br>php_value post_max_size 20M<br>php_value max_execution_time 200<br>php_value max_input_time 200</p>
+<p> </p>
+<p>上述脚本中，通过四个参数来设置上传文件的限制，第一个参数是文件的大小，第二个是 POST 数据的大小，第三个是传输的时间（单位秒），最后一个是解析上传数据最多花费的时间（单位秒）</p>
+<h2 id="14-禁止脚本执行"><a href="#14-禁止脚本执行" class="headerlink" title="14. 禁止脚本执行"></a>14. 禁止脚本执行</h2><p>Options -ExecCGI<br>AddHandler cgi-script .php .pl .py .jsp .asp .htm .shtml .sh .cgi</p>
+<p> </p>
+<h2 id="15-修改字符集和语言头"><a href="#15-修改字符集和语言头" class="headerlink" title="15. 修改字符集和语言头"></a>15. 修改字符集和语言头</h2><p>AddDefaultCharset UTF-8<br>DefaultLanguage en-US</p>
+<p> </p>
+<h2 id="16-设置服务器时区-GMT"><a href="#16-设置服务器时区-GMT" class="headerlink" title="16. 设置服务器时区(GMT)"></a>16. 设置服务器时区(GMT)</h2><p>SetEnv TZ America&#x2F;Indianapolis</p>
+<p> </p>
+<h2 id="17-强制-“File-Save-As”-提示"><a href="#17-强制-“File-Save-As”-提示" class="headerlink" title="17. 强制 “File Save As” 提示"></a>17. 强制 “File Save As” 提示</h2><p>AddType application&#x2F;octet-stream .avi .mpg .mov .pdf .xls .mp4</p>
+<p> </p>
+<h2 id="18-保护单个文件"><a href="#18-保护单个文件" class="headerlink" title="18. 保护单个文件"></a>18. 保护单个文件</h2><p>正常情况下 .htaccess 可用于限制整个目录的访问，但也可以只限制某个文件：</p>
+<p>&lt;Filesquiz.html&gt;<br>order deny,allow<br>deny from all<br>AuthType Basic<br>AuthName “Characterology Student Authcate”<br>AuthLDAP on<br>AuthLDAPServer ldap:&#x2F;&#x2F;directory.characterology.com&#x2F;<br>AuthLDAPBase “ou&#x3D;Student, o&#x3D;Characterology University, c&#x3D;au”<br>require valid-user<br>satisfy any<br></Files></p>
+<p> </p>
+<h2 id="19-设置-Cookie"><a href="#19-设置-Cookie" class="headerlink" title="19. 设置 Cookie"></a>19. 设置 Cookie</h2><p>通过环境变量来设置 Cookie</p>
+<p>Header set Set-Cookie “language&#x3D;%{lang}e; path&#x3D;&#x2F;;” env&#x3D;lang</p>
+<p> </p>
+<p>基于请求设置 Cookie，该代码发送 Set-Cookie 头用于设置 Cookie 值为第二个括号里的匹配项</p>
+<p>RewriteEngine On<br>RewriteBase &#x2F;<br>RewriteRule ^(.*)(de|es|fr|it|ja|ru|en)&#x2F;$ - [co&#x3D;lang:$2:.yourserver.com:7200:&#x2F;]</p>
+<p> </p>
+<h2 id="20-设置自定义的响应-Headers"><a href="#20-设置自定义的响应-Headers" class="headerlink" title="20. 设置自定义的响应 Headers"></a>20. 设置自定义的响应 Headers</h2><p>Header set P3P “policyref&#x3D;”<a target="_blank" rel="noopener" href="http://www.askapache.com/w3c/p3p.xml">http://www.askapache.com/w3c/p3p.xml</a>“”<br>Header set X-Pingback “<a target="_blank" rel="noopener" href="http://www.askapache.com/xmlrpc.php">http://www.askapache.com/xmlrpc.php</a>“<br>Header set Content-Language “en-US”<br>Header set Vary “DontTrackMeHere”</p>
+<p> </p>
+<h2 id="21-根据-User-Agent-来阻止请求"><a href="#21-根据-User-Agent-来阻止请求" class="headerlink" title="21. 根据 User-Agent 来阻止请求"></a>21. 根据 User-Agent 来阻止请求</h2><p>SetEnvIfNoCase ^User-Agent$ .<em>(craftbot|download|extract|stripper|sucker|ninja|clshttp|webspider|leacher|collector|grabber|webpictures) HTTP_SAFE_BADBOT<br>SetEnvIfNoCase ^User-Agent$ .</em>(libwww-perl|aesop_com_spiderman) HTTP_SAFE_BADBOT<br>Deny from env&#x3D;HTTP_SAFE_BADBOT</p>
+<p> </p>
+<p><a target="_blank" rel="noopener" href="http://viralpatel.net/blogs/21-very-useful-htaccess-tips-tricks/">英文原文</a>， <a target="_blank" rel="noopener" href="http://www.oschina.net/question/12_58586">OSCHINA</a>原创翻译  </p>
+<p>&lt;filesmatch “.(ico|pdf|flv|jpg|jpeg|png|gif|swf|mp3|mp4)$”&#x3D;””&gt;&lt;filesmatch “.(html|htm|xml|txt|xsl)$”&#x3D;””&gt;&lt;filesmatch “.(js|css)$”&#x3D;””&gt;&lt;filesmatch “.(txt|html|htm|php)”&#x3D;””&gt;</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/21-htaccess-skills.html" target="_blank">王柏元的博客 >> 21 个非常有用的 .htaccess 提示和技巧</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/difference-between-three-kinds-of-programers.html" class="pre-post btn btn-default" title='码农、黑客和2B程序员之间的区别'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            码农、黑客和2B程序员之间的区别</span>
+    </a>
+    
+    
+    <a href="/to-our-childhood-which-has-gone.html" class="next-post btn btn-default" title='致我们早已逝去的童年'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            致我们早已逝去的童年</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "134",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/c1cf81e0b236513380da41cbaa426273.png"
+                                 alt="@简单生活">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                简单生活
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-03-08
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                很不错，看上去好全面，收藏了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aab44e6ef61657bc98bcb0d56ea110a6.png"
+                                 alt="@retravel">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                retravel
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-02-03
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                谢谢夸奖，贵站已访，可否交换友链？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/9b1a3c7d7423eb37879769b234be5d3c.png"
+                                 alt="@超級efly">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                超級efly
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-02-03
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                MARK一下，感謝分享！！話說你的網站字體非常不錯耶！也歡迎訪問小站 AREFLY.COM ～ :oops:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9A%E5%88%B6%E7%9B%AE%E5%BD%95%E7%9A%84-Index-%E6%96%87%E4%BB%B6"><span class="toc-text">1. 定制目录的 Index 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%94%99%E8%AF%AF%E9%A1%B5"><span class="toc-text">2. 自定义错误页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8E%A7%E5%88%B6%E8%AE%BF%E9%97%AE%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E7%9A%84%E7%BA%A7%E5%88%AB"><span class="toc-text">3. 控制访问文件和目录的级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">4. 修改环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-301-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-text">5. 301 重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%80%9A%E8%BF%87-htaccess-%E5%AE%9E%E7%8E%B0%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5"><span class="toc-text">6. 通过 .htaccess 实现缓存策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%BD%BF%E7%94%A8-GZIP-%E5%AF%B9%E8%BE%93%E5%87%BA%E8%BF%9B%E8%A1%8C%E5%8E%8B%E7%BC%A9"><span class="toc-text">7. 使用 GZIP 对输出进行压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%BC%BA%E5%88%B6%E8%A6%81%E6%B1%82%E4%BD%BF%E7%94%A8-HTTPS-%E8%AE%BF%E9%97%AE"><span class="toc-text">8. 强制要求使用 HTTPS 访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-URL-%E9%87%8D%E5%86%99"><span class="toc-text">9. URL 重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E9%98%BB%E6%AD%A2%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6"><span class="toc-text">10. 阻止列出目录文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%9A%84-MIME-Types"><span class="toc-text">11. 添加新的 MIME-Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E9%98%B2%E7%9B%97%E9%93%BE"><span class="toc-text">12. 防盗链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E6%8C%87%E5%AE%9A%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6%EF%BC%8C%E9%80%82%E7%94%A8%E4%BA%8E-PHP"><span class="toc-text">13. 指定上传文件的大小限制，适用于 PHP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E7%A6%81%E6%AD%A2%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C"><span class="toc-text">14. 禁止脚本执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E4%BF%AE%E6%94%B9%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E8%AF%AD%E8%A8%80%E5%A4%B4"><span class="toc-text">15. 修改字符集和语言头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E8%AE%BE%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E5%8C%BA-GMT"><span class="toc-text">16. 设置服务器时区(GMT)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%BC%BA%E5%88%B6-%E2%80%9CFile-Save-As%E2%80%9D-%E6%8F%90%E7%A4%BA"><span class="toc-text">17. 强制 “File Save As” 提示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-text">18. 保护单个文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E8%AE%BE%E7%BD%AE-Cookie"><span class="toc-text">19. 设置 Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E5%93%8D%E5%BA%94-Headers"><span class="toc-text">20. 设置自定义的响应 Headers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E6%A0%B9%E6%8D%AE-User-Agent-%E6%9D%A5%E9%98%BB%E6%AD%A2%E8%AF%B7%E6%B1%82"><span class="toc-text">21. 根据 User-Agent 来阻止请求</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

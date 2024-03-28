@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="网站安全" />
+
+
+<meta name="description" content="ModSecurity是一个入侵探测与阻止的引擎，它主要是用于Web应用程序所以也可以叫做Web应用程序防火墙；它可以作为Apache Web服务器的一个模块或单独的应用程序来运行。ModSec..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    利用ModSecurity为你的wordpress博客保驾护航 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="利用ModSecurity为你的wordpress博客保驾护航">
+            
+            利用ModSecurity为你的wordpress博客保驾护航
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/03/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>ModSecurity是一个入侵探测与阻止的引擎，它主要是用于Web应用程序所以也可以叫做Web应用程序防火墙；它可以作为Apache Web服务器的一个模块或单独的应用程序来运行。ModSecurity的目的是为增强Web应用程序的安全性，来保护Web应用程序避免遭受攻击. <img src="https://baiyuan.wang/wp-content/uploads/2019/03/20190312152420118.gif" alt="24173056_1dMG.gif"></p>
+<p>Availability of ModSecurity 2.9.1</p>
+<h2 id="ModSecurity功能特点"><a href="#ModSecurity功能特点" class="headerlink" title="ModSecurity功能特点"></a>ModSecurity功能特点</h2><h3 id="HTTP流量记录"><a href="#HTTP流量记录" class="headerlink" title="HTTP流量记录"></a>HTTP流量记录</h3><p>web服务器已有的日志功能已经足够进行访问请求分析，但是就web的应用分析还有些不足，特别是大多情况下没办法记录下请求体。你的对手很清楚这 一点，所以很多时候的攻击是通过POST请求产生，并导致您的系统失明。ModSecurity充分的获取HTTP交互中的所以内容，并记录完整的请求和 响应。其日志功能可以允许您更细致的做出判断究竟什么是登录的时候，并确保相关的数据都被记录下来。一些请求和响应中的某些关键字段可能包含敏感数 据，ModSecurity可以被配置成在记录这些审计日志前隐藏它。</p>
+<h3 id="实时监控和攻击检测"><a href="#实时监控和攻击检测" class="headerlink" title="实时监控和攻击检测"></a>实时监控和攻击检测</h3><p>除了提供记录日志功能外，ModSecurity还能实时的监控HTTP的流量以检测攻击。在某些时候，ModSecurity做为一个WEB入侵检测工具，可以让你对发生在WEB系统上的一些可疑事件做出响应。</p>
+<h3 id="攻击防御和及时修补"><a href="#攻击防御和及时修补" class="headerlink" title="攻击防御和及时修补"></a>攻击防御和及时修补</h3><p>ModSecurity能够立即针对你的WEB应用系统进行攻击防御，有三种通用的方法： 1、消极(negative)安全模型：消极安全模型监控那些异常的、不常用的和通用的WEB攻击类请求。它统计每个请求的有关IP地址、应该连接、和用户帐户的异常分数，当出现较高的异常分数时，会记录日志并完全的阻止访问。 2、积极安全模开型：部署积极安全模型后，只有那些明确的请求被允许通过，其它的一律禁止。这个模式要求你对需要保护的WEB应用要非常的了解。因此积极安全模式最好是用于那种大量访问却很少更新的系统，这样才能使这种模型的维护工作量降到最低。 3、已知漏洞攻击：其规则语言使ModSecurity成为一个理想的外部修补工具，外部修补（有时是指虚拟修补）可以减少机会之窗。一些 组织修补这些应用的漏洞通常需要几周的时间，使用ModSecurity，应用系统可以从外部修补，根本不用改应用的源码（甚至时不用去管它），可以保证 你的系统安全直到有一个合适的补丁来应用到系统中。</p>
+<h3 id="灵活的规则引擎"><a href="#灵活的规则引擎" class="headerlink" title="灵活的规则引擎"></a>灵活的规则引擎</h3><p>灵活的规则引擎是ModSecurity的核心，其实现了ModSecurity的规则语言，这是一个专用的程序语言设计的用于处理HTTP的传输 数据。ModSecurity规则语言被设计的简单易用，非常的灵活：通用的操作是简单的，而复杂的操作也是可以实现的。经过认证的 ModSecurity规则，放在ModSecurity中，包含了一整套规则，它实现了通用目的强化、协议正规化和对一些通用web应用安全问题的检 测。大量评论认为，这些规则可以用于学习研究使用。</p>
+<h3 id="嵌入式模式部署"><a href="#嵌入式模式部署" class="headerlink" title="嵌入式模式部署"></a>嵌入式模式部署</h3><p>ModSecurity是一个可嵌入式的WEB应用防火墙，意思就是它可以做为以apache为基础的已经提供WEB服务的WEB服务器的一部分。这样的部署译意风一些特殊的优势： 1、不改变已有的网络结构。只需要花几分钟就可以为你的WEB服务器添加ModSecurity，而且由于它默认被设计为完全的被动方式，你可以自由的逐步部署并且只使用你需要的特性。同样也可以根据你的需要轻松的删除或停用它。 2、不存在单点故障。与网络设备部署方式不同，你不会给你的系统带来新的故障点。 3、绝对支持负载均衡。因为它以嵌入方式运行在WEB服务器上，ModSecurity会自动的利用附加的负载均衡特性。你不需要考虑负载均衡，除非你的系统本来就需要它。 4、极少开销。因为它在WEB服务器进程内工作，不会带来网络间接通信的负载，而且只进行最小的分析和数据交换开销。 5、加密或压缩内容没问题。许多IDS系统分析SSL流量的时候很困难，但对于ModSecurity没有麻烦，因为它工作于已解密和解压的数据环节。</p>
+<h3 id="基于网络的部署"><a href="#基于网络的部署" class="headerlink" title="基于网络的部署"></a>基于网络的部署</h3><p>在基于apache的反向代理模式上ModSecurity同样能工作的很好，我们很多客户选择这样做。在这种情形下，装了ModSecurity的可以保护任一一种WEB服务器（即使它不是apache的）。  </p>
+<h2 id="基于Wordpress-Docker镜像安装ModSecurity"><a href="#基于Wordpress-Docker镜像安装ModSecurity" class="headerlink" title="基于Wordpress Docker镜像安装ModSecurity"></a>基于Wordpress Docker镜像安装ModSecurity</h2><h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>FROM wordpress:4.9.8-php5.6-apache<br>RUN apt-get update &amp;&amp; apt-get install -y libapache2-mod-security2<br>RUN a2enmod security2</p>
+<h3 id="在站点配置文件中启用mod-security"><a href="#在站点配置文件中启用mod-security" class="headerlink" title="在站点配置文件中启用mod-security"></a>在站点配置文件中启用mod-security</h3><p>SecRuleEngine On</p>
+<p>&lt;VirtualHost *:80&gt;<br>    ServerName baiyuan.wang<br>    ServerAdmin <a href="mailto:&#98;&#x6c;&#x6f;&#103;&#x40;&#109;&#97;&#105;&#108;&#x2e;&#98;&#97;&#105;&#x79;&#117;&#x61;&#x6e;&#x2e;&#119;&#97;&#x6e;&#x67;">&#98;&#x6c;&#x6f;&#103;&#x40;&#109;&#97;&#105;&#108;&#x2e;&#98;&#97;&#105;&#x79;&#117;&#x61;&#x6e;&#x2e;&#119;&#97;&#x6e;&#x67;</a><br>    DocumentRoot &#x2F;var&#x2F;www&#x2F;html<br>    ErrorLog ${APACHE_LOG_DIR}&#x2F;error.log<br>    CustomLog ${APACHE_LOG_DIR}&#x2F;access.log cdn_combined<br></VirtualHost></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+<li>XSS 测试</li>
+</ul>
+<p>curl ‘<a href="https://baiyuan.wang/?q=%22%3E">https://baiyuan.wang/?q=&quot;&gt;</a><script>alert(1)</script>‘</p>
+<ul>
+<li>SQL 注入</li>
+</ul>
+<p>curl “<a href="https://baiyuan.wang/?q=%271">https://baiyuan.wang/?q=&#39;1</a> OR 1&#x3D;1”</p>
+<h2 id="开源项目"><a href="#开源项目" class="headerlink" title="开源项目"></a>开源项目</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/geekeren/wordpress-env">https://github.com/geekeren/wordpress-env</a> : 基于wordpress官方镜像添加HTTPS、HTTP2、Mod-Security、mod-headers支持，同时支持使用docker-compose一键构建包含mysql、redis、datadog的wordpress博客环境</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/use-modsecurity-escort-your-wordpress-blog.html" target="_blank">王柏元的博客 >> 利用ModSecurity为你的wordpress博客保驾护航</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/protecting-user-privacy-data-in-logs.html" class="pre-post btn btn-default" title='保护日志中的用户隐私数据'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            保护日志中的用户隐私数据</span>
+    </a>
+    
+    
+    <a href="/on-continuous-integration-change-merge.html" class="next-post btn btn-default" title='关于持续集成-变更合并'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            关于持续集成-变更合并</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "34084",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ModSecurity%E5%8A%9F%E8%83%BD%E7%89%B9%E7%82%B9"><span class="toc-text">ModSecurity功能特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E6%B5%81%E9%87%8F%E8%AE%B0%E5%BD%95"><span class="toc-text">HTTP流量记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7%E5%92%8C%E6%94%BB%E5%87%BB%E6%A3%80%E6%B5%8B"><span class="toc-text">实时监控和攻击检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1%E5%92%8C%E5%8F%8A%E6%97%B6%E4%BF%AE%E8%A1%A5"><span class="toc-text">攻击防御和及时修补</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%B5%E6%B4%BB%E7%9A%84%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E"><span class="toc-text">灵活的规则引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-text">嵌入式模式部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%BD%91%E7%BB%9C%E7%9A%84%E9%83%A8%E7%BD%B2"><span class="toc-text">基于网络的部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EWordpress-Docker%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85ModSecurity"><span class="toc-text">基于Wordpress Docker镜像安装ModSecurity</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile"><span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E5%90%AF%E7%94%A8mod-security"><span class="toc-text">在站点配置文件中启用mod-security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE"><span class="toc-text">开源项目</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,帮助文档,API,wordpress插件制作" />
+
+
+<meta name="description" content="管理界面相关activate_(插件文件名)
+首次激活某插件时执行此动作函数。参见常用函数-register_activation_hook。
+activity_box_end
+在控制板界面上的..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Wordpress函数钩子(Hook)大全(3) |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Wordpress函数钩子(Hook)大全(3)">
+            
+            Wordpress函数钩子(Hook)大全(3)
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/wordpress%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C/" rel="tag">wordpress插件制作</a> <a class="tag-none-link" href="/tags/%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" rel="tag">帮助文档</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="管理界面相关"><a href="#管理界面相关" class="headerlink" title="管理界面相关"></a>管理界面相关</h2><p>activate_(插件文件名)</p>
+<p>首次激活某插件时执行此动作函数。参见常用函数-register_activation_hook。</p>
+<p>activity_box_end</p>
+<p>在控制板界面上的活动框末端执行该动作函数。</p>
+<p>add_category_form_pre</p>
+<p>添加分类的文本框尚未显示在管理菜单的界面上时，执行此动作函数。</p>
+<p>admin_head</p>
+<p>在控制板的HTML版块<head>中执行此动作函数。</p>
+<p>admin_head-(page_hook)或admin_head-(plguin_page)</p>
+<p>在插件所生成页面的控制板的HTML版块<head>中执行此动作函数。</p>
+<p>admin_init</p>
+<p>加载管理界面前执行该动作函数。参见wp-admin&#x2F;admin.php ，wp-admin&#x2F;admin-post.php ，以及wp-admin&#x2F;admin-ajax.php 。</p>
+<p>admin_footer</p>
+<p>在主标签中的控制板末端执行该动作函数。</p>
+<p>admin_print_scripts</p>
+<p>在HTML的信息头部分执行此动作函数，以使插件将JavaScript脚本添加到所有管理界面。</p>
+<p>admin_print_styles</p>
+<p>在HTML的信息头部分执行此动作函数，以使插件将CSS或样式表单添加到所有管理界面。</p>
+<p>admin_print_scripts-(page_hook) 或 admin_print_scripts-(plugin_page)</p>
+<p>执行此动作函数，以便将JavaScript脚本输入某个由插件生成的管理页面的HTML信息头部分。使用add_management_page(), add_options_page()等函数将插件菜 单选项添加到管理菜单中时，返回(page_hook)。示例如下：</p>
+<p>function myplugin_menu() {<br>  if ( function_exists(‘add_management_page’) ) {<br>      $page &#x3D; add_management_page( ‘myplugin’, ‘myplugin’, 9, __FILE__, ‘myplugin_admin_page’ );<br>      add_action( “admin_print_scripts-$page”, ‘myplugin_admin_head’ );<br>   } </p>
+<p>check_passwords</p>
+<p>创建新用户账号时，执行该动作函数以验证两次输入的密码是否一致。函数接收的参数：登录名数组，首次输入的密码，第二次输入的密码。</p>
+<p>dbx_page_advanced</p>
+<p>在管理菜单的页面编辑界面上“advanced”版块的最下方执行此动作函数。</p>
+<p>dbx_page_sidebar</p>
+<p>在管理菜单的页面编辑界面工具条的最下方执行此动作函数。</p>
+<p>dbx_post_advanced</p>
+<p>在管理菜单的日志编辑界面上“advanced”版块的最下方执行此动作函数。</p>
+<p>dbx_post_siderbar</p>
+<p>在管理菜单的日志编辑界面工具条的最下方执行此动作函数。WordPress 2.5或更高版本中则执行 [<a target="_blank" rel="noopener" href="http://www.wordpress.la/codex-%E5%B8%B8%E7%94%A8%E5%87%BD%E6">http://www.wordpress.la/codex-%E5%B8%B8%E7%94%A8%E5%87%BD%E6</a> %95%B0-add_meta_box%28%29.html add_meta_box()]函数。</p>
+<p>deactivate_(插件文件名)</p>
+<p>禁用插件时执行此动作函数。</p>
+<p>delete_user</p>
+<p>删除用户时执行此动作函数。函数接收的参数：用户ID。</p>
+<p>edit_category_form</p>
+<p>添加&#x2F;编辑分类表显示在界面上后（HTML表标签结束前），执行此动作函数。</p>
+<p>edit_category_form_pre</p>
+<p>编辑分类表显示在管理菜单界面前，执行此动作函数。</p>
+<p>edit_tag_form</p>
+<p>添加&#x2F;编辑标签表显示在界面上后（HTML表标签结束前），执行此动作函数。</p>
+<p>edit_tag_form_pre</p>
+<p>编辑标签表显示在管理菜单界面前，执行此动作函数。</p>
+<p>edit_form_advanced</p>
+<p>在管理菜单中日志编辑框的“advanced”版块前执行此动作函数。</p>
+<p>edit_page_form</p>
+<p>在管理菜单中页面编辑框的“advanced”版块前执行此动作函数。</p>
+<p>edit_user_profile</p>
+<p>在管理菜单中用户资料的最后部分执行此动作函数。</p>
+<p>load_(page)</p>
+<p>加载管理菜单页面时执行此动作函数。该动作函数不能直接添加——添加管理菜单过程参见定制插件管理菜单。如果希望直接添加该函数，add_options_page和类似函数返回的值能够给出动作函数名称。</p>
+<p>login_form</p>
+<p>在登录框的结尾部分前执行此动作函数。</p>
+<p>login_head</p>
+<p>在登录界面HTML页眉部分的结尾部分前执行此动作函数。</p>
+<p>lost_password</p>
+<p>在“通过电子邮件找回密码”显示在登录界面前执行此动作函数。</p>
+<p>lostpassward_form</p>
+<p>在通过电子邮件找回密码的表格尾部执行此动作函数，使插件能够提供更多字段。</p>
+<p>lostpassward_post</p>
+<p>用户要求通过电子邮件找回密码时执行此动作函数，使插件能够在找回密码前修改PHP $_POST变量。</p>
+<p>manage_link_custom_column</p>
+<p>反向链接管理界面中出现未知列名称时执行此动作函数。函数接收的参数：列名称，链接ID。参见[<a target="_blank" rel="noopener" href="http://www.wordpress.la/codex-%E6%8F%92%E4%BB%B6API%E4%B9%8B">http://www.wordpress.la/codex-%E6%8F%92%E4%BB%B6API%E4%B9%8B</a> %E5%B8%B8%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BD%E6%95%B0.html 插件API&#x2F;常用过滤器函数]中的过滤器函数manage_links_columns，该函数可添加自定义列。</p>
+<p>manage_posts_custom_column</p>
+<p>日志管理界面中出现未知列名称时执行此动作函数。函数接收的参数：列名称，日志ID。参见[<a target="_blank" rel="noopener" href="http://www.wordpress.la/codex-%E6%8F%92%E4%BB%B6API%E4%B9%8B%E5">http://www.wordpress.la/codex-%E6%8F%92%E4%BB%B6API%E4%B9%8B%E5</a> %B8%B8%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BD%E6%95%B0.html 插件API&#x2F;常用过滤器函数]中的过滤器函数manage_posts_columns，该函数可添加自定义列。（具体用法和示例参见 Scompt’s tutorial ）。</p>
+<p>manage_pages_custom_column</p>
+<p>页面管理界面中出现未知列名称时执行此动作函数。函数接收的参数：列名称，页面ID。参见插件API&#x2F;常用过滤器函数中的过滤器函数manage_pages_columns，该函数可添加自定义列。</p>
+<p>password_reset</p>
+<p>用户将旧密码更改为新密码前执行此动作函数。</p>
+<p>personal_options_update</p>
+<p>用户在控制板中更新设置时执行此动作函数。</p>
+<p>plugins_loaded</p>
+<p>所有插件加载完毕后执行此动作函数。</p>
+<p>profile_personal_options</p>
+<p>在用户资料编辑iemian的“关于您自己”版块结尾处执行此动作函数。</p>
+<p>profile_update</p>
+<p>更新用户资料时执行此动作函数。函数结合搜的参数：用户ID。</p>
+<p>register_form</p>
+<p>在新用户注册表结尾部分前执行此动作函数。</p>
+<p>register_post</p>
+<p>处理新用户注册请求前执行此动作函数。</p>
+<p>restrict_manage_posts</p>
+<p>需要编辑的日志列表显示在管理菜单界面前，执行此动作函数。</p>
+<p>retrieve_password</p>
+<p>检索用户密码以发送密码提醒邮件时执行此动作函数。函数接收的参数：登录名。</p>
+<p>set_current_user</p>
+<p>默认函数wp_set_current_user更改用户后，执行此动作函数。注意：wp_set_current_user是一个“插入式”函数，即插件可以改写该函数；参见插件API。</p>
+<p>show_user_profile</p>
+<p>在用户资料编辑界面结尾部分执行此动作函数。</p>
+<p>simple_edit_form</p>
+<p>在控制板的“简单”日志编辑框的结尾部分执行此动作函数（默认情况下，简单编辑框仅用于书签工具——没有“高级”选项）。</p>
+<p>update_option_(option_name)</p>
+<p>update_option函数更新WordPress选项后，执行该动作函数。函数接收的参数：原选项值，新选项值。用户需要为希望更新的选项添加一个动作函数，例如更新“foo”时用函数update_option_foo来呼应。</p>
+<p>upload_files_(tab)</p>
+<p>执行该动作函数以显示上传文件管理界面上的某个页面；“tab”是自定义动作函数表的名称。可以用过滤器函数wp_upload_tabs来定义自定义表（参见 插件API&#x2F;常用过滤器函数）。</p>
+<p>user_register</p>
+<p>首次创建用户资料时执行此动作函数。函数接收的参数：用户ID。</p>
+<p>wp_ajax_(action)</p>
+<p>在管理菜单中执行此动作函数以运行未知类型的AJAX。</p>
+<p>wp_authenticate</p>
+<p>用户登录时，执行该动作函数以验证用户身份。函数接收的参数：用户名和密码数组。</p>
+<p>wp_login</p>
+<p>用户登录时执行此动作函数。</p>
+<p>wp_logout</p>
+<p>用户退出登录时执行此动作函数。</p>
+<h2 id="高级动作函数"><a href="#高级动作函数" class="headerlink" title="高级动作函数"></a>高级动作函数</h2><p>本部分介绍的都是与WordPress查询（决定该显示哪一篇日志）、WordPress主循环、激活插件以及WordPress基础代码相关的动作函数。<br>admin_menu<br>控制板中的菜单结构显示无误后，执行此动作函数。<br>admin_notices<br>管理菜单显示在页面上时执行此动作函数。<br>blog_privacy_selector<br>博客默认隐私选项显示在页面上时，执行此动作函数。<br>check_admin_referer<br>系统出于安全考虑检查随机数后在默认函数check_admin_referrer中执行check_admin_referer动作钩子，使插件因安全原因而强制WordPress停止运行。注意：check_admin_referrer也是一个“插入式”函数，即插件可以改写该函数；参见插件API。<br>check_ajax_referer<br>系统从cookies中成功验证用户的登录名和密码后，在默认函数 check_ajax_referer（这是在有AJAX请求进入wp-admin&#x2F;admin-ajax.php脚本时所调用的函数）中执行此动作函数，使插件能够因安全原因强制WordPress停止运行。注意： check_ajax_referer函数也是一个“插入式”函数，即插件可以改写该函数；参见插件API。<br>generate_rewrite_rules<br>重写规则生成后，执行此动作函数。函数接收的参数：WP_Rewrite类变量列表。注意：在修改重写规则时，使用rewrite_rules_array过滤器函数比使用该动作函数更加方便。<br>init<br>WordPress加载完毕但尚未发送页眉信息时执行该动作函数。函数适用于解析$_GET or $_POST 触发器。<br>loop_end<br>WordPress主循环最后一篇日志执行完毕后，执行此动作函数。<br>loop_start<br>执行WordPress主循环第一篇日志前，执行此动作函数。<br>parse_query<br>在主查询或WP_Query 的任何实例（如query_posts，get_posts或get_children）中查询解析结束时，执行此动作函数。函数接收的参数：$wp_query 对象内容列表。<br>parse_request<br>在主WordPress函数wp中解析查询请求后，执行该动作函数。函数接收的参数：引用全局变量$wp对象的数组。<br>pre_get_posts<br>在get_posts函数开始操作查询前执行此动作函数。函数接收的参数：$wp_query对象的内容列表。<br>sanitize_comment_cookies<br>HTTP请求读取cookies后执行此动作函数。<br>send_headers<br>在WordPress主函数wp中发送基本HTTP页眉后执行此动作函数。函数接收的参数：引用全局变量$wp对象的数组。<br>shutdown<br>页面内容输出完毕后执行此动作函数。<br>wp<br>在WordPress主函数wp中解析查询、页面加载完毕后，执行模板前，执行此动作函数。函数接收的参数：引用全局变量$wp对象的数组。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/wordpress-function-hook-hook-book-3.html" target="_blank">王柏元的博客 >> Wordpress函数钩子(Hook)大全(3)</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/using-the-command-line-to-configure-routing-and-access-internet-and-intranet.html" class="pre-post btn btn-default" title='用命令行配置路由同时访问内外网'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            用命令行配置路由同时访问内外网</span>
+    </a>
+    
+    
+    <a href="/ssd8-exam1-e3-80-90tcp-chat-server-e3-80-91.html" class="next-post btn btn-default" title='SSD8_Exam1【TCP Chat Server】'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_Exam1【TCP Chat Server】</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "63905",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E7%9B%B8%E5%85%B3"><span class="toc-text">管理界面相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%8A%A8%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-text">高级动作函数</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

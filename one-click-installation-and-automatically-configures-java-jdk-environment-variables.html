@@ -1,0 +1,508 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="JAVA,命令指示符" />
+
+
+<meta name="description" content="对于java或安卓初学者来说，配置java环境变量是一件比较头疼的事情，在此我向大家分享一个一键安装JDK和自动配置java环境变量的bat批处理方法
+一键安装JDK和自动配置java环境变量新..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    一键安装JDK和自动配置java环境变量 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="一键安装JDK和自动配置java环境变量">
+            
+            一键安装JDK和自动配置java环境变量
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%8C%87%E7%A4%BA%E7%AC%A6/" rel="tag">命令指示符</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/28</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>对于java或安卓初学者来说，配置java环境变量是一件比较头疼的事情，在此我向大家分享一个一键安装JDK和自动配置java环境变量的bat批处理方法</p>
+<h2 id="一键安装JDK和自动配置java环境变量"><a href="#一键安装JDK和自动配置java环境变量" class="headerlink" title="一键安装JDK和自动配置java环境变量"></a>一键安装JDK和自动配置java环境变量</h2><h3 id="新建一个txt文档，在里面输入下面的内容："><a href="#新建一个txt文档，在里面输入下面的内容：" class="headerlink" title="新建一个txt文档，在里面输入下面的内容："></a>新建一个txt文档，在里面输入下面的内容：</h3><p> </p>
+<p>@echo off<br>cls<br>color 2f<br>echo.<br>echo **********************************************<br>echo.<br>echo    一键安装 Java SE Development Kit 到 D 盘<br>echo.<br>echo       安装请按任意键，退出直接关闭窗口<br>echo.<br>echo **********************************************<br>echo.<br>pause<br>set myjavapath&#x3D;D:\Java\jdk</p>
+<p>IF EXIST %myjavapath%\bin\java.exe (<br>echo.   自动配置java环境变量，来自—王柏元的博客—<br>echo.                有问题到 <a target="_blank" rel="noopener" href="http://blog.baiyuan.wang留言/">http://blog.baiyuan.wang留言</a><br>echo.<br>echo    在 D 盘发现java程序，注册环境变量请按任意键<br>echo.<br>echo    退出直接关闭窗口<br>echo.<br>pause<br>goto SETENV<br>)</p>
+<p>echo.<br>echo 正在安装jdk，请不要执行其他操作<br>echo.<br>echo 请稍等，这个时间大约需要二、三分钟<br>echo.<br>start &#x2F;WAIT g:\收藏软件编程\jdk-8u20-windows-x64.exe &#x2F;s &#x2F;norestart &#x2F;v &#x2F;qn INSTALLDIR&#x3D;D:Javajdk<br>echo 程序安装完毕，正在注册环境变量<br>echo.<br>goto SETENV</p>
+<p>:SETENV<br>setx JAVA_HOME %myjavapath%<br>setx CLASSPATH .;%myjavapath%\lib\tools.jar;%myjavapath\%lib\dt.jar;%myjavapath%\jre\lib\rt.jar<br>setx PATH %myjavapath%\bin<br>echo.<br>echo JDK环境变量设置成功<br>echo.<br>echo 安装完毕，测试下看看<br>echo.<br>call %myjavapath%\bin\java.exe -version<br>echo.</p>
+<p>if %errorlevel% &#x3D;&#x3D; 0 (<br>echo 祝贺您成功安装了Java SE Development Kit !<br>echo.<br>goto END<br>)<br>echo 貌似安装不成功，您得自己想办法了，也可到我的博客<a target="_blank" rel="noopener" href="http://blog.baiyuan.wang/?p=445%E7%95%99%E8%A8%80%EF%BC%81">http://blog.baiyuan.wang/?p=445留言！</a><br>echo.<br>goto END</p>
+<p>:END<br>pause</p>
+<h3 id="将上面内容中jdk安装包的路径改成你的，比如我的安装包路径是"><a href="#将上面内容中jdk安装包的路径改成你的，比如我的安装包路径是" class="headerlink" title="将上面内容中jdk安装包的路径改成你的，比如我的安装包路径是"></a>将上面内容中jdk安装包的路径改成你的，比如我的安装包路径是</h3><h3 id="G-收藏软件编程jdk-8u20-windows-x64-exe"><a href="#G-收藏软件编程jdk-8u20-windows-x64-exe" class="headerlink" title="G:收藏软件编程jdk-8u20-windows-x64.exe"></a><strong>G:收藏软件编程jdk-8u20-windows-x64.exe</strong></h3><h3 id="将建立的txt文件保存，然后重命名成”jdkinstall-bat”-然后双击文件运行"><a href="#将建立的txt文件保存，然后重命名成”jdkinstall-bat”-然后双击文件运行" class="headerlink" title="将建立的txt文件保存，然后重命名成”jdkinstall.bat”,然后双击文件运行"></a>将建立的txt文件保存，然后重命名成”jdkinstall.bat”,然后双击文件运行</h3><p>如果提示“JDK环境变量设置成功 ”，则说明java环境配置成功，你也可以在命令指示符里键入</p>
+<p>javac</p>
+<p>进行验证；如果不行，你可以到我的博客里留言交流。</p>
+<h2 id="你也可以在文章后面下载本批处理文件"><a href="#你也可以在文章后面下载本批处理文件" class="headerlink" title="你也可以在文章后面下载本批处理文件"></a>你也可以在文章后面下载本批处理文件</h2>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/one-click-installation-and-automatically-configures-java-jdk-environment-variables.html" target="_blank">王柏元的博客 >> 一键安装JDK和自动配置java环境变量</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/implemented-by-ipv6-to-access-ipv4-resources-free-internet-access.html" class="pre-post btn btn-default" title='通过IPV6访问IPV4资源实现免费上网'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            通过IPV6访问IPV4资源实现免费上网</span>
+    </a>
+    
+    
+    <a href="/getting-started-with-qt-how-to-write-without-borders-the-title-bar-of-windows-transparent-windows-round-controls.html" class="next-post btn btn-default" title='QT入门：怎么写无边框（标题栏）的窗口、透明窗口、圆角控件'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            QT入门：怎么写无边框（标题栏）的窗口、透明窗口、圆角控件</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "168",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/797d06964c00da8e8c2d69ed062608f2.png"
+                                 alt="@捋一世红尘伴一世倾城">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                捋一世红尘伴一世倾城
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-11-09
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好，可以在百忙中抽个时间写个 判断是否安装jdk1.7  没有安装就一键自动安装jdk及配置环境变量
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f26ad073e289971c1a888f4d117b1d71.png"
+                                 alt="@星星">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                星星
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-10-28
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                王老大，我想在电脑上安装JAVA运行环境，用这个方法操作不成功，能否在百忙之中做个在win10 64位系统上一键安装JDK和自动配置Java环境变量的教程呢，谢谢，祝好人幸福快乐！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/4a943090eb0a677931fe7a842fe54a24.png"
+                                 alt="@上单">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                上单
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-07-17
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                不行，jdk8版本不支持
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/df3bbd5232a0efdd0823a3d7deb058fd.png"
+                                 alt="@火">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                火
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-03-11
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                不行，还是安装不成功 :?:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85JDK%E5%92%8C%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">一键安装JDK和自动配置java环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAtxt%E6%96%87%E6%A1%A3%EF%BC%8C%E5%9C%A8%E9%87%8C%E9%9D%A2%E8%BE%93%E5%85%A5%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-text">新建一个txt文档，在里面输入下面的内容：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%8A%E9%9D%A2%E5%86%85%E5%AE%B9%E4%B8%ADjdk%E5%AE%89%E8%A3%85%E5%8C%85%E7%9A%84%E8%B7%AF%E5%BE%84%E6%94%B9%E6%88%90%E4%BD%A0%E7%9A%84%EF%BC%8C%E6%AF%94%E5%A6%82%E6%88%91%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85%E8%B7%AF%E5%BE%84%E6%98%AF"><span class="toc-text">将上面内容中jdk安装包的路径改成你的，比如我的安装包路径是</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G-%E6%94%B6%E8%97%8F%E8%BD%AF%E4%BB%B6%E7%BC%96%E7%A8%8Bjdk-8u20-windows-x64-exe"><span class="toc-text">G:收藏软件编程jdk-8u20-windows-x64.exe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%BB%BA%E7%AB%8B%E7%9A%84txt%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AD%98%EF%BC%8C%E7%84%B6%E5%90%8E%E9%87%8D%E5%91%BD%E5%90%8D%E6%88%90%E2%80%9Djdkinstall-bat%E2%80%9D-%E7%84%B6%E5%90%8E%E5%8F%8C%E5%87%BB%E6%96%87%E4%BB%B6%E8%BF%90%E8%A1%8C"><span class="toc-text">将建立的txt文件保存，然后重命名成”jdkinstall.bat”,然后双击文件运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%96%87%E7%AB%A0%E5%90%8E%E9%9D%A2%E4%B8%8B%E8%BD%BD%E6%9C%AC%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6"><span class="toc-text">你也可以在文章后面下载本批处理文件</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

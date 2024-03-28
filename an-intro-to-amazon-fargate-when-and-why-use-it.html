@@ -1,0 +1,527 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="AWS,DevOps,Docker" />
+
+
+<meta name="description" content="
+本文翻译自：Freecodecamp, 原文地址：An intro to Amazon Fargate: what it is, why it’s awesome (and not), and..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    容器即服务：AWS Fargate |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="容器即服务：AWS Fargate">
+            
+            容器即服务：AWS Fargate
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/AWS/" rel="tag">AWS</a> <a class="tag-none-link" href="/tags/DevOps/" rel="tag">DevOps</a> <a class="tag-none-link" href="/tags/Docker/" rel="tag">Docker</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/08/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>本文翻译自：<a target="_blank" rel="noopener" href="https://medium.freecodecamp.org/amazon-fargate-goodbye-infrastructure-3b66c7e3e413">Freecodecamp</a>, 原文地址：<a target="_blank" rel="noopener" href="https://medium.freecodecamp.org/amazon-fargate-goodbye-infrastructure-3b66c7e3e413">An intro to Amazon Fargate: what it is, why it’s awesome (and not), and when to use it</a>, 英文原作者为 <a target="_blank" rel="noopener" href="https://medium.freecodecamp.org/@emmanuelboumeraf">Emmanuel Marboeuf</a></p>
+</blockquote>
+<p>当亚马逊在2017年底的AWS re:Invent大会上和EKS一起<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8i82i9QYUGs">宣布</a> Fargate的时候，它还备受冷落，当时我所关注的博客和大佬只是轻描淡写地说：</p>
+<blockquote>
+<p>哦，有这么个新玩意，它将允许ECS用户直接在云中运行容器。</p>
+</blockquote>
+<p>作为开发人员，这真的让我大吃一惊。<strong>让我们看看为什么。</strong></p>
+<h2 id="解放生产力"><a href="#解放生产力" class="headerlink" title="解放生产力"></a>解放生产力</h2><p>我觉得软件开发领域已有<strong>五次</strong>重大革命，大大提高了开发者的工作效率，并以最高效率编写与部署应用。他们都解决了一系列的重大问题：</p>
+<ul>
+<li><strong>云服务（IaaS）的出现</strong>：解决了基础架构的成本和可扩展性问题</li>
+<li><strong>开源社区，会议，工作坊，技术博客，StackOverflow</strong>等：让知识惠及到更多人</li>
+<li><strong>版本控制系统，协作工具，持续集成工具</strong> 解决了项目的并行开发和集成问题</li>
+<li><strong>容器化架构</strong></li>
+<li><strong>无服务器计算服务（PaaS</strong>） 降低服务器和系统管理成本</li>
+</ul>
+<p>这些革命中的都有一个共同特点：它们都<strong>为软件工程师赋予了更多的控制权</strong>，降低了对服务器的系统管理员，DevOps，IT支持人员等的依赖。 所以，Fargate算其中的哪一种呢？</p>
+<h2 id="你的“船”才是问题所在"><a href="#你的“船”才是问题所在" class="headerlink" title="你的“船”才是问题所在"></a>你的“船”才是问题所在</h2><p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180823175209119.jpg" alt="Life jacket is advised" title="Life jacket is advised"></p>
+<p>Life jacket is advised</p>
+<p>Docker使容器技术普及开来，便很快成为开发中被广泛采用的新标准。 不久之后，随着<strong>Kubernetes</strong>的成功，AWS推出了自己的（更基本的）容器管理服务：Amazon Elastic Container Service（ECS），它引入了任务（Task）的概念。 一个任务可以是一起工作的容器的任何实例。它可以是从运行一个服务的Web应用，多个微服务，数据库和反向代理，还可以是定期运行的批处理shell脚本。 作为使用ECS的“老司机”，我很喜欢它，曾经在一段时间内用得很爽，但到最后，我发现在管理EC2 Instance的同时，还必须管理一些额外的层（任务和容器），这让ECS变得越来越复杂。（译者注，请参考<a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_cn/opsworks/latest/userguide/welcome_classic.html#welcome-classic-stacks">AWS“层”的概念</a>） 同时，我对ECS的安全性也不甚满意，层越多，就越要保持警惕，而每一层都带来了更多的复杂性，以及误配置、漏洞的可能性。 使用ECS在集群中运行中的EC2 实例（Instance）配置弹性伸缩时，每个实例上可以承载多个不同的Task，每个Task都可以运行多个容器。 由于任务（Task）会在具有可用资源的相同类型的EC2实例上随机部署（默认情况下），将面临以下问题：</p>
+<ul>
+<li>一个集群必须遵循相同的弹性伸缩规则，伸缩的EC2实例类型必须相同。</li>
+<li>有些容器需要完全不同的资源（译者注，AWS将网络、虚拟机、负载均衡都称为资源），但仍需要协同工作。</li>
+<li>某些容器不一定遵循相同的弹性伸缩规则。</li>
+<li>有时同一任务中的多个容器都需要有自己的负载均衡，无法为同一任务设置多个负载均衡器。</li>
+</ul>
+<p>面对这些问题时，首选的解决方法是：</p>
+<ul>
+<li>根据需求手动部署一些具有不同资源的EC2实例</li>
+<li>将这些EC2实例添加到您的集群</li>
+<li>为任务运行一个容器</li>
+<li>手动链接到您的EC2实例</li>
+<li>在ECS上配置复杂的任务策略，把不用任务根据他它们的需求配置在适当的EC2上</li>
+</ul>
+<p>这需要大量、繁琐的工作，还不易维护，这违背了使用容器的初衷。 有人不得不提出一个更好的主意。</p>
+<h2 id="让它们“漂”起来"><a href="#让它们“漂”起来" class="headerlink" title="让它们“漂”起来"></a>让它们“漂”起来</h2><p>事实证明，AWS团队在过去一年中也遇到了同样的问题，他们考虑过并致力于解决这些问题：</p>
+<blockquote>
+<p>我们怎样才能运行容器而不必担心服务器和集群？</p>
+</blockquote>
+<p><strong>这就是AWS Fargate的意义所在</strong>。它完全抽象了底层基础架构，你可以把每个容器视为一台机器。 你只需定义每个容器所需的资源，它将为你完成复杂的任务而不必再管理多个“层”之间的访问规则，您可以像在单个EC2实例之间那样调度容器那样。</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180823175211214.jpg" alt="Fargate上的容器" title="Fargate上的容器"></p>
+<p>Fargate上的容器</p>
+<p>这就让你的容器像水面上的船只拥有自己的帆、船舵、船员一样，自己可以漂流到想要去的地方。</p>
+<h2 id="容器即服务（CaaS）"><a href="#容器即服务（CaaS）" class="headerlink" title="容器即服务（CaaS）"></a>容器即服务（CaaS）</h2><p>我一直坚信<strong>容器即服务（CaaS）是开发人员梦寐以求的、真正的平台及服务（PaaS）。它允许开发人员直接在云中部署他们的容器，而不必担心底层细节。 当然，已经有很多技术允许您在云上无缝运行代码，而不必担心扩展或服务器管理（比如</strong>Heroku<strong>，</strong>Lambda，<strong>甚至以自己的方式使用</strong>Google应用引擎）**，但它们都有局限性。</p>
+<ul>
+<li>必须选择丧失一点灵活性</li>
+<li>必须使用它们所支持的语言</li>
+<li>无法使用它们所支持的语言完成拟定项目，因为可能您的项目需要在指定操作系统系统上可用的低版本的原生库</li>
+<li>您的项目采用了尖端技术，未来几年将无法为大众所用</li>
+<li>其中一些平台非常非常昂贵，特别是在扩展时</li>
+</ul>
+<p><strong>Fargate（或CaaS）</strong>为您带来两全其美的方案。 <strong>容器化架构</strong>为您提供所需的灵活性和控制权，它允许您在<strong>任何</strong>类型的系统中使用<strong>任何</strong>技术。而容器技术能确保你的应用在每个主机上具有相同的行为，无论是开发（Dev），测试(Testing&#x2F;QA)，预发布（Staging）还是生产(Production)环境。 我觉得这一点对众多的科技初创公司至关重要。事实上，有时您的竞争优势之一就是，您参与开发出最先进的技术，或者是把机智地原有的技术用在新的应用场景中。 <strong>无服务器部署</strong>使您可以专注于编写优秀的代码，没有配置，易于扩展。</p>
+<h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2><h3 id="CaaS-vs-PaaS"><a href="#CaaS-vs-PaaS" class="headerlink" title="CaaS vs PaaS"></a>CaaS vs PaaS</h3><p>也许确实你放弃了真正的“平台即服务”的一些优势，比如您仍然需要<strong>手动更新</strong>容器的镜像，有时您必须编写自己的Docker镜像。如果您不了解<strong>系统管理</strong>的基础知识，这的确很麻烦。 但是，这也意味着您可以放手地做任何您能想做的事情，并且在您想要使用的系统上，保证语言，工具，库和版本中的<strong>灵活性和自由度</strong>。</p>
+<h2 id="成本"><a href="#成本" class="headerlink" title="成本"></a>成本</h2><p>让我们直面这样的现实：云服务（IaaS）比拥有自己的基础架构<strong>更昂贵</strong>（如果你想要按需扩展你的基础架构）。同样的道理，不必关心配置、管理和扩展服务器是要需要付出代价。如果你的应用十分简单，云服务并不是最优解。 Fargate实好，但是<a target="_blank" rel="noopener" href="https://aws.amazon.com/fargate/pricing/">其价格</a>几乎是等配置EC2实例的价格的 4 倍（例如t2.medium）这让我们很难抉择，让我们期待它能够降价。</p>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2018/08/20180823175211315.jpg" alt="Fargate 和 EC2 价格对比 (USD)" title="Fargate 和 EC2 价格对比 (USD)"></p>
+<p>Fargate 和 EC2 价格对比 (USD)</p>
+<h2 id="我应该将所有ECS任务都切换到Fargate吗？"><a href="#我应该将所有ECS任务都切换到Fargate吗？" class="headerlink" title="我应该将所有ECS任务都切换到Fargate吗？"></a>我应该将所有ECS任务都切换到Fargate吗？</h2><p>当然不是。如上所述，在某些情况下，您的成本将增加三倍以上，所以在它们降低成本之前，您可能最好使用标准EC2实例。 但是，在以下情况下，Fargate可能对您更有益：</p>
+<ul>
+<li>如果您无法很好地伸缩你的ECS任务，会导致大量空闲的<strong>CPU或内存</strong>，而使用Fargate，您<strong>只需为在任务中定义的资源付费</strong>。</li>
+<li>对于<strong>按需或按定时计划</strong>运行的任务，并不需要一直运行着的EC2实例。使用Fargate，您<strong>只需在任务运行时付款。</strong></li>
+<li>适用于有<strong>内存和&#x2F;或CPU使用率峰值</strong>的任务。这仅仅是因为使用Fargate可以在这类情况下节省您配置和管理的时间。</li>
+</ul>
+<h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>对于那些喜欢<strong>Kubernetes</strong>而非<strong>ECS的人来说</strong>，Fargate很快就会支持<a target="_blank" rel="noopener" href="https://aws.amazon.com/eks/">EKS</a>了。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/an-intro-to-amazon-fargate-when-and-why-use-it.html" target="_blank">王柏元的博客 >> 容器即服务：AWS Fargate</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/open-source-rn-expandabletextreactnative-long-text-folding-component.html" class="pre-post btn btn-default" title='【开源】RN-ExpandableText：ReactNative长文本折叠组件'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            【开源】RN-ExpandableText：ReactNative长文本折叠组件</span>
+    </a>
+    
+    
+    <a href="/using-dockerhub-continually-build-container-mirroring.html" class="next-post btn btn-default" title='使用Dockerhub持续构建容器镜像'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            使用Dockerhub持续构建容器镜像</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "35663",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/c7681732000473000ff3ad8b102d2365.png"
+                                 alt="@AWS Fargate告诉你：什么是容器即服务 - 算法网">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                AWS Fargate告诉你：什么是容器即服务 - 算法网
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-05-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 原文：http://baiyuan.wang/an-intro-to-amazon-fargate-when-and-why-use-it.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/f9fb0fefbb3acc857b5c81c9b7294939.png"
+                                 alt="@跨境导航">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                跨境导航
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-09-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                不错的站点,以后一定常来。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/0cd8c842fcbb018ef7682364bac4475c.png"
+                                 alt="@绅士福利">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                绅士福利
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-09-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                AWS还是厉害哈！！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%94%BE%E7%94%9F%E4%BA%A7%E5%8A%9B"><span class="toc-text">解放生产力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E7%9A%84%E2%80%9C%E8%88%B9%E2%80%9D%E6%89%8D%E6%98%AF%E9%97%AE%E9%A2%98%E6%89%80%E5%9C%A8"><span class="toc-text">你的“船”才是问题所在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A9%E5%AE%83%E4%BB%AC%E2%80%9C%E6%BC%82%E2%80%9D%E8%B5%B7%E6%9D%A5"><span class="toc-text">让它们“漂”起来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%8D%B3%E6%9C%8D%E5%8A%A1%EF%BC%88CaaS%EF%BC%89"><span class="toc-text">容器即服务（CaaS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%90%E5%88%B6"><span class="toc-text">限制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CaaS-vs-PaaS"><span class="toc-text">CaaS vs PaaS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E6%9C%AC"><span class="toc-text">成本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E5%BA%94%E8%AF%A5%E5%B0%86%E6%89%80%E6%9C%89ECS%E4%BB%BB%E5%8A%A1%E9%83%BD%E5%88%87%E6%8D%A2%E5%88%B0Fargate%E5%90%97%EF%BC%9F"><span class="toc-text">我应该将所有ECS任务都切换到Fargate吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%A9%E8%9B%8B"><span class="toc-text">彩蛋</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

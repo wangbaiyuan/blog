@@ -1,0 +1,614 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="微信,PHP" />
+
+
+<meta name="description" content="微信开发中我们常常需要知道用户的位置，在微信的JS-SDK中提供了访问地理位置的方法，这不需要你的公众号是认证账户，普通未认证的订阅号也有访问地理位置的权限。
+微信开发获取位置与百度地图经纬度解..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    微信开发获取位置与百度地图经纬度解析 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="微信开发获取位置与百度地图经纬度解析">
+            
+            微信开发获取位置与百度地图经纬度解析
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a> <a class="tag-none-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/12/14</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>微信开发中我们常常需要知道用户的位置，在微信的JS-SDK中提供了访问地理位置的方法，这不需要你的公众号是认证账户，普通未认证的订阅号也有访问地理位置的权限。</p>
+<h2 id="微信开发获取位置与百度地图经纬度解析"><a href="#微信开发获取位置与百度地图经纬度解析" class="headerlink" title="微信开发获取位置与百度地图经纬度解析"></a>微信开发获取位置与百度地图经纬度解析</h2><p>根据微信公众号开发者文档中的 JSSDK使用步骤</p>
+<ul>
+<li>1.1.1 步骤一：绑定域名</li>
+<li>1.1.2 步骤二：引入JS文件</li>
+<li>1.1.3 步骤三：通过config接口注入权限验证配置</li>
+<li>1.1.4 步骤四：通过ready接口处理成功验证</li>
+<li>1.1.5 步骤五：通过error接口处理失败验证</li>
+</ul>
+<p>微信开发获取位置与百度地图经纬度解析,我们可以根据官方文档可以获取很多高级功能，这里就不赘述。可能比较棘手的是后面遇到的消息签名问题。下面是官方给的代码:</p>
+<?php
+class JSSDK {
+  private $appId;
+  private $appSecret;
+
+  public function __construct($appId, $appSecret) {
+    $this->appId = $appId;
+    $this->appSecret = $appSecret;
+  }
+
+  public function getSignPackage() {
+    $jsapiTicket = $this->getJsApiTicket();
+
+    // 注意 URL 一定要动态获取，不能 hardcode.
+    $protocol = (!empty($\_SERVER\['HTTPS'\]) && $\_SERVER\['HTTPS'\] !== 'off' || $\_SERVER\['SERVER\_PORT'\] == 443) ? "https://" : "http://";
+    $url = "$protocol$\_SERVER\[HTTP\_HOST\]$\_SERVER\[REQUEST\_URI\]";
+
+    $timestamp = time();
+    $nonceStr = $this->createNonceStr();
+
+    // 这里参数的顺序要按照 key 值 ASCII 码升序排序
+    $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
+
+    $signature = sha1($string);
+
+    $signPackage = array(
+      "appId"     => $this->appId,
+      "nonceStr"  => $nonceStr,
+      "timestamp" => $timestamp,
+      "url"       => $url,
+      "signature" => $signature,
+      "rawString" => $string
+    );
+    return $signPackage; 
+  }
+
+  private function createNonceStr($length = 16) {
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $str = "";
+    for ($i = 0; $i < $length; $i++) {
+      $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+    }
+    return $str;
+  }
+
+  private function getJsApiTicket() {
+    // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
+    $data = json\_decode($this->get\_php\_file("jsapi\_ticket.php"));
+    if ($data->expire_time < time()) {
+      $accessToken = $this->getAccessToken();
+      // 如果是企业号用以下 URL 获取 ticket
+      // $url = "https://qyapi.weixin.qq.com/cgi-bin/get\_jsapi\_ticket?access_token=$accessToken";
+      $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
+      $res = json_decode($this->httpGet($url));
+      $ticket = $res->ticket;
+      if ($ticket) {
+        $data->expire_time = time() + 7000;
+        $data->jsapi_ticket = $ticket;
+        $this->set\_php\_file("jsapi\_ticket.php", json\_encode($data));
+      }
+    } else {
+      $ticket = $data->jsapi_ticket;
+    }
+
+    return $ticket;
+  }
+
+  private function getAccessToken() {
+    // access_token 应该全局存储与更新，以下代码以写入到文件中做示例
+    $data = json\_decode($this->get\_php\_file("access\_token.php"));
+    if ($data->expire_time < time()) {
+      // 如果是企业号用以下URL获取access_token
+      // $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->appId&corpsecret=$this->appSecret";
+      $url = "https://api.weixin.qq.com/cgi-bin/token?grant\_type=client\_credential&appid=$this->appId&secret=$this->appSecret";
+      $res = json_decode($this->httpGet($url));
+      $access\_token = $res->access\_token;
+      if ($access_token) {
+        $data->expire_time = time() + 7000;
+        $data->access\_token = $access\_token;
+        $this->set\_php\_file("access\_token.php", json\_encode($data));
+      }
+    } else {
+      $access\_token = $data->access\_token;
+    }
+    return $access_token;
+  }
+
+  private function httpGet($url) {
+    $curl = curl_init();
+    curl\_setopt($curl, CURLOPT\_RETURNTRANSFER, true);
+    curl\_setopt($curl, CURLOPT\_TIMEOUT, 500);
+    // 为保证第三方服务器与微信服务器之间数据传输的安全性，所有微信接口采用https方式调用，必须使用下面2行代码打开ssl安全校验。
+    // 如果在部署过程中代码在此处验证失败，请到 http://curl.haxx.se/ca/cacert.pem 下载新的证书判别文件。
+    curl\_setopt($curl, CURLOPT\_SSL_VERIFYPEER, true);
+    curl\_setopt($curl, CURLOPT\_SSL_VERIFYHOST, true);
+    curl\_setopt($curl, CURLOPT\_URL, $url);
+
+    $res = curl_exec($curl);
+    curl_close($curl);
+
+    return $res;
+  }
+
+  private function get\_php\_file($filename) {
+    return trim(substr(file\_get\_contents($filename), 15));
+  }
+  private function set\_php\_file($filename, $content) {
+    $fp = fopen($filename, "w");
+    fwrite($fp, "<?php exit();?><p>“ . $content);<br>    fclose($fp);<br>  }<br>}</p>
+<p>在PHP中调用：</p>
+<p>$jssdk &#x3D; new JSSDK(wx_appid, wx_appkey);<br>$signPackage &#x3D; $jssdk-&gt;GetSignPackage();</p>
+<p>在HTML中加入js代码：</p>
+<script type="application/javascript">
+    wx.config({
+        debug: false,
+        appId: '<?php echo $signPackage\["appId"\];?>',
+        timestamp: <?php echo $signPackage\["timestamp"\];?>,
+        nonceStr: '<?php echo $signPackage\["nonceStr"\];?>',
+        signature: '<?php echo $signPackage\["signature"\];?>',
+        jsApiList: \[
+            // 所有要调用的 API 都要加到这个列表中
+            'checkJsApi',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu'
+        \]
+    });
+
+
+</script>
+
+<p>调用js代码获取经纬度：</p>
+<p> wx.getLocation({<br>                type: ‘wgs84’, &#x2F;&#x2F; 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入’gcj02’<br>                success: function (res) {<br>                    ilatitude &#x3D; res.latitude; &#x2F;&#x2F; 纬度，浮点数，范围为90 ~ -90<br>                    ilongitude &#x3D; res.longitude; &#x2F;&#x2F; 经度，浮点数，范围为180 ~ -180。<br>                    ispeed &#x3D; res.speed; &#x2F;&#x2F; 速度，以米&#x2F;每秒计<br>                    iaccuracy &#x3D; res.accuracy;&#x2F;&#x2F;精度</p>
+<pre><code>            &#125;
+
+        &#125;);
+</code></pre>
+<h2 id="百度地图经纬度解析"><a href="#百度地图经纬度解析" class="headerlink" title="百度地图经纬度解析"></a>百度地图经纬度解析</h2><p>微信JS-SDK提供的只是经纬度，而不是像“陕西省西安市”这样的地理位置，下面是将经纬度转为地理位置的PHP函数，调用的是百度地图的web-api：</p>
+<p>define(‘ak’, ‘换成你申请的百度地图API ak’);<br>define(‘apiUrl’, ‘<a target="_blank" rel="noopener" href="http://api.map.baidu.com/geocoder/v2/?ak=%27.ak.%27&">http://api.map.baidu.com/geocoder/v2/?ak=&#39;.ak.&#39;&amp;</a>‘);</p>
+<p>&#x2F;**<br> * @param $longitude 经度<br> * @param $latitude 纬度<br> * @return 地理位置<br> *&#x2F;<br>function AddresByGeocoding($longitude,$latitude){<br>    $url &#x3D; apiUrl.”location&#x3D;”.$latitude.”,”.$longitude.”&amp;output&#x3D;json&amp;pois&#x3D;0”;<br>    $result&#x3D; file_get_contents($url);<br>    $jsondata &#x3D; json_decode($result,true);<br>    $address &#x3D;$jsondata[‘result’][‘formatted_address’];<br>    return $address;<br>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/get-position-with-baidu-map-wechat-development-latitude-longitude-resolution.html" target="_blank">王柏元的博客 >> 微信开发获取位置与百度地图经纬度解析</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/class-class-o2o-education-pattern-in-colleges-universities.html" class="pre-post btn btn-default" title='创想-课上到课下的O2O高校教育模式'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            创想-课上到课下的O2O高校教育模式</span>
+    </a>
+    
+    
+    <a href="/future-internet-of-things-application-experience-health.html" class="next-post btn btn-default" title='[转]来自未来的物联网应用体验报告——健康篇'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            [转]来自未来的物联网应用体验报告——健康篇</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "12849",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/de30f03b6683e62aff82ff43eb1e5a68.png"
+                                 alt="@小白">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小白
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-12-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                都不浪费时间了...还要退干什么 你都帮他们做好了他们不给你报名么
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-12-15
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                哪里不正经，这是大创组长问老师有什么项目可以做，老师为了应付我们让我们做的微信签到，为了不浪费时间我们就花两天搞完完成老师任务。为了IOS我最后可把大创都辞掉了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/de30f03b6683e62aff82ff43eb1e5a68.png"
+                                 alt="@小白">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小白
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-12-15
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                汇编复习完了吗 竞赛主题确定了吗 到处不正经
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96%E4%BD%8D%E7%BD%AE%E4%B8%8E%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E7%BB%8F%E7%BA%AC%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">微信开发获取位置与百度地图经纬度解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BE%E5%BA%A6%E5%9C%B0%E5%9B%BE%E7%BB%8F%E7%BA%AC%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">百度地图经纬度解析</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

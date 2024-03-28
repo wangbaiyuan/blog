@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="由于Android studio和Android相关SDK和构建工具具有极快的更新速度。对相关版本的修改有时候是一件比较敏感的事情，尤其是在团队项目中，个人在本地修改了相关工具的版本并且不小心提..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Gradle下利用配置文件对构建工具版本集中控制 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Gradle下利用配置文件对构建工具版本集中控制">
+            
+            Gradle下利用配置文件对构建工具版本集中控制
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/08/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>由于Android studio和Android相关SDK和构建工具具有极快的更新速度。对相关版本的修改有时候是一件比较敏感的事情，尤其是在团队项目中，个人在本地修改了相关工具的版本并且不小心提交到远程代码库，别人更新下来往往出现各种问题。Android studio项目文件中版本字段十分分散，当SDK环境出现改变时，修改起来还是比较麻烦的。本文章利用配置文件对构建工具版本集中控制。</p>
+<h2 id="在项目根目录下gradle-properties文件定义版本信息并赋值"><a href="#在项目根目录下gradle-properties文件定义版本信息并赋值" class="headerlink" title="在项目根目录下gradle.properties文件定义版本信息并赋值"></a>在项目根目录下gradle.properties文件定义版本信息并赋值</h2><p>GradleBuildVersion&#x3D;2.1.2<br>AndroidMinSDKVersion&#x3D;16<br>AndroidTargetVersion&#x3D;23<br>AndroidCompileSDKVersion&#x3D;23<br>AndroidBuildToolsVersion&#x3D;23.0.1</p>
+<p> </p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a href="http://baiyuan.wang/wp-content/uploads/2016/08/25d15be0b4a717c984f31d1b70704f1b1470918122.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/08/25d15be0b4a717c984f31d1b70704f1b1470918122.jpg" alt="25d15be0b4a717c984f31d1b70704f1b1470918122"></a></h2><h2 id="在使用版本信息的地方引用gradle变量"><a href="#在使用版本信息的地方引用gradle变量" class="headerlink" title="在使用版本信息的地方引用gradle变量"></a>在使用版本信息的地方引用gradle变量</h2><h2 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h2><p>dependencies {<br>    compile fileTree(include: [‘*.jar’], dir: ‘libs’)<br>    testCompile ‘junit:junit:4.12’<br>    compile ‘com.android.support:appcompat-v7:’+project.AndroidBuildToolsVersion<br>}</p>
+<h3 id="build-gradle-project"><a href="#build-gradle-project" class="headerlink" title="build.gradle(project)"></a>build.gradle(project)</h3><p>buildscript {<br>    repositories {<br>        jcenter()<br>    }<br>    dependencies {<br>        classpath ‘com.android.tools.build:gradle:’+project.GradleBuildVersion<br>        &#x2F;&#x2F; NOTE: Do not place your application dependencies here; they belong<br>        &#x2F;&#x2F; in the individual module build.gradle files<br>    }<br>}</p>
+<h3 id="build-gradle-module"><a href="#build-gradle-module" class="headerlink" title="build.gradle(module)"></a>build.gradle(module)</h3><p>Android {<br>    compileSdkVersion Integer.parseInt(project.AndroidCompileSDKVersion)<br>    buildToolsVersion project.AndroidBuildToolsVersion</p>
+<pre><code>defaultConfig &#123;
+    applicationId &quot;cn.wangbaiyuan.plugintest&quot;
+    minSdkVersion Integer.parseInt(project.AndroidMinSDKVersion)
+    targetSdkVersion Integer.parseInt(project.AndroidTargetVersion)
+    versionCode 1
+    versionName &quot;1.0&quot;
+&#125;
+buildTypes &#123;
+    release &#123;
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile(&#39;proguard-android.txt&#39;), &#39;proguard-rules.pro&#39;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/gradle-using-configuration-files-build-tools-version-under-centralized-control.html" target="_blank">王柏元的博客 >> Gradle下利用配置文件对构建工具版本集中控制</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/android-monitor-navigation-bar-at-bottom-of-expansion-hidden.html" class="pre-post btn btn-default" title='Android监听底部导航栏展开与隐藏'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Android监听底部导航栏展开与隐藏</span>
+    </a>
+    
+    
+    <a href="/crooked-neck-tree-with-hc.html" class="next-post btn btn-default" title='歪脖子树与花痴'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            歪脖子树与花痴</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "2243",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E9%A1%B9%E7%9B%AE%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8Bgradle-properties%E6%96%87%E4%BB%B6%E5%AE%9A%E4%B9%89%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF%E5%B9%B6%E8%B5%8B%E5%80%BC"><span class="toc-text">在项目根目录下gradle.properties文件定义版本信息并赋值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF%E7%9A%84%E5%9C%B0%E6%96%B9%E5%BC%95%E7%94%A8gradle%E5%8F%98%E9%87%8F"><span class="toc-text">在使用版本信息的地方引用gradle变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dependencies"><span class="toc-text">Dependencies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#build-gradle-project"><span class="toc-text">build.gradle(project)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#build-gradle-module"><span class="toc-text">build.gradle(module)</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

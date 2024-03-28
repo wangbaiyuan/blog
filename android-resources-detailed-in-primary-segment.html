@@ -1,0 +1,490 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android" />
+
+
+<meta name="description" content="一、Android中资源分类详解 
+1、Android资源分类Android中的资源分为两大类 : 可直接访问的资源, 无法直接访问的原生资源; – 直接访问资源 : 这些资源可以使用 R. 进..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Android中资源详解（初级篇） |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android中资源详解（初级篇）">
+            
+            Android中资源详解（初级篇）
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/01</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="一、Android中资源分类详解"><a href="#一、Android中资源分类详解" class="headerlink" title="一、Android中资源分类详解"></a>一、Android中资源分类详解</h1><p> </p>
+<h2 id="1、Android资源分类"><a href="#1、Android资源分类" class="headerlink" title="1、Android资源分类"></a>1、Android资源分类</h2><p>Android中的资源分为两大类 : 可直接访问的资源, 无法直接访问的原生资源; – 直接访问资源 : 这些资源可以使用 R. 进行访问, 都保存在res目录下, 在编译的时候, 会自动生成R.java 资源索引文件; – 原生资源 : 这些资源存放在assets下, 不能使用 R类 进行访问, 只能通过 AssetManager 以二进制流形式读取资源;</p>
+<h2 id="2、Android资源详解"><a href="#2、Android资源详解" class="headerlink" title="2、Android资源详解"></a>2、Android资源详解</h2><p> </p>
+<h3 id="res目录下资源详解"><a href="#res目录下资源详解" class="headerlink" title="res目录下资源详解 :"></a>res目录下资源详解 :</h3><ul>
+<li>-- res&#x2F;animator : 属性动画的XML文件目录, 属性动画就是定义起始结束, 动做, 重复时间等参数齐全的动画;</li>
+<li>-- res&#x2F;anim : 补间动画的XML文件目录, 补间动画是只定义 起始 结束帧, 中间的动作由系统进行计算获取动作过程;</li>
+<li>-- res&#x2F;color : 颜色列表的XML文件目录;</li>
+<li>-- res&#x2F;drawable : 存放真实的位图文件, 也可以存放Drawable对象及子类对象的XML文件;</li>
+<li>-- res&#x2F;layout : 界面布局文件目录;</li>
+<li>-- res&#x2F;menu : 程序中使用的菜单文件目录, 该文件下的XML文件可以应用与 选项菜单, 子菜单, 上下文菜单等;</li>
+<li>-- res&#x2F;raw : 存放原生资源, 与assets目录作用相同, 可以通过调用openRawResource(int)方法获取二进制输入流, 与asstes相似, 使用AssetsManager访问这些资源;</li>
+<li>-- res&#x2F;value : 存放 字符串. 整数, 颜色, 数组 信息的 XML文件的目录, 这些XML文件资源的根元素是resource;</li>
+<li>-- res&#x2F;xml : 原生的XML文件, 可以使用 Resource.getXML()方法进行访问;</li>
+</ul>
+<h3 id="res-value目录XML文件子标签解析"><a href="#res-value目录XML文件子标签解析" class="headerlink" title="res&#x2F;value目录XML文件子标签解析 :"></a>res&#x2F;value目录XML文件子标签解析 :</h3><ul>
+<li>-- string标签 : 代表一个字符串;</li>
+<li>-- integer标签 : 代表一个整数值标签;</li>
+<li>-- bool标签 : 代表一个boolean值;</li>
+<li>-- color标签 : 代表一个颜色值;</li>
+<li>-- array标签 : 代表数组;</li>
+<li>-- string-array标签 : 代表字符串数组;</li>
+<li>-- int-array标签 : 代表int数组;</li>
+<li>-- style标签 : 代表样式;</li>
+<li>-- dimen标签 : 代表一个尺寸;</li>
+</ul>
+<h2 id="3、分类资源文件"><a href="#3、分类资源文件" class="headerlink" title="3、分类资源文件 :"></a>3、分类资源文件 :</h2><p>如果将所有的资源放到一个XML文件中, 会增加维护难度, 这里将不通类型的资源放到不同的XML文件下;</p>
+<ul>
+<li>-- arrays.xml : 存放数组资源;</li>
+<li>-- colors.xml : 存放颜色资源;</li>
+<li>-- dimens.xml : 存放尺寸值资源;</li>
+<li>-- strings.xml : 存放字符串资源;</li>
+<li>-- styles.xml : 存放样式资源;</li>
+</ul>
+<h2 id="二、Android中资源的使用"><a href="#二、Android中资源的使用" class="headerlink" title="二、Android中资源的使用"></a>二、Android中资源的使用</h2><p> </p>
+<h2 id="1-Java代码访问清单资源"><a href="#1-Java代码访问清单资源" class="headerlink" title="(1) Java代码访问清单资源"></a>(1) Java代码访问清单资源</h2><p>在Java代码中通过R类获取资源语法 :</p>
+<p>[packageName.] R . resourceType . resourceName</p>
+<ul>
+<li>-- pakegeName : R类所在的包名, 即权限定类型, R类可能来自两个包, 一个是程序本身的清单文件, 一个是Android系统存在的清单文件;</li>
+<li>-- resourceType : R类中代表的资源类型的名称, R.string 字符串资源, R.integer 代表整数资源;</li>
+<li>-- resourceName : 资源名称, 这个资源名称是对应类型子标签的 name属性的值;</li>
+</ul>
+<h2 id="2-Java代码访问原生资源"><a href="#2-Java代码访问原生资源" class="headerlink" title="(2) Java代码访问原生资源"></a>(2) Java代码访问原生资源</h2><ul>
+<li><strong>Resource类 :</strong> Android资源访问控制类, 该类提供了大量方法获取实际资源, Resource通过 Context.getResource()方法获得;</li>
+<li>-- 获取清单资源 : resource.getString(id), 根据id获取实际资源;</li>
+<li>-- 获取原生资源 : resource.getassets(), 获取AssetManager对象;</li>
+</ul>
+<p>&#x2F;&#x2F;获取Resource资源, 这个方法在Activity中执行<br>Resources resources &#x3D; getResources();<br>&#x2F;&#x2F;获取字符串资源<br>String hello &#x3D; resources.getString(R.string.hello_world);<br>&#x2F;&#x2F;获取图片资源<br>Drawable luncher &#x3D; resources.getDrawable(R.drawable.ic_launcher);</p>
+<p>(3) XML文件中使用资源 在XML文件中需要引用其它XML文件中的值, 语法格式为 :</p>
+<p>@ [packageName : ] resourceType &#x2F; resourceName</p>
+<ul>
+<li>-- packageName : 资源类型所在的包, 如果被引用资源 与 本XML文件在同一个包下, 可以省略包名;</li>
+<li>-- resourceType : 资源类型, 例如 layout, drawable, strings等;</li>
+<li>-- resourceName : 资源名称, 资源所在的XML文件中元素的 android:name 属性, 或者 是无后缀的文件名, 例如图片, 布局文件等;</li>
+</ul>
+<h2 id="三、字符串-颜色-尺寸-数组资源的使用情况"><a href="#三、字符串-颜色-尺寸-数组资源的使用情况" class="headerlink" title="三、字符串 颜色 尺寸 数组资源的使用情况"></a>三、字符串 颜色 尺寸 数组资源的使用情况</h2><h2 id="1-几种资源的目录引用名称"><a href="#1-几种资源的目录引用名称" class="headerlink" title="(1) 几种资源的目录引用名称"></a>(1) 几种资源的目录引用名称</h2><h3 id="字符串资源"><a href="#字符串资源" class="headerlink" title="字符串资源 :"></a><strong>字符串资源 :</strong></h3><ul>
+<li>-- 默认目录 : &#x2F;res&#x2F;values&#x2F;strings.xml ;</li>
+<li>-- 引用方式 : R.string.xxx ;</li>
+</ul>
+<h3 id="颜色资源"><a href="#颜色资源" class="headerlink" title="颜色资源 :"></a>颜色资源 :</h3><ul>
+<li>-- 默认目录 : &#x2F;res&#x2F;values&#x2F;colors.xml ;</li>
+<li>-- 引用方式 : R.color.xxx ; 尺寸资源 :</li>
+<li>-- 默认目录 : &#x2F;res&#x2F;values&#x2F;dimens.xml ;</li>
+<li>-- 引用方式 : R.dimens.xxx ;</li>
+<li><strong>颜色定义方式:</strong></li>
+<li>1.三原色 : 白光 可以分解为 红, 绿, 蓝 三种颜色的光, 红绿蓝都是最大值的时候就是白色, 三种值相等, 但不是最大值是灰色, 如果其中一种或两种值比较大, 就会产生各种颜色的彩色;</li>
+<li>2.颜色表示 : 颜色通过 红(red) 绿(green) 蓝(blue) 三种颜色, 以及 透明度(alpha) 来表示的; – 颜色开头 : 颜色值总是以 # 开头; – 无透明度 : 如果没有 alpha 值, 默认完全不透明; <strong>颜色定义形式 :</strong></li>
+<li>-- #RGB : 红 绿 蓝 三原色值, 每个值分16个等级, 最小为0, 最大为f;</li>
+<li>-- #ARGB : 透明度 红 绿 蓝 值, 每个值分16个等级, 最小为0, 最大为f;</li>
+<li>-- #RRGGBB : 红 绿 蓝 三原色值, 每个值分 256个等级, 最小为0, 最大为ff;</li>
+<li>-- #AARRGGBB : 透明度 红 绿 蓝 值, 每个值分 256个等级, 最小为0, 最大为ff;</li>
+</ul>
+<h2 id="2-字符串-颜色-尺寸-XML文件定义"><a href="#2-字符串-颜色-尺寸-XML文件定义" class="headerlink" title="(2)字符串 颜色 尺寸 XML文件定义"></a>(2)字符串 颜色 尺寸 XML文件定义</h2><p>   </p>
+<h3 id="1-字符串资源文件"><a href="#1-字符串资源文件" class="headerlink" title="1) 字符串资源文件"></a>1) 字符串资源文件</h3><p> </p>
+<ul>
+<li><p>字符串资源文件信息 :</p>
+</li>
+<li><p>-- 资源位置 : &#x2F;res&#x2F;values 目录下;</p>
+</li>
+<li><p>-- 根元素 : 是根元素;</p>
+</li>
+<li><p>-- 子元素 : ;</p>
+</li>
+<li><p>-- name属性 : 指定变量名称;</p>
+</li>
+<li><p>-- 标签文本 : 标签文本就是字符串信息;</p>
+<p>ResourceTest<br>Settings<br>Hello world!</p>
+</li>
+</ul>
+<p> </p>
+<h3 id="2-颜色资源文件"><a href="#2-颜色资源文件" class="headerlink" title="2) 颜色资源文件"></a>2) 颜色资源文件</h3><p><strong>颜色资源文件信息 :</strong></p>
+<ul>
+<li>-- 位置 : &#x2F;res&#x2F;values目录;</li>
+<li>-- 根元素 : ;</li>
+<li>-- 子元素 : ;</li>
+<li>-- name属性 : 颜色资源名称;</li>
+<li>-- 标签文本 : 颜色值;</li>
+</ul>
+<p>  #FF4000<br>    #120A2A<br>    #00FF00<br>    #FFFF00</p>
+<p> </p>
+<h3 id="3-尺寸资源文件"><a href="#3-尺寸资源文件" class="headerlink" title="3) 尺寸资源文件"></a>3) 尺寸资源文件</h3><p>  <strong>尺寸资源信息 :</strong></p>
+<ul>
+<li>-- 位置 : &#x2F;res&#x2F;values目录;</li>
+<li>-- 根元素 : ;</li>
+<li>-- 子元素 : ;</li>
+<li>-- name属性 : 尺寸名称;</li>
+<li>-- 标签文本 : 尺寸值;</li>
+</ul>
+<p>   16dp<br>    16dp</p>
+<h3 id="4）数组资源"><a href="#4）数组资源" class="headerlink" title="4）数组资源"></a>4）数组资源</h3><p><strong>资源数组文件 :</strong> 通常将数组定义在 &#x2F;res&#x2F;values&#x2F;arrays.xml文件中;</p>
+<ul>
+<li>-- 根标签 : ;</li>
+<li>-- 子标签 : , , ;</li>
+</ul>
+<p><strong>资源数组类型 :</strong> 数组的资源的跟标签都是 , 不同类型的数组的子元素不同;</p>
+<ul>
+<li>-- 普通类型数组 : 使用作为子元素标签;</li>
+<li>-- 字符串数组 : 使用作为子元素标签;</li>
+<li>-- 整数数组 : 使用作为子元素标签;</li>
+</ul>
+<p><strong>XML文件中调用数组资源 :</strong> @ [packageName :] array&#x2F;arrayName ; <strong>Java文件中调用数组资源 :</strong> [packageName . ]R.array.arrayName ;</p>
+<ul>
+<li>-- 获取实际普通数组 : TypeArray obtainTypedArray(int id), 根据普通数组资源名称获取实际普通数组, TypeArray类提供了getXxx(int index)方法获取指定索引的元素;</li>
+<li>-- 获取字符串数组 : String[] getStringArray(int id), 根据字符串数组资源名称获取字符串数组;</li>
+<li>-- 获取整数数组 : int[] getIntArray(int id), 根据整数数组资源名称获取实际的整数数组;</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/android-resources-detailed-in-primary-segment.html" target="_blank">王柏元的博客 >> Android中资源详解（初级篇）</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/officeword-automatically-add-a-directory-for-the-document-and-page-number.html" class="pre-post btn btn-default" title='officeWord为文档自动添加目录和页码'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            officeWord为文档自动添加目录和页码</span>
+    </a>
+    
+    
+    <a href="/ssd7-ex2-sql.html" class="next-post btn btn-default" title='SSD7_EX2【SQL】'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD7_EX2【SQL】</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "11360",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Android%E4%B8%AD%E8%B5%84%E6%BA%90%E5%88%86%E7%B1%BB%E8%AF%A6%E8%A7%A3"><span class="toc-text">一、Android中资源分类详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81Android%E8%B5%84%E6%BA%90%E5%88%86%E7%B1%BB"><span class="toc-text">1、Android资源分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81Android%E8%B5%84%E6%BA%90%E8%AF%A6%E8%A7%A3"><span class="toc-text">2、Android资源详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#res%E7%9B%AE%E5%BD%95%E4%B8%8B%E8%B5%84%E6%BA%90%E8%AF%A6%E8%A7%A3"><span class="toc-text">res目录下资源详解 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#res-value%E7%9B%AE%E5%BD%95XML%E6%96%87%E4%BB%B6%E5%AD%90%E6%A0%87%E7%AD%BE%E8%A7%A3%E6%9E%90"><span class="toc-text">res&#x2F;value目录XML文件子标签解析 :</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%88%86%E7%B1%BB%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-text">3、分类资源文件 :</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Android%E4%B8%AD%E8%B5%84%E6%BA%90%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">二、Android中资源的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Java%E4%BB%A3%E7%A0%81%E8%AE%BF%E9%97%AE%E6%B8%85%E5%8D%95%E8%B5%84%E6%BA%90"><span class="toc-text">(1) Java代码访问清单资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Java%E4%BB%A3%E7%A0%81%E8%AE%BF%E9%97%AE%E5%8E%9F%E7%94%9F%E8%B5%84%E6%BA%90"><span class="toc-text">(2) Java代码访问原生资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%A2%9C%E8%89%B2-%E5%B0%BA%E5%AF%B8-%E6%95%B0%E7%BB%84%E8%B5%84%E6%BA%90%E7%9A%84%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-text">三、字符串 颜色 尺寸 数组资源的使用情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%A0%E7%A7%8D%E8%B5%84%E6%BA%90%E7%9A%84%E7%9B%AE%E5%BD%95%E5%BC%95%E7%94%A8%E5%90%8D%E7%A7%B0"><span class="toc-text">(1) 几种资源的目录引用名称</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B5%84%E6%BA%90"><span class="toc-text">字符串资源 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E8%B5%84%E6%BA%90"><span class="toc-text">颜色资源 :</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2-%E9%A2%9C%E8%89%B2-%E5%B0%BA%E5%AF%B8-XML%E6%96%87%E4%BB%B6%E5%AE%9A%E4%B9%89"><span class="toc-text">(2)字符串 颜色 尺寸 XML文件定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-text">1) 字符串资源文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A2%9C%E8%89%B2%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-text">2) 颜色资源文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B0%BA%E5%AF%B8%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6"><span class="toc-text">3) 尺寸资源文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%89%E6%95%B0%E7%BB%84%E8%B5%84%E6%BA%90"><span class="toc-text">4）数组资源</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="Web,CSS,JS" />
+
+
+<meta name="description" content="
+曾经看见一位学长在PHP-Storm上输入一段奇怪的代码，当他按下了Tab键后，神奇的事情就发生了。
+
+如果HTML也是一种编程语言的话，私以为Html会是我们接触到的最多的编程语言。可能有人..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Emmet优雅地搭建起Html骨架 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Emmet优雅地搭建起Html骨架">
+            
+            Emmet优雅地搭建起Html骨架
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E8%AF%AD%E8%A8%80/">算法语言</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/CSS/" rel="tag">CSS</a> <a class="tag-none-link" href="/tags/JS/" rel="tag">JS</a> <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/12/05</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>曾经看见一位学长在PHP-Storm上输入一段奇怪的代码，当他按下了Tab键后，神奇的事情就发生了。</p>
+</blockquote>
+<p>如果HTML也是一种编程语言的话，私以为Html会是我们接触到的最多的编程语言。可能有人并不知道什么是HTML（超文本标记语言），但是当他人生中第一次上网打开浏览器浏览网页的时候，他与HTML的邂逅就开始了……只是当初，他不知道纷繁绚丽的网页的背后，是HTML语言在默默支撑； HTML+JS+CSS是前端的三大语言。如果把网页比作人的话，HTML给了人以骨架，CSS未知赋予了血肉、发肤以至衣物、妆饰，而JS则给了他运动的灵魂。 这边文章从HTML讲起，对于HTML的基本知识在此就不便赘述了，Google一下，你就知道。在此，我主要讲的是怎样快捷地搭建起HTML的骨架。 把HTML比作骨架并非我心血来潮，我只是在告诉自己写HTML页面要有搭框架的意识。不瞒你说，我以前的HTML的代码都是拼凑而成的。哪里不对改哪里，效率很低。正向箭头 + 标签名+反响箭头这种重复的代码，写多了就觉得腻了。那么有没有什么快捷的方式让我们关注HTML的架构本身，而不是繁杂的html语言本身呢？</p>
+<h2 id="用Emmet-Tab一下"><a href="#用Emmet-Tab一下" class="headerlink" title="用Emmet Tab一下"></a>用Emmet Tab一下</h2><blockquote>
+<p>Emmet的前身是大名鼎鼎的Zen coding，如果你从事Web前端开发的话，对该插件一定不会陌生。它使用仿CSS选择器的语法来生成代码，大大提高了HTML&#x2F;CSS代码编写的速度</p>
+</blockquote>
+<p>Emmet 的语法极客人目前还只是刚刚入门，这里主要是抛砖引玉一下，给大家几个例子，更专业的介绍与教程，给大家推荐下面文章：<a target="_blank" rel="noopener" href="http://www.iteye.com/news/27580">http://www.iteye.com/news/27580</a> ，在此我也就不大篇幅地复制粘贴了。</p>
+<ul>
+<li>** 输入“!”或“html:5”，然后按Tab键： **</li>
+</ul>
+<p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161205122410112.jpg" alt="0070e820-1cbf-3f42-8c5b-838e5774d02b.gif"> * ** 连续输入元素名称和ID，比如输入p.foo： ** <img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161205122410219.jpg" alt="cb250aef-3b60-3297-86ba-8c3ed36cacad.gif"> 还有一些较复杂的用法大家自行研究，在此不做赘述，因为我的作用就是抛砖引玉，勾起大家的兴趣。</p>
+<blockquote>
+<p>** 要见证奇迹的话建议自己亲手试一下！！**</p>
+</blockquote>
+<h2 id="一个例子：实现列表"><a href="#一个例子：实现列表" class="headerlink" title="一个例子：实现列表"></a>一个例子：实现列表</h2><p>我要实现的效果如下： <img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161205122410310.jpg" alt="Paste_Image.png"> 按照搭建骨架的意识，我们得弄清这个列表的结构是什么样子： ** 最外层一个无序列表，这个无序列表每个列表项都嵌套一个有序列表，这个有序列表有两个列表项，每个列表项含有个无序列表 **</p>
+<h4 id="Emmet语法如下："><a href="#Emmet语法如下：" class="headerlink" title="Emmet语法如下："></a>Emmet语法如下：</h4><p>ul&gt;((li&gt;ol&gt;(li&gt;ul&gt;li*2)*2)*2)</p>
+<p> </p>
+<h4 id="Tab一下："><a href="#Tab一下：" class="headerlink" title="Tab一下："></a>Tab一下：</h4><p><img src="http://baiyuan.wang/wp-content/uploads/2016/12/20161205122410417.jpg" alt="Paste_Image.png"></p>
+<h4 id="然后把文字填进去"><a href="#然后把文字填进去" class="headerlink" title="然后把文字填进去"></a>然后把文字填进去</h4><ul>  
+  <li>Javascript    
+    <ol>
+            <li>第一章
+                <ul>
+                    <li>const</li>
+                    <li>let</li>
+                </ul>
+            </li>
+            <li>第二章
+                <ul>
+                    <li>function</li>
+                    <li>object</li>
+                </ul>
+            </li>
+        </ol>
+    </li>
+    <li>Java
+        <ol>
+            <li>第一章
+                <ul>
+                    <li>class</li>
+                    <li>package</li>
+                </ul>
+            </li>
+            <li>第二章
+                <ul>
+                    <li>private</li>
+                    <li>public</li>
+                </ul>
+            </li>
+        </ol>
+    </li>
+</ul>
+
+<p> </p>
+<h4 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h4><blockquote>
+</blockquote>
+<ul>
+<li>Javascript<ol>
+<li>第一章<ul>
+<li>const</li>
+<li>let</li>
+</ul>
+</li>
+<li>第二章<ul>
+<li>function</li>
+<li>object</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Java<ol>
+<li>第一章<ul>
+<li>class</li>
+<li>package</li>
+</ul>
+</li>
+<li>第二章<ul>
+<li>private</li>
+<li>public</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>参考文章： * <a target="_blank" rel="noopener" href="http://www.iteye.com/news/27580">http://www.iteye.com/news/27580</a> * <a target="_blank" rel="noopener" href="http://www.powerxing.com/emmet-syntax-cheatsheet/">http://www.powerxing.com/emmet-syntax-cheatsheet/</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/emmet-elegantly-set-up-html-skeleton.html" target="_blank">王柏元的博客 >> Emmet优雅地搭建起Html骨架</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/html-5-you-why-want-semantic-tags.html" class="pre-post btn btn-default" title='Html5，你为什么要语义化标签？'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Html5，你为什么要语义化标签？</span>
+    </a>
+    
+    
+    <a href="/ubuntu-first.html" class="next-post btn btn-default" title='Ubuntu初见'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Ubuntu初见</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "59987",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8Emmet-Tab%E4%B8%80%E4%B8%8B"><span class="toc-text">用Emmet Tab一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%AE%9E%E7%8E%B0%E5%88%97%E8%A1%A8"><span class="toc-text">一个例子：实现列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Emmet%E8%AF%AD%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">Emmet语法如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tab%E4%B8%80%E4%B8%8B%EF%BC%9A"><span class="toc-text">Tab一下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%84%B6%E5%90%8E%E6%8A%8A%E6%96%87%E5%AD%97%E5%A1%AB%E8%BF%9B%E5%8E%BB"><span class="toc-text">然后把文字填进去</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E9%A2%84%E8%A7%88"><span class="toc-text">效果预览</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

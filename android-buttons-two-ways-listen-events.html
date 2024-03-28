@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="按钮的监听事件在上面的应用截图中我们看到游戏开始界面使用了”开始游戏”和”退出游戏”的两个按钮。两个按钮分别触发正式游戏和关闭游戏程序的两个行为。所以要为两个按钮的点击事件（OnClickLis..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    安卓按钮的监听事件的两种方式 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="安卓按钮的监听事件的两种方式">
+            
+            安卓按钮的监听事件的两种方式
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/13</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="按钮的监听事件"><a href="#按钮的监听事件" class="headerlink" title="按钮的监听事件"></a>按钮的监听事件</h2><p>在上面的应用截图中我们看到游戏开始界面使用了”开始游戏”和”退出游戏”的两个按钮。两个按钮分别触发正式游戏和关闭游戏程序的两个行为。所以要为两个按钮的点击事件（OnClickListener）绑定监听器。 安卓中为按钮绑定监听器的方式有两种：①布局文件中声明②代码中新建监听器并绑定； 在实现”BY战机”中，我采用了第二种，即在代码中建立监听器。 为了以后复习学习和网友交流，在此我同时介绍一下第一种绑定按钮监听器的方法。</p>
+<ul>
+<li><h2 id="布局文件中声明绑定按钮监听器"><a href="#布局文件中声明绑定按钮监听器" class="headerlink" title="布局文件中声明绑定按钮监听器"></a>布局文件中声明绑定按钮监听器</h2></li>
+</ul>
+<p>布局文件中声明就像为布局声明属性一样，只需要在按钮的属性字段中添加： android:onClick&#x3D;”Button_Click” 然后在java代码中定义Button_Click方法，定义按钮点击触发事件的内容 public void Button_Click (View source) { &#x2F;&#x2F;补充代码：点击按钮后的动作 }</p>
+<ul>
+<li><h2 id="代码中新建监听器并绑定按钮监听器"><a href="#代码中新建监听器并绑定按钮监听器" class="headerlink" title="代码中新建监听器并绑定按钮监听器"></a>代码中新建监听器并绑定按钮监听器</h2></li>
+</ul>
+<p>话不多说，先上代码：</p>
+<pre><code>    button\_begin=(Button)findViewById(R.id.button\_begin);
+    button\_exit=(Button)findViewById(R.id.button\_exit);
+   
+    Button.OnClickListener control=new View.OnClickListener() &#123;
+        @Override
+        public void onClick(View view) &#123;
+            switch (view.getId())&#123;
+                case R.id.button_begin:
+                    
+                    Intent game=new Intent(MainActivity.this,game_main.class);
+                    startActivity(game);
+                    break;
+                case R.id.button_exit:
+                    
+                    System.exit(0);
+                    break;
+            &#125;
+        &#125;
+    &#125;;
+    button_begin.setOnClickListener(control);
+    button_exit.setOnClickListener(control);
+</code></pre>
+<p>  这是”BY战机”项目中我为”开始游戏”和”结束游戏”绑定监听器及其动作代码。 先通过findViewById获取两个按钮，通过代码：button_begin.setOnClickListener(control); 为两个按钮设置它们的监听器为control，在上面的代码中我定义control的内容，为了让两个按钮共用一个监听器，我使用view.getId()获取点击的按钮的来源ID，然后通过switch选择语句区分两个按钮的执行动作：startActivity(game) 【进入游戏activity】和System.exit(0)【退出当前安卓程序】。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/android-buttons-two-ways-listen-events.html" target="_blank">王柏元的博客 >> 安卓按钮的监听事件的两种方式</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/android-responds-to-touch-screen-events.html" class="pre-post btn btn-default" title='安卓响应触摸屏事件'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            安卓响应触摸屏事件</span>
+    </a>
+    
+    
+    <a href="/creates-deletes-and-displays-the-mysql-database-version.html" class="next-post btn btn-default" title='MySql数据库创建、删除与显示版本'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            MySql数据库创建、删除与显示版本</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "11610",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E7%9A%84%E7%9B%91%E5%90%AC%E4%BA%8B%E4%BB%B6"><span class="toc-text">按钮的监听事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A3%B0%E6%98%8E%E7%BB%91%E5%AE%9A%E6%8C%89%E9%92%AE%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-text">布局文件中声明绑定按钮监听器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%96%B0%E5%BB%BA%E7%9B%91%E5%90%AC%E5%99%A8%E5%B9%B6%E7%BB%91%E5%AE%9A%E6%8C%89%E9%92%AE%E7%9B%91%E5%90%AC%E5%99%A8"><span class="toc-text">代码中新建监听器并绑定按钮监听器</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

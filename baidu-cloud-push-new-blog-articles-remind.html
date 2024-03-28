@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="PHP,androd" />
+
+
+<meta name="description" content="在开发王柏元的博客客户端时，为了加入新文章发布时实现客户端通知的效果，极客人采用了百度云推送平台，使用百度官方提供的SDK和demo成功实现。服务端发送通知时，客户端会执行onNotificat..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    百度云推送实现博客新文章提醒 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="百度云推送实现博客新文章提醒">
+            
+            百度云推送实现博客新文章提醒
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a> <a class="tag-none-link" href="/tags/androd/" rel="tag">androd</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/01/08</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>在开发王柏元的博客客户端时，为了加入新文章发布时实现客户端通知的效果，极客人采用了百度云推送平台，使用百度官方提供的SDK和demo成功实现。服务端发送通知时，客户端会执行onNotificationClicked 回调函数。该函数的形参分别为</p>
+<ul>
+<li>Context context：上下文</li>
+<li>String title：通知标题</li>
+<li>String description：通知内容</li>
+<li>String customContentString：自定义字段，通过json可获取服务端的传值。</li>
+</ul>
+<h2 id="安卓端"><a href="#安卓端" class="headerlink" title="安卓端"></a>安卓端</h2><p> @Override<br>    public void onNotificationClicked(Context context, String title, String description, String customContentString) {<br>        Intent intent &#x3D; new Intent();<br>        intent.setClass(context.getApplicationContext(), SinglePostActivity.class);<br>        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);<br>        String postId&#x3D;””;<br>        try {<br>            JSONObject jso&#x3D;new JSONObject(customContentString);<br>            postId&#x3D;jso.getString(“postId”);<br>        } catch (JSONException e) {<br>            e.printStackTrace();<br>        }<br>        intent.putExtra(SinglePostFragment.ARG_ITEM_ID,postId);<br>       intent.putExtra(SinglePostFragment.ARG_POST_TITLE, title);<br>&#x2F;&#x2F;        context.startActivity(intent);<br>        context.getApplicationContext().startActivity(intent);</p>
+<pre><code>    String notifyString = &quot;通知点击 title=\\&quot;&quot; + title + &quot;\\&quot; description=\\&quot;&quot; + description + &quot;\\&quot; customContent=&quot; + customContentString;
+    Log.d(TAG, notifyString);
+&#125;
+</code></pre>
+<p>服务器端代码需要引入sdk.php，关键是服务器要支持cUrl模块。我的阿里云免费主机就不支持，后来我消息推送的代码放在景安的虚拟主机上，通过阿里云调用URL的方式执行在景安主机上的PHP文件，解决了这一问题。</p>
+<h2 id="PHP服务器端"><a href="#PHP服务器端" class="headerlink" title="PHP服务器端"></a>PHP服务器端</h2><p> </p>
+<p>function newBlogPushtoAPP($post_ID){<br>    global $post;<br>require_once ‘..&#x2F;sdk.php’;</p>
+<p>&#x2F;&#x2F; 创建SDK对象.<br>$sdk &#x3D; new PushSDK();</p>
+<p>&#x2F;&#x2F; message content.<br>$message &#x3D; array (<br>    &#x2F;&#x2F; 消息的标题.<br>    ‘title’ &#x3D;&gt; $post-&gt;post_title,<br>    &#x2F;&#x2F; 消息内容<br>    ‘description’ &#x3D;&gt; $post-&gt;content,</p>
+<p>&#x2F;&#x2F;自定义字段。数组类型<br>    “custom_content”&#x3D;&gt; array(<br>                    “postId”&#x3D;&gt; $post-&gt;ID<br>                    )</p>
+<p>);</p>
+<p>&#x2F;&#x2F; 设置消息类型为 通知类型.<br>$opts &#x3D; array (<br>    ‘msg_type’ &#x3D;&gt; 1<br>);</p>
+<p>&#x2F;&#x2F; 向目标设备发送一条消息<br>$rs &#x3D; $sdk -&gt; pushMsgToAll($message, $opts);<br>}<br>add_action ( ‘publish_post’, ‘newBlogPushtoAPP’, 1);</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/baidu-cloud-push-new-blog-articles-remind.html" target="_blank">王柏元的博客 >> 百度云推送实现博客新文章提醒</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/first-android-ndk-program.html" class="pre-post btn btn-default" title='第一个android studio+NDK程序'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            第一个android studio+NDK程序</span>
+    </a>
+    
+    
+    <a href="/android-open-specified-link-call-other-app.html" class="next-post btn btn-default" title='安卓实现打开指定链接调用其他应用程序'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            安卓实现打开指定链接调用其他应用程序</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "52458",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/0def38dda4b62de378580545d4d9a2dd.png"
+                                 alt="@斯托克笔记">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                斯托克笔记
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-05-17
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                小白一看代码就头大。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%8D%93%E7%AB%AF"><span class="toc-text">安卓端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF"><span class="toc-text">PHP服务器端</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

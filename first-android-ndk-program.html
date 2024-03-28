@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,android,JAVA" />
+
+
+<meta name="description" content="NDK(android native develop kits ):android 本地开发工具集 ,可以把c&#x2F;c++ -&gt;编译成一个 linux下可以执行的二进制文件 java..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    第一个android studio+NDK程序 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="第一个android studio+NDK程序">
+            
+            第一个android studio+NDK程序
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/android/" rel="tag">android</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2016/01/08</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>NDK(android native develop kits ):android 本地开发工具集 ,可以把c&#x2F;c++ -&gt;编译成一个 linux下可以执行的二进制文件 java代码里面就可以通过jni 调用执行二进制的文件。 什么是JNI ：java本地开发接口,JNI是一个协议这个协议用来沟通java代码和外部的本地代码(c&#x2F;c++).通过这个协议,java代码就可以调用外部的c&#x2F;c++，代码外部的c&#x2F;c++代码也可以调用java代码。 java可以实现上层应用的开发，但是不能写底层驱动，有些android项目必须和底层硬件打交道，比如要精确快速的获取某种传感器的值，那么java是不能办到的，那怎么办，就通过JNI开发，通过c&#x2F;c++完成底层驱动或者值得获取，然后将值传回到java层。同样java层也可以将数据传递给c&#x2F;c++层，这样通过JNI完成数据的交互。 <a href="http://baiyuan.wang/wp-content/uploads/2016/01/android_studio_NDK.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2016/01/android_studio_NDK.jpg" alt="android_studio_NDK"></a> android_studio_NDK</p>
+<h2 id="为何要用到NDK"><a href="#为何要用到NDK" class="headerlink" title="为何要用到NDK?"></a>为何要用到NDK?</h2><p>概括来说主要分为以下几种情况：</p>
+<ul>
+<li>1. 代码的保护，由于apk的java层代码很容易被反编译，而C&#x2F;C++库反汇难度较大。</li>
+<li>2. 在NDK中调用第三方C&#x2F;C++库，因为大部分的开源库都是用C&#x2F;C++代码编写的。</li>
+<li>3. 便于移植，用C&#x2F;C++写的库可以方便在其他的嵌入式平台上再次使用。</li>
+</ul>
+<h2 id="MainActivity"><a href="#MainActivity" class="headerlink" title="MainActivity:"></a>MainActivity:</h2><p>package cn.wangbaiyuan.ndktest;</p>
+<p>import android.support.v7.app.AppCompatActivity;<br>import android.os.Bundle;<br>import android.widget.TextView;</p>
+<p>public class MainActivity extends AppCompatActivity {</p>
+<pre><code>public native String getStringFromNative();
+@Override
+protected void onCreate(Bundle savedInstanceState) &#123;
+    System.loadLibrary(&quot;hello&quot;);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+</code></pre>
+<p>TextView hello&#x3D;(TextView)findViewById(R.id.hello);<br>        hello.setText(getStringFromNative());<br>    }</p>
+<p>}</p>
+<p>下面是通过javah命令自动生成的</p>
+<h2 id="cn-wangbaiyuan-ndktest-MainActivity-h"><a href="#cn-wangbaiyuan-ndktest-MainActivity-h" class="headerlink" title="cn_wangbaiyuan_ndktest_MainActivity.h"></a>cn_wangbaiyuan_ndktest_MainActivity.h</h2><p>&#x2F;* DO NOT EDIT THIS FILE - it is machine generated *&#x2F;<br>#include &lt;jni.h&gt;<br>&#x2F;* Header for class cn_wangbaiyuan_ndktest_MainActivity *&#x2F;</p>
+<p>#ifndef _Included_cn_wangbaiyuan_ndktest_MainActivity<br>#define _Included_cn_wangbaiyuan_ndktest_MainActivity<br>#ifdef __cplusplus<br>extern “C” {<br>#endif<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_ABOVE_CLIENT<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_ABOVE_CLIENT 8L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_ADJUST_WITH_ACTIVITY<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_ADJUST_WITH_ACTIVITY 128L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_ALLOW_OOM_MANAGEMENT<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_ALLOW_OOM_MANAGEMENT 16L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_AUTO_CREATE<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_AUTO_CREATE 1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_DEBUG_UNBIND<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_DEBUG_UNBIND 2L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_IMPORTANT<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_IMPORTANT 64L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_NOT_FOREGROUND<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_NOT_FOREGROUND 4L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_BIND_WAIVE_PRIORITY<br>#define cn_wangbaiyuan_ndktest_MainActivity_BIND_WAIVE_PRIORITY 32L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_CONTEXT_IGNORE_SECURITY<br>#define cn_wangbaiyuan_ndktest_MainActivity_CONTEXT_IGNORE_SECURITY 2L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_CONTEXT_INCLUDE_CODE<br>#define cn_wangbaiyuan_ndktest_MainActivity_CONTEXT_INCLUDE_CODE 1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_CONTEXT_RESTRICTED<br>#define cn_wangbaiyuan_ndktest_MainActivity_CONTEXT_RESTRICTED 4L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MODE_APPEND<br>#define cn_wangbaiyuan_ndktest_MainActivity_MODE_APPEND 32768L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MODE_ENABLE_WRITE_AHEAD_LOGGING<br>#define cn_wangbaiyuan_ndktest_MainActivity_MODE_ENABLE_WRITE_AHEAD_LOGGING 8L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MODE_MULTI_PROCESS<br>#define cn_wangbaiyuan_ndktest_MainActivity_MODE_MULTI_PROCESS 4L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MODE_PRIVATE<br>#define cn_wangbaiyuan_ndktest_MainActivity_MODE_PRIVATE 0L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MODE_WORLD_READABLE<br>#define cn_wangbaiyuan_ndktest_MainActivity_MODE_WORLD_READABLE 1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MODE_WORLD_WRITEABLE<br>#define cn_wangbaiyuan_ndktest_MainActivity_MODE_WORLD_WRITEABLE 2L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_DIALER<br>#define cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_DIALER 1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_DISABLE<br>#define cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_DISABLE 0L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_SEARCH_GLOBAL<br>#define cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_SEARCH_GLOBAL 4L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_SEARCH_LOCAL<br>#define cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_SEARCH_LOCAL 3L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_SHORTCUT<br>#define cn_wangbaiyuan_ndktest_MainActivity_DEFAULT_KEYS_SHORTCUT 2L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_RESULT_CANCELED<br>#define cn_wangbaiyuan_ndktest_MainActivity_RESULT_CANCELED 0L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_RESULT_FIRST_USER<br>#define cn_wangbaiyuan_ndktest_MainActivity_RESULT_FIRST_USER 1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_RESULT_OK<br>#define cn_wangbaiyuan_ndktest_MainActivity_RESULT_OK -1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_HONEYCOMB<br>#define cn_wangbaiyuan_ndktest_MainActivity_HONEYCOMB 11L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MSG_REALLY_STOPPED<br>#define cn_wangbaiyuan_ndktest_MainActivity_MSG_REALLY_STOPPED 1L<br>#undef cn_wangbaiyuan_ndktest_MainActivity_MSG_RESUME_PENDING<br>#define cn_wangbaiyuan_ndktest_MainActivity_MSG_RESUME_PENDING 2L<br>&#x2F;*<br> * Class:     cn_wangbaiyuan_ndktest_MainActivity<br> * Method:    getStringFromNative<br> * Signature: ()Ljava&#x2F;lang&#x2F;String;<br> *&#x2F;<br>JNIEXPORT jstring JNICALL Java_cn_wangbaiyuan_ndktest_MainActivity_getStringFromNative<br>  (JNIEnv *, jobject);</p>
+<p>#ifdef __cplusplus<br>}<br>#endif<br>#endif</p>
+<p>  在build.gradle（Module:App）加入下列配置可指定生成.so文件的CPU平台类型以及so文件的名称，如果没有指定，android将会生成libapp.so，以及所有平台的so文件；生成so文件路径为：<strong>你的项目根目录\app\build\intermediates\ndk\debug\lib</strong></p>
+<h2 id="build-gradle（Module-App）"><a href="#build-gradle（Module-App）" class="headerlink" title="build.gradle（Module:App）"></a>build.gradle（Module:App）</h2><pre><code>defaultConfig &#123;
+    ndk &#123;
+        moduleName &quot;hello&quot;
+        ldLibs &quot;log&quot;, &quot;z&quot;, &quot;m&quot;
+        abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot;
+    &#125;
+  …………
+    &#125;
+</code></pre>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/first-android-ndk-program.html" target="_blank">王柏元的博客 >> 第一个android studio+NDK程序</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/confused-androidstudio-code-with-ndk-prevention-apk-decompiling.html" class="pre-post btn btn-default" title='AndroidStudio代码混淆和NDK预防apk反编译'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            AndroidStudio代码混淆和NDK预防apk反编译</span>
+    </a>
+    
+    
+    <a href="/baidu-cloud-push-new-blog-articles-remind.html" class="next-post btn btn-default" title='百度云推送实现博客新文章提醒'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            百度云推送实现博客新文章提醒</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "20753",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E8%A6%81%E7%94%A8%E5%88%B0NDK"><span class="toc-text">为何要用到NDK?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MainActivity"><span class="toc-text">MainActivity:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cn-wangbaiyuan-ndktest-MainActivity-h"><span class="toc-text">cn_wangbaiyuan_ndktest_MainActivity.h</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#build-gradle%EF%BC%88Module-App%EF%BC%89"><span class="toc-text">build.gradle（Module:App）</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

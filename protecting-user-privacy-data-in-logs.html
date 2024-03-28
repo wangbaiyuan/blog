@@ -1,0 +1,541 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="DevOps,日志" />
+
+
+<meta name="description" content="
+2019年度“315”晚会人工智能拨打骚扰电话的情节，让大众了解到在信息时代，保护个人隐私的重要性。本篇文章分享了在日志记录中保护用户隐私数据的七个最佳实践。
+
+与“中国人愿意用隐私交换便利性..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    保护日志中的用户隐私数据 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="保护日志中的用户隐私数据">
+            
+            保护日志中的用户隐私数据
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/DevOps/" rel="tag">DevOps</a> <a class="tag-none-link" href="/tags/%E6%97%A5%E5%BF%97/" rel="tag">日志</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/04/14</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p>2019年度“315”晚会人工智能拨打骚扰电话的情节，让大众了解到在信息时代，保护个人隐私的重要性。本篇文章分享了在日志记录中保护用户隐私数据的七个最佳实践。</p>
+</blockquote>
+<p>与“中国人愿意用隐私交换便利性”的心态完全不同，欧美国家在个人隐私保护方面明显走得更早也更远一些。在2018年5月GDPR发布前后的一段时间里，保护个人隐私相关的需求被迅速提高了优先级，而像我这样一个开发国际化产品的普通程序员，日常工作也因此受到影响，我们放下手中的业务需求卡（Story），转而去做GDPR相关的安全需求。 一般在医疗保健或金融行业中，限制访问客户的敏感数据有着非常严格的规定，尤其欧洲GDPR颁布之后，公司泄露个人数据的后果也非常严重。在个人隐私保护方面，国内目前在法律和意识方面处于滞后的状态，但是许多人或多或少都感受到个人信息泄露给自己带来的麻烦，比如骚扰电话的增多就是最明显的例证。比较乐观的是网络安全法的发布，以及网民意识的觉醒，表明我们的个人信息保护正在路上。 对于一些面向欧美的项目，从公司最高层面，自上而下，我们采取了一系列相关动作，比如梳理我们基础设施架构图、数据流图、API数据字段分析等，其中包括保护日志中的个人信息。</p>
+<h3 id="安全问题的特殊性"><a href="#安全问题的特殊性" class="headerlink" title="安全问题的特殊性"></a>安全问题的特殊性</h3><p>个人隐私安全和其它安全问题一样，是一个永远做不完的需求。你不能说你的网站是绝对安全的，只能说“我检查了所有目前已发现的安全漏洞列表（Checklist），并且采取了相应的防御措施，做到尽量安全”，或者说我们采取了一些很好的安全实践，比如采取了动态密码、在nginx上安装了防攻击防SQL注入插件等等。 现在的Web系统一般都配备了日志系统用于记录访问请求、分析线上事故等，比如开源的有ELK，SaaS的有DataDog、Sumo Logic 等。 在日志记录过程记录下一些用户隐私信息往往是不可避免的。诚然，开发者的个人隐私保护意识是很重要的，但有时并不一定是开发者的主动想偷窥用户信息。比如这里举一个很常见的情况，有些程序异常如果没有合理捕获，往往会输出调用堆栈，这些调用堆栈里面某些方法的参数可能就包含有个人隐私信息； 虽说没有一种一劳永逸的方式来避免个人信息出现在日志中，但我们可以通过下面的实践来尽量规避，并将这些<strong>内建</strong>在自己平时的开发工作中。下面的实践，一些涉及到了<strong>代码层面</strong>的技术实践、团队<strong>流程</strong>的优化，还有的是<strong>测试、运维</strong>上的一些措施。</p>
+<h2 id="首先：确定什么是隐私数据"><a href="#首先：确定什么是隐私数据" class="headerlink" title="首先：确定什么是隐私数据"></a>首先：确定什么是隐私数据</h2><p>在我们深入讨论怎样避免个人隐私数据出现在日志之前，我们来界定什么是_隐私数据_：</p>
+<ul>
+<li>个人可标识数据（PII）：如社会安全号码，数据组合（如名字+出生日期或姓氏+邮政编码）或用户生成的数据（如电子邮件或用户名，如<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=mailto:BillGates@hotmail.com">blog@mail.baiyuan.wang</a>），手机号。</li>
+<li>健康信息</li>
+<li>财务数据（如信用卡号）</li>
+<li>密码</li>
+<li>IP地址：IP地址也有可能是个人隐私数据，尤其是与个人可标识数据与其有某种绑定关系。（而2019年的3.15晚会介绍一种将MAC也变成了PII的方式）</li>
+</ul>
+<p>个人隐私信息不一而足，其界定工作可能需要与熟悉GDPR的安全专家合作来完成，根据实际情况彻查应用内的数据，来确定什么是敏感的。</p>
+<h2 id="一、解耦隐私字段"><a href="#一、解耦隐私字段" class="headerlink" title="一、解耦隐私字段"></a>一、解耦隐私字段</h2><p>处理隐私数据时，应尽量减少系统使用这些数据的频率。比如在数据库表设计时，使用电子邮件地址Email，或者极端一点的例子，使用身份证号码（下称PID）来作为“用户”表的主键。这意味系统在访问用户数据时，都需要使用Email或者PID来建立关联关系，这样做可能会非常省事，而且系统也是完全可以工作的，但是这极大地提高了敏感字段的曝光率，出现的地方越多，意味着被日志记录下来的几率越大。 所以更好的方法是解耦出隐私数据，只在在必要时才使用它。一种常见的解决方案是将随机生成的字符串作为用户表的ID，同时建立一个“1对1”的数据库表来存储用户ID与用户数据库表主键的关系。例如：  </p>
+<p>PID | 外键<br>————————-<br>42-12xxxx-345 |5a2_cXKrt32DcWOJpJlyhr7FhTcLPfvlEAb1eA2Hza</p>
+<p>在用户表以外的所有数据库表，都应该使用这个随机ID进行查询，这种随机ID即使被暴露也不会泄露任何个人数据。</p>
+<h2 id="二、避免在URL中出现个人隐私信息"><a href="#二、避免在URL中出现个人隐私信息" class="headerlink" title="二、避免在URL中出现个人隐私信息"></a>二、避免在URL中出现个人隐私信息</h2><p>比如你有一个RESTful API，通过Email来查找用户信息，则可能很容易拥有这样一个Endpoint，如：**&#x2F;user&#x2F;<email>**。这种请求URL通常会被反向代理服务器和Web服务器记录下来，这样Email就会出现在日志当中。要将敏感数据不出现在网址之中，你可以 <strong>选项1.</strong> 不要将敏感字段用作唯一标识符，改用这些随机ID。 **选项2.**将敏感值作为POST的数据传递 与上面数据库解耦隐私字段一样，这些问题在API或数据库设计早期就需要考虑，否则可能后期需要花大量的工作来进行重构。而它的前提就是，应该要确定系统中哪些数据是敏感数据。</p>
+<h2 id="三、对象打印重写toString方法"><a href="#三、对象打印重写toString方法" class="headerlink" title="三、对象打印重写toString方法"></a>三、对象打印重写toString方法</h2><p>为了定位问题或者debug的方便，开发经常会在日志中添加一个调试信息。因为追求方便的缘故，可能写出这样的代码（将User直接打印，而不是user.username）:</p>
+<p>logger.info(“为用户$ {user}更新电子邮件);</p>
+<p>一些程序语言，比如Java、Javascript，如果将一个对象直接进行打印，它其实是打印 toString方法返回的字符串，这样我们可以重写对象的toString方法来避免打印对象时出现的个人信息泄漏问题。</p>
+<p>class UserAccount {<br>  id：string<br>  username：string<br>  passwordHash：string<br>  firstName：string<br>  lastName：string </p>
+<p>  … </p>
+<p>  public toString（）{<br>    return “UserAccount (${this.id})”;<br>}</p>
+<p>如果开发人员实在“作死”的话，比如直接打印对象的字段就没有办法了，例如： <code>logger.info(&quot;The user&#39;s details are: $&#123;user.firstName&#125; $&#123;user.lastName&#125;&quot;);</code></p>
+<h2 id="四、结构化日志输出时屏蔽隐私字段"><a href="#四、结构化日志输出时屏蔽隐私字段" class="headerlink" title="四、结构化日志输出时屏蔽隐私字段"></a>四、结构化日志输出时屏蔽隐私字段</h2><p>为了日志方便查看，我们常常将日志以Json字符串的形式上传到日志服务器，这样我们查看日志可以清晰看到键值对结构。 我们可以在应用的日志输出中，遍历所有键值对信息，如果“键”存在firstName这样的字段，或者“值”中能匹配到Email，那么将对应的值替换成“<MASKED>”，例如：</p>
+<p>Blacklist &#x3D; [“firstName”, “lastName”]<br>EmailRegex &#x3D; r”.+@.+”;<br>class Logger {<br>  log(details: Map&lt;string,string&gt;) {<br>    const cleanedDetails &#x3D; details.map( (key, value) &#x3D;&gt; {<br>      if (Blacklist.contains(key) || EmailRegex.match(value)) {<br>        return (key, “<MASKED>“);<br>      }<br>      return (key, value);<br>    }<br>    console.log(JSON.stringify(cleanedDetails));<br>  }<br>}</p>
+<h2 id="五、将日志代码审查纳入Code-Review"><a href="#五、将日志代码审查纳入Code-Review" class="headerlink" title="五、将日志代码审查纳入Code Review"></a>五、将日志代码审查纳入Code Review</h2><p>Code Review是开发过程中可以保证代码质量的部分，比如在Code Review中常常会被别人指出程序漏洞、健壮性问题、改进建议等等。将日志代码的检查作为Code Review中各个成员关注的一部分。这个方面不是技术层面，而是团队Code Review流程上的改善。 如果使用的是<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://blog.github.com/2016-02-17-issue-and-pull-request-templates/">Pull Request Template</a> 来进行合并代码，则可能需要在模板中设置一个复选框，提示reviewer进行检查。</p>
+<h2 id="六、个人信息泄露测试纳入QA和自动化测试"><a href="#六、个人信息泄露测试纳入QA和自动化测试" class="headerlink" title="六、个人信息泄露测试纳入QA和自动化测试"></a>六、个人信息泄露测试纳入QA和自动化测试</h2><p>虽说目前大部分公司的实践，并没有把<strong>个人隐私泄露测试纳入测试或者QA人员的工作范围</strong>，但是这部分的工作不仅需要测试来做，而且甚至<strong>可以自动化</strong>。 比如一个用户注册的场景，测试人员可以模仿用户在Web前端表单填写姓名、Email后，检查服务器日志中是否含有这些信息。而这部分工作可以使用Selenium、Cypress等端到端测试工具，然后调用日志服务器的API来搜索这些信息是否存在，来实现自动化。 自动化的个人隐私泄露测试也可以将其<strong>纳入到CI&#x2F;CD持续集成流水线</strong>中。    </p>
+<h2 id="七、在日志收集器上传前“打码”隐私信息"><a href="#七、在日志收集器上传前“打码”隐私信息" class="headerlink" title="七、在日志收集器上传前“打码”隐私信息"></a>七、在日志收集器上传前“打码”隐私信息</h2><p>在我们的项目中，一般存在两种日志收集方式</p>
+<ul>
+<li>通过日志中心提供的日志收集进程（代理程序、Agent），将机器实例的标准输出或者日志文件内容，推送到日志服务器</li>
+<li>通过AWS Lambda无服务器代码转发日志到日志中心</li>
+</ul>
+<p><a href="https://baiyuan.wang/wp-content/uploads/2019/04/Log-Collection.jpg"><img src="https://baiyuan.wang/wp-content/uploads/2019/04/Log-Collection.jpg"></a> 日志收集工具是日志到达日志中心的必经之地，在这个关口做好信息屏蔽，就可以对来自所有服务（多个微服务的情况下）的日志做集中式的处理。Datadog Agent直接提供了<a target="_blank" rel="noopener" href="https://docs.datadoghq.com/logs/log_collection/#scrub-sensitive-data-in-your-logs">屏蔽隐私数据的配置</a>，而AWS Lambda的代码则是我们可控的，可以自己实现代码层面的正则替换。   </p>
+<h2 id="八、日志系统中配置个人隐私信息的监控告警"><a href="#八、日志系统中配置个人隐私信息的监控告警" class="headerlink" title="八、日志系统中配置个人隐私信息的监控告警"></a>八、日志系统中配置个人隐私信息的监控告警</h2><p>即使有了上面的实践，我们依旧不能保证个人隐私绝对不会出现在日志中，一方面我们可以在平时Debug、查看应用日志时有意识地检查有没有含有隐私信息，另一方面我们还是可以通过一些技术手段<strong>将这一检测工作自动化</strong>，并通过<strong>告警系统通知</strong>到团队成员进行处理。 <a href="https://baiyuan.wang/wp-content/uploads/2019/04/Screen-Shot-2019-04-18-at-13.13.53.png"><img src="https://baiyuan.wang/wp-content/uploads/2019/04/Screen-Shot-2019-04-18-at-13.13.53.png"></a> 在监控系统配置Email告警 这已经在笔者所在的团队中得到实践。我们使用Datadog作为日志、监控系统，成功实现在日志中出现Email信息时，Datadog能自动发送邮件通知。但是需要指出的一点是，因为Email可以很好地通过正则表达式进行匹配，同时被很多日志系统所支持。但是对于姓名这些信息，可能只能交给人工智能了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><a href="https://baiyuan.wang/wp-content/uploads/2019/04/PII-Protection.jpg"><img src="https://baiyuan.wang/wp-content/uploads/2019/04/PII-Protection.jpg" alt="PII Protection"></a> PII Protection 从上面的阐述中可以看到，个人隐私信息的保护，已经不是请一个安全专家就能简单解决的问题，也不是单独的某个角色的工作，而是需要整个团队各个角色的通力合作。这就是DevSecOps理念。  </p>
+<ul>
+<li>参考资料：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://medium.com/@joecrobak/seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904">https:&#x2F;&#x2F;medium.com&#x2F;@joecrobak&#x2F;seven-best-practices-for-keeping-sensitive-data-out-of-logs-3d7bbd12904</a></li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/protecting-user-privacy-data-in-logs.html" target="_blank">王柏元的博客 >> 保护日志中的用户隐私数据</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/nginxs-implementation-of-canary-release-in-website-revision.html" class="pre-post btn btn-default" title='Nginx在网站改版中实现金丝雀发布'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Nginx在网站改版中实现金丝雀发布</span>
+    </a>
+    
+    
+    <a href="/use-modsecurity-escort-your-wordpress-blog.html" class="next-post btn btn-default" title='利用ModSecurity为你的wordpress博客保驾护航'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            利用ModSecurity为你的wordpress博客保驾护航</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "42564",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                其实是像表达在这种情况下，正则匹配就解决不了这个问题，估计要丢给人工智能吧。具体怎么做我也不了解，看见有人写过这样的论文，我目前还没看到落地的产品。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/2f10c7b778004410b3ec7c24684892d2.png"
+                                 alt="@卷纸">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                卷纸
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好！我最近想利用机器学习对日志中的用户隐私进行识别和处理，您文章中有提到姓名之类的识别要交给人工智能请问是什么意思，关于日志中的隐私识别请问是否有一些是不仅仅利用正则匹配而是利用机器学习进行识别分类的地方呢 谢谢！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-04-25
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你说的很对，因为我现在在做DevOps,所以着重讲这一块，一方面从日志收集方面，一方面是作为owner推动PII保护的工作在team中的发生。安全的确需要团队各个Role都要有一定的意识。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/405fe4391be6c286341a2c4e1ac3429e.png"
+                                 alt="@dmc">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                dmc
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-04-25
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                TW开始注重这方面了？难得
+很全面且落地的用户隐私防范，不错
+另外，还可以结合前端，请求发送之前对隐私数据加密，后台解密，存储时再加密，特别用于密码，这些严格来说还得体现在业务需求上，但是除了开发基本不可能意识到吧
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7"><span class="toc-text">安全问题的特殊性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%9A%E7%A1%AE%E5%AE%9A%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%90%E7%A7%81%E6%95%B0%E6%8D%AE"><span class="toc-text">首先：确定什么是隐私数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%A7%A3%E8%80%A6%E9%9A%90%E7%A7%81%E5%AD%97%E6%AE%B5"><span class="toc-text">一、解耦隐私字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%81%BF%E5%85%8D%E5%9C%A8URL%E4%B8%AD%E5%87%BA%E7%8E%B0%E4%B8%AA%E4%BA%BA%E9%9A%90%E7%A7%81%E4%BF%A1%E6%81%AF"><span class="toc-text">二、避免在URL中出现个人隐私信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AF%B9%E8%B1%A1%E6%89%93%E5%8D%B0%E9%87%8D%E5%86%99toString%E6%96%B9%E6%B3%95"><span class="toc-text">三、对象打印重写toString方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BB%93%E6%9E%84%E5%8C%96%E6%97%A5%E5%BF%97%E8%BE%93%E5%87%BA%E6%97%B6%E5%B1%8F%E8%94%BD%E9%9A%90%E7%A7%81%E5%AD%97%E6%AE%B5"><span class="toc-text">四、结构化日志输出时屏蔽隐私字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%B0%86%E6%97%A5%E5%BF%97%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%E7%BA%B3%E5%85%A5Code-Review"><span class="toc-text">五、将日志代码审查纳入Code Review</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%B5%8B%E8%AF%95%E7%BA%B3%E5%85%A5QA%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95"><span class="toc-text">六、个人信息泄露测试纳入QA和自动化测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%9C%A8%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8A%E4%BC%A0%E5%89%8D%E2%80%9C%E6%89%93%E7%A0%81%E2%80%9D%E9%9A%90%E7%A7%81%E4%BF%A1%E6%81%AF"><span class="toc-text">七、在日志收集器上传前“打码”隐私信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%85%8D%E7%BD%AE%E4%B8%AA%E4%BA%BA%E9%9A%90%E7%A7%81%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6"><span class="toc-text">八、日志系统中配置个人隐私信息的监控告警</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

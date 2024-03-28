@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="bios,电脑故障" />
+
+
+<meta name="description" content="有些童鞋的电脑出现故障时候，电脑开机时会发出“滴滴滴”的声音，对于新手来说，这样的滴滴声没有什么区别。其实这是电脑开机过程中自检的报警声，通过不同的报警声告诉用户电脑的故障发生在哪里，好让用户维..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    电脑开机自检声音对应的故障分析 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="电脑开机自检声音对应的故障分析">
+            
+            电脑开机自检声音对应的故障分析
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/bios/" rel="tag">bios</a> <a class="tag-none-link" href="/tags/%E7%94%B5%E8%84%91%E6%95%85%E9%9A%9C/" rel="tag">电脑故障</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/01/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>有些童鞋的电脑出现故障时候，电脑开机时会发出“滴滴滴”的声音，对于新手来说，这样的滴滴声没有什么区别。其实这是电脑开机过程中自检的报警声，通过不同的报警声告诉用户电脑的故障发生在哪里，好让用户维修时对症下药。</p>
+<h2 id="首先，笔者普及一下什么是开机自检"><a href="#首先，笔者普及一下什么是开机自检" class="headerlink" title="首先，笔者普及一下什么是开机自检"></a>首先，笔者普及一下什么是开机自检</h2><p>开机自检是电脑开机过程中对自身硬件，如硬盘，内存，显卡，CPU等等 ，进行的检查过程，如果硬件设备出现了故障，就会通过“滴滴”声发出警告，有时会无法开机。 要想听懂BIOS报警声的意思，你需要先了解自己的BIOS是什么类型的。下面是几种BIOS开机自检报警声对应的故障内容:</p>
+<h2 id="电脑开机自检声音对应的故障分析"><a href="#电脑开机自检声音对应的故障分析" class="headerlink" title="电脑开机自检声音对应的故障分析"></a>电脑开机自检声音对应的故障分析</h2><blockquote>
+<h3 id="Award-BIOS"><a href="#Award-BIOS" class="headerlink" title="Award BIOS"></a>Award BIOS</h3><p>1短 系统正常启动 2短 常规错误，请进入CMOS SETUP重新设置不正确的选项 1长1短 内存或主板出错 1长2短 显示错误(显示器或显示卡) 1长3短 键盘控制器错误 1长9短 主板FlashRAM或EPROM错误（BIOS 损坏） 不断地响(长声) 内存插不稳或损坏 不停地响 电源,显示器未和显示卡连接好 重复短响 电源问题 无声音无显示 电源问题</p>
+<h3 id="AMI-BIOS"><a href="#AMI-BIOS" class="headerlink" title="AMI BIOS"></a>AMI BIOS</h3><p>1短 内存刷新失败 2短 内存ECC校验错误 3短 系统基本内存(第1个64K)检查失败 4短 系统时钟出错 5短 中央处理器(CPU)错误 6短 键盘控制器错误 7短 系统实模式错误，不能切换到保护模式 8短 显示内存错误(显示内存可能坏了) 9短 ROM BIOS检验和错误 1长3短 内存错误(内存损坏，请更换) 1长8短 显示测试错误(显示器数据线松了或显 示卡插不稳)</p>
+<h3 id="Phoenix-BIOS"><a href="#Phoenix-BIOS" class="headerlink" title="Phoenix BIOS"></a>Phoenix BIOS</h3><p>1短 系统正常启动 3短 系统加电自检初始化(POST)失败 1短1短2短 主板错误（主板损坏，请更换） 1短1短3短 主板电池没电或CMOS损坏 1短1短4短 ROM BIOS校验出错 1短2短1短 系统实时时钟有问题 1短2短2短 DMA通道初始化失败 1短2短3短 DMA通道页寄存器出错 1短3短1短 内存通道刷新错误（问题范围为所有 的内存） 1短3短2短 基本内存出错（内存损坏或RAS设置错误） 1短3短3短 基本内存错误（很可能是DIMM0槽上的内存损坏） 1短4短1短 基本内存某一地址出错 1短4短2短 系统基本内存(第1个64K)有奇偶校验 错误 1短4短3短 EISA总线时序器错误 1短4短4短 EISA NMI口错误 2短1短1短 系统基本内存(第1个64K)检查失败 3短1短1短 第1个DMA控制器或寄存器出错 3短1短2短 第2个DMA控制器或寄存器出错 3短1短3短 主中断处理寄存器错误 3短1短4短 副中断处理寄存器错误 3短2短4短 键盘时钟有问题,在CMOS中重新设置 成Not Installed来跳过POST 3短3短4短 显示卡RAM出错或无RAM,不属于致命错误 3短4短2短 显示器数据线松了或显示卡插不稳或 显示卡损坏 3短4短3短 未发现显示卡的ROM BIOS 4短2短1短 系统实时时钟错误 4短2短2短 系统启动错误，CMOS设置不当或BIOS 损坏 4短2短3短 键盘控制器(8042)中的Gate A20开关 有错,BIOS不能切换到保护模式。 4短2短4短 保护模式中断错误 4短3短1短 内存错误（内存损坏或RAS设置错误） 4短3短3短 系统第二时钟错误 4短3短4短 实时时钟错误 4短4短1短 串行口(COM口、鼠标口)故障 4短4短2短 并行口（LPT口、打印口）错误</p>
+</blockquote>
+<p>大家可以根据自己的报警声情况对号入座，对症下药。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/computer-post-sound-corresponds-to-the-fault-analysis.html" target="_blank">王柏元的博客 >> 电脑开机自检声音对应的故障分析</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/alibaba-help-microsoft-crack-down-on-piracy.html" class="pre-post btn btn-default" title='阿里巴巴助微软打击盗版'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            阿里巴巴助微软打击盗版</span>
+    </a>
+    
+    
+    <a href="/what-about-new-wordpress-website-speed-is-slower.html" class="next-post btn btn-default" title='新建wordpress网站速度慢怎么办'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            新建wordpress网站速度慢怎么办</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "10381",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E7%AC%94%E8%80%85%E6%99%AE%E5%8F%8A%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%80%E6%9C%BA%E8%87%AA%E6%A3%80"><span class="toc-text">首先，笔者普及一下什么是开机自检</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%84%91%E5%BC%80%E6%9C%BA%E8%87%AA%E6%A3%80%E5%A3%B0%E9%9F%B3%E5%AF%B9%E5%BA%94%E7%9A%84%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90"><span class="toc-text">电脑开机自检声音对应的故障分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Award-BIOS"><span class="toc-text">Award BIOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AMI-BIOS"><span class="toc-text">AMI BIOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phoenix-BIOS"><span class="toc-text">Phoenix BIOS</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

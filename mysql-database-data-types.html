@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="MySql,数据库" />
+
+
+<meta name="description" content="数据类型是定义列中可以存储什么数据以及该数据实际怎么存储的基本规则。Mysql的常用数据类型主要有：
+一、串数据类型最常用的数据类型，有两种基本的串类型：分别为定长串和不定长串。定长串结束长度固..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    MySQL数据库的数据类型 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="MySQL数据库的数据类型">
+            
+            MySQL数据库的数据类型
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/MySql/" rel="tag">MySql</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/28</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>数据类型是定义列中可以存储什么数据以及该数据实际怎么存储的基本规则。Mysql的常用数据类型主要有：</p>
+<h2 id="一、串数据类型"><a href="#一、串数据类型" class="headerlink" title="一、串数据类型"></a>一、串数据类型</h2><p>最常用的数据类型，有两种基本的串类型：分别为定长串和不定长串。定长串结束长度固定的字符，其长度是创建表是指定的，不允许多于指定的字符数据，它们分配的存储空间与指定的一样多，CHAR属于定长串类型。变长串存储长度可变的文本，有些变长数据类型具有最大的定长，而有些则是完全变长的，不管哪种只有指定的数据得到保存（不会添加额外的空格保存），TEXT属于变长串类型。变长数据类型灵活，定长数据类型高效，Mysql处理定长数据类型比变长列快很多，Mysql不允许对变长列（或一个列的可变部分）进行索引，这会极大影响性能。具体类型描述如下表：</p>
+<p>数据类型</p>
+<p>说明</p>
+<p>CHAR</p>
+<p>1~255个字符的定长串，它的长度必须在创建时指定，否则MySQL假定为CHAR（1）</p>
+<p>VARCHAR</p>
+<p>可变长度，最多不超过255字节，如在创建时指定VARCHAR（n），则可存储0~n个字符的变长串</p>
+<p>TINYTEXT</p>
+<p>同TEXT，最大长度为255字节</p>
+<p>MEDUIMTEXT</p>
+<p>同TEXT，最大长度为16K</p>
+<p>TEXT</p>
+<p>最大长度为64K的变长文本</p>
+<p>LONGTEXT</p>
+<p>同Text，最大长度为4GB（纯文本，一般不会到4G）</p>
+<p>ENUM</p>
+<p>接受最多64K个串组成的预定义集合的某个串</p>
+<p>SET</p>
+<p>接受最多64K个串组成的预定义集合的零个或多个串</p>
+<p>注意：不管任何形式的串数据类型，串值都必须在引号内（通常单引号更好）；如果数值是计算中使用的数值，则应存储在数值数据类型列中，如果作为字符串使用（如电话号码、邮政编码）则应保存在串数据类型列中。</p>
+<h2 id="二、数值数据类型："><a href="#二、数值数据类型：" class="headerlink" title="二、数值数据类型："></a>二、数值数据类型：</h2><p>存储数值，每种类型具有不同的存储范围，支持取值范围越大，所需存储空间越多。所有数值类型（除BIT和Boolean外）都可以有符号或无符号，有符号数据列可存储正或负的数值，默认情况为有符号。</p>
+<p>类型说明</p>
+<p>存储需求</p>
+<p>取值范围</p>
+<p>tinyint[(m)]</p>
+<p>1字节</p>
+<p>有符号值：-128 到127（- 2^7 到2^7 – 1）无符号值：0到255（0 到2^8 – 1）</p>
+<p>smallint[(m)]</p>
+<p>2字节</p>
+<p>有符号值：-32768 到32767（- 2^15 到2^15 – 1）无符号值：0到65535（0 到21 6 – 1）</p>
+<p>mediumint[(m)]</p>
+<p>3字节</p>
+<p>有符号值：-8388608 到8388607（- 2^23 到2^23 – 1 ）无符号值：0到16777215（0 到2^24 – 1）</p>
+<p>int[(m)]</p>
+<p>4字节</p>
+<p>有符号值：-2147683648 到2147683647（- 2^31 到2^31- 1）无符号值：0到4294967295（0 到2^32 – 1）</p>
+<p>bigint[(m)]</p>
+<p>8字节</p>
+<p>有符号值：-9223372036854775808 到9223373036854775807（- 2^63到2^63-1）无符号值：0到18446744073709551615（0到2^64 – 1）</p>
+<p>float[(m, d)]</p>
+<p>4字节</p>
+<p>最小非零值：±1.175494351e – 38</p>
+<p>double[(m, d)]</p>
+<p>8字节</p>
+<p>最小非零值：±2.2250738585072014e – 308</p>
+<p>decimal (m, d)</p>
+<p>m字节（mysql &lt; 3.23），m+2字节（mysql &gt; 3.23 ）</p>
+<p>可变；其值的范围依赖于m 和d</p>
+<ul>
+<li><strong>mysql提供了5种整型</strong>： tinyint、smallint、mediumint、int和bigint(字节数1、2、3、4、8)，这些类型在可表示的取值范围上是不同的。整数列可定义为unsigned从而禁用负值；这使列的取值范围为0以上。</li>
+<li><strong>mysql 提供三种浮点类型</strong>： float、double和decimal。与整型不同，浮点类型不能是unsigned的，其取值范围也与整型不同，这种不同不仅在于这些类型有最大值，而且还有最小非零值。最小值提供了相应类型精度的一种度量，这对于记录科学数据来说是非常重要的（当然，也有负的最大和最小值）。</li>
+</ul>
+<p>在选择了某种数值类型时，应该考虑所要表示的值的范围，只需选择能覆盖要取值的范围的最小类型即可。选择较大类型会对空间造成浪费，使表不必要地增大，处理起来没有选择较小类型那样有效。对于整型值，如果数据取值范围较小，如人员年龄或兄弟姐妹数，则tinyint最合适。mediumint能够表示数百万的值并且可用于更多类型的值，但存储代价较大。bigint在全部整型中取值范围最大，而且需要的存储空间是表示范围次大的整型int类型的两倍，因此只在确实需要时才用。对于浮点值，double占用float的两倍空间。除非特别需要高精度或范围极大的值，一般应使用只用一半存储代价的float型来表示数据。 在定义整型列时，可以指定可选的显示尺寸m。如果这样，m应该是一个1 到255的整数。它表示用来显示列中值的字符数。例如，mediumint(4)指定了一个具有4个字符显示宽度的mediumint列。如果定义了一个没有明确宽度的整数列，将会自动分配给它一个缺省的宽度。缺省值为每种类型的”最长”值的长度。如果某个特定值的可打印表示需要不止m个字符，则显示完全的值；不会将值截断以适合m个字符。需要注意的是，使用一个宽度指示器不会影响字段的大小和它可以存储的值的范围。 对每种浮点类型，可指定一个最大的显示尺寸m 和小数位数d。m 的值应该取1 到255。d的值可为0 到3 0，但是不应大于m – 2（如果熟悉odbc 术语，就会知道m 和d 对应于odbc 概念的”精度”和”小数点位数”）。m和d对float和double 都是可选的，但对于decimal是必须的。在选项m 和d时，如果省略了它们，则使用缺省值。</p>
+<h2 id="三、日期和时间数据类型："><a href="#三、日期和时间数据类型：" class="headerlink" title="三、日期和时间数据类型："></a>三、日期和时间数据类型：</h2><p>MySQl中有多种表示日期和时间的数据类型。其中YEAR表示年份，DATE表示日期，TIME表示时间，DATETIME和TIMESTAMP表示日期和实践。具体如下表：</p>
+<p>数据类型</p>
+<p>存储字节数</p>
+<p>取值范围</p>
+<p>DATE</p>
+<p>4</p>
+<p>1000-01-01——9999-12-31</p>
+<p>TIME</p>
+<p>3</p>
+<p>-838:59:59——838:59:59</p>
+<p>DATETIME</p>
+<p>8</p>
+<p>1000-01-01 00:00:00——9999-12-31 23:59:59</p>
+<p>TIMESTAMP</p>
+<p>4</p>
+<p>19700101080001——20380119111407</p>
+<p>YEAR</p>
+<p>1</p>
+<p>1901——2155</p>
+<p>当插入值超出有效取值范围时，系统会报错，并将零值插入到数据库中。 1.MySQL是以YYYY-MM-DD格式来显示DATE类型的值，插入数据时，数据可以保持这种格式。另外，MySQL还支持一些不严格的语法格式，分隔符”-“可以用”@”、”.”等符号来替代。 在插入数据时，也可以使用”YY-MM-DD”格式，YY转化成对应的年份的规则与YEAR类型类似。如果我们想插入当前系统的时间，则可以插入CURRENT_DATE或者NOW()。 2.TIME类型表示为”时：分：秒”，尽管小时范围一般是0<del>23，但是为了表示某些特殊时间间隔，MySQL将TIME的小时范围扩发了，而且支持负值。对TIME类型赋值，标准格式是’HH：MM：SS’，但不一定非要是这种格式。 如果插入的是’D HH：MM：SS’格式，则类似插入了’（D*24+HH）：MM：SS’。比如插入’2 23:50:50’，相当于插入了’71:50:50’。如果插入的是’HH：MM’或’SS’格式，则效果是其他未被表示位的值赋为零值。比如插入’30’，相当于插入了’00:00:30’；如果插入’11:25’，相当于插入了’11:25:00’。在MySQl中，对于’HHMMSS’格式，系统能够自动转化为标准格式。如果我们想插入当前系统的时间，则可以插入CURRENT_TIME或者NOW()。 3.DATETIME类型准格式为”YYYY-MM-DD HH：MM：SS”，具体赋值方法与上面的方法相似。 4.TIMESTAMP的取值范围比较小，没有DATETIME的取值范围大，因此输入值时一定要保证在TIMESTAMP的范围之内。它的插入也与插入其他日期和时间数据类型类似。那么TIMESTAMP类型如何插入当前时间？第一，可以使用CURRENT_TIMESTAMP；第二，输入NULL，系统自动输入当前的TIMESTAMP；第三，无任何输入，系统自动输入当前的TIMESTAMP。 另外有很特殊的一点：TIMESTAMP的数值是与时区相关。 5.给YEAR类型复制可以有三种方法： 第一种是直接插入4位字符串或者4位数字； 第二种是插入2位字符串，这种情况下如果插入’00’</del>‘69’，则相当于插入2000<del>2069；如果插入’70’</del>‘99’，则相当于插入1970~1999。第二种情况下插入的如果是’0’，则与插入’00’效果相同，都是表示2000年； 第三种是插入2位数字，它与第二种（插入两位字符串）不同之处仅在于：如果插入的是一位数字0，则表示的是0000，而不是2000年。所以在给YEAR类型赋值时，一定要分清0和’0’，虽然两者相差个引号，但实际效果确实相差了2000年。</p>
+<h2 id="四、枚举和集合类型"><a href="#四、枚举和集合类型" class="headerlink" title="四、枚举和集合类型"></a>四、枚举和集合类型</h2><p><strong>枚举(ENUM)类型</strong>：最多可以定义65535种不同的字符串从中做出选择，只能并且必须选择其中一种，占用存储空间是一个或两个字节，由枚举值的数目决定； <strong>集合(SET)类型</strong>：最多可以有64个成员，可以选择其中的零个到不限定的多个，占用存储空间是一个到八个字节，由集合可能的成员数目决定。 举个例子来说，在sql server(WINDOWS平台上强大的数据库平台)中，你可以节约到用一个BIT类型来表示性别(男&#x2F;女)，但MySQL(和PHP搭配之最佳组合)没有BIT，用TINTINT吗?不，可以用ENUM(’帅哥’,’美眉’)，只有两种选择，所以只需一个字节——跟TINYINT一样大，但却可以直接用字符串’帅哥’和’美眉’来存取。</p>
+<h2 id="五、二进制数据类型："><a href="#五、二进制数据类型：" class="headerlink" title="五、二进制数据类型："></a>五、二进制数据类型：</h2><p>二进制类型可存储任何数据，如文字、图像、多媒体等。具体类型描述如下：</p>
+<p>数据类型</p>
+<p>说明</p>
+<p>TITYBLOB</p>
+<p>最大长度为255字节</p>
+<p>BLOB</p>
+<p>最大长度为64KB</p>
+<p>MEDIUMBLOB</p>
+<p>最大长度为16MB</p>
+<p>LONGBLOB</p>
+<p>最大长度为4GB</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/mysql-database-data-types.html" target="_blank">王柏元的博客 >> MySQL数据库的数据类型</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd7-ex1-relational-database.html" class="pre-post btn btn-default" title='SSD7_EX1【关系型数据库】'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD7_EX1【关系型数据库】</span>
+    </a>
+    
+    
+    <a href="/intent-of-the-android-development-filter-usage-details.html" class="next-post btn btn-default" title='安卓开发之Intent(Filter)用法详解'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            安卓开发之Intent(Filter)用法详解</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "20961",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%B2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">一、串数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">二、数值数据类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">三、日期和时间数据类型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9E%9A%E4%B8%BE%E5%92%8C%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-text">四、枚举和集合类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="toc-text">五、二进制数据类型：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

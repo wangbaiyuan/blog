@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,android开发,FontAwesome" />
+
+
+<meta name="description" content="英文原文参考：https://github.com/liltof/font-awsome-for-android 在前面一篇文章中我向大家介绍了在WEB前端中使用FontAwesome字体。 F..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Android开发使用FontAwesome图标字体 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Android开发使用FontAwesome图标字体">
+            
+            Android开发使用FontAwesome图标字体
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/FontAwesome/" rel="tag">FontAwesome</a> <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/11</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>英文原文参考：<a target="_blank" rel="noopener" href="https://github.com/liltof/font-awsome-for-android" title="https://github.com/liltof/font-awsome-for-android">https://github.com/liltof/font-awsome-for-android</a> 在前面一篇文章中我向大家介绍了在WEB前端中使用FontAwesome字体。 Font-Awesome 是为Bootstrap设计的一个图标集合字体，里面包含了300多个常用图标。使用Font-Awesome还具有如下优点：</p>
+<ul>
+<li>1. 减少了图标的绘制工作</li>
+<li>2. 可以设置图标的颜色和大小</li>
+<li>3. 减少了图标的大小并且可以减少apk的大小，只需要一个图标字体文件即可，不需要各种尺寸的图标文件了,比如 HDPI、XHDPI等各种尺寸的图标。</li>
+</ul>
+<h2 id="Android开发使用FontAwesome图标字体"><a href="#Android开发使用FontAwesome图标字体" class="headerlink" title="Android开发使用FontAwesome图标字体"></a>Android开发使用FontAwesome图标字体</h2><p>到Font-Awesome主页下载Font-Awesome字体（fontawesome-webfont.ttf）文件并放到项目的assets目录下，找到需要用的图标对应的字符串（<a target="_blank" rel="noopener" href="https://github.com/liltof/font-awsome-for-android">font-awsome-for-android</a> 包含了一份图标和字符串的对应文件,最新的对应关系在下载的Font-Awesome字体中的css目录中的font-awesome.css文件中查找），在TextView中设置需要使用的图标文字，然后设置TextView的字体为自定义的Font-Awesome字体。  </p>
+<h2 id="xml布局文件代码"><a href="#xml布局文件代码" class="headerlink" title="xml布局文件代码"></a>xml布局文件代码</h2><p>&lt;TextView<br>android:id&#x3D;”@+id&#x2F;textView1”<br>android:layout_width&#x3D;”wrap_content”<br>android:layout_height&#x3D;”wrap_content”<br>android:text&#x3D;”@string&#x2F;icon_credit_card”<br>android:textSize&#x3D;”50sp”<br>android:textColor&#x3D;”#F59012”<br>android:textAppearance&#x3D;”?android:attr&#x2F;textAppearanceLarge” &#x2F;&gt;</p>
+<p> </p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>myTextView &#x3D; (TextView) findViewById(R.id.textView1);<br>myTextView.setText(getString(R.string.icon_credit_card));<br>Typeface font &#x3D; Typeface.createFromAsset(getAssets(),<br>“fontawesome-webfont.ttf”);&nbsp;&nbsp;<br>myTextView.setTypeface(font);</p>
+<p>另外如果需要在使用Drawable的地方使用Font-Awesome图标，则可以自定义一个Drawable，然后在代码中使用该Drawable，详细使用方式请参考fonticon这个示例项目：<a target="_blank" rel="noopener" href="https://github.com/shamanland/fonticon">https://github.com/shamanland/fonticon</a> 另外除了Font-Awesome图标字体以外，还有其他的图标字体，例如 <a target="_blank" rel="noopener" href="http://icomoon.io/#home">http://icomoon.io/</a></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/fontawesome-icon-font-used-android-development.html" target="_blank">王柏元的博客 >> Android开发使用FontAwesome图标字体</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd8-ex3-java-rmi-4-the-conference-database-tables.html" class="pre-post btn btn-default" title='SSD8_Ex3【JAVA_RMI】(4)会议数据库建表'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD8_Ex3【JAVA_RMI】(4)会议数据库建表</span>
+    </a>
+    
+    
+    <a href="/ssd7-exam2-standardization-e-r-map.html" class="next-post btn btn-default" title='SSD7_Exam2【规范化、E-R映射】'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD7_Exam2【规范化、E-R映射】</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "46777",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Android%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8FontAwesome%E5%9B%BE%E6%A0%87%E5%AD%97%E4%BD%93"><span class="toc-text">Android开发使用FontAwesome图标字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xml%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E4%BB%A3%E7%A0%81"><span class="toc-text">xml布局文件代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E4%BB%A3%E7%A0%81"><span class="toc-text">java代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

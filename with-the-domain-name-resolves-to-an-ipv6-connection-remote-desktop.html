@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="域名解析,IPv6,IP" />
+
+
+<meta name="description" content="一般来说，远程桌面一般应用于服务器管理和局域网内普通计算机的远程管理。其实远程桌面并不仅仅限于局域网内，只要IP可达，我们的计算机都可以在其它计算机上远程桌面连接。由于IPV4地址不够用的问题，..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    用域名解析到IPV6连接远程桌面 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="用域名解析到IPV6连接远程桌面">
+            
+            用域名解析到IPV6连接远程桌面
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/IP/" rel="tag">IP</a> <a class="tag-none-link" href="/tags/IPv6/" rel="tag">IPv6</a> <a class="tag-none-link" href="/tags/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" rel="tag">域名解析</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/06/19</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>一般来说，远程桌面一般应用于服务器管理和局域网内普通计算机的远程管理。其实远程桌面并不仅仅限于局域网内，只要IP可达，我们的计算机都可以在其它计算机上远程桌面连接。由于IPV4地址不够用的问题，通过NAT转换的IPv4并不能让我们找到互联网任何一台主机，但是无穷无尽的IPv6却完美解决这一问题。由于有些学校，比如极客人，连接校园网需要用锐捷进行账号认证才能访问局域网内的IPv4计算机。所以在学校机房远程桌面自己的计算机时，常常遇到锐捷没有登录而导致无法连接宿舍电脑的问题。但是，如果通过IPV6访问就不用考虑这一问题了，当然，你网线没插我也没办法。 IPV6连接远程桌面的方法和IPv4没有任何区别，怎样用远程桌面控制自己的电脑，在我的前一篇文章有介绍：</p>
+<h2 id="第一步，获取本机IPV6地址并域名解析"><a href="#第一步，获取本机IPV6地址并域名解析" class="headerlink" title="第一步，获取本机IPV6地址并域名解析"></a>第一步，获取本机IPV6地址并域名解析</h2><p>IPV6的好处是地址长（128位二进制），所以数量多到可以标记地球上任何一粒沙子，它的缺点也正是地址长——记不住。所以远程桌面管理你的计算机肯定不能使用IPv6地址了，用域名解析的方式是必然的选择。 IPv6域名解析和IPv4无异，你只需要在域名管理中添加一个AAAA记录即可。 具体怎么获取本机的IPv6地址进行IPv6域名解析请参照：<a href="http://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0" title="http://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0">http://baiyuan.wang/setting-up-ipv6-ftp-and-web-server-implements-cross-school-access.html#title-0</a> <strong>比如极客人解析的域名就是：ipv6.baiyuan.wang。</strong></p>
+<h2 id="第二步，IPV6域名连接远程桌面"><a href="#第二步，IPV6域名连接远程桌面" class="headerlink" title="第二步，IPV6域名连接远程桌面"></a>第二步，IPV6域名连接远程桌面</h2><p>打开远程桌面输入你解析的IPV6域名即可： <a href="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-19_13-15-33.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/06/baiyuan.wang_2015-06-19_13-15-33.jpg" alt="IPV6远程桌面"></a> IPV6远程桌面</p>
+<h2 id="问：锐捷没登或者断了，连不了远程怎么办？"><a href="#问：锐捷没登或者断了，连不了远程怎么办？" class="headerlink" title="问：锐捷没登或者断了，连不了远程怎么办？"></a>问：锐捷没登或者断了，连不了远程怎么办？</h2><ul>
+<li>1.学校机房支持IPV6就用IPV6登录你的计算机；</li>
+<li>2.学校机房不支持IPV6就用别人已经登上锐捷的同学电脑连一下他的计算机，然后远程他的电脑、通过IPv6来远程连接你的计算机，然后登上你的锐捷，用学校计算机IPv4连接你的电脑。</li>
+</ul>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/with-the-domain-name-resolves-to-an-ipv6-connection-remote-desktop.html" target="_blank">王柏元的博客 >> 用域名解析到IPV6连接远程桌面</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/by-leave-instructions-and-feedback-page.html" class="pre-post btn btn-default" title='BY请假条软件说明与意见反馈页'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            BY请假条软件说明与意见反馈页</span>
+    </a>
+    
+    
+    <a href="/ssd7-ex9-affairs-programming.html" class="next-post btn btn-default" title='SSD7_EX9【事务编程】'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD7_EX9【事务编程】</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "30663",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/452e603391de8eab06a33b3426a1ed67.png"
+                                 alt="@金先生">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                金先生
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-07-13
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                去 www.meibu.com 申请个免费域名，可以解析到这个IPV6地址，然后用域名连接访问即可，IPV6的动态域名解析可以实现
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这个你又没试验过
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/94619db814af29b9a697aa18deb01db0.png"
+                                 alt="@王柏元超级无敌粉丝">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                王柏元超级无敌粉丝
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-06-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                博主说的话是对的，我曾经作为他的实验品，亲身被试验过。(一个周没有看博主了，我来抢个沙发。)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BAIPV6%E5%9C%B0%E5%9D%80%E5%B9%B6%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="toc-text">第一步，获取本机IPV6地址并域名解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8CIPV6%E5%9F%9F%E5%90%8D%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2"><span class="toc-text">第二步，IPV6域名连接远程桌面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%EF%BC%9A%E9%94%90%E6%8D%B7%E6%B2%A1%E7%99%BB%E6%88%96%E8%80%85%E6%96%AD%E4%BA%86%EF%BC%8C%E8%BF%9E%E4%B8%8D%E4%BA%86%E8%BF%9C%E7%A8%8B%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="toc-text">问：锐捷没登或者断了，连不了远程怎么办？</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

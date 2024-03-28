@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,数据结构,栈" />
+
+
+<meta name="description" content="
+Description  
+
+This assessment tests your ability to use the STL stack adapter, the STL vector c..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    数据结构Exam 2:Enhanced Parking Lot Simulation |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构Exam 2:Enhanced Parking Lot Simulation">
+            
+            数据结构Exam 2:Enhanced Parking Lot Simulation
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a> <a class="tag-none-link" href="/tags/%E6%A0%88/" rel="tag">栈</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2014/12/08</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <blockquote>
+<p><strong>Description</strong>  </p>
+<blockquote>
+<p><strong>This assessment tests your ability to use the STL stack adapter, the STL vector container, and the STL find algorithm to solve a problem. You are asked to finish the implementation of a program that simulates a multiple-aisle parking lot. When cars are parked bumper-to-bumper, each aisle in this parking lot can hold three cars. There are five aisles in the parking lot. It is your task to finish the implementation of the simulation that processes the vehicle arrivals and departures. The goal of the simulation is to keep track of and report how many times individual cars are moved while handling the departure of other cars. The simulation also displays an alphabetized list of all the cars that visited the parking lot during the simulation.</strong></p>
+</blockquote>
+<p> </p>
+</blockquote>
+<hr>
+<p>   </p>
+<blockquote>
+<p>答案：main.cpp</p>
+</blockquote>
+<p>#include <iostream><br>#include <fstream><br>#include <cstdlib><br>#include <string><br>#include <stack><br>#include <stdexcept><br>#include <vector><br>#include <algorithm><br>#include “car.h”<br>using namespace std;<br>const unsigned int PARKING_SPOTS_PER_AISLE &#x3D; 3;<br>const unsigned int NUMBER_OF_AISLES &#x3D; 5;</p>
+<p>void handle_arrival(vector<Car>&amp;, vector&lt;stack<string> &gt;&amp;, const string&amp;);<br>void handle_departure(vector<Car>&amp;, vector&lt;stack<string> &gt;&amp;, const string&amp;);<br>Car&amp; find_car(vector<Car>&amp;, string);</p>
+<p>int main(int argc, char* argv[])<br>{</p>
+<pre><code>try
+&#123;
+
+    if (argc != 2)
+    &#123;
+        cerr &lt;&lt; &quot;Usage:n&quot; &lt;&lt; argv\[0\] &lt;&lt; &quot; data-file&quot;;
+        return EXIT_FAILURE;
+    &#125;
+    ifstream inf(argv\[1\]);
+    if (! inf)
+    &#123;
+        cerr &lt;&lt; &quot;Could not open &quot; &lt;&lt; argv\[1\];
+        return EXIT_FAILURE;
+    &#125;
+
+    vector&lt;Car&gt; cars;
+    vector&lt; stack&lt;string&gt; &gt; parking\_lot(NUMBER\_OF_AISLES);
+
+    while (! inf.eof())
+    &#123;
+
+        string action, plate;
+        inf &gt;&gt; plate &gt;&gt; action;
+
+        if (action == &quot;arrives&quot;)
+        &#123;
+            handle\_arrival(cars, parking\_lot, plate);
+        &#125;
+        else if (action == &quot;departs&quot;)
+        &#123;
+            handle\_departure(cars, parking\_lot, plate);
+        &#125;
+        else
+        &#123;
+            cerr &lt;&lt; &quot;Unknown action: &quot; &lt;&lt; action &lt;&lt; endl;
+        &#125;
+
+    &#125;
+    inf.close();
+
+    cout &lt;&lt; &quot;nHere are all the cars that visited the lot today:n&quot;;
+
+
+    sort(cars.begin(),cars.end());
+    for(int i=0; i&lt;cars.size(); i++)
+        cout&lt;&lt;cars\[i\].getPlate()&lt;&lt;&quot;     &quot;&lt;&lt;cars\[i\].getAisle()&lt;&lt;&quot;   aisle     moved     &quot;&lt;&lt;cars\[i\].getTimesMoved()&lt;&lt;&quot;    times    &quot;&lt;&lt;endl;
+
+    // TODO: Output the license plates of all the
+    // cars that visited the lot, in alphabetical order
+
+
+    return EXIT_SUCCESS;
+
+&#125;
+catch (exception&amp; e)
+&#123;
+    cerr &lt;&lt; e.what() &lt;&lt; endl;
+&#125;
+catch (...)
+&#123;
+    cerr &lt;&lt; &quot;Unknown exception caught!&quot; &lt;&lt; endl;
+&#125;
+
+return EXIT_FAILURE;
+</code></pre>
+<p>}</p>
+<p>void handle_arrival(vector<Car>&amp; cars, vector&lt; stack<string> &gt;&amp; parking_lot, const string&amp; plate)<br>{<br>for(int i&#x3D;0;i&lt;parking_lot.size();i++){<br>    if(parking_lot[i].size()&lt;PARKING_SPOTS_PER_AISLE)<br>        {parking_lot[i].push(plate);<br>    cars.push_back(Car(plate,i));<br>    break;}<br>    else if(parking_lot[i].size()&gt;NUMBER_OF_AISLES)<br>        cout&lt;&lt;”停车场所有过道已满”;<br>}</p>
+<pre><code>// TODO: Handle car arrivals
+</code></pre>
+<p>}</p>
+<p>void handle_departure(vector<Car>&amp; cars, vector&lt; stack<string> &gt;&amp; parking_lot, const string&amp; plate)<br>{<br>Car Target_car&#x3D;find_car(cars,plate);<br>int Target_aisle &#x3D;Target_car.getAisle();<br>stack<string> temp;<br>    while(!(parking_lot[Target_aisle].top()&#x3D;&#x3D;plate))<br>    {Car *tempcar&#x3D;&amp;find_car(cars,parking_lot[Target_aisle].top());<br>        tempcar-&gt;setTimesMoved(tempcar-&gt;getTimesMoved()+1);<br>        temp.push(parking_lot[Target_aisle].top());<br>        parking_lot[Target_aisle].pop();</p>
+<pre><code>&#125;  parking\_lot\[Target\_aisle\].pop();
+while(temp.size()!=0)
+&#123;
+</code></pre>
+<p>parking_lot[Target_aisle].push(temp.top());<br>        temp.pop();<br>    }<br>}</p>
+<p>Car&amp; find_car(vector<Car>&amp; cars, string plate)<br>{<br>  for(int i &#x3D; 0; i &lt; cars.size(); i++)<br>{<br>    if(cars[i].getPlate()&#x3D;&#x3D;plate)<br>        return cars[i];</p>
+<p>}<br>    &#x2F;&#x2F; TODO: Return a reference to the<br>    &#x2F;&#x2F; the Car object whose license plate equals<br>    &#x2F;&#x2F; the parameter ‘plate’</p>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/exam-2enhanced-parking-lot-of-data-structure-simulation.html" target="_blank">王柏元的博客 >> 数据结构Exam 2:Enhanced Parking Lot Simulation</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/reprint-string-hash-function.html" class="pre-post btn btn-default" title='[转载]各种字符串Hash函数'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            [转载]各种字符串Hash函数</span>
+    </a>
+    
+    
+    <a href="/css3-rounded-corners-and-shadow-border-example.html" class="next-post btn btn-default" title='css3圆角边框和边框阴影示例'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            css3圆角边框和边框阴影示例</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "10818",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

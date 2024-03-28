@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="android,android开发" />
+
+
+<meta name="description" content="引语：安卓虚拟机天生就慢？安卓虚拟机的速度一直以慢“著称”，经常卡顿的安卓虚拟机对于开发者来说是一件十分痛苦的事情，这极大地影响到了开发者的效率和心情。下面我想大家介绍一种加速安卓虚拟机的方法，..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    安卓虚拟机加速—Intel HAXM加速媲美真机 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="安卓虚拟机加速—Intel HAXM加速媲美真机">
+            
+            安卓虚拟机加速—Intel HAXM加速媲美真机
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/android/" rel="tag">android</a> <a class="tag-none-link" href="/tags/android%E5%BC%80%E5%8F%91/" rel="tag">android开发</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/04</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="引语：安卓虚拟机天生就慢？"><a href="#引语：安卓虚拟机天生就慢？" class="headerlink" title="引语：安卓虚拟机天生就慢？"></a>引语：安卓虚拟机天生就慢？</h2><p>安卓虚拟机的速度一直以慢“著称”，经常卡顿的安卓虚拟机对于开发者来说是一件十分痛苦的事情，这极大地影响到了开发者的效率和心情。下面我想大家介绍一种加速安卓虚拟机的方法，如果你的电脑有一颗支持Intel(R) Virtualization Technology (VT) 的intel CPU（你可以不管什么是VT技术，只要你是i5或以上的intelCPU，一般都有这项技术，如果是AMD的CPU应该就不能享受下面的“福利”了），你不妨试一下，极客人自从使用了安卓虚拟机加速，运行、调试应用的速度完全达到了真机速度。</p>
+<h2 id="一、下载CPU-aBI为intel-atom的安卓系统镜像"><a href="#一、下载CPU-aBI为intel-atom的安卓系统镜像" class="headerlink" title="一、下载CPU&#x2F;aBI为intel atom的安卓系统镜像"></a>一、下载CPU&#x2F;aBI为intel atom的安卓系统镜像</h2><p><a href="http://baiyuan.wang/wp-content/uploads/2015/05/image1.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb1.png"></a> 肯定考虑到兼容性问题和其他极客人也不知道的原因，网上下载的现成的安卓虚拟机往往是“armeabi-v7a”，这个架构的CPU系统镜像不Intel(R) Virtualization Technology (VT) 的硬件加速，这是导致安卓虚拟机卡慢的原因，可能大部分的朋友和极客人以前的想法一样，是java虚拟机拖慢了安卓虚拟机的速度。 打开SDK管理器 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/image2.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb2.png"></a> 请按图中所述选择一项intel的系统镜像下载： Intel x86 Atom System Image Intel x86 Atom_64 System Image ARM EABI v7a System Image</p>
+<h2 id="二、下载并安装-Intel-HAXM-扩展"><a href="#二、下载并安装-Intel-HAXM-扩展" class="headerlink" title="二、下载并安装 Intel HAXM 扩展"></a>二、下载并安装 Intel HAXM 扩展</h2><p>打开SDK管理器，如图勾选Intel HAXM 下载并安装   <a href="http://baiyuan.wang/wp-content/uploads/2015/05/image3.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb3.png"></a></p>
+<h2 id="三、新建CPU-ABI为Intel-Atom的安卓虚拟机"><a href="#三、新建CPU-ABI为Intel-Atom的安卓虚拟机" class="headerlink" title="三、新建CPU&#x2F;ABI为Intel Atom的安卓虚拟机"></a>三、新建CPU&#x2F;ABI为Intel Atom的安卓虚拟机</h2><p>完成上面几步后新建CPU&#x2F;ABI为Intel Atom的安卓虚拟机，然后启动这一虚拟机就行了，你会发现安卓虚拟机天生就慢的想法是不对的！ <a href="http://baiyuan.wang/wp-content/uploads/2015/05/image4.png"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/image_thumb4.png"></a>  </p>
+<h2 id="四、相关下载："><a href="#四、相关下载：" class="headerlink" title="四、相关下载："></a>四、相关下载：</h2><p>安卓5.0、API21、CPU&#x2F;ABI为intel atpm的系统镜像的下载地址：</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/android-virtual-machine-acceleration-intel-haxm-acceleration-comparable-to-real-machine.html" target="_blank">王柏元的博客 >> 安卓虚拟机加速—Intel HAXM加速媲美真机</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/improve-fluency-google-push-brand-new-android-development-language-sky.html" class="pre-post btn btn-default" title='提升流畅度 谷歌推全新安卓开发语言Sky'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            提升流畅度 谷歌推全新安卓开发语言Sky</span>
+    </a>
+    
+    
+    <a href="/officeword-automatically-add-a-directory-for-the-document-and-page-number.html" class="next-post btn btn-default" title='officeWord为文档自动添加目录和页码'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            officeWord为文档自动添加目录和页码</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "38688",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%AF%AD%EF%BC%9A%E5%AE%89%E5%8D%93%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%A4%A9%E7%94%9F%E5%B0%B1%E6%85%A2%EF%BC%9F"><span class="toc-text">引语：安卓虚拟机天生就慢？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%8B%E8%BD%BDCPU-aBI%E4%B8%BAintel-atom%E7%9A%84%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="toc-text">一、下载CPU&#x2F;aBI为intel atom的安卓系统镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85-Intel-HAXM-%E6%89%A9%E5%B1%95"><span class="toc-text">二、下载并安装 Intel HAXM 扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%96%B0%E5%BB%BACPU-ABI%E4%B8%BAIntel-Atom%E7%9A%84%E5%AE%89%E5%8D%93%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">三、新建CPU&#x2F;ABI为Intel Atom的安卓虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%9B%B8%E5%85%B3%E4%B8%8B%E8%BD%BD%EF%BC%9A"><span class="toc-text">四、相关下载：</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

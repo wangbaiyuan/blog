@@ -1,0 +1,550 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="SSD8" />
+
+
+<meta name="description" content="问题概述实现EchoServer和EchoClient类，其中EchoServer监听某一端口号（启动时，通过参数传入），等待客户端访问；EchoClient根据启动时传入的服务器地址（IP地址..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD8_EX1【socket通信的java实现代码】 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD8_EX1【socket通信的java实现代码】">
+            
+            SSD8_EX1【socket通信的java实现代码】
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/">计算机技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/17</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h1><p>实现EchoServer和EchoClient类，其中EchoServer监听某一端口号（启动时，通过参数传入），等待客户端访问；EchoClient根据启动时传入的服务器地址（IP地址或域名）和端口号连接该服务；连接后，读取用户在命令行下的输入，将该输入传输给EchoServer；EchoServer接收后，向EchoClient返回_“EchoServer received: ” + 用户输入信息_；EchoClient接收到返回信息后输出到命令行，并继续等待用户输入</p>
+<h2 id="1、客户端EchoClient-java代码"><a href="#1、客户端EchoClient-java代码" class="headerlink" title="1、客户端EchoClient.java代码"></a>1、客户端EchoClient.java代码</h2><p>package cn.wangbaiyuan;<br>import java.io.<em>;<br>import java.net.</em>;<br>import java.util.Scanner;</p>
+<p>&#x2F;**<br> * socket通信客户端类<br> *<br> * @author 王柏元<br> *<br> *&#x2F;</p>
+<p>public class EchoClient {</p>
+<pre><code>/\*\*
+ \* PORT 一个初始化端口
+ */
+static int PORT = 12340; // 连接端口
+/\*\*
+ \* HOST一个初始化主机名
+ */
+static String HOST = &quot;192.168.4.21&quot;; // 连接地址
+/\*\*
+ \* socket 客户端socket
+ \* 
+ */
+Socket socket;
+
+public EchoClient() throws UnknownHostException, IOException &#123;
+    socket = new Socket(HOST, PORT); // 创建客户端套接字
+&#125;
+
+/\*\*
+ \* 实现发送消息
+ */
+public void send() &#123;
+    try &#123;
+        // 客户端输出流，向服务器发消息
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                socket.getOutputStream()));
+        // 客户端输入流，接收服务器消息
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                socket.getInputStream()));
+        PrintWriter pw = new PrintWriter(bw, true); // 装饰输出流，及时刷新
+        Scanner in = new Scanner(System.in); // 接受用户信息
+        String msg = null;
+        while ((msg = in.next()) != null) &#123;
+            pw.println(msg); // 发送给服务器端
+            System.out.println(br.readLine()); // 输出服务器返回的消息
+            if (msg.equals(&quot;quit&quot;)) &#123;
+                break; // 退出
+            &#125;
+        &#125;
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        if (null != socket) &#123;
+            try &#123;
+                socket.close(); // 断开连接
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+public static void main(String\[\] args) throws UnknownHostException,
+        IOException &#123;
+    BufferedReader strin = new BufferedReader(new InputStreamReader(
+            System.in));
+    System.out.println(&quot;请输入连接地址：&quot;);
+    HOST = strin.readLine();
+    System.out.println(&quot;请输入连接端口：&quot;);
+    PORT = Integer.parseInt(strin.readLine());
+    new EchoClient().send();
+&#125;
+</code></pre>
+<p>}</p>
+<p> </p>
+<h2 id="2、单线程服务器端EchoServer-java代码"><a href="#2、单线程服务器端EchoServer-java代码" class="headerlink" title="2、单线程服务器端EchoServer.java代码"></a>2、单线程服务器端EchoServer.java代码</h2><p>package cn.wangbaiyuan;</p>
+<p>import java.io.BufferedReader;<br>import java.io.BufferedWriter;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.io.OutputStreamWriter;<br>import java.io.PrintWriter;<br>import java.net.ServerSocket;<br>import java.net.Socket;</p>
+<p>&#x2F;**<br> * @author 王柏元<br> *socket通信服务器类<br> *&#x2F;</p>
+<p>public class EchoServer {<br>    &#x2F;**<br>     *<br>     *&#x2F;</p>
+<pre><code>ServerSocket serverSocket;
+private final int PORT = 12340; // 端口
+</code></pre>
+<p>&#x2F;**<br> * 新建EchoServer类时建立一个ServerSocket<br> * @throws IOException<br> *&#x2F;<br>    public EchoServer() throws IOException {<br>        serverSocket &#x3D; new ServerSocket(PORT); &#x2F;&#x2F; 创建服务器端套接字<br>        System.out.println(“服务器启动。”);<br>    }<br>&#x2F;**<br> * 启动服务器socket服务，监听客户端消息<br> *&#x2F;</p>
+<pre><code>public void servic() &#123;
+    Socket socket = null;
+    while (true) &#123;
+        try &#123;
+            socket = serverSocket.accept(); // 等待并取出用户连接，并创建套接字
+            System.out.println(&quot;新连接，连接地址：&quot; + socket.getInetAddress() + &quot;：&quot;
+                    \+ socket.getPort()); // 客户端信息
+            // 输入流，读取客户端信息
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    socket.getInputStream(), &quot;UTF-8&quot;));// 涉及到安卓客户端，为留设置编码
+            // 输出流，向客户端写信息
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    socket.getOutputStream(), &quot;UTF-8&quot;));
+            PrintWriter pw = new PrintWriter(bw, true); // 装饰输出流，true,每写一行就刷新输出缓冲区，不用flush
+            String info = null; // 接收用户输入的信息
+            while ((info = br.readLine()) != null) &#123;
+                System.out.println(info); // 输出用户发送的消息
+                pw.println(&quot;you said:&quot; + info); // 向客户端返回用户发送的消息，println输出完后会自动刷新缓冲区
+                if (info.equals(&quot;quit&quot;)) &#123; // 如果用户输入“quit”就退出
+                    break;
+                &#125;
+            &#125;
+        &#125; // 如果客户端断开连接，则应捕获该异常，但不应中断整个while循环，使得服务器能继续与其他客户端通信
+        catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            if (null != socket) &#123;
+                try &#123;
+                    socket.close(); // 断开连接
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>&#x2F;**<br> * EchoServer main静态类，启动时开启服务器端服务<br> * @param args<br> * @throws IOException<br> *&#x2F;<br>    public static void main(String[] args) throws IOException {<br>        new EchoServer().servic(); &#x2F;&#x2F; 启动服务<br>    }<br>}</p>
+<h2 id="3、多线程服务器端代码"><a href="#3、多线程服务器端代码" class="headerlink" title="3、多线程服务器端代码"></a>3、多线程服务器端代码</h2><h3 id="ThreadEchoServer-java"><a href="#ThreadEchoServer-java" class="headerlink" title="ThreadEchoServer.java:"></a>ThreadEchoServer.java:</h3><p>package cn.wangbaiyuan;</p>
+<p>import java.io.BufferedReader;<br>import java.io.BufferedWriter;<br>import java.io.IOException;<br>import java.io.InputStreamReader;<br>import java.io.OutputStreamWriter;<br>import java.io.PrintWriter;<br>import java.net.ServerSocket;<br>import java.net.Socket;</p>
+<p>public class ThreadEchoServer {<br>    ServerSocket serverSocket;<br>    private final int PORT&#x3D;1245; &#x2F;&#x2F;端口</p>
+<pre><code>public ThreadEchoServer() throws IOException&#123;
+serverSocket=new ServerSocket(PORT); //创建服务器端套接字
+System.out.println(&quot;服务器启动。&quot;);
+&#125;
+
+//servic()方法
+public void service()&#123;
+    while(true)&#123;
+    Socket socket=null;
+    try &#123;
+    socket=serverSocket.accept();
+    Thread work=new Thread(new Handler(socket)); //为客户连接创建工作线程
+    work.start();
+    &#125; catch (IOException e) &#123;
+    e.printStackTrace();
+    &#125;
+    &#125;
+    &#125;
+
+public static void main(String\[\] args) throws IOException &#123;
+new ThreadEchoServer().service(); //启动服务
+&#125;
+&#125;
+</code></pre>
+<h3 id="Handler-java"><a href="#Handler-java" class="headerlink" title="Handler.java"></a>Handler.java</h3><p>package cn.wangbaiyuan;</p>
+<p>import java.io.*;<br>import java.net.Socket;</p>
+<p>public class Handler implements Runnable { &#x2F;&#x2F; 负责与单个客户通信的线程<br>    private Socket socket;<br>    BufferedReader br;<br>    BufferedWriter bw;<br>    PrintWriter pw;</p>
+<pre><code>public Handler(Socket socket) &#123;
+    this.socket = socket;
+&#125;
+
+public void initStream() throws IOException &#123; // 初始化输入输出流对象方法
+    br = new BufferedReader(new InputStreamReader(socket.getInputStream(),&quot;UTF-8&quot;));
+    bw = new BufferedWriter(
+            new OutputStreamWriter(socket.getOutputStream(),&quot;UTF-8&quot;));
+    pw = new PrintWriter(bw, true);
+    System.out.println(&quot;新连接，连接地址：&quot;+socket.getInetAddress()+&quot;：&quot;+socket.getPort());
+
+&#125;
+
+public void run() &#123; // 执行的内容
+    try &#123;
+        initStream(); // 初始化输入输出流对象
+        String info = null;
+        while (null != (info = br.readLine())) &#123;
+            System.out.println(socket.getInetAddress()+&quot;say：&quot;+info);
+            pw.println(&quot;you said:&quot; + info);
+            // 返回用户发送的消息
+            if (info.equals(&quot;quit&quot;)) &#123;
+                System.out.println(socket.getInetAddress()+&quot;已退出：&quot;+info);// 如果用户输入“quit”就退出
+                pw.println(&quot;你已退出&quot;);
+                break;
+            &#125;
+        &#125;
+    &#125; catch (IOException e) &#123;
+        e.printStackTrace();
+    &#125; finally &#123;
+        if (null != socket) &#123;
+            try &#123;
+                socket.close();
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd8-ex1-socket-communication-java-code.html" target="_blank">王柏元的博客 >> SSD8_EX1【socket通信的java实现代码】</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/java-android-access-turing-robot.html" class="pre-post btn btn-default" title='JAVA（安卓）接入图灵机器人'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            JAVA（安卓）接入图灵机器人</span>
+    </a>
+    
+    
+    <a href="/notepad-advanced-features-compile-java-c.html" class="next-post btn btn-default" title='notepad++的高级功能：编译java、C++'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            notepad++的高级功能：编译java、C++</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "25587",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%A6%82%E8%BF%B0"><span class="toc-text">问题概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AE%A2%E6%88%B7%E7%AB%AFEchoClient-java%E4%BB%A3%E7%A0%81"><span class="toc-text">1、客户端EchoClient.java代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AFEchoServer-java%E4%BB%A3%E7%A0%81"><span class="toc-text">2、单线程服务器端EchoServer.java代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E4%BB%A3%E7%A0%81"><span class="toc-text">3、多线程服务器端代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ThreadEchoServer-java"><span class="toc-text">ThreadEchoServer.java:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handler-java"><span class="toc-text">Handler.java</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

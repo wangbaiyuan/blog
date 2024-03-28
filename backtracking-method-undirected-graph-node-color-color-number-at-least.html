@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="C++,个人程序库,回溯法" />
+
+
+<meta name="description" content="回溯法通过深度优先遍历的策略遍历解空间树，其实现过程是：从根节点出发搜索它的所有孩子树或者孩子结点，对于每个结点判断其是否满足约束条件和判定函数，如果满足则进入此结点同样以此结点搜索它的子结点。..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    回溯法求无向图结点涂色最少颜色数 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="回溯法求无向图结点涂色最少颜色数">
+            
+            回溯法求无向图结点涂色最少颜色数
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/C/" rel="tag">C++</a> <a class="tag-none-link" href="/tags/%E4%B8%AA%E4%BA%BA%E7%A8%8B%E5%BA%8F%E5%BA%93/" rel="tag">个人程序库</a> <a class="tag-none-link" href="/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/" rel="tag">回溯法</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/12/06</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>回溯法通过深度优先遍历的策略遍历解空间树，其实现过程是：从根节点出发搜索它的所有孩子树或者孩子结点，对于每个结点判断其是否满足约束条件和判定函数，如果满足则进入此结点同样以此结点搜索它的子结点。拥有子节点的结点称之为活节点，当搜索至到没有活节点时则返回原父节点继续寻找活节点，以此类推，直到回溯算法搜索完解空间树。 回溯法由于是遍历完解决问题的所有可能解，所以称它是解决问题的万能算法，只要正确构建了解空间树，通过回溯遍历解空间树即可。回溯算法可以解出解决问题的所有可能解，而在实际解决一些最优解问题时我们可以通过剪枝函数剪掉比中间结果比已求得最优解还差的子树。</p>
+<h2 id="无向图的m着色问题的m的最小值求解"><a href="#无向图的m着色问题的m的最小值求解" class="headerlink" title="无向图的m着色问题的m的最小值求解"></a>无向图的m着色问题的m的最小值求解</h2><p>&#x2F;&#x2F; mColor.cpp : 定义控制台应用程序的入口点。<br>&#x2F;&#x2F;</p>
+<p>#include “stdafx.h”<br>#include<iostream><br>using namespace std;<br>class mColor{<br>    friend mColor mColoring(int n, char **a);<br>private:	</p>
+<pre><code>bool Ok(int k);
+void Backtrack(int t);
+int nodeNumber, m;
+char **a;
+</code></pre>
+<p>public:<br>    int types, *x,*tempx;</p>
+<p>};<br>bool mColor::Ok(int k){<br>    for (int j &#x3D; 0; j &lt;nodeNumber; j++)<br>    if ((a[k][j] &#x3D;&#x3D; ‘1’) &amp;&amp; (tempx[j] &#x3D;&#x3D; tempx[k])) return false;</p>
+<pre><code>return  true;
+&#125;
+</code></pre>
+<p>void mColor::Backtrack(int t){</p>
+<pre><code>if (t &gt;nodeNumber)&#123;
+    types = (m &lt;types) ? m:types;
+&#125;
+else&#123;
+
+    for (int i = 1; i &lt;=types; i++)&#123;
+        tempx\[t - 1\] = i;
+        if (Ok(t-1)) &#123;
+            m = i;
+            //cout &lt;&lt; i &lt;&lt; endl;
+            Backtrack(t + 1); 
+            x\[t - 1\] = (x\[t - 1\] == 0  )? i:x\[t - 1\];
+        &#125;
+        else&#123;
+            tempx\[ t - 1\] = 0;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>mColor mColoring(int n, char **a){<br>         mColor X;<br>    X.m &#x3D; n;<br>    X.types &#x3D; n;<br>    X.nodeNumber &#x3D;n;<br>    X.a &#x3D; a;<br>    X.tempx &#x3D; new int[n];<br>    X.x &#x3D; new int[n];</p>
+<pre><code>for (int i = 0; i &lt; n; i++)&#123;
+X.tempx\[i\] = 0;
+X.x\[i\] = 0;
+&#125;
+
+X.Backtrack(1);
+
+return X;
+&#125;
+</code></pre>
+<p>int main()<br>{<br>    int size;<br>    cout &lt;&lt; “输入顶点个数：”;<br>    cin &gt;&gt; size;<br>    char **p &#x3D; new char*[size];<br>    for (int i &#x3D; 0; i&lt;size; ++i)<br>p[i] &#x3D; new   char[size];<br>    cout &lt;&lt;<br>        “请输入无向图顶点连接情况：\n(1表示连通，0表示未连通)”<br>        &lt;&lt; endl;<br>    cout &lt;&lt; “ &gt;”;<br>    for (int i &#x3D; 0; i &lt; size; i++) cout &lt;&lt; (char)(65 + i);<br>    cout &lt;&lt; endl;<br>    for (int i &#x3D; 0; i &lt; size; i++)<br>    {<br>        cout &lt;&lt; (char)(65 + i) &lt;&lt; “&gt;”;<br>        cin &gt;&gt; p[i];</p>
+<pre><code>&#125;
+mColor x = mColoring(size, p);
+cout &lt;&lt; &quot;涂以上几个点所需要最少的颜色数为：&quot; &lt;&lt; x.types &lt;&lt; endl;
+cout &lt;&lt; &quot;涂色方案如下：&quot; &lt;&lt; endl;
+for (int i = 0; i &lt; size;i++)&#123;
+    int s = x.x\[i\];
+    cout &lt;&lt; (char)(65 + i)&lt;&lt;&quot;----颜色&quot; &lt;&lt; s&lt;&lt;&quot; &quot;&lt;&lt; endl;
+&#125;
+</code></pre>
+<p>}</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/backtracking-method-undirected-graph-node-color-color-number-at-least.html" target="_blank">王柏元的博客 >> 回溯法求无向图结点涂色最少颜色数</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/go-from-future-internet-of-things-application-experience-of-furniture.html" class="pre-post btn btn-default" title='[转]来自未来的物联网应用体验——家具篇'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            [转]来自未来的物联网应用体验——家具篇</span>
+    </a>
+    
+    
+    <a href="/c-activity-host-scans.html" class="next-post btn btn-default" title='C++活动主机扫描'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            C++活动主机扫描</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "22889",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%90%91%E5%9B%BE%E7%9A%84m%E7%9D%80%E8%89%B2%E9%97%AE%E9%A2%98%E7%9A%84m%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC%E6%B1%82%E8%A7%A3"><span class="toc-text">无向图的m着色问题的m的最小值求解</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

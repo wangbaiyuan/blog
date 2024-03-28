@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,帮助文档,API,wordpress插件制作" />
+
+
+<meta name="description" content="一、在典型请求中运行的动作钩子当已登录用户在默认主题打开网站主页时，WordPress会运行以下动作钩子函数：
+
+plugins_loaded
+sanitize_comment_cookies
+..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    wordpress函数钩子（hook）大全(1) |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="wordpress函数钩子（hook）大全(1)">
+            
+            wordpress函数钩子（hook）大全(1)
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/wordpress%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C/" rel="tag">wordpress插件制作</a> <a class="tag-none-link" href="/tags/%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" rel="tag">帮助文档</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/28</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="一、在典型请求中运行的动作钩子"><a href="#一、在典型请求中运行的动作钩子" class="headerlink" title="一、在典型请求中运行的动作钩子"></a>一、在典型请求中运行的动作钩子</h2><p>当已登录用户在默认主题打开网站主页时，WordPress会运行以下动作钩子函数：</p>
+<ul>
+<li>plugins_loaded</li>
+<li>sanitize_comment_cookies</li>
+<li>setup_theme</li>
+<li>auth_cookie_malformed</li>
+<li>auth_cookie_valid</li>
+<li>set_current_user</li>
+<li>init</li>
+<li>widgets_init</li>
+<li>parse_request</li>
+<li>send_headers</li>
+<li>pre_get_posts</li>
+<li>posts_selection</li>
+<li>wp</li>
+<li>template_redirect</li>
+<li>get_header</li>
+<li>wp_head</li>
+<li>wp_print_styles</li>
+<li>wp_print_scripts</li>
+<li>loop_start</li>
+<li>loop_end</li>
+<li>get_sidebar</li>
+<li>wp_meta</li>
+<li>get_footer</li>
+<li>wp_footer</li>
+</ul>
+<h2 id="二、日志、页面、附件以及类别相关的动作钩子函数"><a href="#二、日志、页面、附件以及类别相关的动作钩子函数" class="headerlink" title="二、日志、页面、附件以及类别相关的动作钩子函数"></a>二、日志、页面、附件以及类别相关的动作钩子函数</h2><h3 id="add-attachment"><a href="#add-attachment" class="headerlink" title="add_attachment"></a>add_attachment</h3><p>附件文件首次加入数据库时，执行add_attachment函数。函数接收的参数：附件ID。</p>
+<h3 id="add-category"><a href="#add-category" class="headerlink" title="add_category"></a>add_category</h3><p>与create_category相同。</p>
+<h3 id="clean-post-cache"><a href="#clean-post-cache" class="headerlink" title="clean_post_cache"></a>clean_post_cache</h3><p>清除日志缓存时，执行该动作函数。函数接收的参数：日志ID。参见clean_post_cache()。</p>
+<h3 id="create-category"><a href="#create-category" class="headerlink" title="create_category"></a>create_category</h3><p>生成新类别时，执行该动作函数。函数接收的参数：类别ID。</p>
+<h3 id="delete-attachment"><a href="#delete-attachment" class="headerlink" title="delete_attachment"></a>delete_attachment</h3><p>从数据库和相应链接&#x2F;日志中删除某个类别后，执行该动作函数。函数接收的参数：类别ID。</p>
+<h3 id="delete-post"><a href="#delete-post" class="headerlink" title="delete_post"></a>delete_post</h3><p>将要删除某篇日志或页面时，执行该动作函数。函数接收的参数：日志ID或页面ID。</p>
+<h3 id="deleted-post"><a href="#deleted-post" class="headerlink" title="deleted_post"></a>deleted_post</h3><p>删除某篇日志或页面后，执行该动作函数。函数接收的参数：日志ID或页面ID。</p>
+<h3 id="edit-attachment"><a href="#edit-attachment" class="headerlink" title="edit_attachment"></a>edit_attachment</h3><p>数据库中附件文件被更新时执行该动作函数。函数接收的参数：附件ID。</p>
+<h3 id="edit-category"><a href="#edit-category" class="headerlink" title="edit_category"></a>edit_category</h3><p>更新&#x2F;编辑某个类别时（包括添加&#x2F;删除日志或博客反向链接，或更新日志&#x2F;博客反向链接的类别），执行该动作函数。函数接收的参数：类别ID。</p>
+<h3 id="edit-post"><a href="#edit-post" class="headerlink" title="edit_post"></a>edit_post</h3><p>更新&#x2F;编辑某篇日志或页面时（包括添加&#x2F;更新评论，这会导致日志评论总数的更新），执行该动作函数。函数接收的参数：日志ID或页面ID。</p>
+<h3 id="pre-post-update"><a href="#pre-post-update" class="headerlink" title="pre_post_update"></a>pre_post_update</h3><p>更新日志或页面前执行该动作函数。函数接收的参数：日志ID。</p>
+<h3 id="private-to-publish"><a href="#private-to-publish" class="headerlink" title="private_to_publish"></a>private_to_publish</h3><p>当日志状态从private（私密）更改为published（公开）时，执行该动作函数。函数接收的参数：日志对象。（用以翻译日志状态的动作函数目前可用；参见wp_transition_post_status()）。</p>
+<h3 id="publish-page"><a href="#publish-page" class="headerlink" title="publish_page"></a>publish_page</h3><p>发表页面或编辑某个状态为“published”的页面时，执行该动作函数。函数接收的参数：页面ID。（警告：该动作函数不能在WordPress 2.3以及更高版本中运行；但动作函数’transition_post_status’能够运行。更新信息：publish_page动作函数可在WordPress 2.6及之后版本中运行。）</p>
+<h3 id="publish-phone"><a href="#publish-phone" class="headerlink" title="publish_phone"></a>publish_phone</h3><p>通过电子邮件添加新日志后，执行该动作函数。函数接收的参数：日志ID。</p>
+<h3 id="publish-post"><a href="#publish-post" class="headerlink" title="publish_post"></a>publish_post</h3><p>发表日志或编辑某个状态为“published”的日志时，执行该动作函数。函数接收的参数：日志ID。</p>
+<h3 id="save-post"><a href="#save-post" class="headerlink" title="save_post"></a>save_post</h3><p>新建或更新一篇日志&#x2F;页面时，执行该动作函数。更新可以来自导入、日志&#x2F;页面编辑框、xmlrpc或邮件日志。函数接收的参数：日志ID。</p>
+<p>更新信息存入数据库后执行该动作函数。</p>
+<p>注意：日志ID可能会参照日志的修改版而不是最新发布版。wp_is_post_revision可获取日志最新版的ID。</p>
+<h3 id="wp-insert-post"><a href="#wp-insert-post" class="headerlink" title="wp_insert_post"></a>wp_insert_post</h3><p>与save_post相同，更新信息存入数据库后执行该动作函数。</p>
+<h3 id="xmlrpc-public-post"><a href="#xmlrpc-public-post" class="headerlink" title="xmlrpc_public_post"></a>xmlrpc_public_post</h3><p>通过XMLRPC请求发表日志，或通过XMLRPC编辑某个状态为“published”的日志时，执行该动作函数。函数接收的参数：日志ID。</p>
+<h2 id="三、评论、Ping以及引用通告相关动作钩子函数"><a href="#三、评论、Ping以及引用通告相关动作钩子函数" class="headerlink" title="三、评论、Ping以及引用通告相关动作钩子函数"></a>三、评论、Ping以及引用通告相关动作钩子函数</h2><h3 id="comment-closed"><a href="#comment-closed" class="headerlink" title="comment_closed"></a>comment_closed</h3><p>尝试显示评论输入框而日志却设置为不允许评论时，执行该动作函数。函数接收的参数：日志ID。</p>
+<h3 id="comment-id-not-found"><a href="#comment-id-not-found" class="headerlink" title="comment_id_not_found"></a>comment_id_not_found</h3><p>试图显示评论或评论输入框却未找到日志ID时，执行该动作函数。函数接收的参数：日志ID。</p>
+<h3 id="comment-flood-trigger"><a href="#comment-flood-trigger" class="headerlink" title="comment_flood_trigger"></a>comment_flood_trigger</h3><p>调用wp_die以阻止接收评论前，若检测到评论数量异常增多，执行该动作函数。函数接收的参数：上一次评论发表时间，当前评论发表时间。</p>
+<h3 id="comment-on-draft"><a href="#comment-on-draft" class="headerlink" title="comment_on_draft"></a>comment_on_draft</h3><p>日志为草稿状态却试图显示评论或评论输入框时，执行该动作函数。函数接收的参数：日志ID。</p>
+<h3 id="comment-post"><a href="#comment-post" class="headerlink" title="comment_post"></a>comment_post</h3><p>评论刚被存入数据库时，执行此动作函数。函数接收的参数：评论ID，评论审核状态（”spam”，0（表示未审核），1（表示已审核））。</p>
+<h3 id="edit-comment"><a href="#edit-comment" class="headerlink" title="edit_comment"></a>edit_comment</h3><p>数据库中的评论被更新或编辑后，执行此动作函数。函数接收的参数：评论ID。</p>
+<h3 id="delete-comment"><a href="#delete-comment" class="headerlink" title="delete_comment"></a>delete_comment</h3><p>评论即将被删除前，执行此动作函数。函数接收的参数：评论ID。</p>
+<h3 id="pingback-post"><a href="#pingback-post" class="headerlink" title="pingback_post"></a>pingback_post</h3><p>日志新添加pingback后，执行此动作函数。函数接收的参数：评论ID。</p>
+<h3 id="pre-ping"><a href="#pre-ping" class="headerlink" title="pre_ping"></a>pre_ping</h3><p>执行pingback前，执行此动作函数。函数接收的参数：将要处理的日志链接数组，以及日志的“pung”设置。</p>
+<h3 id="trackback-post"><a href="#trackback-post" class="headerlink" title="trackback_post"></a>trackback_post</h3><p>日志新添加trackback后，执行此动作函数。函数接收的参数：评论ID。</p>
+<h3 id="wp-blacklist-check"><a href="#wp-blacklist-check" class="headerlink" title="wp_blacklist_check"></a>wp_blacklist_check</h3><p>执行该动作函数以判断评论是否应被禁止。函数接收的参数：评论者的名称、电子邮件、URL、评论内容、IP地址、用户代理（浏览器）。该函数可执行wp_die以拒绝评论，也可以修改某个参数以使评论中可包含用户在WordPress选项中设置的黑名单关键词。</p>
+<h3 id="wp-set-comment-status"><a href="#wp-set-comment-status" class="headerlink" title="wp_set_comment_status"></a>wp_set_comment_status</h3><p>评论状态发生改变时，执行此动作函数。函数接收的参数：评论ID，表明新状态的状态字符串（”delete”, “approve”, “spam”, “hold”）。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/wordpress-function-hook-hook-book-1.html" target="_blank">王柏元的博客 >> wordpress函数钩子（hook）大全(1)</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd8-exam1tcp.html" class="pre-post btn btn-default" title='SSD8_Exam1[TCP Chat Server]'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD8_Exam1[TCP Chat Server]</span>
+    </a>
+    
+    
+    <a href="/android-development-for-immersion-status-bar.html" class="next-post btn btn-default" title='安卓开发实现沉浸式状态栏'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            安卓开发实现沉浸式状态栏</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "22253",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9C%A8%E5%85%B8%E5%9E%8B%E8%AF%B7%E6%B1%82%E4%B8%AD%E8%BF%90%E8%A1%8C%E7%9A%84%E5%8A%A8%E4%BD%9C%E9%92%A9%E5%AD%90"><span class="toc-text">一、在典型请求中运行的动作钩子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%97%A5%E5%BF%97%E3%80%81%E9%A1%B5%E9%9D%A2%E3%80%81%E9%99%84%E4%BB%B6%E4%BB%A5%E5%8F%8A%E7%B1%BB%E5%88%AB%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8A%A8%E4%BD%9C%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-text">二、日志、页面、附件以及类别相关的动作钩子函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#add-attachment"><span class="toc-text">add_attachment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add-category"><span class="toc-text">add_category</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clean-post-cache"><span class="toc-text">clean_post_cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-category"><span class="toc-text">create_category</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete-attachment"><span class="toc-text">delete_attachment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete-post"><span class="toc-text">delete_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deleted-post"><span class="toc-text">deleted_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#edit-attachment"><span class="toc-text">edit_attachment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#edit-category"><span class="toc-text">edit_category</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#edit-post"><span class="toc-text">edit_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pre-post-update"><span class="toc-text">pre_post_update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#private-to-publish"><span class="toc-text">private_to_publish</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publish-page"><span class="toc-text">publish_page</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publish-phone"><span class="toc-text">publish_phone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#publish-post"><span class="toc-text">publish_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#save-post"><span class="toc-text">save_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wp-insert-post"><span class="toc-text">wp_insert_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xmlrpc-public-post"><span class="toc-text">xmlrpc_public_post</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%AF%84%E8%AE%BA%E3%80%81Ping%E4%BB%A5%E5%8F%8A%E5%BC%95%E7%94%A8%E9%80%9A%E5%91%8A%E7%9B%B8%E5%85%B3%E5%8A%A8%E4%BD%9C%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="toc-text">三、评论、Ping以及引用通告相关动作钩子函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#comment-closed"><span class="toc-text">comment_closed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comment-id-not-found"><span class="toc-text">comment_id_not_found</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comment-flood-trigger"><span class="toc-text">comment_flood_trigger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comment-on-draft"><span class="toc-text">comment_on_draft</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comment-post"><span class="toc-text">comment_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#edit-comment"><span class="toc-text">edit_comment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete-comment"><span class="toc-text">delete_comment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pingback-post"><span class="toc-text">pingback_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pre-ping"><span class="toc-text">pre_ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trackback-post"><span class="toc-text">trackback_post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wp-blacklist-check"><span class="toc-text">wp_blacklist_check</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wp-set-comment-status"><span class="toc-text">wp_set_comment_status</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

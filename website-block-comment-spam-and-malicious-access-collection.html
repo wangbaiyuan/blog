@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="UA,wordpress,网站安全" />
+
+
+<meta name="description" content="对于站长来说,垃圾评论都是一件比较苦恼的事,垃圾评论常常夹杂各种广告内容,而且过多的垃圾评论还会加大服务器的负担.垃圾评论的发起者往往是网络机器人,因为没有哪个正常人费时费力跑到你的网站自己受到..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    网站屏蔽垃圾评论和恶意访问、采集 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="网站屏蔽垃圾评论和恶意访问、采集">
+            
+            网站屏蔽垃圾评论和恶意访问、采集
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/UA/" rel="tag">UA</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/%E7%BD%91%E7%AB%99%E5%AE%89%E5%85%A8/" rel="tag">网站安全</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/06</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>对于站长来说,垃圾评论都是一件比较苦恼的事,垃圾评论常常夹杂各种广告内容,而且过多的垃圾评论还会加大服务器的负担.垃圾评论的发起者往往是网络机器人,因为没有哪个正常人费时费力跑到你的网站自己受到敲字发广告等垃圾评论.最近极客人也自己结合了网站的代码,自己做了一个网络机器人,实现了短时间内打开下载几十个页面并且采集下载页面中的图片——当然是拿自己的网站做试验. 这篇文章主要分两部分，一是屏蔽网络机器人发垃圾评论；二是防止恶意访问刷新、采集图片耗费服务器资源和流量。</p>
+<h2 id="一、网站屏蔽机器人垃圾评论（利用PHP）"><a href="#一、网站屏蔽机器人垃圾评论（利用PHP）" class="headerlink" title="一、网站屏蔽机器人垃圾评论（利用PHP）"></a>一、网站屏蔽机器人垃圾评论（利用PHP）</h2><p>本篇文章屏蔽机器人的思路是屏蔽掉一些UA信息为空及其它典型是机器人UA（USER_AGENT，以下简称为UA）的访问用户。实现原理是通过php代码识别来访用户的UA信息，和典型的机器人UA信息进行比对，比对确认是机器人访问后禁止该用户访问。至于怎么查看UA，大家可以分析一下自己的网站日志。为此极客人综合网上的代码写了下面的代码。 为了在机器人访问网页第一时间就实行封禁，对于wordpress主题网站，建议将下面的代码添加到wordpress主题文件夹下header.php文件内容的最前面。极客人在此更建议的方式是：将下面的函数和执行代码书写在单独的一个PHP文件中，然后再在header.php文件中进行调用（因为header中代码太杂以后不好看）； 此代码对任何支持PHP语言网站程序都有效，</p>
+<h3 id="屏蔽空UA的antiEmptyUA-函数代码："><a href="#屏蔽空UA的antiEmptyUA-函数代码：" class="headerlink" title="屏蔽空UA的antiEmptyUA()函数代码："></a>屏蔽空UA的antiEmptyUA()函数代码：</h3><p>function antiEmptyUA(){<br>    &#x2F;&#x2F;获取UA信息<br>$ua &#x3D; $_SERVER[‘HTTP_USER_AGENT’];<br>&#x2F;&#x2F;将恶意USER_AGENT存入数组<br>$now_ua &#x3D; array(‘FeedDemon ‘,’BOT&#x2F;0.1 (BOT for JCE)’,’CrawlDaddy ‘,’Java’,’Feedly’,’UniversalFeedParser’,’ApacheBench’,’Swiftbot’,’ZmEu’,’Indy Library’,’oBot’,’jaunty’,’YandexBot’,’AhrefsBot’,’YisouSpider’,’jikeSpider’,’MJ12bot’,’WinHttp’,’EasouSpider’,’HttpClient’,’Microsoft URL Control’,’YYSpider’,’jaunty’,’Python-urllib’,’lightDeckReports Bot’);&#x2F;&#x2F;禁止空USER_AGENT，dedecms等主流采集程序都是空USER_AGENT，部分sql注入工具也是空USER_AGENT<br>if(!$ua) {<br>header(“Content-type: text&#x2F;html; charset&#x3D;utf-8”);<br>wp_die(‘机器人，滚粗！’);<br>}else{<br>foreach($now_ua as $value )<br>&#x2F;&#x2F;判断是否是数组中存在的UA<br>if(eregi($value,$ua)) {<br>header(“Content-type: text&#x2F;html; charset&#x3D;utf-8”);<br>wp_die(‘机器人，滚粗！’);<br>}<br>}<br>}</p>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><p>antiEmptyUA();</p>
+<h2 id="二、防止访问者或机器人恶意频繁刷新、大流量访问"><a href="#二、防止访问者或机器人恶意频繁刷新、大流量访问" class="headerlink" title="二、防止访问者或机器人恶意频繁刷新、大流量访问"></a>二、防止访问者或机器人恶意频繁刷新、大流量访问</h2><p>如果说发广告垃圾评论的人是损人利己，那么利用网络机器人进行频繁刷新、大量流量攻击的人就是损人不利己了。当然极客人觉得“存在即合理”，人家主动对一个网站发动攻击，或许是哪里得罪了人家，想通过搞瘫你的网站来小小惩罚你一下。比如，我最近就很想（不过没实施，想想还是算啦）对前几天转载我的文章不加版权，还说自己是写的人进行一下网站攻击。所以，在你专心研究怎么防止别人恶意访问的同时，极客人在此提醒你以后转载别人的文章真的还是加一下版权，尊重作者的劳动成果。</p>
+<h3 id="下面是本站的效果截图："><a href="#下面是本站的效果截图：" class="headerlink" title="下面是本站的效果截图："></a>下面是本站的效果截图：</h3><p><a href="http://baiyuan.wang/wp-content/uploads/2015/05/anti_robots.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/anti_robots.jpg" alt="anti_robots"></a> 下述代码和上面的代码一样，建议加在header.php最前面或者其他网站程序最先执行代码的最前面</p>
+<h3 id="防止频繁访问的anticc-函数代码"><a href="#防止频繁访问的anticc-函数代码" class="headerlink" title="防止频繁访问的anticc()函数代码:"></a>防止频繁访问的anticc()函数代码:</h3><p>function antiEmptyUA(){<br>    &#x2F;&#x2F;获取UA信息<br>$ua &#x3D; $_SERVER[‘HTTP_USER_AGENT’];<br>&#x2F;&#x2F;将恶意USER_AGENT存入数组<br>$now_ua &#x3D; array(‘FeedDemon ‘,’BOT&#x2F;0.1 (BOT for JCE)’,’CrawlDaddy ‘,’Java’,’Feedly’,’UniversalFeedParser’,’ApacheBench’,’Swiftbot’,’ZmEu’,’Indy Library’,’oBot’,’jaunty’,’YandexBot’,’AhrefsBot’,’YisouSpider’,’jikeSpider’,’MJ12bot’,’WinHttp’,’EasouSpider’,’HttpClient’,’Microsoft URL Control’,’YYSpider’,’jaunty’,’Python-urllib’,’lightDeckReports Bot’);&#x2F;&#x2F;禁止空USER_AGENT，dedecms等主流采集程序都是空USER_AGENT，部分sql注入工具也是空USER_AGENT<br>if(!$ua) {<br>header(“Content-type: text&#x2F;html; charset&#x3D;utf-8”);<br>wp_die(‘请勿采集本站！’);<br>}else{<br> foreach($now_ua as $value )<br>&#x2F;&#x2F;判断是否是数组中存在的UA<br> if(eregi($value,$ua)) {<br> header(“Content-type: text&#x2F;html; charset&#x3D;utf-8”);<br> wp_die(‘请勿采集本站！’);<br> }<br>}<br>}</p>
+<h3 id="函数调用方法："><a href="#函数调用方法：" class="headerlink" title="函数调用方法："></a>函数调用方法：</h3><p>anticc(2)；根据你的需求修改时间值“2” 以上代码中function anticc($time_sep)的“$time_sep”是控制$time_sep秒中内允许用户访问一次，比如$time_sep&#x3D;3时，如果用户在3秒内访问超过一次，系统则会提示“警告：请求过于频繁”，并且只有等待三秒后才能访问本网站。具体效果你可以在王柏元的博客，狂按F5刷新，体验一下。</p>
+<h2 id="三、利用htaccess屏蔽机器人垃圾评论（推荐）"><a href="#三、利用htaccess屏蔽机器人垃圾评论（推荐）" class="headerlink" title="三、利用htaccess屏蔽机器人垃圾评论（推荐）"></a>三、利用htaccess屏蔽机器人垃圾评论（推荐）</h2><p>这个方法还是屏蔽空UA的机器人，但是效率会比PHP高很多，这里是屏蔽机器人直接通过wp-comments-post.php发垃圾评论。</p>
+<p># BEGIN 屏蔽垃圾留言：屏蔽空referrer留言<br><IfModule mod_rewrite.c><br>RewriteEngine On<br>RewriteCond %{REQUEST_METHOD} POST<br>RewriteCond %{REQUEST_URI} .wp-comments-post\.php*<br>RewriteCond %{HTTP_REFERER} !.*baiyuan.wang.* [OR]<br>RewriteCond %{HTTP_USER_AGENT} ^$<br>RewriteRule (.*) ^http:&#x2F;&#x2F;%{REMOTE_ADDR}&#x2F;$ [R&#x3D;301,L]<br></IfModule><br># END 屏蔽垃圾留言：屏蔽空referrer留言</p>
+<h2 id="四、禁止垃圾评论IP"><a href="#四、禁止垃圾评论IP" class="headerlink" title="四、禁止垃圾评论IP"></a>四、禁止垃圾评论IP</h2><p>直接将垃圾评论的IP加入黑名单，该IP访问时直接“403无权限访问”，还可以节约虚拟主机的流量。（但是一般垃圾评论的IP经常会变！） 由于文字较多，请参看我的一篇独立<a href="http://baiyuan.wang/web-hosting-how-to-block-specified-ip-or-network-segments.html">博文：虚拟主机怎样屏蔽指定IP或网段</a>做详细了解，在此不赘述。</p>
+<h2 id="五、终极方法"><a href="#五、终极方法" class="headerlink" title="五、终极方法"></a>五、终极方法</h2><p>验证码，安装验证码插件。这个方法比上面的都有效，但是要安装插件。原理不解释。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/website-block-comment-spam-and-malicious-access-collection.html" target="_blank">王柏元的博客 >> 网站屏蔽垃圾评论和恶意访问、采集</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/12-way-to-enhance-the-wordpress-web-site-security.html" class="pre-post btn btn-default" title='强化WordPress网站安全的 12 个方法'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            强化WordPress网站安全的 12 个方法</span>
+    </a>
+    
+    
+    <a href="/improve-fluency-google-push-brand-new-android-development-language-sky.html" class="next-post btn btn-default" title='提升流畅度 谷歌推全新安卓开发语言Sky'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            提升流畅度 谷歌推全新安卓开发语言Sky</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "57830",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BD%91%E7%AB%99%E5%B1%8F%E8%94%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BA%EF%BC%88%E5%88%A9%E7%94%A8PHP%EF%BC%89"><span class="toc-text">一、网站屏蔽机器人垃圾评论（利用PHP）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%8F%E8%94%BD%E7%A9%BAUA%E7%9A%84antiEmptyUA-%E5%87%BD%E6%95%B0%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">屏蔽空UA的antiEmptyUA()函数代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-text">函数调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%98%B2%E6%AD%A2%E8%AE%BF%E9%97%AE%E8%80%85%E6%88%96%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%81%B6%E6%84%8F%E9%A2%91%E7%B9%81%E5%88%B7%E6%96%B0%E3%80%81%E5%A4%A7%E6%B5%81%E9%87%8F%E8%AE%BF%E9%97%AE"><span class="toc-text">二、防止访问者或机器人恶意频繁刷新、大流量访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E6%9C%AC%E7%AB%99%E7%9A%84%E6%95%88%E6%9E%9C%E6%88%AA%E5%9B%BE%EF%BC%9A"><span class="toc-text">下面是本站的效果截图：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E9%A2%91%E7%B9%81%E8%AE%BF%E9%97%AE%E7%9A%84anticc-%E5%87%BD%E6%95%B0%E4%BB%A3%E7%A0%81"><span class="toc-text">防止频繁访问的anticc()函数代码:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">函数调用方法：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%88%A9%E7%94%A8htaccess%E5%B1%8F%E8%94%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BA%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">三、利用htaccess屏蔽机器人垃圾评论（推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%A6%81%E6%AD%A2%E5%9E%83%E5%9C%BE%E8%AF%84%E8%AE%BAIP"><span class="toc-text">四、禁止垃圾评论IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%BB%88%E6%9E%81%E6%96%B9%E6%B3%95"><span class="toc-text">五、终极方法</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

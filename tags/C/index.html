@@ -1,0 +1,1209 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="" />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    标签: C++ |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content ">
+                
+    <ol class="breadcrumb">
+        
+            <li>
+                C++
+            </li>
+        
+        
+    </ol>
+
+
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/baidu-map-api-position-offset-calibration-algorithm.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2016/02/baiyuan.wang_2016-02-17_12-15-54.jpg"
+                         alt="百度地图API位置偏移的校准算法">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/baidu-map-api-position-offset-calibration-algorithm.html">
+                        百度地图API位置偏移的校准算法</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2016年02月17日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    在开始使用百度地图API进行开发时可能会遇到一件相当奇怪的事情，使用百度定位的经纬度在地图上显示相当不准确，这一问题我在微信开发和安卓开始时都遇到过。第一次使用百度地图api获取位置并在地图上显示是在微信开发的时候，那是不知道具体原因...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/baidu-map-api-position-offset-calibration-algorithm.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/confused-androidstudio-code-with-ndk-prevention-apk-decompiling.html">
+                        AndroidStudio代码混淆和NDK预防apk反编译</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2016年01月09日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    代码混淆什么是代码混淆Java 是一种跨平台的、解释型语言，Java 源代码编译成中间”字节码”存储于 class 文件中。由于跨平台的需要，Java 字节码中包括了很多源代码信息，如变量名、方法名，并且通过这些名称来访问变量和方法，...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/confused-androidstudio-code-with-ndk-prevention-apk-decompiling.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/first-android-ndk-program.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2016/01/android_studio_NDK.jpg"
+                         alt="第一个android studio+NDK程序">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/first-android-ndk-program.html">
+                        第一个android studio+NDK程序</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2016年01月08日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    NDK(android native develop kits ):android 本地开发工具集 ,可以把c&amp;#x2F;c++ -&amp;gt;编译成一个 linux下可以执行的二进制文件 java代码里面就可以通过jni 调用执行二进制...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/first-android-ndk-program.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/backtracking-method-undirected-graph-node-color-color-number-at-least.html">
+                        回溯法求无向图结点涂色最少颜色数</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年12月06日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    回溯法通过深度优先遍历的策略遍历解空间树，其实现过程是：从根节点出发搜索它的所有孩子树或者孩子结点，对于每个结点判断其是否满足约束条件和判定函数，如果满足则进入此结点同样以此结点搜索它的子结点。拥有子节点的结点称之为活节点，当搜索至到...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/backtracking-method-undirected-graph-node-color-color-number-at-least.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/c-activity-host-scans.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/11/scanhost.jpg"
+                         alt="C++活动主机扫描">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/c-activity-host-scans.html">
+                        C++活动主机扫描</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年11月20日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                     
+
+（1）以命令方式运行：DOS&amp;gt;scanHost  start_ip  end_ip
+（2）输出内容：活动主机IP地址。
+
+实现原理：
+
+（1）通过某IP发送ICMP_ECHO请求报文，接收到ICMP_response 报文...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/c-activity-host-scans.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/c-scan-specified-host-open-port.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/11/scanhosts.jpg"
+                         alt="C++扫描指定主机开放的端口">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/c-scan-specified-host-open-port.html">
+                        C++扫描指定主机开放的端口</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年11月19日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    C++扫描指定主机开放的端口，OS提供了connect()系统调用，用于与远程主机某端口建立连接，如果远程主机该端口处于帧听状态，则connect()连接成功；否则说明该端口关闭。   
+&amp;#x2F;&amp;#x2F; ScanPorts....
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/c-scan-specified-host-open-port.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/c-resolution-arp-packets.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/11/arp.png"
+                         alt="C++解析ARP数据包（可选网卡）">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/c-resolution-arp-packets.html">
+                        C++解析ARP数据包（可选网卡）</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年11月17日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    在网络通讯时，源主机的应用程序知道目的主机的IP地址和端口号，却不知道目的主机的硬件地址，而数据包首先是被网卡接收到再去处理上层协议的，如果接收到的数据包的硬件地址与本机不符，则直接丢弃。因此在通讯前必须获得目的主机的硬件地址。ARP...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/c-resolution-arp-packets.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/number-at-least-undirected-graph-elements-not-connected-subset-of.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/11/undirectGraph.png"
+                         alt="无向图个数最少且元素间不相连的子集">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/number-at-least-undirected-graph-elements-not-connected-subset-of.html">
+                        无向图个数最少且元素间不相连的子集</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年11月15日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    问题设给定一个任意的无向图，将图划分若干的子集，子集集合中任意俩个节点不相连，使用贪心算法使子集个数最少。
+算法步骤或流程：
+构造一个向量A按结点度大小加入。
+构建向量B为空，B存储最后的结果，其元素为子集
+取向量A的第一个元素m（即...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/number-at-least-undirected-graph-elements-not-connected-subset-of.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/bottle-of-beer-very-hot-hot-hot.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/11/baiyuan.wang_2015-11-01_22-26-13.png"
+                         alt="一瓶啤酒烫烫烫">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/bottle-of-beer-very-hot-hot-hot.html">
+                        一瓶啤酒烫烫烫</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年11月01日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    现在网上很多人黑程序员，“只有程序员才能听懂的笑话”常常出现在朋友圈，各种娱乐化程序员，极客人有时候也表示很无辜。听人讲起下面这个程序员的笑话，逼格算是比较高了，哈哈！
+
+两个字符串走进酒吧。 第一个字符串对服务员说：“给我来一瓶啤酒...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/bottle-of-beer-very-hot-hot-hot.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/according-former-in-sequence-traversal-in-building-binary-tree.html">
+                        根据前中序遍历构建二叉树</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年11月01日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    根据前序遍历和中序遍历构建二叉树的基本思想是使用递归算法；首先构建根节点的左子树和右子树，而在构建根节点的左右子树的时候又要构建左右子树根节点的左右子树， 所以很容易想到递归算法；本项目构建二叉树的主要函数是CreateBinaryT...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/according-former-in-sequence-traversal-in-building-binary-tree.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+
+<nav class="pagination" role="navigation">
+    <div id="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/tags/C/page/2/">2</a><a class="extend next" rel="next" href="/tags/C/page/2/"><i class='fa fa-angle-right'></i></a>
+    </div>
+</nav>
+
+
+            </main>
+            
+                
+    <aside class="col-md-4 sidebar">
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        搜索
+    </h3>
+    <div id="search-form">
+        <div id="result-mask" class="hide"></div>
+        <div class="search-area">
+            
+            
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="https://baiyuan.wang"></form>
+            
+        </div>
+        <div id="result-wrap" class="hide">
+            <div id="search-result"></div>
+        </div>
+        <div class="hide">
+            <template id="search-tpl">
+                <div class="item">
+                    <a href="/{path}" title="{title}">
+                        <div class="title">{title}</div>
+                        <div class="content">{content}</div>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+
+            
+        
+            
+            
+            
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+            
+        
+            
+            <div class="widget">
+    <h3 class="title">
+        随便看看
+    </h3>
+    <div class="content random_posts">
+        <ul>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/activity-life-cycle-and-cycle-methods-details.html" target="_blank">activity生命周期及其周期方法详解</a>
+                        <div class="date">2015-04-13</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/adding-base64-react-native-support.html" target="_blank">React Native中添加Base64支持</a>
+                        <div class="date">2017-03-08</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/android-buttons-two-ways-listen-events.html" target="_blank">安卓按钮的监听事件的两种方式</a>
+                        <div class="date">2015-04-13</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/c-resolution-arp-packets.html" target="_blank">C++解析ARP数据包（可选网卡）</a>
+                        <div class="date">2015-11-17</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/error-lnk2001-unresolved-external-symbol-quot-public-thiscall.html" target="_blank">error LNK2001:unresolved external symbol ;public: __thiscall 类名::函数</a>
+                        <div class="date">2015-03-22</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/go-from-future-internet-of-things-application-experience-of-furniture.html" target="_blank">[转]来自未来的物联网应用体验——家具篇</a>
+                        <div class="date">2015-12-13</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/php-hotel-query-web-sql-json-api.html" target="_blank">PHP实现酒店查询:WEB+SQL数据库+JSON-API</a>
+                        <div class="date">2015-07-27</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/php-judge-whether-baidu.html" target="_blank">PHP实现判断文章是否被百度收录</a>
+                        <div class="date">2015-03-18</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/qt-multi-window-switches.html" target="_blank">Qt多窗口切换程序</a>
+                        <div class="date">2014-12-25</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/wordpress-function-hook-hook-book-1.html" target="_blank">wordpress函数钩子（hook）大全(1)</a>
+                        <div class="date">2015-05-28</div>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+            
+        
+            
+            <link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css" rel="stylesheet">
+<div class="widget">
+    <h3 class="title">
+        最新评论
+    </h3>
+    <div class="content recent_comments">
+        
+        <div class="gt-container brief">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                sdad
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                评论反应比较慢这个怎么解决
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                calvin
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                放在iPhoneX的模拟器上在计算MaxHeight值会无法计算，先将containerHeight默认值设置为auto，计算完containerHeight后设置为0，刷新重新计算，再将containerHeight设置为auto计算minHeight可解决此问题，不知道有没有更好的方法？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                长江大学陈刚同学
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                湖北武漢東湖社區論壇有個直接取名叫“三峽大學”，長期噴
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小麦社区
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                站点名称：小麦社区
+站点描述：综合社区
+站点地址：http://www.axiaomai.cn
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                博客大全
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                博客大全特邀站长前来入住！！！！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                WordPress时间函数The_time()和Date()的区别|JOYtheme
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 转载注明原文出处：王柏元的博客&gt;&gt;http://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-01-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好，贵站的内容类型和本站类型不是很匹配，抱歉。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                所以保护知识产权不是一句假话，只有让创新的人能获得利益，才能鼓励人创新。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                如果随随便便就能买到，自己花大精力去做开发岂不是自找的辛苦啊，所以外国不封锁，反而什么也发展不起来。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                本站名称：天鸡部落
+本站链接：https://3838521.com/
+诚意友链，望审核回复留言
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+    </div>
+</div>
+
+            
+        
+            
+    </aside>
+    <aside class="col-md-4 sidebar scroll-fix">
+        
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+    </aside>
+    <aside class="col-md-4 sidebar">
+        
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        友链
+    </h3>
+    <div class="content friends-link">
+        
+        <a href="https://magpie.wangbaiyuan.cn/" class="fa" target="_blank">
+            Magpie抽奖系统</a>
+        
+        <a href="https://md.wangbaiyuan.cn/" class="fa" target="_blank">
+            极客MD编辑器</a>
+        
+        <a href="http://www.jurieo.com/" class="fa" target="_blank">
+            俊霖</a>
+        
+        <a href="https://webapproach.net/" class="fa" target="_blank">
+            知言的自留地</a>
+        
+        <a href="https://www.wangtianyi.top/" class="fa" target="_blank">
+            不要吵到这里的Bug - 王天一</a>
+        
+        <a href="http://www.deathearth.com/" class="fa" target="_blank">
+            一个程序猿的编码人生</a>
+        
+        <a href="https://www.enetn.com/" class="fa" target="_blank">
+            e网络</a>
+        
+        <a href="https://www.icheny.cn/" class="fa" target="_blank">
+            乘月网</a>
+        
+        <a href="https://ewind.us/" class="fa" target="_blank">
+            ewind the doodler</a>
+        
+    </div>
+</div>
+
+            
+        
+    </aside>
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

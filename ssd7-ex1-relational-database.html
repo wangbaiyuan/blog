@@ -1,0 +1,480 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="MySql,SSD7" />
+
+
+<meta name="description" content="第一部分（PART1）：1．按照以下要求标识出每个关系的关键字（主键、备用键、外键）。对于此练习，选择关键字的时候可以忽略性能因素。
+
+ 1）标识出每个关系的主键，如果没有主键，做适当的论述证明..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    SSD7_EX1【关系型数据库】 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="SSD7_EX1【关系型数据库】">
+            
+            SSD7_EX1【关系型数据库】
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/MySql/" rel="tag">MySql</a> <a class="tag-none-link" href="/tags/SSD7/" rel="tag">SSD7</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/04/28</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第一部分（PART1）："><a href="#第一部分（PART1）：" class="headerlink" title="第一部分（PART1）："></a>第一部分（PART1）：</h1><p>1．按照以下要求标识出每个关系的关键字（主键、备用键、外键）。对于此练习，选择关键字的时候可以忽略性能因素。</p>
+<ul>
+<li> 1）标识出每个关系的主键，如果没有主键，做适当的论述证明你的答案。</li>
+<li> 2）标识出每个关系的备用键，如果没有备用键，做适当的论述证明你的答案。</li>
+<li> 3）标识出每个关系的外键和完整性约束，并做适当的论述证明你的答案。</li>
+</ul>
+<p>2.列出每个关系的属性名，和每个属性的域（数据类型和格式），并做适当的论述证明你的答案。 在每一个HTML表格中，列出至少四行正确的数据（可自己假设，要求合理、符合实际即可），将你的答案书写在一个名为BookPublisher.html的HTML页面中提交： <strong>BookPublisher.html：</strong></p>
+<h2 id="Books"><a href="#Books" class="headerlink" title="Books"></a>Books</h2><p>Primary Author&lt;varchar(20)&gt;</p>
+<p>Title&lt;varchar(50)&gt;</p>
+<p>ISBN**(Primary Key)**&lt;char(12)&gt;</p>
+<p>PublisherID**(FOREIGN Key)**<int></p>
+<p>Edition&lt;varchar(10)&gt;</p>
+<p>Date of Publication<date></p>
+<p>Price&lt;float(4, 2)&gt;</p>
+<p>Book Description&lt;varchar(200)&gt;</p>
+<p>赵静</p>
+<p>数学建模与数学实验</p>
+<p>9787040400038</p>
+<p>1</p>
+<p>第4版</p>
+<p>2000.11</p>
+<p>22.00</p>
+<p>指导数学建模与数学实验</p>
+<p>许建平</p>
+<p>英汉互译实践与技巧</p>
+<p>9787302146728</p>
+<p>2</p>
+<p>第4版</p>
+<p>2012.8</p>
+<p>38.00</p>
+<p>本书是为非英语专业的大学生及研究生编写的英汉互译教程。</p>
+<p>庄茁</p>
+<p>基于ABAQUS的有限元分析和应用</p>
+<p>9787302188162</p>
+<p>2</p>
+<p>第2版</p>
+<p>2006.5</p>
+<p>69.00</p>
+<p>《基于ABAQUS的有限元分析和应用》是基于ABAQUS软件6.7版本进行有限元分析与应用的入门指南和工程分析与科学研究教程</p>
+<p>王正林</p>
+<p>精通MATLAB</p>
+<p>9787121187315</p>
+<p>3</p>
+<p>第3版</p>
+<p>2013.1</p>
+<p>69.00</p>
+<p>紧密结合实例，对MATLAB的使用进行了全面且详尽的阐述，并通过大量的实例讲述如何实现MATLAB的基本操作和实际使用。</p>
+<p>路遥</p>
+<p>平凡的世界(套装共3册)</p>
+<p>9787530212004</p>
+<p>4</p>
+<p>第1版</p>
+<p>2012.3</p>
+<p>26.60</p>
+<p>《平凡的世界(套装共3册)》是一部现实主义小说，也是小说化的家族史。</p>
+<h2 id="books论述："><a href="#books论述：" class="headerlink" title="books论述："></a>books论述：</h2><p>上面是Books表的数据，并在列名表明了数据类型及长度和主外键：</p>
+<ul>
+<li>**1.Primary Author &lt;varchar(20)&gt;**：可变字符串，最长20</li>
+</ul>
+<p>完整性约束：PrimaryAuthor VARCHAR(20) NOT NULL DEFAULT “未知作者”,</p>
+<ul>
+<li>**2.Title &lt;varchar(50)&gt;**：可变字符串，最长50</li>
+</ul>
+<p>Title VARCHAR(50) NOT NULL DEFAULT “默认标题”,</p>
+<ul>
+<li><strong>3.ISBN &lt;char(12)&gt;(Primary Key)：</strong>主键，因为ISBN对于每本书是唯一的，满足主键是唯一且不为空的条件，用以标识唯一一本书。</li>
+</ul>
+<p>ISBN CHAR(13) NOT NULL DEFAULT “0000000000000” PRIMARY KEY,</p>
+<ul>
+<li><strong>4.PublisherID<int>(FOREIGN Key)：</strong>int类型、外键，</li>
+</ul>
+<p>PublisherID INT(4) NOT NULL DEFAULT 0 , FOREIGN KEY (PublisherID) REFERENCES publisher(PublisherID) 因为Books和Publishers表拥有相同的属性<strong>PublisherID，</strong>并且PublisherID是Publishers表的主键，使用其作为外键，两个表就可以建立联系 ；</p>
+<ul>
+<li><strong>5.Edition&lt;varchar(10)&gt;：</strong>可变字符串，最长10</li>
+</ul>
+<p>Edition VARCHAR(10) NOT NULL DEFAULT 0 ,</p>
+<ul>
+<li><strong>6.Date of Publication <date>：</strong>日期类型</li>
+</ul>
+<p>DateofPublication DATE NOT NULL DEFAULT ‘1970-01-01’ ,</p>
+<ul>
+<li><strong>7.Price&lt;float(4, 2)&gt;：</strong>float类型，小数点两位</li>
+</ul>
+<p>Price float(4, 2) NOT NULL DEFAULT 0 ,</p>
+<ul>
+<li><strong>8.Book Description&lt;varchar(200)&gt;：</strong>可变字符串，最长200</li>
+</ul>
+<p>BookDescription varchar(200) NOT NULL DEFAULT ‘描述为空’ , <strong>主键(PK)： ISBN</strong>，因为ISBN对于每本书是唯一的，满足主键是唯一且不为空的条件，用以标识唯一一本书。 <strong>外键(FK)： <strong>PublisherID为Books和Publishers表拥有相同的属性</strong>PublisherID，</strong>并且PublisherID是Publishers表的主键，使用其作为外键，两个表就可以建立联系 ； <strong>备用键(AK)：</strong>没有备用键，除主键<strong>ISBN</strong>外其他列都无法唯一标识一本书，存在相同标题、出版社、价格、出版时间等的书籍。</p>
+<h2 id="Publishers"><a href="#Publishers" class="headerlink" title="Publishers"></a>Publishers</h2><p>PublisherID <strong>(Primary Key)</strong><int></p>
+<p>Name&lt;varchar(50)&gt;</p>
+<p>Address&lt;varchar(100)&gt;</p>
+<p>04</p>
+<p>高等教育出版社</p>
+<p>北京市西城区德胜门外大街4号</p>
+<p>302</p>
+<p>清华大学出版社</p>
+<p>北京市海淀区清华大学出版社</p>
+<p>5053</p>
+<p>电子工业出版社</p>
+<p>北京市丰台区万寿路南口金家村288号华信大厦</p>
+<p>5302</p>
+<p>北京十月文艺出版社</p>
+<p>北京市海淀区十月文艺出版社</p>
+<ul>
+<li><strong>1.PublisherID <int>(Primary Key)：</strong>主键，因为PublisherID可以唯一标识出版社；</li>
+<li><strong>2.Name&lt;varchar(50)&gt;：</strong>可变字符串，最长50；</li>
+<li><strong>3.Address &lt;varchar(100)&gt;：</strong>可变字符串，最长100。</li>
+</ul>
+<p><strong>主键(PK)：</strong>PublisherID，因为PublisherID可以唯一标识出版社； <strong>外键(FK)：</strong>显然没有； <strong>备用键(AK)：</strong>Name，出版社名可以唯一标识出版社。</p>
+<h1 id="第二部分（part-2）"><a href="#第二部分（part-2）" class="headerlink" title="第二部分（part-2）"></a>第二部分（part-2）</h1><p>按照要求书写SQL语句，将你的答案书写在一个名为createDB.Sql的文件中提交。 1）使用CREATE TABLE关键字创建两个关系，要求标识出每个关系的主键和备用键。 2）使用INSERT关键字向每个关系中插入四行数据（第一你部分列出的数据）。 3）书写SQL语句查询出某两个作者…… 4）书写SQL语句查询出某本书的出版社名字。</p>
+<h2 id="文件createDB-Sql："><a href="#文件createDB-Sql：" class="headerlink" title="文件createDB.Sql："></a><strong>文件createDB.Sql：</strong></h2><p>CREATE TABLE `publisher` (<br>  `PublisherID` int(4) NOT NULL DEFAULT 0 PRIMARY KEY ,<br>  `Name` varchar(50) not NULL DEFAULT “未知出版社”,<br>  `Address` varchar(100) NOT NULL DEFAULT “未知地址”<br>);<br>CREATE TABLE Books(<br>PrimaryAuthor VARCHAR(20) NOT NULL DEFAULT “未知作者”,<br>Title VARCHAR(50)  NOT NULL DEFAULT “默认标题”,<br>ISBN CHAR(13) NOT NULL DEFAULT “9780000000000”  PRIMARY KEY,<br>PublisherID INT(4) NOT NULL DEFAULT 1 ,<br>Edition VARCHAR(10) NOT NULL DEFAULT 0 ,<br>DateofPublication DATE NOT NULL DEFAULT ‘1970-01-01’ ,<br>Price float(4, 2) NOT NULL DEFAULT 0 ,<br>BookDescription varchar(200) NOT NULL DEFAULT “本书暂无描述”,<br>FOREIGN KEY (PublisherID) REFERENCES publisher(PublisherID)<br>);<br>INSERT INTO `publisher` (`PublisherID`, `Name`, `Address`)<br> VALUES (‘1’, ‘高等教育出版社’, ‘北京市西城区德胜门外大街4号’);<br>INSERT INTO `publisher` (`PublisherID`, `Name`, `Address`)<br> VALUES (‘2’, ‘ 清华大学出版社 ‘, ‘北京市海淀区清华大学出版社 ‘);<br>INSERT INTO `publisher` (`PublisherID`, `Name`, `Address`)<br> VALUES (‘3’, ‘电子工业出版社’, ‘北京市丰台区万寿路南口金家村288号华信大厦 ‘);<br>INSERT INTO `publisher` (`PublisherID`, `Name`, `Address`)<br> VALUES (‘4’, ‘北京十月文艺出版社’, ‘北京市海淀区十月文艺出版社’);</p>
+<p>INSERT INTO Books(PrimaryAuthor,Title,ISBN,PublisherID,Edition,DateofPublication,Price,BookDescription)<br> VALUE(‘赵静’,’数学建模与数学实验’,’9787040400038’,1,’第4版’,’2000-11-01’,22.00,<br>‘指导数学建模与数学实验’);<br>INSERT INTO Books(PrimaryAuthor,Title,ISBN,PublisherID,Edition,DateofPublication,Price,BookDescription)<br> VALUE(‘许建平’, ‘英汉互译实践与技巧’,’9787302146728’,2,’第4版’,’2012-08-01’,38.00,<br>‘本书是为非英语专业的大学生及研究生编写的英汉互译教程.’);<br>INSERT INTO Books(PrimaryAuthor,Title,ISBN,PublisherID,Edition,DateofPublication,Price,BookDescription)<br> VALUE(‘庄茁’,’基于ABAQUS的有限元分析和应用’,’9787302188162’,2,’第2版’,’2006-05-01’,69.00,<br>‘基于ABAQUS软件6.7版本进行有限元分析与应用的入门指南和工程分析与科学研究教程’);<br>INSERT INTO Books(PrimaryAuthor,Title,ISBN,PublisherID,Edition,DateofPublication,Price,BookDescription)<br> VALUE(‘王正林’,’精通MATLAB’,’9787121187315’,3,’第3版’,’2013-01-01’,69.00,<br>‘ 紧密结合实例，对MATLAB的使用进行了全面且详尽的阐述，并通过大量的实例讲述如何实现MATLAB的基本操作和实际使用。 ‘);<br>INSERT INTO Books(PrimaryAuthor,Title,ISBN,PublisherID,Edition,DateofPublication,Price,BookDescription)<br> VALUE(‘路遥’,’ 平凡的世界(套装共3册) ‘,’9787530212004’,4,’第1版’,’2012-03-01’,26.60,<br>‘ 《平凡的世界(套装共3册)》是一部现实主义小说，也是小说化的家族史。 ‘);</p>
+<p>SELECT Title,Price<br>FROM books<br>where PrimaryAuthor&#x3D;’路遥’ OR PrimaryAuthor&#x3D;’许建平’;<br>SELECT p1.Name<br>FROM publisher p1,books b1<br>where p1.PublisherID&#x3D;b1.PublisherID AND b1.Title&#x3D;’精通MATLAB’;</p>
+<p>** 文件Rel-ops.txt：** [infobg class&#x3D;”tips” closebtn&#x3D;”” color&#x3D;”” bgcolor&#x3D;””] SELECT Title,Price FROM books where PrimaryAuthor&#x3D;’路遥’ OR PrimaryAuthor&#x3D;’许建平’; 此语句完成查询出某两个作者（例如”路遥” 、 “许建平”）出版的所有书的标题和价格； 解释：从books表中选择Title,Price两列，约束条件为作者是”路遥”或”许建平”。 SELECT p1.Name FROM publisher p1,books b1 where p1.PublisherID&#x3D;b1.PublisherID AND b1.Title&#x3D;’精通MATLAB’; 使用连接查询，p1、b1分别是publisher和books中的对象，使用PublisherID连接两者，令b1.Title&#x3D;’精通MATLAB’，选择p1.Name得出查询结果 [&#x2F;infobg]</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/ssd7-ex1-relational-database.html" target="_blank">王柏元的博客 >> SSD7_EX1【关系型数据库】</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/ssd7-ex2-sql.html" class="pre-post btn btn-default" title='SSD7_EX2【SQL】'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            SSD7_EX2【SQL】</span>
+    </a>
+    
+    
+    <a href="/mysql-database-data-types.html" class="next-post btn btn-default" title='MySQL数据库的数据类型'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            MySQL数据库的数据类型</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "46892",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%88PART1%EF%BC%89%EF%BC%9A"><span class="toc-text">第一部分（PART1）：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Books"><span class="toc-text">Books</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#books%E8%AE%BA%E8%BF%B0%EF%BC%9A"><span class="toc-text">books论述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Publishers"><span class="toc-text">Publishers</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%88part-2%EF%BC%89"><span class="toc-text">第二部分（part-2）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6createDB-Sql%EF%BC%9A"><span class="toc-text">文件createDB.Sql：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

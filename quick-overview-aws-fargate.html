@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="AWS,DevOps" />
+
+
+<meta name="description" content="AWS Fargate 发布于2017年11月的re:Invent 大会，是一项让您无需管理服务器或集群即可运行容器的技术，我们只用关心应用镜像及其所需的资源即可。
+ AWS Fargate在技..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    AWS Fargate速览 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="AWS Fargate速览">
+            
+            AWS Fargate速览
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/AWS/" rel="tag">AWS</a> <a class="tag-none-link" href="/tags/DevOps/" rel="tag">DevOps</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/11/05</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>AWS Fargate 发布于2017年11月的re:Invent 大会，是一项让您无需管理服务器或集群即可运行容器的技术，我们只用关心应用镜像及其所需的资源即可。</p>
+<p><img src="https://baiyuan.wang/wp-content/uploads/2019/04/20190416185422120.png" alt="AWS Fargate在技术雷达上的位置"> AWS Fargate在技术雷达上的位置</p>
+<h2 id="AWS-Fargate-关键词"><a href="#AWS-Fargate-关键词" class="headerlink" title="AWS Fargate: 关键词"></a>AWS Fargate: 关键词</h2><ul>
+<li>DevOps、云计算领域</li>
+<li>AWS的一个云服务</li>
+<li>Severless：无服务器化</li>
+<li>容器运行平台</li>
+<li>和EC2 Instance在一个层次</li>
+<li>支持ECS、EKS：Amazon ECS&#x2F;EKS 具有两种模式：Fargate 启动类型和 EC2 启动类型</li>
+</ul>
+<h2 id="因为ECS而具备的属性"><a href="#因为ECS而具备的属性" class="headerlink" title="因为ECS而具备的属性"></a>因为ECS而具备的属性</h2><ul>
+<li>监控</li>
+<li>弹性伸缩</li>
+<li>健康检查</li>
+<li>蓝绿部署</li>
+<li>负载均衡</li>
+<li>ECR：AWS镜像仓库</li>
+<li>定时任务</li>
+<li>网络配置</li>
+<li>Cloudformation: 基础设施即代码</li>
+</ul>
+<h2 id="从容器运行平台方面：Fargate相比EC2-Instance-的不同、优势"><a href="#从容器运行平台方面：Fargate相比EC2-Instance-的不同、优势" class="headerlink" title="从容器运行平台方面：Fargate相比EC2 Instance 的不同、优势"></a>从容器运行平台方面：Fargate相比EC2 Instance 的不同、优势</h2><p><img src="https://baiyuan.wang/wp-content/uploads/2019/04/20190416185423211.png" alt="EC2 vs Fargate：架构"> EC2 vs Fargate：架构</p>
+<h3 id="EC2-Instance-vs-Fargate：安全性"><a href="#EC2-Instance-vs-Fargate：安全性" class="headerlink" title="EC2 Instance vs Fargate：安全性"></a>EC2 Instance vs Fargate：安全性</h3><p>安全职责转移给云服务厂商</p>
+<ul>
+<li>AMI:<ul>
+<li>系统更新</li>
+<li>安全漏洞</li>
+</ul>
+</li>
+<li>SSH<ul>
+<li>SSH key</li>
+<li>堡垒机</li>
+</ul>
+</li>
+</ul>
+<h3 id="EC2-Instance-vs-Fargate：计价方式"><a href="#EC2-Instance-vs-Fargate：计价方式" class="headerlink" title="EC2 Instance vs Fargate：计价方式"></a>EC2 Instance vs Fargate：计价方式</h3><ul>
+<li>Fargate 总费用 (以资源为单位) &#x3D; vCPU 总费用 + 内存总费用<ul>
+<li>vCPU 总费用 &#x3D; vCPU 数 x 每 CPU-秒价格 x 使用CPU持续时间 (秒)</li>
+<li>内存总费用 &#x3D; 任务数 x 内存数 (GB) x 每 GB 价格 x 每天内存持续时间 (秒) x 天数</li>
+</ul>
+</li>
+<li>EC2 Instance 总费用（以Instance为单位 &#x3D; Instance Type的单价&#x2F;小时 x 小时数</li>
+</ul>
+<h2 id="从Serverless角度对比Fargate和Lambda"><a href="#从Serverless角度对比Fargate和Lambda" class="headerlink" title="从Serverless角度对比Fargate和Lambda"></a>从Serverless角度对比Fargate和Lambda</h2><p>维度</p>
+<p>Fargate</p>
+<p>Lambda</p>
+<p>运行单元</p>
+<p>容器，易于迁移</p>
+<p>Function</p>
+<p>应用语言</p>
+<p>无限制</p>
+<p>语言有限，不支持复杂应用</p>
+<p>运行时间限制</p>
+<p>无限制</p>
+<p>5分钟</p>
+<p>自动扩展</p>
+<p>可配置弹性伸缩</p>
+<p>默认支持</p>
+<p>存储仓库</p>
+<p>ECR</p>
+<p>S3</p>
+<p>部署难度</p>
+<p>一般</p>
+<p>简单</p>
+<p>持久化</p>
+<p>有状态</p>
+<p>无状态</p>
+<p>计价方式</p>
+<p>资源 * 秒数</p>
+<p>代码执行时间 （100ms为单位）* 代码触发次数</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/quick-overview-aws-fargate.html" target="_blank">王柏元的博客 >> AWS Fargate速览</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/communication-no-spray.html" class="pre-post btn btn-default" title='沟通从远离喷子开始'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            沟通从远离喷子开始</span>
+    </a>
+    
+    
+    <a href="/elasticsearch-incremental-data-synchronization-seamless-upgrade.html" class="next-post btn btn-default" title='ElasticSearch增量数据同步与无缝升级'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            ElasticSearch增量数据同步与无缝升级</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "56800",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AWS-Fargate-%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-text">AWS Fargate: 关键词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E4%B8%BAECS%E8%80%8C%E5%85%B7%E5%A4%87%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">因为ECS而具备的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E5%B9%B3%E5%8F%B0%E6%96%B9%E9%9D%A2%EF%BC%9AFargate%E7%9B%B8%E6%AF%94EC2-Instance-%E7%9A%84%E4%B8%8D%E5%90%8C%E3%80%81%E4%BC%98%E5%8A%BF"><span class="toc-text">从容器运行平台方面：Fargate相比EC2 Instance 的不同、优势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EC2-Instance-vs-Fargate%EF%BC%9A%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-text">EC2 Instance vs Fargate：安全性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EC2-Instance-vs-Fargate%EF%BC%9A%E8%AE%A1%E4%BB%B7%E6%96%B9%E5%BC%8F"><span class="toc-text">EC2 Instance vs Fargate：计价方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8EServerless%E8%A7%92%E5%BA%A6%E5%AF%B9%E6%AF%94Fargate%E5%92%8CLambda"><span class="toc-text">从Serverless角度对比Fargate和Lambda</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

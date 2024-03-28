@@ -1,0 +1,1263 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="" />
+
+
+<meta name="description" content="" />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content ">
+                
+
+
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-ex3-java-rmi-3-open-the-rmi-service.html">
+                        SSD8_Ex3【JAVA_RMI】(3)开启RMI服务</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月10日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    这一步骤完成的是创建本地主机上的远程对象注册表Registry的实例，并指定端口为8888，这一步必不可少（Java默认端口是1099），必不可缺的一步，缺少注册表创建，则无法绑定对象到远程注册表上。运行后开启RMI服务，客户端要与服...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/">计算机技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a> <a class="tag-none-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="tag">分布式系统</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-ex3-java-rmi-3-open-the-rmi-service.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/self-made-based-on-http-post-utility-class-byhttpclient.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/06/2-13102101222Kc1.jpg"
+                         alt="基于http post的自制工具类BYhttpClient">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/self-made-based-on-http-post-utility-class-byhttpclient.html">
+                        基于http post的自制工具类BYhttpClient</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月10日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    类 BYhttpClient介绍
+java.lang.Object
+
+cn.wangbaiyuan.tools.BYhttpClient
+
+
+
+
+public class BYhttpClient
+extends java.lang....
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Http/" rel="tag">Http</a> <a class="tag-none-link" href="/tags/%E4%B8%AA%E4%BA%BA%E7%A8%8B%E5%BA%8F%E5%BA%93/" rel="tag">个人程序库</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/self-made-based-on-http-post-utility-class-byhttpclient.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-ex3-java-rmi-2-remote-interface-declarations.html">
+                        SSD8_Ex3【JAVA_RMI】(2)远程接口声明</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月10日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    系列文章链接：SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API
+SSD8_Ex3【JAVA_RMI】(2)远程接口声明
+SSD8_Ex3【JAVA_RMI】(3)开启RMI服务
+SSD8_Ex3【JAVA_RMI】...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/">计算机技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a> <a class="tag-none-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="tag">分布式系统</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-ex3-java-rmi-2-remote-interface-declarations.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/gojava-implementation-http-post-to-submit-data-to-the-server.html">
+                        [转]java实现Http-post向服务器提交数据</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月08日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    在进行安卓学习中，极客人因为需要实现登录认证的功能，要实现http用post方式提交数据。下面是从CSDN转载的文章内容
+程序组成部分：1.客户端用eclipse HttpUtils.java 标准java接口，实现http用post...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/Http/" rel="tag">Http</a> <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/gojava-implementation-http-post-to-submit-data-to-the-server.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html">
+                        SSD8_Ex3【JAVA_RMI服务】(1)概述RMI和网络API</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年06月07日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    RMI和网络API周末做了网络与分布式系统实验的EX3-java实现RMI分布式议程服务。RMI的全称是“远程方法调用 (Remote Method Invocation)”。下面是极客人的理解：使用RMI远程方法调用，可以实现一个j...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/JAVA/" rel="tag">JAVA</a> <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a> <a class="tag-none-link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/" rel="tag">分布式系统</a> <a class="tag-none-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a> <a class="tag-none-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-ex3-java-rmi-services-1-an-overview-of-rmi-and-web-api.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+            <div class="post-media">
+                <a href="/using-the-command-line-to-configure-routing-and-access-internet-and-intranet.html">
+                    <img class="img-ajax" src="/img/loading.gif" data-src="http://baiyuan.wang/wp-content/uploads/2015/05/IPconfig.jpg"
+                         alt="用命令行配置路由同时访问内外网">
+                </a>
+            </div>
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/using-the-command-line-to-configure-routing-and-access-internet-and-intranet.html">
+                        用命令行配置路由同时访问内外网</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年05月31日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    由于锐捷不够用，极客人到处颠簸寻找免费上网的方法，前段时间找到用马上6免费上网的方法后，发现登完锐捷再打开马上6以后就不能访问内网IP了，比如不能登学校的FTP、在学校实验室远程桌面访问不了宿舍的电脑，我们访问校园网和免费上外网似乎是...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/IP/" rel="tag">IP</a> <a class="tag-none-link" href="/tags/%E5%91%BD%E4%BB%A4%E6%8C%87%E7%A4%BA%E7%AC%A6/" rel="tag">命令指示符</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/using-the-command-line-to-configure-routing-and-access-internet-and-intranet.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/wordpress-function-hook-hook-book-3.html">
+                        Wordpress函数钩子(Hook)大全(3)</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年05月30日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    管理界面相关activate_(插件文件名)
+首次激活某插件时执行此动作函数。参见常用函数-register_activation_hook。
+activity_box_end
+在控制板界面上的活动框末端执行该动作函数。
+add_ca...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/wordpress%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C/" rel="tag">wordpress插件制作</a> <a class="tag-none-link" href="/tags/%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" rel="tag">帮助文档</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/wordpress-function-hook-hook-book-3.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-exam1-e3-80-90tcp-chat-server-e3-80-91.html">
+                        SSD8_Exam1【TCP Chat Server】</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年05月29日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    这是SSD8练习的Exam1，预计极客人将会写一个系列，更新频率会和NWPU网络与分布式计算实验课2013级进度同步。点击标签或在本站搜索“SSD8”即可获取已更新的SSD8答案。上一练习：SSD8_EX2【UDP vs TCP】;如...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-exam1-e3-80-90tcp-chat-server-e3-80-91.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/ssd8-exam1tcp.html">
+                        SSD8_Exam1[TCP Chat Server]</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年05月29日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    This is Exam1 for SSD8 practice. It is expected that the extreme guests will write a series. The update frequency wil...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/Algorithm-language/">Algorithm language</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SSD8/" rel="tag">SSD8</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/ssd8-exam1tcp.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+    
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/wordpress-function-hook-hook-book-1.html">
+                        wordpress函数钩子（hook）大全(1)</a>
+                </h1>
+                <div class="post-meta"> &bull;
+                    <time class="post-date" datetime="" title="">
+                        2015年05月28日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    一、在典型请求中运行的动作钩子当已登录用户在默认主题打开网站主页时，WordPress会运行以下动作钩子函数：
+
+plugins_loaded
+sanitize_comment_cookies
+setup_theme
+auth_coo...
+                
+            </p>
+        </div>
+        
+            <footer class="post-footer clearfix">
+                <div class="pull-left tag-list">
+                    <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E7%99%BE%E5%85%83%E7%99%BE%E7%A7%91/">百元百科</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/API/" rel="tag">API</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a> <a class="tag-none-link" href="/tags/wordpress%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C/" rel="tag">wordpress插件制作</a> <a class="tag-none-link" href="/tags/%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/" rel="tag">帮助文档</a>
+            
+        </span>
+    </span>
+    
+    
+</div>
+                </div>
+                <div class="post-permalink">
+                    <a href="/wordpress-function-hook-hook-book-1.html" class="btn btn-default">
+                        阅读全文</a>
+                </div>
+            </footer>
+        
+    </article>
+
+
+<nav class="pagination" role="navigation">
+    <div id="page-nav">
+        <a class="extend prev" rel="prev" href="/page/13/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/15/"><i class='fa fa-angle-right'></i></a>
+    </div>
+</nav>
+
+
+
+            </main>
+            
+                
+    <aside class="col-md-4 sidebar">
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        搜索
+    </h3>
+    <div id="search-form">
+        <div id="result-mask" class="hide"></div>
+        <div class="search-area">
+            
+            
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="https://baiyuan.wang"></form>
+            
+        </div>
+        <div id="result-wrap" class="hide">
+            <div id="search-result"></div>
+        </div>
+        <div class="hide">
+            <template id="search-tpl">
+                <div class="item">
+                    <a href="/{path}" title="{title}">
+                        <div class="title">{title}</div>
+                        <div class="content">{content}</div>
+                    </a>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+
+            
+        
+            
+            
+            
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+            
+        
+            
+            <div class="widget">
+    <h3 class="title">
+        随便看看
+    </h3>
+    <div class="content random_posts">
+        <ul>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/adding-base64-react-native-support.html" target="_blank">React Native中添加Base64支持</a>
+                        <div class="date">2017-03-08</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/android-development-for-immersion-status-bar.html" target="_blank">安卓开发实现沉浸式状态栏</a>
+                        <div class="date">2015-05-27</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/build-github-into-a-continuous-publishing-platform-for-personal-full-platform-works.html" target="_blank">将Github打造成个人全平台作品的持续发布平台</a>
+                        <div class="date">2019-12-25</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/cloudformation-infrastructure-code-behind-it.html" target="_blank">Cloudformation与其背后的“基础设施即代码”</a>
+                        <div class="date">2018-11-16</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/in-ruby-jane-books-crawler-statistics-users-post-information.html" target="_blank">用Ruby简书爬虫统计用户文章信息</a>
+                        <div class="date">2016-12-16</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/java-implementation-webservice-mysql.html" target="_blank">java实现webservice+MySQl</a>
+                        <div class="date">2015-06-26</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/mysql-database-connections-change-password-create-a-new-user-command.html" target="_blank">mySQL数据库连接、修改密码、新建用户操作命令</a>
+                        <div class="date">2015-04-08</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/ssd8-ex2-udp-vs-tcp.html" target="_blank">SSD8_EX2【UDP vs TCP】</a>
+                        <div class="date">2015-05-22</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html" target="_blank">wordpress时间函数the_time()和data()的区别</a>
+                        <div class="date">2015-03-25</div>
+                    </div>
+                </li>
+            
+                <li>
+                    <div class="post-item">
+                        <a href="https://baiyuan.wang/women-in-it.html" target="_blank">Women in IT</a>
+                        <div class="date">2017-08-27</div>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+            
+        
+            
+            <link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.6.2/gitalk.min.css" rel="stylesheet">
+<div class="widget">
+    <h3 class="title">
+        最新评论
+    </h3>
+    <div class="content recent_comments">
+        
+        <div class="gt-container brief">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                sdad
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                评论反应比较慢这个怎么解决
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                calvin
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-04-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                放在iPhoneX的模拟器上在计算MaxHeight值会无法计算，先将containerHeight默认值设置为auto，计算完containerHeight后设置为0，刷新重新计算，再将containerHeight设置为auto计算minHeight可解决此问题，不知道有没有更好的方法？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                长江大学陈刚同学
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                湖北武漢東湖社區論壇有個直接取名叫“三峽大學”，長期噴
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小麦社区
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-03-01
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                站点名称：小麦社区
+站点描述：综合社区
+站点地址：http://www.axiaomai.cn
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                博客大全
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-21
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                博客大全特邀站长前来入住！！！！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                WordPress时间函数The_time()和Date()的区别|JOYtheme
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-02-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                [&#8230;] 转载注明原文出处：王柏元的博客&gt;&gt;http://baiyuan.wang/the-wordpress-time-function-time-and-the-data-difference.html [&#8230;]
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2020-01-02
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你好，贵站的内容类型和本站类型不是很匹配，抱歉。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                所以保护知识产权不是一句假话，只有让创新的人能获得利益，才能鼓励人创新。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                如果随随便便就能买到，自己花大精力去做开发岂不是自找的辛苦啊，所以外国不封锁，反而什么也发展不起来。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                转角捡到钱
+                            </a>
+                            
+                            <span class="gt-comment-date">
+                                2019-12-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                本站名称：天鸡部落
+本站链接：https://3838521.com/
+诚意友链，望审核回复留言
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+    </div>
+</div>
+
+            
+        
+            
+    </aside>
+    <aside class="col-md-4 sidebar scroll-fix">
+        
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+    </aside>
+    <aside class="col-md-4 sidebar">
+        
+        
+            
+            
+<div class="widget">
+    <h3 class="title">
+        友链
+    </h3>
+    <div class="content friends-link">
+        
+        <a href="https://magpie.wangbaiyuan.cn/" class="fa" target="_blank">
+            Magpie抽奖系统</a>
+        
+        <a href="https://md.wangbaiyuan.cn/" class="fa" target="_blank">
+            极客MD编辑器</a>
+        
+        <a href="http://www.jurieo.com/" class="fa" target="_blank">
+            俊霖</a>
+        
+        <a href="https://webapproach.net/" class="fa" target="_blank">
+            知言的自留地</a>
+        
+        <a href="https://www.wangtianyi.top/" class="fa" target="_blank">
+            不要吵到这里的Bug - 王天一</a>
+        
+        <a href="http://www.deathearth.com/" class="fa" target="_blank">
+            一个程序猿的编码人生</a>
+        
+        <a href="https://www.enetn.com/" class="fa" target="_blank">
+            e网络</a>
+        
+        <a href="https://www.icheny.cn/" class="fa" target="_blank">
+            乘月网</a>
+        
+        <a href="https://ewind.us/" class="fa" target="_blank">
+            ewind the doodler</a>
+        
+    </div>
+</div>
+
+            
+        
+    </aside>
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="htaccess,SEO,Web,域名解析" />
+
+
+<meta name="description" content=" 使用.htaccess文件实现301重定向常用的七种方法301重定向对广大站长来说并不陌生，从网站建设到目录优化，避免不了对网站目录进行更改，在这种情况下用户的收藏夹里面和搜索引擎里面可能保存..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    使用.htaccess文件实现301重定向常用的七种方法 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用.htaccess文件实现301重定向常用的七种方法">
+            
+            使用.htaccess文件实现301重定向常用的七种方法
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/SEO/" rel="tag">SEO</a> <a class="tag-none-link" href="/tags/Web/" rel="tag">Web</a> <a class="tag-none-link" href="/tags/htaccess/" rel="tag">htaccess</a> <a class="tag-none-link" href="/tags/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" rel="tag">域名解析</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/01/06</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="使用-htaccess文件实现301重定向常用的七种方法"><a href="#使用-htaccess文件实现301重定向常用的七种方法" class="headerlink" title=" 使用.htaccess文件实现301重定向常用的七种方法"></a> 使用.htaccess文件实现301重定向常用的七种方法</h2><p>301重定向对广大站长来说并不陌生，从网站建设到目录优化，避免不了对网站目录进行更改，在这种情况下用户的收藏夹里面和搜索引擎里面可能保存的还是老的地址，在打开这些链接时会无法显示页面出现404的错误，造成很差的用户体验并失去了很多流量，今天笔者就给大家分享一下实现301重定向的七种方法。</p>
+<p>从搜索引擎优化的角度来看，目前301重定向是网站目录更改后重新定向最为可行的一种办法。在你更改地址使用了301重定向后，搜索引擎只会对新地址进行索引，同时会把旧地址下原来收录的链接转移到新地址下，而上述的这些操作并不会影响到网站在搜索引擎的排名。</p>
+<p>实现301重定向最直接的方法是编辑.htaccess文件，想了解关于htaccess文件使用方法，请点此查看。园子需要提醒你的是，在对.htaccess文件进行操作之前，一定要备份好原来的.htaccess文件，以避免修改出错带来不必要的麻烦。</p>
+<h2 id="1-重定向domain-com到www-domain-com"><a href="#1-重定向domain-com到www-domain-com" class="headerlink" title="1.重定向domain.com到www.domain.com"></a>1.重定向domain.com到<a target="_blank" rel="noopener" href="http://www.domain.com/">www.domain.com</a></h2><p>这种重定向非常常见，最终目的是实现域名的唯一性，也是seo必须要做的。实现方法是在.htaccess文件中加入以下规则：</p>
+<p>代码如下:</p>
+<p>RewriteEngine On<br>RewriteCond %{HTTP_HOST} !^<a target="_blank" rel="noopener" href="http://www.domain.com$/">www.domain.com$</a> [NC]<br>RewriteRule ^(.*)$ <a target="_blank" rel="noopener" href="http://www.domain.com/$1">http://www.domain.com/$1</a> [L,R&#x3D;301]</p>
+<p>注：使用这种301重定向方式后，当你打开类似domain.com的网址后会自动定向到<a target="_blank" rel="noopener" href="http://www.domain.com./">www.domain.com。</a></p>
+<h2 id="2-重定向www-domain-com到domain-com"><a href="#2-重定向www-domain-com到domain-com" class="headerlink" title="2.重定向www.domain.com到domain.com"></a>2.重定向<a target="_blank" rel="noopener" href="http://www.domain.com到domain.com/">www.domain.com到domain.com</a></h2><p>这种操作刚好和上面的域名显示是相反的，规则如下：</p>
+<p>代码如下:</p>
+<p>RewriteEngine On<br>RewriteCond %{HTTP_HOST} !^domain.com$ [NC]<br>RewriteRule ^(.*)$ <a target="_blank" rel="noopener" href="http://domain.com/$1">http://domain.com/$1</a> [L,R&#x3D;301]</p>
+<p>注：使用此301重定向方式，当你打开类似<a target="_blank" rel="noopener" href="http://www.domain.com的网址后会自动定向到domain.com./">www.domain.com的网址后会自动定向到domain.com。</a></p>
+<h2 id="3-重定向olddomain-com-到-newdomain-com"><a href="#3-重定向olddomain-com-到-newdomain-com" class="headerlink" title="3.重定向olddomain.com 到 newdomain.com"></a>3.重定向olddomain.com 到 newdomain.com</h2><p>这种操作经常用于更换域名时用到，很多站长因为种种原因可能要为站点更换域名，此时多采用以下规则来实现重新定向：</p>
+<p>代码如下:</p>
+<p>RewriteEngine On<br>RewriteBase &#x2F;<br>RewriteCond %{HTTP_HOST} !olddomain.com$ [NC]<br>RewriteRule ^(.*)$ <a target="_blank" rel="noopener" href="http://newdomain.com/$1">http://newdomain.com/$1</a> [L,R&#x3D;301]</p>
+<p>注：当用户打开老的域名后，会自动重定向到新的域名下的站点，此时域名显示格式为不带www.的格式。</p>
+<h2 id="4-重定向olddomain-com-到-www-newdomain-com"><a href="#4-重定向olddomain-com-到-www-newdomain-com" class="headerlink" title="4.重定向olddomain.com 到 www.newdomain.com"></a>4.重定向olddomain.com 到 <a target="_blank" rel="noopener" href="http://www.newdomain.com/">www.newdomain.com</a></h2><p>这种操作是基于第三种方式的改良，只是显示网址显示为带www.的那种。</p>
+<p>代码如下:</p>
+<p>RewriteEngine On<br>RewriteCond %{HTTP_HOST} !olddomain.com$ [NC]<br>RewriteRule ^(.*)$ <a target="_blank" rel="noopener" href="http://www.newdomain.com/$1">http://www.newdomain.com/$1</a> [L,R&#x3D;301]</p>
+<p>注：当用户打开老的域名后，会自动重定向到新的域名下的站点，并且网址显示格式为带www.的格式。</p>
+<h2 id="5-重定向domain-com-file-file-php-到-otherdomain-com-otherfile-other-php"><a href="#5-重定向domain-com-file-file-php-到-otherdomain-com-otherfile-other-php" class="headerlink" title="5.重定向domain.com&#x2F;file&#x2F;file.php 到 otherdomain.com&#x2F;otherfile&#x2F;other.php"></a>5.重定向domain.com&#x2F;file&#x2F;file.php 到 otherdomain.com&#x2F;otherfile&#x2F;other.php</h2><p>这种操作针对于更改一个域名的同时，网站目录路径也发生变化的情况下使用，规则如下：</p>
+<p>代码如下:</p>
+<p>RewriteCond %{HTTP_HOST} ^<a target="_blank" rel="noopener" href="http://www.domain.com$/">www.domain.com$</a><br>RewriteRule ^file&#x2F;file.php$ <a target="_blank" rel="noopener" href="http://www.otherdomain.com/otherfile/other.php">http://www.otherdomain.com/otherfile/other.php</a> [R&#x3D;301,L]</p>
+<p>注：当用户访问老的域名路径时，会重新定向到新的域名新的路径下。</p>
+<h2 id="6-IIS服务器下实现301重定向"><a href="#6-IIS服务器下实现301重定向" class="headerlink" title="6.IIS服务器下实现301重定向"></a>6.IIS服务器下实现301重定向</h2><p>具体方法如下：打开internet信息服务管理器，在欲重定向的网页或目录上按右键，选中“重定向到URL”， 在对话框中输入目标页面的地址，切记要选中“资源的永久重定向”最后点击“应用”即可。</p>
+<p>注：再次提醒你，一定要选中“资源的永久重定向”。</p>
+<h2 id="7-Apache服务器实现301重定向"><a href="#7-Apache服务器实现301重定向" class="headerlink" title="7.Apache服务器实现301重定向"></a>7.Apache服务器实现301重定向</h2><p>在Apache服务器实现301重定向的方法园子在以前的文章中提到过，只需要在.htaccess文件中加入以下规则：</p>
+<p>代码如下:</p>
+<p>Redirect &#x2F;旧目录&#x2F;旧文档名 新文档的地址</p>
+<p>也可能是：</p>
+<p>代码如下:</p>
+<p>Redirect &#x2F;olddirectory <a target="_blank" rel="noopener" href="http://www.newsite.com/newdirectory">http://www.newsite.com/newdirectory</a></p>
+<p>[callout class&#x3D;”warning” title&#x3D;””]注：一定要注意书写格式，第一种是同一域名下将一个文档定向到新的目录地址，第二种是把老目录定义到新域名的新目录下。[&#x2F;callout]</p>
+<p>以上七种方法是在网站管理与优化过程中经常会使用到的301重定向方法，当然，你也可能遇到不大相同的状况，这时候就需要根据自己的目的去适当调整下命令规则以适应不同的需求。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/use-the-htaccess-file-seven-ways-to-achieve-301-redirect.html" target="_blank">王柏元的博客 >> 使用.htaccess文件实现301重定向常用的七种方法</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/snowdon-united-states-put-emphasis-on-network-attack-now-needs-defensive.html" class="pre-post btn btn-default" title='斯诺登：美国已经把太多的重点放在网络进攻，现在需要的是防御'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            斯诺登：美国已经把太多的重点放在网络进攻，现在需要的是防御</span>
+    </a>
+    
+    
+    <a href="/follow-up-on-baidu-k-station-new-year-new-years-day-message.html" class="next-post btn btn-default" title='关于元旦百度新年大K站的后续消息'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            关于元旦百度新年大K站的后续消息</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "52337",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/aaf8805fe5e4049d17279461cc853b30.png"
+                                 alt="@shijianairen">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                shijianairen
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-06-18
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                厉害厉害
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/cdb6d47c68fdbc3072257b1b46574fbb.png"
+                                 alt="@韩版女装">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                韩版女装
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-03-24
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                在一些版本的.htaccess中，尤其是WINDOWS系统的，域名中的点（.）如：www.girlw.net要转义成 www\.girlw\.net才可以使用的，直接码域名上去，会掉错。注意只是部分版的，不是全部哟
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-htaccess%E6%96%87%E4%BB%B6%E5%AE%9E%E7%8E%B0301%E9%87%8D%E5%AE%9A%E5%90%91%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%83%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text"> 使用.htaccess文件实现301重定向常用的七种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%87%8D%E5%AE%9A%E5%90%91domain-com%E5%88%B0www-domain-com"><span class="toc-text">1.重定向domain.com到www.domain.com</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%87%8D%E5%AE%9A%E5%90%91www-domain-com%E5%88%B0domain-com"><span class="toc-text">2.重定向www.domain.com到domain.com</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%87%8D%E5%AE%9A%E5%90%91olddomain-com-%E5%88%B0-newdomain-com"><span class="toc-text">3.重定向olddomain.com 到 newdomain.com</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%87%8D%E5%AE%9A%E5%90%91olddomain-com-%E5%88%B0-www-newdomain-com"><span class="toc-text">4.重定向olddomain.com 到 www.newdomain.com</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%87%8D%E5%AE%9A%E5%90%91domain-com-file-file-php-%E5%88%B0-otherdomain-com-otherfile-other-php"><span class="toc-text">5.重定向domain.com&#x2F;file&#x2F;file.php 到 otherdomain.com&#x2F;otherfile&#x2F;other.php</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-IIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8B%E5%AE%9E%E7%8E%B0301%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-text">6.IIS服务器下实现301重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Apache%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0301%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-text">7.Apache服务器实现301重定向</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>

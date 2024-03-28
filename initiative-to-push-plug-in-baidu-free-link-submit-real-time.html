@@ -1,0 +1,882 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN,en,default">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="王柏元的博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://baiyuan.wang">
+    <!--SEO-->
+
+<meta name="keywords" content="wordpress,SEO,PHP" />
+
+
+<meta name="description" content="对于广大站长来说，文章第一时间被百度收录，或自己的原创文章第一时间被百度认定为原创相当重要。不止一次文章被转载，但是因为别人的网站权重比自己高，百度收录速度或百度搜索文章标题的排名却不及转载网站..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    免插件百度链接提交-实时主动推送 |
+    
+    王柏元的博客 | 博学广问，自律静思
+</title>
+
+<link rel="alternate" href="/atom.xml" title="王柏元的博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+    
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+<header class="main-header"  style="background-image:url(
+    /img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='Baiyuan Wang'>
+            <img src="/img/avatar.jpg?rev=@@hash" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <h2>
+                博学广问，自律静思
+            </h2>
+            
+        </div>
+    </div>
+</header>
+
+<nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://baiyuan.wang">
+                        王柏元的博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa fa-home"></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/技术/"><i class="fa fa-shield"></i>
+                                技术</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/岁月/"><i class="fa fa-heartbeat"></i>
+                                岁月</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/极客视点/"><i class="fa fa-slideshare"></i>
+                                观点</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa fa-history"></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="content-wrap">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8 main-content m-post">
+                <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="免插件百度链接提交-实时主动推送">
+            
+            免插件百度链接提交-实时主动推送
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-none-link" href="/tags/PHP/" rel="tag">PHP</a> <a class="tag-none-link" href="/tags/SEO/" rel="tag">SEO</a> <a class="tag-none-link" href="/tags/wordpress/" rel="tag">wordpress</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2015/05/25</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>对于广大站长来说，文章第一时间被百度收录，或自己的原创文章第一时间被百度认定为原创相当重要。不止一次文章被转载，但是因为别人的网站权重比自己高，百度收录速度或百度搜索文章标题的排名却不及转载网站的，这是一件十分让人苦恼的一件事。</p>
+<h2 id="百度站长平台消息："><a href="#百度站长平台消息：" class="headerlink" title="百度站长平台消息："></a>百度站长平台消息：</h2><p>5月25日，百度站长工具发布消息：</p>
+<blockquote>
+<p>sitemap实时推送功能6月份开始逐步下线，我们推出了更加强大的链接提交主动推送功能做为替代。<a target="_blank" rel="noopener" href="http://zhanzhang.baidu.com/college/articleinfo?id=336">新的主动推送功能更加强大</a>：提交数据方式更简单，返回码达意更清晰（可立即知晓数据提交是否成功），可以做到实时向百度推送新数据。</p>
+</blockquote>
+<p>相关信息详见：  <a target="_blank" rel="noopener" href="http://zhanzhang.baidu.com/college/articleinfo?id=336" title="http://zhanzhang.baidu.com/college/articleinfo?id=336">http://zhanzhang.baidu.com/college/articleinfo?id=336</a> sitemap广大网站使用，搜索引擎通过爬行网站地图可以发现网站的新链接，并定期访问。但是搜索引擎的爬行频率有限且具有规律性，自己的原创文章并不能第一时间被百度等发现。 下面是百度官方给出三种提交链接的方式总结：</p>
+<ul>
+<li>主动推送：百度推荐的<strong>最为快速的提交方式</strong>，建议将站点当天新链接立即通过此方式推送给百度获取最快收录。</li>
+<li>sitemap：百度会周期性检查您提交的Sitemap，对链接进行处理，收录速度慢于主动推送。</li>
+<li>手工提交：手动将链接提交给百度。</li>
+</ul>
+<h2 id="这里的手工提交不同于“链接提交”"><a href="#这里的手工提交不同于“链接提交”" class="headerlink" title="这里的手工提交不同于“链接提交”"></a>这里的手工提交不同于“链接提交”</h2><p>这里的手工提交是指对于百度站长验证站点提供的快速提交方式，支持批量多链接提交；而通常的“链接提交”是不需要你的网站是”百度站长平台验证站点“的，提交比较随意。 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-43.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-43.jpg" alt="提交链接到百度"></a> 提交链接到百度 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-41.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-41.jpg" alt="手动提交"></a> 手动提交 <a href="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-38.jpg"><img src="http://baiyuan.wang/wp-content/uploads/2015/05/baiyuan.wang_2015-05-26_00-01-38.jpg" alt="实时提交"></a> 实时提交 而百度站长平台新推出的“实时主动推送”为验证站点站长分配了一个token准入密钥，一般可认为只有站长或者知晓密钥的网站管理员才有权限提交，所以提交需谨慎，极客人建议大家用它提交一些质量比较高的文章，不要提交垃圾链接，同时需要提醒大家的是：目前这种方式提交的URL是有限额的，比如王柏元的博客每天只能用实时主动提交方式提交50条，大量自动提交垃圾文章可能导致失去提交权限！</p>
+<h2 id="免插件百度链接提交-实时主动推送"><a href="#免插件百度链接提交-实时主动推送" class="headerlink" title="免插件百度链接提交-实时主动推送"></a>免插件百度链接提交-实时主动推送</h2><p>通过百度官方给出的PHP推送样例，极客人制作出了针对wordpress博客实时推送的PHP代码程序，将下列代码加入主题文件夹下functions.php最后一行“?&gt;”之前极客，本代码将在每次发布文章时执行将新文章链接实时主动推送给百度，同时在与代码所处文件同目录中生成日志文件“by_baiduSubmit.txt”。你可以查看日志文件了解是否推送成功。如果此程序出现错误或无法正确向百度实时提交新链接，欢迎在本页面反馈。</p>
+<?php 
+date\_default\_timezone_set('Asia/Shanghai');
+add\_action('publish\_post', 'publish\_bd\_submit', 999);
+function publish\_bd\_submit($post_ID){
+    global $post;
+    $bd\_submit\_enabled = true;
+    if($bd\_submit\_enabled){
+        $bd\_submit\_site = "baiyuan.wang";//此处填写你的域名
+        $bd\_submit\_token ="yourtoken";//此处填写你的token
+        $api ="http://data.zz.baidu.com/urls?site=".$bd\_submit\_site."&token=".$bd\_submit\_token;
+        if($post->post_status != "publish"){
+            $url = get\_permalink($post\_ID);
+            $ch = curl_init();
+            $options =  array(
+                CURLOPT_URL => $api,
+                CURLOPT_POST => true,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POSTFIELDS => $url,
+                CURLOPT_HTTPHEADER => array('Content-Type: text/plain')
+            );
+            curl\_setopt\_array($ch, $options);
+            $result = curl_exec($ch);
+            $result = json_decode($result, true);
+                 $time = time();
+                $file =  dirname(\_\_FILE\_\_).'/by_baiduSubmit.txt';//生成日志文件,与代码所处文件同目录
+                if(date('Y-m-d',filemtime($file)) != date('Y-m-d')){
+                    $handle = fopen($file,"w");
+                }else{
+                    $handle = fopen($file,"a");
+                }
+        $resultMessage="";
+            if($result\['message'\]){
+               $resultMessage= date('Y-m-d G:i:s',$time)."\\n提交失败：".$result\['message'\].":\\n网址：".$url."\\n\\n";
+            }
+            if($result\['success'\]){
+$resultMessage= date('Y-m-d G:i:s',$time)."\\n提交成功：".":".$url."\\n\\n";
+            }
+                fwrite($handle,$resultMessage);
+                fclose($handle);
+        }
+    }
+}
+?>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系获得授权 ©<a href="/" target="_blank">王柏元的博客</a>, <b>非商业转载请务必注明: </b></br>
+原文出处：
+                <a href="https://baiyuan.wang/initiative-to-push-plug-in-baidu-free-link-submit-real-time.html" target="_blank">王柏元的博客 >> 免插件百度链接提交-实时主动推送</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/android-development-for-immersion-status-bar.html" class="pre-post btn btn-default" title='安卓开发实现沉浸式状态栏'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            安卓开发实现沉浸式状态栏</span>
+    </a>
+    
+    
+    <a href="/ssd8-ex2-udp-vs-tcp.html" class="next-post btn btn-default" title='SSD8_EX2【UDP vs TCP】'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            SSD8_EX2【UDP vs TCP】</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+<script src="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.js"></script>
+<link href="https://cdn.bootcdn.net/ajax/libs/gitalk/1.7.2/gitalk.min.css" rel="stylesheet">
+<div id="gitalk-container">
+    <div class="gt-container detail">
+    
+</div>
+
+</div>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+    // Gitalk配置
+    language: "zh-CN,en,default",
+    clientID: "8fbc26599e94fd5e4f2d",
+    clientSecret: "16d6dc93d6a850229a9fd96c74096bd5d491eb82",
+    repo: "blog",
+    owner: "wangbaiyuan",
+    admin: ["geekeren"],
+    id: "23732",
+    distractionFreeMode: "true"
+});
+gitalk.render('gitalk-container');
+</script>
+
+
+    <div class="gt-container detail">
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/05f97aaf2b87be263e97a43ad8232d6f.png"
+                                 alt="@Kwong">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                Kwong
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2019-04-17
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                百度搜索推送有三种方式吧。我是用插件推送的，三种推送同时实现，省事。
+https://wordpress.org/plugins/baidu-submit-link/
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d705590d59843c708037d4ebc47d082e.png"
+                                 alt="@纳米隔热板">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                纳米隔热板
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2018-10-27
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                发不完文章自动推送的那个是怎么做的
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/b0baee9d279d34fa1dfd71aadb908c3f.png"
+                                 alt="@11111">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                11111
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2017-06-07
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                可以试试这个，在线推送的http://aisou.320.io/front/baidu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-11-10
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                是的，每次写文章
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/9bfeeab9c776b921ff407d5de0a092b0.png"
+                                 alt="@靠谱学生兼职网">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                靠谱学生兼职网
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2016-11-10
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                意思是每天发文章都会自动推送，不用再写链接进去了的是吧！ :???:
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-09-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                可能我权重太低，亲测效果不大
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/6e02f759c42eda99b6e354983bffeb23.png"
+                                 alt="@美国主机评论">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                美国主机评论
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-09-23
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                这个工具对网站收录真有效果？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-08-20
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                新出炉的插件http://baiyuan.wang/by-shuoshuo-wp-plugin-release-feedback.html，这篇介绍文章还没写完，后续我会把这篇文章写全，你可以先试试
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d45c29c623b981620fc5ee07e7acbe94.png"
+                                 alt="@小小白">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小小白
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-08-18
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                你这是知言主题吗，我换成同样的主题，你可以分享说说的方法我吗，好希望博客里面能有一个带评论的说说
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-08-16
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                没公布的原因是我做的插件能提供说说的功能，但是说说的页面是要根据你用的主题自己量身定做。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/d45c29c623b981620fc5ee07e7acbe94.png"
+                                 alt="@小小白">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                小小白
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-08-15
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                楼主求新的说说的实现方法,虽然现在我换成typecho了
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-30
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                云落大神,换不换友链啊，还有，不知道你的主题那个碎语支持分页不
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/7a1e26ab2a0cf203f5de9d0cddfea25e.png"
+                                 alt="@极客人">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                极客人
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-30
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                嗯嗯，云落大神光顾我好开心
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="gt-comments">
+            <div style="position: relative;">
+                <div class="gt-comment gt-comment-admin" style="transform-origin: center top;">
+                    
+                        <div class="gt-avatar gt-comment-avatar">
+                            <img src="https://wangbaiyuan.cn/wp-content/avatars/6b41a61d4253b5048814a83266c509b9.png"
+                                 alt="@云落">
+                        </div>
+                    
+
+                    <div class="gt-comment-content">
+                        <div class="gt-comment-header">
+                            <div class="gt-comment-block-2"></div>
+                            <a class="gt-comment-username">
+                                云落
+                            </a>
+                            
+                                <span class="gt-comment-text">commented at</span>
+                            
+                            <span class="gt-comment-date">
+                                2015-05-30
+                            </span>
+                        </div>
+                        <div class="gt-comment-body markdown-body">
+                            <p>
+                                看了下，是从那个插件里面扒的吧
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+</div>
+
+
+            </main>
+            
+                <aside class="col-md-4 sidebar">
+    
+<div class="widget">
+    <h3 class="title">
+        关注我
+    </h3>
+    <div class="content follow_me">
+        
+        <a href="//github.com/geekeren" rel="external nofollow" title="github" target="_blank" class="github">
+            <i class="github fa fa-github"></i>
+        </a>
+        
+        <a href="mailto:me@mail.wangbaiyuan.cn" rel="external nofollow" title="email" target="_blank" class="email">
+            <i class="envelope-o fa fa-envelope-o"></i>
+        </a>
+        
+        <a href="//weibo.com/3734351975" rel="external nofollow" title="weibo" target="_blank" class="weibo">
+            <i class="weibo fa fa-weibo"></i>
+        </a>
+        
+        <a href="/atom.xml" rel="external nofollow" title="rss" target="_blank" class="rss">
+            <i class="feed fa fa-feed"></i>
+        </a>
+        
+    </div>
+</div>
+
+
+    
+    <div class="widget">
+        <h3 class="title">
+            订阅微信公众号
+        </h3>
+        <div class="content subscribe_wechat">
+            <div>
+                <img
+                        width="200"
+                        src="/img/wechat.jpg" alt="扫一扫关注<br/>
+《我是极客人》微信公众号
+"
+                />
+            </div>
+            <div>
+                扫一扫关注<br/>
+《我是极客人》微信公众号
+
+            </div>
+        </div>
+    </div>
+
+
+</aside>
+
+
+<aside id="article-toc" role="navigation" class="col-md-4 sidebar scroll-fix">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BE%E5%BA%A6%E7%AB%99%E9%95%BF%E5%B9%B3%E5%8F%B0%E6%B6%88%E6%81%AF%EF%BC%9A"><span class="toc-text">百度站长平台消息：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E9%87%8C%E7%9A%84%E6%89%8B%E5%B7%A5%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%90%8C%E4%BA%8E%E2%80%9C%E9%93%BE%E6%8E%A5%E6%8F%90%E4%BA%A4%E2%80%9D"><span class="toc-text">这里的手工提交不同于“链接提交”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E6%8F%92%E4%BB%B6%E7%99%BE%E5%BA%A6%E9%93%BE%E6%8E%A5%E6%8F%90%E4%BA%A4-%E5%AE%9E%E6%97%B6%E4%B8%BB%E5%8A%A8%E6%8E%A8%E9%80%81"><span class="toc-text">免插件百度链接提交-实时主动推送</span></a></li></ol>
+        
+    </div>
+</aside>
+
+
+
+            
+        </div>
+    </div>
+</section>
+<footer class="main-footer">
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <span>&copy;
+                    2014 - 2024
+                    <a href="https://baiyuan.wang" target="_blank">王柏元的博客</a>
+                    <a href="//beian.miit.gov.cn/" target="_blank" rel="nofollow">
+                        鄂ICP备2022019264号-1</a>
+                    
+                </span>|
+                <span>
+                   
+    <script
+            type="text/javascript"
+            src="https://s4.cnzz.com/z_stat.php?id=1254162355&web_id=1254162355"
+    >
+    </script>
+
+
+
+
+
+                </span>|
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span>|
+                <span>
+                    Theme by <a href="https://github.com/geekeren/hexo-theme-snippet-pro" class="copyright-links"
+                                target="_blank" rel="nofollow">Snippet Pro</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+
+    
+
+    <a id="back-to-top" class="icon-btn hide">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</footer>
+
+</body>
+</html>
